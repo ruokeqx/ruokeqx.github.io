@@ -2021,7 +2021,7 @@ Npcap began in 2013 as some improvements to the (now discontinued) WinPcap libra
 </code></pre><h3 id="转换方法">转换方法</h3>
 <h4 id="pcapng-to-pcap">pcapng to pcap</h4>
 <p>方法一：直接用wireshark打开pcapng文件另存为pcap文件</p>
-<p><img src="images/posts/cap%E6%A0%BC%E5%BC%8F/image-20211122003931460.png" alt="image-20211122003931460" /></p>
+<p><img src="/images/posts/cap%E6%A0%BC%E5%BC%8F/image-20211122003931460.png" alt="image-20211122003931460" /></p>
 <p>方法二：editcap指定格式输出</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2031,7 +2031,7 @@ Npcap began in 2013 as some improvements to the (now discontinued) WinPcap libra
 <pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">editcap</span><span class="p">.</span><span class="n">exe</span> <span class="nb">a-sol</span><span class="p">.</span><span class="n">pcapng</span> <span class="nb">a-sol</span><span class="p">.</span><span class="n">pcap</span> <span class="o">-F</span> <span class="n">pcap</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="images/posts/cap%E6%A0%BC%E5%BC%8F/image-20211122005029001.png" alt="image-20211122005029001" /></p>
+</div><p><img src="/images/posts/cap%E6%A0%BC%E5%BC%8F/image-20211122005029001.png" alt="image-20211122005029001" /></p>
 <p>方法三：用mergecap将pcapng转化为指定的pcap格式</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2041,7 +2041,7 @@ Npcap began in 2013 as some improvements to the (now discontinued) WinPcap libra
 <pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">mergecap</span><span class="p">.</span><span class="n">exe</span> <span class="nb">a-sol</span><span class="p">.</span><span class="n">pcapng</span> <span class="n">-w</span> <span class="nb">a-sol</span><span class="p">.</span><span class="n">pcap</span> <span class="o">-F</span> <span class="n">pcap</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="images/posts/cap%E6%A0%BC%E5%BC%8F/image-20211121235944790.png" alt="image-20211121235944790" /></p>
+</div><p><img src="/images/posts/cap%E6%A0%BC%E5%BC%8F/image-20211121235944790.png" alt="image-20211121235944790" /></p>
 <p>此外mergecap功能如其名，还能将多个包合到一起。</p>
 <p>方法四：tcpdump/libpcap (4.1.0+/1.1.0+)</p>
 <div class="highlight"><div class="chroma">
@@ -2052,7 +2052,7 @@ Npcap began in 2013 as some improvements to the (now discontinued) WinPcap libra
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tcpdump -r a-sol.pcapng -w a-sol.pcap
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="images/posts/cap%E6%A0%BC%E5%BC%8F/image-20211122153349439.png" alt="image-20211122153349439" /></p>
+</div><p><img src="/images/posts/cap%E6%A0%BC%E5%BC%8F/image-20211122153349439.png" alt="image-20211122153349439" /></p>
 <h4 id="pcap-to-pcapng">pcap to pcapng</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
