@@ -6,15 +6,15 @@
   xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>Showcase overview on ruokeqx&#39;s blog</title>
+    <title>Link on ruokeqx&#39;s blog</title>
     <link>https://ruokeqx.gitee.io/showcase/</link>
-    <description>Recent content in Showcase overview on ruokeqx&#39;s blog</description>
+    <description>Recent content in Link on ruokeqx&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
     <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
     <copyright>©2021, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 21 Nov 2021 21:04:11 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 22 Nov 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://ruokeqx.gitee.io/showcase/index.xml" rel="self" type="application/rss+xml" />
     
@@ -23,9 +23,9 @@
       <item>
         <title>Friends</title>
         <link>https://ruokeqx.gitee.io/showcase/friends/</link>
-        <pubDate>Sun, 21 Nov 2021 21:04:11 +0900</pubDate>
+        <pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate>
         <author>ruokeqx@163.com (ruokeqx)</author>
-        <atom:modified>Sun, 21 Nov 2021 21:04:11 +0900</atom:modified>
+        <atom:modified>Mon, 22 Nov 2021 00:00:00 +0000</atom:modified>
         <guid>https://ruokeqx.gitee.io/showcase/friends/</guid>
         <description></description>
         
@@ -40,11 +40,11 @@
       
       <item>
         <title>Hugo</title>
-        <link>https://ruokeqx.gitee.io/showcase/hugo/</link>
-        <pubDate>Sun, 19 Jan 2020 21:04:11 +0900</pubDate>
+        <link>https://ruokeqx.gitee.io/showcase/repo/</link>
+        <pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate>
         <author>ruokeqx@163.com (ruokeqx)</author>
-        <atom:modified>Sun, 19 Jan 2020 21:04:11 +0900</atom:modified>
-        <guid>https://ruokeqx.gitee.io/showcase/hugo/</guid>
+        <atom:modified>Mon, 22 Nov 2021 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/showcase/repo/</guid>
         <description></description>
         
         <dc:creator>ruokeqx</dc:creator>

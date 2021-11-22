@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>AI on ruokeqx&#39;s blog</title>
+    <link>https://ruokeqx.gitee.io/tags/ai/</link>
+    <description>Recent content in AI on ruokeqx&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
+    <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
+    <copyright>©2021, All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 15 Apr 2021 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://ruokeqx.gitee.io/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>CS231 Convolutional Neural Networks for Visual Recognition——Stanford</title>
+        <link>https://ruokeqx.gitee.io/posts/cs231/</link>
+        <pubDate>Thu, 15 Apr 2021 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Thu, 15 Apr 2021 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/cs231/</guid>
+        <description>Where is article comes from? An idea of a pornography detection project for ciscn 2021. And when searching on Google, I came accross a report from cs231n named Combining CNNs for detecting pornography in the absence of labeled training data. 历史介绍 人们提出一个问题：我们是否具备了识别真实世界中的每一</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>AI</category>
+            
+          
+            
+              <category>course</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>CS230 Deep Learning——Andrew Ng——Stanford</title>
+        <link>https://ruokeqx.gitee.io/posts/deep-learning-andrew-ng-stanford/</link>
+        <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Sat, 13 Mar 2021 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/deep-learning-andrew-ng-stanford/</guid>
+        <description>Deep Learning</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>AI</category>
+            
+          
+            
+              <category>course</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>CS229 Machine Learning——Andrew Ng——Stanford</title>
+        <link>https://ruokeqx.gitee.io/posts/machine-learning-andrew-ng-stanford/</link>
+        <pubDate>Thu, 07 Jan 2021 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Thu, 07 Jan 2021 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/machine-learning-andrew-ng-stanford/</guid>
+        <description>1 Introduction what is machine learning supervised learning  supervised learning  regression problem  predict a continuous valued output   classification problem  predict a discrete valued output      SVM(Support Vector Machine) is a kind of generalized linear classification that classifies data by supervised learning
+unsupervised learning   unsupervised learning
+ Cluster Algorithm  Google news Facebook friends      2.</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>AI</category>
+            
+          
+            
+              <category>course</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

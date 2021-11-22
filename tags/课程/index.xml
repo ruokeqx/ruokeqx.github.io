@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>课程 on ruokeqx&#39;s blog</title>
+    <link>https://ruokeqx.gitee.io/tags/%E8%AF%BE%E7%A8%8B/</link>
+    <description>Recent content in 课程 on ruokeqx&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
+    <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
+    <copyright>©2021, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 15 May 2020 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://ruokeqx.gitee.io/tags/%E8%AF%BE%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>2020浙江理工大学算法艺术与信息学奥赛选修课期末考试</title>
+        <link>https://ruokeqx.gitee.io/posts/2020_zstu_algorithm_optional_class/</link>
+        <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Fri, 15 May 2020 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/2020_zstu_algorithm_optional_class/</guid>
+        <description>总结：学过算法的可以水学分 没学过的不太好水高分 一般c语言学了70-80分没问题 但是90-100有难度 自行斟酌 问题 A: 赌徒 题目描述 有n个赌徒打算</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>课程</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>
