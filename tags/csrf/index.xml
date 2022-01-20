@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>csrf on ruokeqx&#39;s blog</title>
+    <link>https://ruokeqx.gitee.io/tags/csrf/</link>
+    <description>Recent content in csrf on ruokeqx&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
+    <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
+    <copyright>©2022, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 21 Jan 2022 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://ruokeqx.gitee.io/tags/csrf/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>CSRF攻击防御/Hackbar攻击原理及Flask防御策略研究</title>
+        <link>https://ruokeqx.gitee.io/posts/csrfad/</link>
+        <pubDate>Fri, 21 Jan 2022 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Fri, 21 Jan 2022 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/csrfad/</guid>
+        <description>前言 CSRF的防护主要思想就是保证请求是从正确的网站发出的。 CSRF攻击 攻击原理图如下，图片来自[1] GET型攻击 get型攻击仅需伪造一次g</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>web</category>
+            
+          
+            
+              <category>csrf</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>
