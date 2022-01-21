@@ -1884,7 +1884,7 @@ int <span class="nv">result</span> <span class="o">=</span> add_proc<span class=
 </code></pre></td></tr></table>
 </div>
 </div><p>执行需要管理员权限，执行时杀软都会报毒</p>
-<p>![image hijack](/images/posts/dll injection and dll hijacking/image hijack.png)</p>
+<p><img src="/images/posts/dll_injection_and_dll_hijacking/image_hijack.png" alt="image hijack" /></p>
 <p>至于<a href="https://www.anquanke.com/post/id/151425#h2-3">新型利用</a> 中说的新静默关闭启动监视器的劫持方式无论在win10还是win7中都没有复现成功</p>
 <p>调试器可以在被调试进程中执行很多特殊操作，操作系统载入一个被调试程序的时候，会在被调试的主线程尚未开始执行任何代码前，自动通知调试器(用来调试被调试进程的进程)，这时调试器可以将一些代码注入到被调试进程的地址空间中，保存被调试进程的CONTEXT结构，修改EIP指向我们注入的代码的起始位置执行这些代码。最后再让被调试的进程恢复原来的CONTEXT，继续执行。整个过程对被调试的进程而言好像没发生任何事情。</p>
 <h3 id="apc-injection">APC injection</h3>
@@ -2054,7 +2054,7 @@ int <span class="nv">result</span> <span class="o">=</span> add_proc<span class=
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>![CreateRemoteThreadEx](/images/posts/dll injection and dll hijacking/CreateRemoteThreadEx.png)</p>
+</div><p><img src="/images/posts/dll_injection_and_dll_hijacking/CreateRemoteThreadEx.png" alt="CreateRemoteThreadEx" /></p>
 <h3 id="setwindowshookex">SetWindowsHook[Ex]</h3>
 <p>优点是注入简单，缺点是只能对windows消息进行Hook并注入dll，而且注入dll可能不是立即被注入，因为这需要相应类型的事件发生</p>
 <p>微软官方文档中有SetWindowsHookExA和SetWindowsHookExW两个接口，并且描述文档一模一样，区别可以在源码中看出来</p>
@@ -2281,19 +2281,19 @@ int <span class="nv">result</span> <span class="o">=</span> add_proc<span class=
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>![SetWindowsHook](/images/posts/dll injection and dll hijacking/SetWindowsHook.png)</p>
+</div><p><img src="/images/posts/dll_injection_and_dll_hijacking/SetWindowsHook.png" alt="SetWindowsHook" /></p>
 <h3 id="createprocess">CreateProcess</h3>
 <p>CreateProcess()这个API第六个参数设置为CREATE_SUSPENDED,进而创建一个挂起状态的进程，利用这个进程状态进行远程线程注入DLL，然后用ResumeThread()函数恢复进程。</p>
 <h3 id="依赖可信进程注入">依赖可信进程注入</h3>
 <p>首先将a.dll注入到诸如Services.exe等权限较高的进程中，然后利用a.dll将b.dll远程线程注入到待注入进程中</p>
 <p>利用完成后为影藏可以使用FreeLibraryAndExitThread()，其将dll自身卸载掉并且退出线程。</p>
-<p>![image-20220122015252720](/images/posts/dll injection and dll hijacking/image-20220122015252720.png)</p>
+<p><img src="/images/posts/dll_injection_and_dll_hijacking/image-20220122015252720.png" alt="image-20220122015252720" /></p>
 <p>ComRes注入/输入法注入</p>
 <h2 id="reflective-dll-injection">Reflective DLL Injection</h2>
 <h2 id="dll-hijackingproxying">Dll hijacking&amp;proxying</h2>
 <p><code>dll代理</code>是特殊的<code>dll劫持</code>，其原理图如下，本质是个wrapper，将正常的执行重定向到真的dll，然后wrapper添加额外的功能，load的时候程序先load proxy，proxy再load real dll。</p>
 <p>DLL Proxying is achieved through a DLL Wrapper. The idea is very simple and quite self-explanatory at this point. A DLL Wrapper consists in redirecting all the functions to the original DLL using forwarders. In a typical DLL, the Export Table contains a list of addresses that point to the code of each exported function inside the PE file. But, there is a second option: it can also contain Forwarders. Instead of referencing some code inside the DLL itself, a Forwarder points to a string, which gives the name (or the ordinal number) of the exported function and the name of the DLL in which it can be found (e.g.: FOO.DummyFunction or FOO.#47). This feature is exactly what we need in order to transparently redirect all the functions to the orignal DLL as described on this diagram.</p>
-<p>![dp02_dll-proxy](images/posts/dll injection and dll hijacking/dp02_dll-proxy.png)</p>
+<p><img src="/images/posts/dll_injection_and_dll_hijacking/dp02_dll-proxy.png" alt="dp02_dll-proxy" /></p>
 <h3 id="context-menu-persistance">Context menu Persistance</h3>
 <p>因为Context menu自动运行的特征，通过explorer.exe加载的dll可以实现持久化</p>
 <p>使用Sysinternals中程序Autoruns可以看到ContextMenu加载的dll</p>
