@@ -14,7 +14,7 @@
     <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
     <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
     <copyright>©2022, All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 21 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Jan 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://ruokeqx.gitee.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -40,6 +40,34 @@
         
       
 
+      
+      <item>
+        <title>DLL注入及DLL劫持简单学习</title>
+        <link>https://ruokeqx.gitee.io/posts/dll-injection-and-dll-hijacking/</link>
+        <pubDate>Sat, 22 Jan 2022 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Sat, 22 Jan 2022 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/dll-injection-and-dll-hijacking/</guid>
+        <description>static library and dynamic library 静态库空间浪费 静态库对程序的更新、部署和发布页会带来麻烦 动态库在程序编译时并不会被连接到目标代码中，而是在程序运行是才被载入。不同</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>red team</category>
+            
+          
+            
+              <category>windows</category>
+            
+          
+        
+        
+        
+      </item>
       
       <item>
         <title>CSRF攻击防御/Hackbar攻击原理及Flask防御策略研究</title>
