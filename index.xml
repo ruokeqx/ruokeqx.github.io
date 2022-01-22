@@ -43,11 +43,11 @@
       
       <item>
         <title>DLL注入及DLL劫持简单学习</title>
-        <link>https://ruokeqx.gitee.io/posts/dll-injection-and-dll-hijacking/</link>
+        <link>https://ruokeqx.gitee.io/posts/dll_injection_and_dll_hijacking/</link>
         <pubDate>Sat, 22 Jan 2022 00:00:00 +0000</pubDate>
         <author>ruokeqx@163.com (ruokeqx)</author>
         <atom:modified>Sat, 22 Jan 2022 00:00:00 +0000</atom:modified>
-        <guid>https://ruokeqx.gitee.io/posts/dll-injection-and-dll-hijacking/</guid>
+        <guid>https://ruokeqx.gitee.io/posts/dll_injection_and_dll_hijacking/</guid>
         <description>static library and dynamic library 静态库空间浪费 静态库对程序的更新、部署和发布页会带来麻烦 动态库在程序编译时并不会被连接到目标代码中，而是在程序运行是才被载入。不同</description>
         
         <dc:creator>ruokeqx</dc:creator>
