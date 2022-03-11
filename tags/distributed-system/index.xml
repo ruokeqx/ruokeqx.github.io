@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Distributed System on ruokeqx&#39;s blog</title>
+    <link>https://ruokeqx.gitee.io/tags/distributed-system/</link>
+    <description>Recent content in Distributed System on ruokeqx&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
+    <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
+    <copyright>©2022, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 11 Mar 2022 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://ruokeqx.gitee.io/tags/distributed-system/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>MIT 6.824 lab</title>
+        <link>https://ruokeqx.gitee.io/posts/mit6.824-lab/</link>
+        <pubDate>Fri, 11 Mar 2022 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Fri, 11 Mar 2022 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/mit6.824-lab/</guid>
+        <description>According to Collaboration Policy, detailed code will not be placed here. Just record the problems encountered during the lab. Pre go env 1 2 3 sudo apt install go go env -w GO111MODULE=on go env -w GOPROXY=https://goproxy.io,direct source code 1 2 3 git clone git://g.csail.mit.edu/6.824-golabs-2020 6.824 cd 6.824 go mod init 6.824-lab Lab1:MapReduce 前置知识：Go &amp;amp; net/rpc 题目中 src/mrapps/wc.go 中是已经</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>course</category>
+            
+          
+            
+              <category>Distributed System</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

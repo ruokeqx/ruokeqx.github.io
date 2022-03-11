@@ -12,18 +12,27 @@
     <lastmod>2021-11-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ruokeqx.gitee.io/</loc>
-    <lastmod>2022-01-22T00:00:00+00:00</lastmod>
+    <lastmod>2022-03-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ruokeqx.gitee.io/tags/course/</loc>
+    <lastmod>2022-03-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ruokeqx.gitee.io/tags/distributed-system/</loc>
+    <lastmod>2022-03-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ruokeqx.gitee.io/posts/mit6.824-lab/</loc>
+    <lastmod>2022-03-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ruokeqx.gitee.io/posts/</loc>
+    <lastmod>2022-03-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ruokeqx.gitee.io/tags/</loc>
+    <lastmod>2022-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ruokeqx.gitee.io/posts/dll_injection_and_dll_hijacking/</loc>
     <lastmod>2022-01-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ruokeqx.gitee.io/posts/</loc>
-    <lastmod>2022-01-22T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://ruokeqx.gitee.io/tags/red-team/</loc>
-    <lastmod>2022-01-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://ruokeqx.gitee.io/tags/</loc>
     <lastmod>2022-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ruokeqx.gitee.io/tags/windows/</loc>
@@ -38,16 +47,13 @@
     <loc>https://ruokeqx.gitee.io/tags/web/</loc>
     <lastmod>2022-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ruokeqx.gitee.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/</loc>
+    <loc>https://ruokeqx.gitee.io/posts/os/</loc>
     <lastmod>2021-11-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ruokeqx.gitee.io/tags/%E8%AF%BE%E7%A8%8B/</loc>
     <lastmod>2021-11-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ruokeqx.gitee.io/tags/compiler/</loc>
-    <lastmod>2021-11-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://ruokeqx.gitee.io/tags/course/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ruokeqx.gitee.io/posts/recursive-descent-parser/</loc>
