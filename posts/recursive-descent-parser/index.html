@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.498676c34eb225e85357ab0ce19c3c1244f3bd0bf595e5684d1b9d50ea4fbc42.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.cd44056d552c69703dced61ae60f99166a0ddf44be93d6aa5d5127d98bf98984.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.1551b6dbdacc77e412a26a29d3b84d2dcdc8f05c3b617433a475dc53c8872bdb.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -1349,7 +1349,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
 
-<meta name="generator" content="Hugo 0.92.0" />
+<meta name="generator" content="Hugo 0.94.0" />
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1747,12 +1747,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">exp</span> <span class="o">-&gt;</span> <span class="n">exp</span> <span class="n">addop</span> <span class="n">term</span> <span class="o">|</span> <span class="n">term</span>
-<span class="n">addop</span> <span class="o">-&gt;</span> <span class="o">+</span> <span class="o">|</span> <span class="o">-</span>
-<span class="n">term</span> <span class="o">=</span> <span class="n">term</span> <span class="n">mulop</span> <span class="n">factor</span> <span class="o">|</span> <span class="n">factor</span>
-<span class="n">mulop</span> <span class="o">=</span> <span class="o">*</span>
-<span class="n">factor</span> <span class="o">=</span> <span class="p">(</span> <span class="n">exp</span> <span class="p">)</span> <span class="o">|</span> <span class="n">number</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">exp</span> <span class="o">-&gt;</span> <span class="n">exp</span> <span class="n">addop</span> <span class="n">term</span> <span class="o">|</span> <span class="n">term</span>
+</span></span><span class="line"><span class="cl"><span class="n">addop</span> <span class="o">-&gt;</span> <span class="o">+</span> <span class="o">|</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl"><span class="n">term</span> <span class="o">=</span> <span class="n">term</span> <span class="n">mulop</span> <span class="n">factor</span> <span class="o">|</span> <span class="n">factor</span>
+</span></span><span class="line"><span class="cl"><span class="n">mulop</span> <span class="o">=</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="n">factor</span> <span class="o">=</span> <span class="p">(</span> <span class="n">exp</span> <span class="p">)</span> <span class="o">|</span> <span class="n">number</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>因为存在重复和选择，所以使用EBNF。</p>
 <div class="highlight"><div class="chroma">
@@ -1761,9 +1761,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">exp</span> <span class="o">-&gt;</span> <span class="n">term</span> <span class="p">{</span> <span class="n">addop</span> <span class="n">term</span> <span class="p">}</span>
-<span class="n">term</span> <span class="o">-&gt;</span> <span class="n">factor</span> <span class="p">{</span> <span class="n">mulop</span> <span class="n">factor</span> <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">exp</span> <span class="o">-&gt;</span> <span class="n">term</span> <span class="p">{</span> <span class="n">addop</span> <span class="n">term</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">term</span> <span class="o">-&gt;</span> <span class="n">factor</span> <span class="p">{</span> <span class="n">mulop</span> <span class="n">factor</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>写成伪代码如下</p>
 <div class="highlight"><div class="chroma">
@@ -1779,16 +1779,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* exp伪代码 */</span>
-<span class="n">procedure</span> <span class="n">exp</span>
-<span class="n">begin</span>
-    <span class="n">term</span><span class="p">;</span>
-    <span class="k">while</span> <span class="n">token</span> <span class="o">=</span> <span class="o">+</span> <span class="k">do</span>
-        <span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
-        <span class="n">term</span><span class="p">;</span>
-    <span class="n">end</span> <span class="k">while</span><span class="p">;</span>
-<span class="n">end</span> <span class="n">exp</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* exp伪代码 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">procedure</span> <span class="n">exp</span>
+</span></span><span class="line"><span class="cl"><span class="n">begin</span>
+</span></span><span class="line"><span class="cl">    <span class="n">term</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">token</span> <span class="o">=</span> <span class="o">+</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">term</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span> <span class="k">while</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span> <span class="n">exp</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1803,16 +1803,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* term伪代码 */</span>
-<span class="n">procedure</span> <span class="n">term</span>
-<span class="n">begin</span>
-    <span class="n">factor</span><span class="p">;</span>
-    <span class="k">while</span> <span class="n">token</span> <span class="o">=</span> <span class="o">*</span> <span class="k">do</span>
-        <span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
-        <span class="n">factor</span><span class="p">;</span>
-    <span class="n">end</span> <span class="k">while</span><span class="p">;</span>
-<span class="n">end</span> <span class="n">term</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* term伪代码 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">procedure</span> <span class="n">term</span>
+</span></span><span class="line"><span class="cl"><span class="n">begin</span>
+</span></span><span class="line"><span class="cl">    <span class="n">factor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">token</span> <span class="o">=</span> <span class="o">*</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">factor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span> <span class="k">while</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span> <span class="n">term</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1828,17 +1828,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* factor伪代码 */</span>
-<span class="n">procedure</span> <span class="n">factor</span>
-<span class="n">begin</span>
-    <span class="k">if</span> <span class="n">token</span> <span class="o">=</span> <span class="sc">&#39;(&#39;</span>
-        <span class="n">match</span><span class="p">(</span><span class="sc">&#39;(&#39;</span><span class="p">);</span>
-        <span class="n">exp</span><span class="p">;</span>
-        <span class="n">match</span><span class="p">(</span><span class="sc">&#39;)&#39;</span><span class="p">);</span>
-    <span class="k">else</span>
-        <span class="n">getnumber</span><span class="p">;</span>
-<span class="n">end</span> <span class="n">factor</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* factor伪代码 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">procedure</span> <span class="n">factor</span>
+</span></span><span class="line"><span class="cl"><span class="n">begin</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">token</span> <span class="o">=</span> <span class="sc">&#39;(&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">match</span><span class="p">(</span><span class="sc">&#39;(&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">exp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">match</span><span class="p">(</span><span class="sc">&#39;)&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="n">getnumber</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span> <span class="n">factor</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1857,20 +1857,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* exp构造语法树 */</span>
-<span class="n">function</span> <span class="nl">exp</span><span class="p">:</span><span class="n">syntaxTree</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">temp</span><span class="p">,</span><span class="nl">newtemp</span><span class="p">:</span><span class="n">syntaxTree</span><span class="p">;</span>
-<span class="n">begin</span>
-    <span class="nl">temp</span> <span class="p">:</span><span class="o">=</span> <span class="n">term</span><span class="p">;</span>
-    <span class="k">while</span> <span class="n">token</span> <span class="o">=</span> <span class="o">+</span> <span class="k">do</span>
-        <span class="nl">newtemp</span> <span class="p">:</span><span class="o">=</span> <span class="n">makeOpNode</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
-        <span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
-        <span class="n">leftChild</span><span class="p">(</span><span class="n">newtemp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">temp</span><span class="p">;</span>
-        <span class="n">rightChile</span><span class="p">(</span><span class="n">newtemp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">term</span><span class="p">;</span>
-        <span class="nl">temp</span> <span class="p">:</span><span class="o">=</span> <span class="n">newtemp</span><span class="p">;</span>
-    <span class="n">end</span> <span class="k">while</span><span class="p">;</span>
-<span class="n">end</span> <span class="n">exp</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* exp构造语法树 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">function</span> <span class="nl">exp</span><span class="p">:</span><span class="n">syntaxTree</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">var</span> <span class="n">temp</span><span class="p">,</span><span class="nl">newtemp</span><span class="p">:</span><span class="n">syntaxTree</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">begin</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">temp</span> <span class="p">:</span><span class="o">=</span> <span class="n">term</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">token</span> <span class="o">=</span> <span class="o">+</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="nl">newtemp</span> <span class="p">:</span><span class="o">=</span> <span class="n">makeOpNode</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">leftChild</span><span class="p">(</span><span class="n">newtemp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rightChile</span><span class="p">(</span><span class="n">newtemp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">term</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nl">temp</span> <span class="p">:</span><span class="o">=</span> <span class="n">newtemp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span> <span class="k">while</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span> <span class="n">exp</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1890,21 +1890,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* term构造语法树 */</span>
-<span class="n">function</span> <span class="nl">term</span><span class="p">:</span><span class="n">syntaxTree</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">temp</span><span class="p">,</span><span class="nl">newtemp</span><span class="p">:</span><span class="n">syntaxTree</span><span class="p">;</span>
-<span class="n">begin</span>
-    <span class="nl">temp</span> <span class="p">:</span><span class="o">=</span> <span class="n">factor</span><span class="p">;</span>
-    <span class="k">while</span> <span class="n">token</span> <span class="o">=</span> <span class="o">*</span> <span class="k">do</span>
-        <span class="nl">newtemp</span> <span class="p">:</span><span class="o">=</span> <span class="n">makeOpNode</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
-        <span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
-        <span class="n">leftChild</span><span class="p">(</span><span class="n">newtemp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">temp</span><span class="p">;</span>
-        <span class="n">rightChile</span><span class="p">(</span><span class="n">newtemp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">factor</span><span class="p">;</span>
-        <span class="nl">temp</span> <span class="p">:</span><span class="o">=</span> <span class="n">newtemp</span><span class="p">;</span>
-    <span class="n">end</span> <span class="k">while</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
-<span class="n">end</span> <span class="n">term</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* term构造语法树 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">function</span> <span class="nl">term</span><span class="p">:</span><span class="n">syntaxTree</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">var</span> <span class="n">temp</span><span class="p">,</span><span class="nl">newtemp</span><span class="p">:</span><span class="n">syntaxTree</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">begin</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">temp</span> <span class="p">:</span><span class="o">=</span> <span class="n">factor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">token</span> <span class="o">=</span> <span class="o">*</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="nl">newtemp</span> <span class="p">:</span><span class="o">=</span> <span class="n">makeOpNode</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">leftChild</span><span class="p">(</span><span class="n">newtemp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rightChile</span><span class="p">(</span><span class="n">newtemp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">factor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nl">temp</span> <span class="p">:</span><span class="o">=</span> <span class="n">newtemp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span> <span class="k">while</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span> <span class="n">term</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1928,25 +1928,25 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* factor构造语法树 */</span>
-<span class="n">function</span> <span class="nl">factor</span><span class="p">:</span><span class="n">syntaxTree</span><span class="p">;</span>
-<span class="n">var</span> <span class="nl">temp</span><span class="p">:</span><span class="n">syntaxTree</span><span class="p">;</span>
-<span class="n">begin</span>
-    <span class="k">if</span> <span class="n">token</span> <span class="o">=</span> <span class="sc">&#39;(&#39;</span>
-        <span class="n">match</span><span class="p">(</span><span class="sc">&#39;(&#39;</span><span class="p">)</span>
-        <span class="nl">temp</span> <span class="p">:</span><span class="o">=</span> <span class="n">makeOpNode</span><span class="p">(</span><span class="n">exp</span><span class="p">);</span>
-        <span class="n">leftChild</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">null</span><span class="p">;</span>
-        <span class="n">rightChile</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">null</span><span class="p">;</span>
-        <span class="n">match</span><span class="p">(</span><span class="sc">&#39;)&#39;</span><span class="p">)</span>
-    <span class="k">else</span> <span class="k">if</span> <span class="n">isdigit</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
-        <span class="nl">temp</span> <span class="p">:</span><span class="o">=</span> <span class="n">makeOpNode</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
-        <span class="n">leftChild</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">null</span><span class="p">;</span>
-        <span class="n">rightChile</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">null</span><span class="p">;</span>
-    <span class="k">else</span>
-        <span class="n">error</span>
-    <span class="n">reutrn</span> <span class="n">temp</span><span class="p">;</span>
-<span class="n">end</span> <span class="n">factor</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* factor构造语法树 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">function</span> <span class="nl">factor</span><span class="p">:</span><span class="n">syntaxTree</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">var</span> <span class="nl">temp</span><span class="p">:</span><span class="n">syntaxTree</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">begin</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">token</span> <span class="o">=</span> <span class="sc">&#39;(&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">match</span><span class="p">(</span><span class="sc">&#39;(&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nl">temp</span> <span class="p">:</span><span class="o">=</span> <span class="n">makeOpNode</span><span class="p">(</span><span class="n">exp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">leftChild</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rightChile</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">match</span><span class="p">(</span><span class="sc">&#39;)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span> <span class="n">isdigit</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nl">temp</span> <span class="p">:</span><span class="o">=</span> <span class="n">makeOpNode</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">leftChild</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rightChile</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">:=</span> <span class="n">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="n">error</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reutrn</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span> <span class="n">factor</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>完整代码如下,基本思路就是getchar预先获取一个char用以进行预测性解析,然后递归构造语法树并打印出来.<br />
 如果匹配到运算符就构造新的节点加到原来的树上;如果匹配到单个数字,那么就使用ungetc将数字返回输入流然后用scanf(&quot;%d&quot;)来匹配多位number.</p>
@@ -2091,143 +2091,143 @@
 </span><span class="lnt">136
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-
-<span class="cm">/*树节点*/</span>
-<span class="k">typedef</span> <span class="k">struct</span> <span class="nc">node</span> <span class="p">{</span>
-    <span class="n">string</span> <span class="n">data</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="nc">node</span><span class="o">*</span> <span class="n">left</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="nc">node</span><span class="o">*</span> <span class="n">right</span><span class="p">;</span>
-<span class="p">}</span><span class="n">Node</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">printTree</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">level</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">destroy_node</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span><span class="p">);</span>
-<span class="n">Node</span><span class="o">*</span> <span class="nf">makeNode</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
-
-<span class="kt">char</span> <span class="n">token</span><span class="p">;</span>
-<span class="n">Node</span><span class="o">*</span> <span class="nf">exp</span><span class="p">();</span>
-<span class="n">Node</span><span class="o">*</span> <span class="nf">term</span><span class="p">();</span>
-<span class="n">Node</span><span class="o">*</span> <span class="nf">factor</span><span class="p">();</span>
-<span class="kt">void</span> <span class="nf">match</span><span class="p">(</span><span class="kt">char</span> <span class="n">expectedToken</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">token</span> <span class="o">==</span> <span class="n">expectedToken</span><span class="p">)</span>
-        <span class="n">token</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
-    <span class="k">else</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;error in match</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">token</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
-    <span class="n">Node</span><span class="o">*</span> <span class="n">root</span> <span class="o">=</span> <span class="n">exp</span><span class="p">();</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;\n&#39;</span> <span class="o">||</span> <span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;\r&#39;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;success</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-        <span class="n">printTree</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;error in main</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="n">destroy_node</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="n">Node</span><span class="o">*</span> <span class="nf">exp</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">Node</span><span class="o">*</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">term</span><span class="p">();</span>
-    <span class="n">Node</span><span class="o">*</span> <span class="n">newtemp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">newtemp</span> <span class="o">=</span> <span class="n">makeNode</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">token</span><span class="p">));</span>
-        <span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
-        <span class="n">newtemp</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-        <span class="n">newtemp</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">term</span><span class="p">();</span>
-        <span class="n">temp</span> <span class="o">=</span> <span class="n">newtemp</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="n">Node</span><span class="o">*</span> <span class="nf">term</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">Node</span><span class="o">*</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">factor</span><span class="p">();</span>
-    <span class="n">Node</span><span class="o">*</span> <span class="n">newtemp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;*&#39;</span> <span class="o">||</span> <span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;/&#39;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">newtemp</span> <span class="o">=</span> <span class="n">makeNode</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">token</span><span class="p">));</span>
-        <span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
-        <span class="n">newtemp</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-        <span class="n">newtemp</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">factor</span><span class="p">();</span>
-        <span class="n">temp</span> <span class="o">=</span> <span class="n">newtemp</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="n">Node</span><span class="o">*</span> <span class="nf">factor</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">Node</span><span class="o">*</span> <span class="n">temp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">match</span><span class="p">(</span><span class="sc">&#39;(&#39;</span><span class="p">);</span>
-        <span class="n">temp</span> <span class="o">=</span> <span class="n">exp</span><span class="p">();</span>
-        <span class="n">match</span><span class="p">(</span><span class="sc">&#39;)&#39;</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">token</span> <span class="o">&gt;=</span> <span class="sc">&#39;1&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">token</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">ungetc</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
-        <span class="kt">int</span> <span class="n">number</span><span class="p">;</span>
-        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">number</span><span class="p">);</span>
-        <span class="n">temp</span> <span class="o">=</span> <span class="n">makeNode</span><span class="p">(</span><span class="n">to_string</span><span class="p">(</span><span class="n">number</span><span class="p">));</span>
-        <span class="n">token</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;error in factor</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/*销毁树*/</span>
-<span class="kt">void</span> <span class="nf">destroy_node</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span> <span class="n">node</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">destroy_node</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
-        <span class="n">destroy_node</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
-        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
-        <span class="k">delete</span> <span class="n">node</span><span class="p">;</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">Node</span><span class="o">*</span> <span class="nf">makeNode</span><span class="p">(</span><span class="n">string</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Node</span><span class="o">*</span> <span class="n">node</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">;</span>
-    <span class="c1">// Node* node = (Node*)malloc(sizeof(Node));
-</span><span class="c1"></span>    <span class="n">node</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
-    <span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">printTree</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">level</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span>
-        <span class="k">return</span><span class="p">;</span>
-
-    <span class="n">printTree</span><span class="p">(</span><span class="n">n</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="k">switch</span> <span class="p">(</span><span class="n">type</span><span class="p">)</span>
-    <span class="p">{</span>
-    <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">n</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
-        <span class="k">break</span><span class="p">;</span>
-    <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">);</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\\</span><span class="s"> %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">n</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
-        <span class="k">break</span><span class="p">;</span>
-    <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">);</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;/ %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">n</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
-        <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">printTree</span><span class="p">(</span><span class="n">n</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*树节点*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">node</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">node</span><span class="o">*</span> <span class="n">left</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">node</span><span class="o">*</span> <span class="n">right</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">Node</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">printTree</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">level</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">destroy_node</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Node</span><span class="o">*</span> <span class="nf">makeNode</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">token</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Node</span><span class="o">*</span> <span class="nf">exp</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Node</span><span class="o">*</span> <span class="nf">term</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Node</span><span class="o">*</span> <span class="nf">factor</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">match</span><span class="p">(</span><span class="kt">char</span> <span class="n">expectedToken</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">token</span> <span class="o">==</span> <span class="n">expectedToken</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">token</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;error in match</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">token</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span><span class="o">*</span> <span class="n">root</span> <span class="o">=</span> <span class="n">exp</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;\n&#39;</span> <span class="o">||</span> <span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;\r&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;success</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printTree</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;error in main</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">destroy_node</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Node</span><span class="o">*</span> <span class="nf">exp</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span><span class="o">*</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">term</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span><span class="o">*</span> <span class="n">newtemp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newtemp</span> <span class="o">=</span> <span class="n">makeNode</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">token</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newtemp</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newtemp</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">term</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="n">newtemp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Node</span><span class="o">*</span> <span class="nf">term</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span><span class="o">*</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">factor</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span><span class="o">*</span> <span class="n">newtemp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;*&#39;</span> <span class="o">||</span> <span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;/&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newtemp</span> <span class="o">=</span> <span class="n">makeNode</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">token</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newtemp</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newtemp</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">factor</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="n">newtemp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Node</span><span class="o">*</span> <span class="nf">factor</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span><span class="o">*</span> <span class="n">temp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">token</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">match</span><span class="p">(</span><span class="sc">&#39;(&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="n">exp</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">match</span><span class="p">(</span><span class="sc">&#39;)&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">token</span> <span class="o">&gt;=</span> <span class="sc">&#39;1&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">token</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ungetc</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">number</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="n">makeNode</span><span class="p">(</span><span class="n">to_string</span><span class="p">(</span><span class="n">number</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">token</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;error in factor</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*销毁树*/</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">destroy_node</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span> <span class="n">node</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">destroy_node</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">destroy_node</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">delete</span> <span class="n">node</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">node</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Node</span><span class="o">*</span> <span class="nf">makeNode</span><span class="p">(</span><span class="n">string</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span><span class="o">*</span> <span class="n">node</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Node* node = (Node*)malloc(sizeof(Node));
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">node</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">printTree</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">level</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">printTree</span><span class="p">(</span><span class="n">n</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="p">(</span><span class="n">type</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">n</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\\</span><span class="s"> %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">n</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;/ %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">n</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printTree</span><span class="p">(</span><span class="n">n</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行结果如下图所示</p>
 <p><img src="/images/posts/Recursive-descent-parser/image-20211123182443603.png" alt="image-20211123182443603" /></p>
@@ -2646,7 +2646,7 @@
 </div>
 
 
-<script defer src="/js/swipe.min.d2e020e2d405fafaa45c0a10d2af949627bf554a9366c31a905af38f8cc30c30.js"></script>
+<script defer src="/js/swipe.min.32b4505a39624feed6faa09f12dd745a099b8811ea631c29cea9692c45984af8.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 

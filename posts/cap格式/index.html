@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.498676c34eb225e85357ab0ce19c3c1244f3bd0bf595e5684d1b9d50ea4fbc42.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.cd44056d552c69703dced61ae60f99166a0ddf44be93d6aa5d5127d98bf98984.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.1551b6dbdacc77e412a26a29d3b84d2dcdc8f05c3b617433a475dc53c8872bdb.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -1349,7 +1349,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
 
-<meta name="generator" content="Hugo 0.92.0" />
+<meta name="generator" content="Hugo 0.94.0" />
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1743,8 +1743,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">dpkt</span><span class="o">.</span><span class="n">pcap</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;a-sol.pcap&#34;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">dpkt</span><span class="o">.</span><span class="n">pcap</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;a-sol.pcap&#34;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>事实上dpkt有pcang的解析模块，将代码修改如下即可正确运行。</p>
 <div class="highlight"><div class="chroma">
@@ -1752,8 +1752,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">dpkt</span><span class="o">.</span><span class="n">pcapng</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;a-sol.pcapng&#34;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">dpkt</span><span class="o">.</span><span class="n">pcapng</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;a-sol.pcapng&#34;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这个问题之前在写恶意流量识别项目的时候也遇到过，当时对<code>pcap</code>和<code>pcapng</code>差别不很清楚，只是知道格式不一样，并没有深入的进行研究，而是选择使用<code>WinDump</code>替代<code>tshark</code>进行流量捕获。这次又遇到了，就来仔细看一下，本来是准备写就看一下格式转换方法，发现越看越多，那就看到哪写到哪吧。</p>
 <h3 id="一点研究">一点研究</h3>
@@ -1767,11 +1767,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"> ⚡ /mnt/c/project/pcap &gt; hexdump 03.pcap <span class="p">|</span> head -n <span class="m">1</span>
-<span class="m">0000000</span> c3d4 a1b2 <span class="m">0002</span> <span class="m">0004</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span>
- ⚡ /mnt/c/project/pcap &gt; hexdump a-sol.pcapng <span class="p">|</span> head -n <span class="m">1</span>
-<span class="m">0000000</span> 0d0a 0a0d 00c8 <span class="m">0000</span> 3c4d 1a2b <span class="m">0001</span> <span class="m">0000</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> ⚡ /mnt/c/project/pcap &gt; hexdump 03.pcap <span class="p">|</span> head -n <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="m">0000000</span> c3d4 a1b2 <span class="m">0002</span> <span class="m">0004</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span>
+</span></span><span class="line"><span class="cl"> ⚡ /mnt/c/project/pcap &gt; hexdump a-sol.pcapng <span class="p">|</span> head -n <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="m">0000000</span> 0d0a 0a0d 00c8 <span class="m">0000</span> 3c4d 1a2b <span class="m">0001</span> <span class="m">0000</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>虚拟机使用tcpdump捕获是pcap格式</p>
 <div class="highlight"><div class="chroma">
@@ -1785,14 +1785,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"> ~ &gt; sudo tcpdump -i ens32 -s <span class="m">10</span> -w vmcap.pcap
-tcpdump: listening on ens32, link-type EN10MB <span class="o">(</span>Ethernet<span class="o">)</span>, capture size <span class="m">10</span> bytes
-^C2698 packets captured
-<span class="m">2728</span> packets received by filter
-<span class="m">0</span> packets dropped by kernel
- ~ &gt; hexdump vmcap.pcap <span class="p">|</span> head -n <span class="m">1</span>
-<span class="m">0000000</span> c3d4 a1b2 <span class="m">0002</span> <span class="m">0004</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> ~ &gt; sudo tcpdump -i ens32 -s <span class="m">10</span> -w vmcap.pcap
+</span></span><span class="line"><span class="cl">tcpdump: listening on ens32, link-type EN10MB <span class="o">(</span>Ethernet<span class="o">)</span>, capture size <span class="m">10</span> bytes
+</span></span><span class="line"><span class="cl">^C2698 packets captured
+</span></span><span class="line"><span class="cl"><span class="m">2728</span> packets received by filter
+</span></span><span class="line"><span class="cl"><span class="m">0</span> packets dropped by kernel
+</span></span><span class="line"><span class="cl"> ~ &gt; hexdump vmcap.pcap <span class="p">|</span> head -n <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="m">0000000</span> c3d4 a1b2 <span class="m">0002</span> <span class="m">0004</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>win10wireshark捕获默认为pcapng格式，可以选择保存为pcap格式</p>
 <div class="highlight"><div class="chroma">
@@ -1803,11 +1803,11 @@ tcpdump: listening on ens32, link-type EN10MB <span class="o">(</span>Ethernet<s
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"> ⚡ &gt; /mnt/c/project/pcap &gt; hexdump out.pcap <span class="p">|</span> head -n <span class="m">1</span>
-<span class="m">0000000</span> c3d4 a1b2 <span class="m">0002</span> <span class="m">0004</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span>
- ⚡ &gt; /mnt/c/project/pcap &gt; hexdump out.pcapng <span class="p">|</span> head -n <span class="m">1</span>
-<span class="m">0000000</span> 0d0a 0a0d 00c0 <span class="m">0000</span> 3c4d 1a2b <span class="m">0001</span> <span class="m">0000</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> ⚡ &gt; /mnt/c/project/pcap &gt; hexdump out.pcap <span class="p">|</span> head -n <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="m">0000000</span> c3d4 a1b2 <span class="m">0002</span> <span class="m">0004</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span>
+</span></span><span class="line"><span class="cl"> ⚡ &gt; /mnt/c/project/pcap &gt; hexdump out.pcapng <span class="p">|</span> head -n <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="m">0000000</span> 0d0a 0a0d 00c0 <span class="m">0000</span> 3c4d 1a2b <span class="m">0001</span> <span class="m">0000</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>WinDump捕获的是pcap格式</p>
 <div class="highlight"><div class="chroma">
@@ -1823,26 +1823,26 @@ tcpdump: listening on ens32, link-type EN10MB <span class="o">(</span>Ethernet<s
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">PS C:<span class="se">\U</span>sers<span class="se">\r</span>uokeqx<span class="se">\D</span>ownloads&gt; WinDump.exe -s <span class="m">10000</span> -w out.pcap
-C:<span class="se">\W</span>indows<span class="se">\s</span>ystem32<span class="se">\W</span>inDump.exe: listening on <span class="o">{</span>1BEDAF4F-8ABD-46F4-B122-453989CD2B2F<span class="o">}</span>
-
-<span class="m">222</span> packets captured
-<span class="m">222</span> packets received by filter
-<span class="m">0</span> packets dropped by kernel
-PS C:<span class="se">\U</span>sers<span class="se">\r</span>uokeqx<span class="se">\D</span>ownloads&gt; wsl
- ⚡ &gt; /mnt/c/Users/ruokeqx/Downloads &gt; hexdump out.pcap <span class="p">|</span> head -n <span class="m">1</span>
-<span class="m">0000000</span> c3d4 a1b2 <span class="m">0002</span> <span class="m">0004</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PS C:<span class="se">\U</span>sers<span class="se">\r</span>uokeqx<span class="se">\D</span>ownloads&gt; WinDump.exe -s <span class="m">10000</span> -w out.pcap
+</span></span><span class="line"><span class="cl">C:<span class="se">\W</span>indows<span class="se">\s</span>ystem32<span class="se">\W</span>inDump.exe: listening on <span class="o">{</span>1BEDAF4F-8ABD-46F4-B122-453989CD2B2F<span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="m">222</span> packets captured
+</span></span><span class="line"><span class="cl"><span class="m">222</span> packets received by filter
+</span></span><span class="line"><span class="cl"><span class="m">0</span> packets dropped by kernel
+</span></span><span class="line"><span class="cl">PS C:<span class="se">\U</span>sers<span class="se">\r</span>uokeqx<span class="se">\D</span>ownloads&gt; wsl
+</span></span><span class="line"><span class="cl"> ⚡ &gt; /mnt/c/Users/ruokeqx/Downloads &gt; hexdump out.pcap <span class="p">|</span> head -n <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="m">0000000</span> c3d4 a1b2 <span class="m">0002</span> <span class="m">0004</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="引入">引入</h4>
 <p>对于两种格式的研究更像是对历史的研究（</p>
 <p>在Winpcap官方的项目<a href="https://www.winpcap.org/ntar/default.htm">NTAR</a>首页的介绍可以看到下面一段话。</p>
-<pre tabindex="0"><code>NTAR implements a new &quot;wanna-be&quot; dump standard that overcomes the limits of the current libpcap/WinPcap dump format, by allowing the user to save packets coming from multiple interfaces and different data-links in a single trace file.
+<pre tabindex="0"><code>NTAR implements a new &#34;wanna-be&#34; dump standard that overcomes the limits of the current libpcap/WinPcap dump format, by allowing the user to save packets coming from multiple interfaces and different data-links in a single trace file.
 </code></pre><p>这里可以获得很多信息，新的标准(即pcapng)通过允许用户保存<code>packets coming from multiple interfaces and different data-links</code>到一个流量包里来克服现存libpcap/WinPcap捕获格式的缺陷。</p>
 <p>下面链接中对<code>PCAP Next Generation Dump File Format</code>进行了详细阐述。</p>
 <p><a href="https://www.winpcap.org/ntar/draft/PCAP-DumpFileFormat.html">https://www.winpcap.org/ntar/draft/PCAP-DumpFileFormat.html</a></p>
 <p>至于最显示的特征差别就在于文件头了，可以通过文件头快速确定格式。</p>
-<pre tabindex="0"><code>The block type of the Section Header Block is the integer corresponding to the 4-char string &quot;\r\n\n\r&quot; (0x0A0D0D0A).
+<pre tabindex="0"><code>The block type of the Section Header Block is the integer corresponding to the 4-char string &#34;\r\n\n\r&#34; (0x0A0D0D0A).
 </code></pre><p>选用这个文件头的原因文中有描述，简单说一是检测<code>inappropriate ASCII conversion</code>判断文件是否损坏，二是回文任意字节序都能识别出来。</p>
 <p>而pcap的文件头是<code>0xA1B2C3D4</code>，至此文件格式和对于的捕获文件头都符合了。</p>
 <pre tabindex="0"><code>The PCAP format has become the standard format for dumping captured packets in the free and open-source software community. Hone strives to adhere to this format as much as possible to help achieve acceptance within the networking community and to allow interoperability with other software. The original PCAP format, however, is deficient in describing anything except packets. Luckily, there is a new PCAP format, PCAP-NG (PCAP Next Generation), on the horizon with initial support in libpcap, wireshark, and other analysis software.
@@ -1889,14 +1889,14 @@ The Wireshark installer includes Npcap which is required for packet capture.
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Tools - Additional <span class="nb">command</span> line tools to work with capture files
-    Editcap - Reads a capture file and writes some or all of the packets into another capture file.
-    Text2Pcap - Reads in an ASCII hex dump and writes the data into a pcap capture file.
-    Reordercap - Reorders a capture file by timestamp.
-    Mergecap - Combines multiple saved capture files into a single output file.
-    Capinfos - Provides information on capture files.
-    Rawshark - Raw packet filter.
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Tools - Additional <span class="nb">command</span> line tools to work with capture files
+</span></span><span class="line"><span class="cl">    Editcap - Reads a capture file and writes some or all of the packets into another capture file.
+</span></span><span class="line"><span class="cl">    Text2Pcap - Reads in an ASCII hex dump and writes the data into a pcap capture file.
+</span></span><span class="line"><span class="cl">    Reordercap - Reorders a capture file by timestamp.
+</span></span><span class="line"><span class="cl">    Mergecap - Combines multiple saved capture files into a single output file.
+</span></span><span class="line"><span class="cl">    Capinfos - Provides information on capture files.
+</span></span><span class="line"><span class="cl">    Rawshark - Raw packet filter.
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>下面是参数中有对格式进行说明的，他们都可以指定文件格式，而且全部都是默认使用pcapng格式。</p>
 <div class="highlight"><div class="chroma">
@@ -1915,19 +1915,19 @@ The Wireshark installer includes Npcap which is required for packet capture.
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">dumpcap.exe --help
-	-n                       use pcapng format instead of pcap <span class="o">(</span>default<span class="o">)</span>
-	-P                       use libpcap format instead of pcapng
-tshark.exe --help
-	-F &lt;output file type&gt;    <span class="nb">set</span> the output file type, default is pcapng
-                           an empty <span class="s2">&#34;-F&#34;</span> option will list the file types
-editcap.exe --help
-	-F &lt;capture type&gt;      <span class="nb">set</span> the output file type<span class="p">;</span> default is pcapng.
-						An empty <span class="s2">&#34;-F&#34;</span> option will list the file types.
-mergecap.exe --help
-	-F &lt;capture type&gt;      <span class="nb">set</span> the output file type<span class="p">;</span> default is pcapng.
-						An empty <span class="s2">&#34;-F&#34;</span> option will list the file types.
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dumpcap.exe --help
+</span></span><span class="line"><span class="cl">	-n                       use pcapng format instead of pcap <span class="o">(</span>default<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	-P                       use libpcap format instead of pcapng
+</span></span><span class="line"><span class="cl">tshark.exe --help
+</span></span><span class="line"><span class="cl">	-F &lt;output file type&gt;    <span class="nb">set</span> the output file type, default is pcapng
+</span></span><span class="line"><span class="cl">                           an empty <span class="s2">&#34;-F&#34;</span> option will list the file types
+</span></span><span class="line"><span class="cl">editcap.exe --help
+</span></span><span class="line"><span class="cl">	-F &lt;capture type&gt;      <span class="nb">set</span> the output file type<span class="p">;</span> default is pcapng.
+</span></span><span class="line"><span class="cl">						An empty <span class="s2">&#34;-F&#34;</span> option will list the file types.
+</span></span><span class="line"><span class="cl">mergecap.exe --help
+</span></span><span class="line"><span class="cl">	-F &lt;capture type&gt;      <span class="nb">set</span> the output file type<span class="p">;</span> default is pcapng.
+</span></span><span class="line"><span class="cl">						An empty <span class="s2">&#34;-F&#34;</span> option will list the file types.
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中只指定<code>-F</code>输出的提示性可用格式如下。</p>
 <div class="highlight"><div class="chroma">
@@ -1972,52 +1972,52 @@ mergecap.exe --help
 </span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mergecap: The available capture file types <span class="k">for</span> the <span class="s2">&#34;-F&#34;</span> flag are:
-    5views - InfoVista 5View capture
-    btsnoop - Symbian OS btsnoop
-    commview - TamoSoft CommView
-    dct2000 - Catapult DCT2000 trace <span class="o">(</span>.out format<span class="o">)</span>
-    erf - Endace ERF capture
-    eyesdn - EyeSDN USB S0/E1 ISDN trace format
-    k12text - K12 text file
-    lanalyzer - Novell LANalyzer
-    logcat - Android Logcat Binary format
-    logcat-brief - Android Logcat Brief text format
-    logcat-long - Android Logcat Long text format
-    logcat-process - Android Logcat Process text format
-    logcat-tag - Android Logcat Tag text format
-    logcat-thread - Android Logcat Thread text format
-    logcat-threadtime - Android Logcat Threadtime text format
-    logcat-time - Android Logcat Time text format
-    modpcap - Modified tcpdump - pcap
-    netmon1 - Microsoft NetMon 1.x
-    netmon2 - Microsoft NetMon 2.x
-    nettl - HP-UX nettl trace
-    ngsniffer - Sniffer <span class="o">(</span>DOS<span class="o">)</span>
-    ngwsniffer_1_1 - NetXray, Sniffer <span class="o">(</span>Windows<span class="o">)</span> 1.1
-    ngwsniffer_2_0 - Sniffer <span class="o">(</span>Windows<span class="o">)</span> 2.00x
-    niobserver - Network Instruments Observer
-    nokiapcap - Nokia tcpdump - pcap
-    nsecpcap - Wireshark/tcpdump/... - nanosecond pcap
-    nstrace10 - NetScaler Trace <span class="o">(</span>Version 1.0<span class="o">)</span>
-    nstrace20 - NetScaler Trace <span class="o">(</span>Version 2.0<span class="o">)</span>
-    nstrace30 - NetScaler Trace <span class="o">(</span>Version 3.0<span class="o">)</span>
-    nstrace35 - NetScaler Trace <span class="o">(</span>Version 3.5<span class="o">)</span>
-    pcap - Wireshark/tcpdump/... - pcap
-    pcapng - Wireshark/... - pcapng
-    rf5 - Tektronix K12xx 32-bit .rf5 format
-    rh6_1pcap - RedHat 6.1 tcpdump - pcap
-    snoop - Sun snoop
-    suse6_3pcap - SuSE 6.3 tcpdump - pcap
-    visual - Visual Networks traffic capture
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mergecap: The available capture file types <span class="k">for</span> the <span class="s2">&#34;-F&#34;</span> flag are:
+</span></span><span class="line"><span class="cl">    5views - InfoVista 5View capture
+</span></span><span class="line"><span class="cl">    btsnoop - Symbian OS btsnoop
+</span></span><span class="line"><span class="cl">    commview - TamoSoft CommView
+</span></span><span class="line"><span class="cl">    dct2000 - Catapult DCT2000 trace <span class="o">(</span>.out format<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    erf - Endace ERF capture
+</span></span><span class="line"><span class="cl">    eyesdn - EyeSDN USB S0/E1 ISDN trace format
+</span></span><span class="line"><span class="cl">    k12text - K12 text file
+</span></span><span class="line"><span class="cl">    lanalyzer - Novell LANalyzer
+</span></span><span class="line"><span class="cl">    logcat - Android Logcat Binary format
+</span></span><span class="line"><span class="cl">    logcat-brief - Android Logcat Brief text format
+</span></span><span class="line"><span class="cl">    logcat-long - Android Logcat Long text format
+</span></span><span class="line"><span class="cl">    logcat-process - Android Logcat Process text format
+</span></span><span class="line"><span class="cl">    logcat-tag - Android Logcat Tag text format
+</span></span><span class="line"><span class="cl">    logcat-thread - Android Logcat Thread text format
+</span></span><span class="line"><span class="cl">    logcat-threadtime - Android Logcat Threadtime text format
+</span></span><span class="line"><span class="cl">    logcat-time - Android Logcat Time text format
+</span></span><span class="line"><span class="cl">    modpcap - Modified tcpdump - pcap
+</span></span><span class="line"><span class="cl">    netmon1 - Microsoft NetMon 1.x
+</span></span><span class="line"><span class="cl">    netmon2 - Microsoft NetMon 2.x
+</span></span><span class="line"><span class="cl">    nettl - HP-UX nettl trace
+</span></span><span class="line"><span class="cl">    ngsniffer - Sniffer <span class="o">(</span>DOS<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    ngwsniffer_1_1 - NetXray, Sniffer <span class="o">(</span>Windows<span class="o">)</span> 1.1
+</span></span><span class="line"><span class="cl">    ngwsniffer_2_0 - Sniffer <span class="o">(</span>Windows<span class="o">)</span> 2.00x
+</span></span><span class="line"><span class="cl">    niobserver - Network Instruments Observer
+</span></span><span class="line"><span class="cl">    nokiapcap - Nokia tcpdump - pcap
+</span></span><span class="line"><span class="cl">    nsecpcap - Wireshark/tcpdump/... - nanosecond pcap
+</span></span><span class="line"><span class="cl">    nstrace10 - NetScaler Trace <span class="o">(</span>Version 1.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    nstrace20 - NetScaler Trace <span class="o">(</span>Version 2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    nstrace30 - NetScaler Trace <span class="o">(</span>Version 3.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    nstrace35 - NetScaler Trace <span class="o">(</span>Version 3.5<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    pcap - Wireshark/tcpdump/... - pcap
+</span></span><span class="line"><span class="cl">    pcapng - Wireshark/... - pcapng
+</span></span><span class="line"><span class="cl">    rf5 - Tektronix K12xx 32-bit .rf5 format
+</span></span><span class="line"><span class="cl">    rh6_1pcap - RedHat 6.1 tcpdump - pcap
+</span></span><span class="line"><span class="cl">    snoop - Sun snoop
+</span></span><span class="line"><span class="cl">    suse6_3pcap - SuSE 6.3 tcpdump - pcap
+</span></span><span class="line"><span class="cl">    visual - Visual Networks traffic capture
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Npcap是nmap在win平台的流量捕捉库，linux和mac也支持了npcap，其是winpcap的改善和扩展。</p>
-<pre tabindex="0"><code>Npcap is the Nmap Project's packet capture (and sending) library for Microsoft Windows. It implements the open Pcap API using a custom Windows kernel driver alongside our Windows build of the excellent libpcap library.
+<pre tabindex="0"><code>Npcap is the Nmap Project&#39;s packet capture (and sending) library for Microsoft Windows. It implements the open Pcap API using a custom Windows kernel driver alongside our Windows build of the excellent libpcap library.
 
 Mac and Linux systems already include the Pcap API, so Npcap allows popular software such as Nmap and Wireshark to run on all these platforms (and more) with a single codebase.
 
-Npcap began in 2013 as some improvements to the (now discontinued) WinPcap library, but has been largely rewritten since then with hundreds of releases improving Npcap's speed, portability, security, and efficiency.
+Npcap began in 2013 as some improvements to the (now discontinued) WinPcap library, but has been largely rewritten since then with hundreds of releases improving Npcap&#39;s speed, portability, security, and efficiency.
 </code></pre><h3 id="转换方法">转换方法</h3>
 <h4 id="pcapng-to-pcap">pcapng to pcap</h4>
 <p>方法一：直接用wireshark打开pcapng文件另存为pcap文件</p>
@@ -2028,8 +2028,8 @@ Npcap began in 2013 as some improvements to the (now discontinued) WinPcap libra
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">editcap</span><span class="p">.</span><span class="n">exe</span> <span class="nb">a-sol</span><span class="p">.</span><span class="n">pcapng</span> <span class="nb">a-sol</span><span class="p">.</span><span class="n">pcap</span> <span class="o">-F</span> <span class="n">pcap</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">editcap</span><span class="p">.</span><span class="n">exe</span> <span class="nb">a-sol</span><span class="p">.</span><span class="n">pcapng</span> <span class="nb">a-sol</span><span class="p">.</span><span class="n">pcap</span> <span class="o">-F</span> <span class="n">pcap</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="/images/posts/cap%E6%A0%BC%E5%BC%8F/image-20211122005029001.png" alt="image-20211122005029001" /></p>
 <p>方法三：用mergecap将pcapng转化为指定的pcap格式</p>
@@ -2038,8 +2038,8 @@ Npcap began in 2013 as some improvements to the (now discontinued) WinPcap libra
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">mergecap</span><span class="p">.</span><span class="n">exe</span> <span class="nb">a-sol</span><span class="p">.</span><span class="n">pcapng</span> <span class="n">-w</span> <span class="nb">a-sol</span><span class="p">.</span><span class="n">pcap</span> <span class="o">-F</span> <span class="n">pcap</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">mergecap</span><span class="p">.</span><span class="n">exe</span> <span class="nb">a-sol</span><span class="p">.</span><span class="n">pcapng</span> <span class="n">-w</span> <span class="nb">a-sol</span><span class="p">.</span><span class="n">pcap</span> <span class="o">-F</span> <span class="n">pcap</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="/images/posts/cap%E6%A0%BC%E5%BC%8F/image-20211121235944790.png" alt="image-20211121235944790" /></p>
 <p>此外mergecap功能如其名，还能将多个包合到一起。</p>
@@ -2049,8 +2049,8 @@ Npcap began in 2013 as some improvements to the (now discontinued) WinPcap libra
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tcpdump -r a-sol.pcapng -w a-sol.pcap
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -r a-sol.pcapng -w a-sol.pcap
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="/images/posts/cap%E6%A0%BC%E5%BC%8F/image-20211122153349439.png" alt="image-20211122153349439" /></p>
 <h4 id="pcap-to-pcapng">pcap to pcapng</h4>
@@ -2060,9 +2060,9 @@ Npcap began in 2013 as some improvements to the (now discontinued) WinPcap libra
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">editcap -F pcapng file.pcap file.pcapng
-tshark -F pcapng -r file.pcap -w file.pcapng
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">editcap -F pcapng file.pcap file.pcapng
+</span></span><span class="line"><span class="cl">tshark -F pcapng -r file.pcap -w file.pcapng
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </article>
@@ -2452,7 +2452,7 @@ tshark -F pcapng -r file.pcap -w file.pcapng
 </div>
 
 
-<script defer src="/js/swipe.min.d2e020e2d405fafaa45c0a10d2af949627bf554a9366c31a905af38f8cc30c30.js"></script>
+<script defer src="/js/swipe.min.32b4505a39624feed6faa09f12dd745a099b8811ea631c29cea9692c45984af8.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 

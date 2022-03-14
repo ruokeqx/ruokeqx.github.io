@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.498676c34eb225e85357ab0ce19c3c1244f3bd0bf595e5684d1b9d50ea4fbc42.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.cd44056d552c69703dced61ae60f99166a0ddf44be93d6aa5d5127d98bf98984.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.1551b6dbdacc77e412a26a29d3b84d2dcdc8f05c3b617433a475dc53c8872bdb.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -1349,7 +1349,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
 
-<meta name="generator" content="Hugo 0.92.0" />
+<meta name="generator" content="Hugo 0.94.0" />
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1746,8 +1746,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Linux ruokeqx 4.4.0-142-generic <span class="c1">#168~14.04.1-Ubuntu SMP Sat Jan 19 11:26:28 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Linux ruokeqx 4.4.0-142-generic <span class="c1">#168~14.04.1-Ubuntu SMP Sat Jan 19 11:26:28 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>克隆内核源码（第二个链接会快点）</p>
 <div class="highlight"><div class="chroma">
@@ -1756,9 +1756,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git clone https://git.kernel.org/pub/scm/linux/kernel/git/wtarreau/linux-2.4.git/
-git clone https://kernel.googlesource.com/pub/scm/linux/kernel/git/wtarreau/linux-2.4
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://git.kernel.org/pub/scm/linux/kernel/git/wtarreau/linux-2.4.git/
+</span></span><span class="line"><span class="cl">git clone https://kernel.googlesource.com/pub/scm/linux/kernel/git/wtarreau/linux-2.4
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>安装编译环境</p>
 <div class="highlight"><div class="chroma">
@@ -1766,8 +1766,8 @@ git clone https://kernel.googlesource.com/pub/scm/linux/kernel/git/wtarreau/linu
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt install git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>make menuconfig</code>将打开一个配置工具，它可以让你遍历每个可用模块，然后启用或者禁用你需要或者不需要的模块。此处选择默认直接保存。</p>
 <p>尝试编译，报错如下：</p>
@@ -1776,8 +1776,8 @@ git clone https://kernel.googlesource.com/pub/scm/linux/kernel/git/wtarreau/linu
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#error &#34;GCC &gt;= 4.2 miscompiles kernel 2.4, do not use it!&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#error &#34;GCC &gt;= 4.2 miscompiles kernel 2.4, do not use it!&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>需要版本小于4.2的GCC</p>
 <h2 id="编译">编译</h2>
@@ -1789,8 +1789,8 @@ git clone https://kernel.googlesource.com/pub/scm/linux/kernel/git/wtarreau/linu
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install libc6-dev libgmp-dev libmpfr-dev texinfo
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get install libc6-dev libgmp-dev libmpfr-dev texinfo
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1805,16 +1805,16 @@ git clone https://kernel.googlesource.com/pub/scm/linux/kernel/git/wtarreau/linu
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /usr/include
-sudo ln -s x86_64-linux-gnu/bits bits
-sudo ln -s x86_64-linux-gnu/gnu gnu
-sudo ln -s x86_64-linux-gnu/sys sys
-sudo ln -s x86_64-linux-gnu/asm asm
-<span class="nb">cd</span> /usr/lib
-sudo ln -s x86_64-linux-gnu/crt1.o crt1.o
-sudo ln -s x86_64-linux-gnu/crti.o crti.o
-sudo ln -s x86_64-linux-gnu/crtn.o crtn.o
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/include
+</span></span><span class="line"><span class="cl">sudo ln -s x86_64-linux-gnu/bits bits
+</span></span><span class="line"><span class="cl">sudo ln -s x86_64-linux-gnu/gnu gnu
+</span></span><span class="line"><span class="cl">sudo ln -s x86_64-linux-gnu/sys sys
+</span></span><span class="line"><span class="cl">sudo ln -s x86_64-linux-gnu/asm asm
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /usr/lib
+</span></span><span class="line"><span class="cl">sudo ln -s x86_64-linux-gnu/crt1.o crt1.o
+</span></span><span class="line"><span class="cl">sudo ln -s x86_64-linux-gnu/crti.o crti.o
+</span></span><span class="line"><span class="cl">sudo ln -s x86_64-linux-gnu/crtn.o crtn.o
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>编译GCC</p>
 <p>此处前半部分尝试使用<code>ubuntu18.04</code> <code>gcc7.x</code>编译，后来问题很多改用<code>ubuntu14.04</code> <code>gcc4.8.4</code>编译通过。</p>
@@ -1827,12 +1827,12 @@ sudo ln -s x86_64-linux-gnu/crtn.o crtn.o
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> gcc-4.0.0
-$ mkdir build
-$ <span class="nb">cd</span> build
-$ ../configure --prefix<span class="o">=</span>/usr/local --program-prefix<span class="o">=</span>sse- --libexecdir<span class="o">=</span>/usr/local/lib --enable-shared --enable-threads<span class="o">=</span>posix --enable-__cxa_atexit --enable-clocale<span class="o">=</span>gnu --disable-multilib --enable-languages<span class="o">=</span>c,c++
-$ make bootstrap <span class="nv">MAKEINFO</span><span class="o">=</span>makeinfo
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> gcc-4.0.0
+</span></span><span class="line"><span class="cl">$ mkdir build
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> build
+</span></span><span class="line"><span class="cl">$ ../configure --prefix<span class="o">=</span>/usr/local --program-prefix<span class="o">=</span>sse- --libexecdir<span class="o">=</span>/usr/local/lib --enable-shared --enable-threads<span class="o">=</span>posix --enable-__cxa_atexit --enable-clocale<span class="o">=</span>gnu --disable-multilib --enable-languages<span class="o">=</span>c,c++
+</span></span><span class="line"><span class="cl">$ make bootstrap <span class="nv">MAKEINFO</span><span class="o">=</span>makeinfo
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1842,11 +1842,11 @@ $ make bootstrap <span class="nv">MAKEINFO</span><span class="o">=</span>makeinf
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">../../gcc/toplev.c:547:1: error: redefinition of ‘floor_log2’
- floor_log2 <span class="o">(</span>unsigned HOST_WIDE_INT x<span class="o">)</span>
- ../../gcc/toplev.c:582:1: error: redefinition of ‘exact_log2’
- exact_log2 <span class="o">(</span>unsigned HOST_WIDE_INT x<span class="o">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">../../gcc/toplev.c:547:1: error: redefinition of ‘floor_log2’
+</span></span><span class="line"><span class="cl"> floor_log2 <span class="o">(</span>unsigned HOST_WIDE_INT x<span class="o">)</span>
+</span></span><span class="line"><span class="cl"> ../../gcc/toplev.c:582:1: error: redefinition of ‘exact_log2’
+</span></span><span class="line"><span class="cl"> exact_log2 <span class="o">(</span>unsigned HOST_WIDE_INT x<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><a href="https://stackoverflow.com/questions/34569458/error-occurred-compiling-gcc-from-source-code">https://stackoverflow.com/questions/34569458/error-occurred-compiling-gcc-from-source-code</a></p>
 <p>修改Makefile</p>
@@ -1856,9 +1856,9 @@ $ make bootstrap <span class="nv">MAKEINFO</span><span class="o">=</span>makeinf
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">CC</span> <span class="o">=</span> gcc -fgnu89-inline
-<span class="nv">CXX</span> <span class="o">=</span> g++ -fgnu89-inline
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">CC</span> <span class="o">=</span> gcc -fgnu89-inline
+</span></span><span class="line"><span class="cl"><span class="nv">CXX</span> <span class="o">=</span> g++ -fgnu89-inline
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Make再次出错</p>
 <div class="highlight"><div class="chroma">
@@ -1869,11 +1869,11 @@ $ make bootstrap <span class="nv">MAKEINFO</span><span class="o">=</span>makeinf
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">In <span class="k">function</span> ‘open’,
-    inlined from ‘collect_execute’ at ../../gcc/collect2.c:1577:20:
-/usr/include/x86_64-linux-gnu/bits/fcntl2.h:50:4: error: call to ‘__open_missing_mode’ declared with attribute error: open with O_CREAT or O_TMPFILE in second argument needs <span class="m">3</span> arguments
-    __open_missing_mode <span class="o">()</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">In <span class="k">function</span> ‘open’,
+</span></span><span class="line"><span class="cl">    inlined from ‘collect_execute’ at ../../gcc/collect2.c:1577:20:
+</span></span><span class="line"><span class="cl">/usr/include/x86_64-linux-gnu/bits/fcntl2.h:50:4: error: call to ‘__open_missing_mode’ declared with attribute error: open with O_CREAT or O_TMPFILE in second argument needs <span class="m">3</span> arguments
+</span></span><span class="line"><span class="cl">    __open_missing_mode <span class="o">()</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1882,10 +1882,10 @@ $ make bootstrap <span class="nv">MAKEINFO</span><span class="o">=</span>makeinf
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"> ~/project/gcc-4.0.0/gcc &gt; vim collect2.c +1577
-
-<span class="nv">redir_handle</span> <span class="o">=</span> open <span class="o">(</span>redir, O_WRONLY <span class="p">|</span> O_TRUNC <span class="p">|</span> O_CREAT, 0777<span class="o">)</span><span class="p">;</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> ~/project/gcc-4.0.0/gcc &gt; vim collect2.c +1577
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">redir_handle</span> <span class="o">=</span> open <span class="o">(</span>redir, O_WRONLY <span class="p">|</span> O_TRUNC <span class="p">|</span> O_CREAT, 0777<span class="o">)</span><span class="p">;</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>（后续还有好多问题，暂时放弃。。</p>
 <p>折回原位，选用<code>ubuntu14.04</code>，自带gcc版本4.8.4，按照上面的修改Makefile两行即可直接编译一遍过。</p>
@@ -1896,10 +1896,10 @@ $ make bootstrap <span class="nv">MAKEINFO</span><span class="o">=</span>makeinf
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo make install
-sudo ln -sf /usr/local/bin/x86_64-unknown-linux-gnu-gcc-4.1.2 /usr/bin/gcc
-sudo ln -sf /usr/local/bin/x86_64-unknown-linux-gnu-sse-g++ /usr/bin/g++
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo make install
+</span></span><span class="line"><span class="cl">sudo ln -sf /usr/local/bin/x86_64-unknown-linux-gnu-gcc-4.1.2 /usr/bin/gcc
+</span></span><span class="line"><span class="cl">sudo ln -sf /usr/local/bin/x86_64-unknown-linux-gnu-sse-g++ /usr/bin/g++
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>验证安装</p>
 <div class="highlight"><div class="chroma">
@@ -1919,20 +1919,20 @@ sudo ln -sf /usr/local/bin/x86_64-unknown-linux-gnu-sse-g++ /usr/bin/g++
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ruokeqx@ruokeqx:~$ gcc --version
-gcc <span class="o">(</span>GCC<span class="o">)</span> 4.1.2
-Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2006</span> Free Software Foundation, Inc.
-This is free software<span class="p">;</span> see the <span class="nb">source</span> <span class="k">for</span> copying conditions.  There is NO
-warranty<span class="p">;</span> not even <span class="k">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-ruokeqx@ruokeqx:~$ g++ --version
-g++ <span class="o">(</span>GCC<span class="o">)</span> 4.1.2
-Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2006</span> Free Software Foundation, Inc.
-This is free software<span class="p">;</span> see the <span class="nb">source</span> <span class="k">for</span> copying conditions.  There is NO
-warranty<span class="p">;</span> not even <span class="k">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-ruokeqx@ruokeqx:~$ 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ruokeqx@ruokeqx:~$ gcc --version
+</span></span><span class="line"><span class="cl">gcc <span class="o">(</span>GCC<span class="o">)</span> 4.1.2
+</span></span><span class="line"><span class="cl">Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2006</span> Free Software Foundation, Inc.
+</span></span><span class="line"><span class="cl">This is free software<span class="p">;</span> see the <span class="nb">source</span> <span class="k">for</span> copying conditions.  There is NO
+</span></span><span class="line"><span class="cl">warranty<span class="p">;</span> not even <span class="k">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ruokeqx@ruokeqx:~$ g++ --version
+</span></span><span class="line"><span class="cl">g++ <span class="o">(</span>GCC<span class="o">)</span> 4.1.2
+</span></span><span class="line"><span class="cl">Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2006</span> Free Software Foundation, Inc.
+</span></span><span class="line"><span class="cl">This is free software<span class="p">;</span> see the <span class="nb">source</span> <span class="k">for</span> copying conditions.  There is NO
+</span></span><span class="line"><span class="cl">warranty<span class="p">;</span> not even <span class="k">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ruokeqx@ruokeqx:~$ 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="编译linux-24">编译linux-2.4</h3>
 <p>此前已经clone好2.4的源码，并已经在编译gcc时创建部分软链接</p>
@@ -1949,15 +1949,15 @@ ruokeqx@ruokeqx:~$
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 四舍五入这里用不到（doge</span>
-<span class="nb">cd</span> /usr/include
-<span class="c1"># rm -r asm linux scsi</span>
-<span class="c1"># 这里软链接还是用之前编译gcc用到的asm，下面这条编译会报错没有asm/boot.h</span>
-<span class="c1"># sudo ln -s /usr/src/linux-headers-4.4.0-142/include/asm-generic asm</span>
-<span class="c1"># 这里下面两个系统自带了</span>
-<span class="c1"># sudo ln -s /usr/src/linux-headers-4.4.0-142/include/linux linux</span>
-<span class="c1"># sudo ln -s /usr/src/linux-headers-4.4.0-142/include/scsi scsi</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 四舍五入这里用不到（doge</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /usr/include
+</span></span><span class="line"><span class="cl"><span class="c1"># rm -r asm linux scsi</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里软链接还是用之前编译gcc用到的asm，下面这条编译会报错没有asm/boot.h</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo ln -s /usr/src/linux-headers-4.4.0-142/include/asm-generic asm</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里下面两个系统自带了</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo ln -s /usr/src/linux-headers-4.4.0-142/include/linux linux</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo ln -s /usr/src/linux-headers-4.4.0-142/include/scsi scsi</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>配置内核，这部分还是特别重要且相对麻烦的 [具体看链接8]，但是由于与本次实验无关，所以直接使用默认值了。</p>
 <div class="highlight"><div class="chroma">
@@ -1968,11 +1968,11 @@ ruokeqx@ruokeqx:~$
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make config		<span class="c1">#（基于文本的最为传统的配置界面，不推荐使用）</span>
-make menuconfig	<span class="c1">#（基于文本选单的配置界面，字符终端下推荐使用）</span>
-make xconfig	<span class="c1">#（基于图形窗口模式的配置界面，Xwindow下推荐使用）</span>
-make oldconfig	<span class="c1">#（如果只想在原来内核配置的基础上修改一些小地方，会省去不少麻烦）</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">make config		<span class="c1">#（基于文本的最为传统的配置界面，不推荐使用）</span>
+</span></span><span class="line"><span class="cl">make menuconfig	<span class="c1">#（基于文本选单的配置界面，字符终端下推荐使用）</span>
+</span></span><span class="line"><span class="cl">make xconfig	<span class="c1">#（基于图形窗口模式的配置界面，Xwindow下推荐使用）</span>
+</span></span><span class="line"><span class="cl">make oldconfig	<span class="c1">#（如果只想在原来内核配置的基础上修改一些小地方，会省去不少麻烦）</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>编译</p>
 <div class="highlight"><div class="chroma">
@@ -1991,19 +1991,19 @@ make oldconfig	<span class="c1">#（如果只想在原来内核配置的基础�
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 读取配置生成的配置文件 来创建对应于配置的依赖关系树</span>
-make dep
-<span class="c1"># 删除前面步骤留下的文件</span>
-make clean
-<span class="c1"># 完全编译内核</span>
-make bzImage
-<span class="c1"># 后面三个命令只有在你进行配置的过程中，在回答Enable loadable module support (CONFIG_MODULES)时选了&#34;Yes&#34;才是必要的，默认是[*] built-in</span>
-<span class="c1"># make modules和make modules_install分别生成相应的模块和把模块拷贝到需要的目录中</span>
-make modules
-sudo make modules_install
-<span class="c1"># 生成模块间的依赖关系，启动新内核之后，使用modprobe命令加载模块时就能正确地定位模块</span>
-depmod -a
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 读取配置生成的配置文件 来创建对应于配置的依赖关系树</span>
+</span></span><span class="line"><span class="cl">make dep
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除前面步骤留下的文件</span>
+</span></span><span class="line"><span class="cl">make clean
+</span></span><span class="line"><span class="cl"><span class="c1"># 完全编译内核</span>
+</span></span><span class="line"><span class="cl">make bzImage
+</span></span><span class="line"><span class="cl"><span class="c1"># 后面三个命令只有在你进行配置的过程中，在回答Enable loadable module support (CONFIG_MODULES)时选了&#34;Yes&#34;才是必要的，默认是[*] built-in</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># make modules和make modules_install分别生成相应的模块和把模块拷贝到需要的目录中</span>
+</span></span><span class="line"><span class="cl">make modules
+</span></span><span class="line"><span class="cl">sudo make modules_install
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成模块间的依赖关系，启动新内核之后，使用modprobe命令加载模块时就能正确地定位模块</span>
+</span></span><span class="line"><span class="cl">depmod -a
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>编译时报错如下，变量未声明，github搜变量名看到值都是0X7F00，于是编辑源码加上一句，编译成功。</p>
 <div class="highlight"><div class="chroma">
@@ -2014,11 +2014,11 @@ depmod -a
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tools/build.c:155:error: ‘DEF_SYSSIZE’ undeclared <span class="o">(</span>first use in this <span class="k">function</span><span class="o">)</span>
-
-vim <span class="o">[</span><span class="nb">source</span> path<span class="o">]</span>/arch/x86_64/boot/tools/build.c +37
-<span class="c1">#define DEF_SYSSIZE 0x7F00</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tools/build.c:155:error: ‘DEF_SYSSIZE’ undeclared <span class="o">(</span>first use in this <span class="k">function</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vim <span class="o">[</span><span class="nb">source</span> path<span class="o">]</span>/arch/x86_64/boot/tools/build.c +37
+</span></span><span class="line"><span class="cl"><span class="c1">#define DEF_SYSSIZE 0x7F00</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>编译成功（也只能说仅仅是编译成功了，具体继续往下看），文件路径为</p>
 <div class="highlight"><div class="chroma">
@@ -2027,9 +2027,9 @@ vim <span class="o">[</span><span class="nb">source</span> path<span class="o">]
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span><span class="nb">source</span> path<span class="o">]</span>/System.map
-<span class="o">[</span><span class="nb">source</span> path<span class="o">]</span>/arch/x86_64/boot/bzImage
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span><span class="nb">source</span> path<span class="o">]</span>/System.map
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="nb">source</span> path<span class="o">]</span>/arch/x86_64/boot/bzImage
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="qemu内核运行及调试">qemu内核运行及调试</h2>
 <p>安装qemu</p>
@@ -2039,9 +2039,9 @@ vim <span class="o">[</span><span class="nb">source</span> path<span class="o">]
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cp linux-2.4/arch/x86_64/boot/bzImage ./
-sudo apt install qemu
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cp linux-2.4/arch/x86_64/boot/bzImage ./
+</span></span><span class="line"><span class="cl">sudo apt install qemu
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>制作<code>initrd(initial ramdisk)</code>, 在内核启动的时候会先去加载的一种文件系统[见参考14]</p>
 <p>[If you have Linux Kernel 2.4 or later, you already have support of ramdisk built in.] kernel2.4刚好是支持ramdisk的最早版本</p>
@@ -2060,18 +2060,18 @@ sudo apt install qemu
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;hello ruokeqx&#34;</span><span class="p">);</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;hello ruokeqx&#34;</span><span class="p">);</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;hello ruokeqx&#34;</span><span class="p">);</span>
-        <span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
-        <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;hello ruokeqx&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;hello ruokeqx&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;hello ruokeqx&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>静态编译并运行</p>
 <div class="highlight"><div class="chroma">
@@ -2080,9 +2080,9 @@ sudo apt install qemu
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gcc -static -o helloworld hello.c
-<span class="nb">echo</span> helloworld <span class="p">|</span> cpio -o --format<span class="o">=</span>newc &gt; rootfs
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">gcc -static -o helloworld hello.c
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> helloworld <span class="p">|</span> cpio -o --format<span class="o">=</span>newc &gt; rootfs
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>常规操作应该是使用<code>busybox</code>:[嵌入式linux的瑞士军刀，包含基本命令] 来构建文件系统，然后再qemu运行。</p>
 <p>但是 <code>qemu</code>的<code>-kernel</code>和<code>-initrd</code>能够绕过<code>bootload</code>直接对指定的<code>kernel</code>和<code>ramdisk</code>进行加载，上面echo那行命令就是创建<code>cpio-initrd</code>的过程。</p>
@@ -2097,13 +2097,13 @@ sudo apt install qemu
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">&gt; qemu-system-x86_64 -kernel ./bzImage -initrd ./rootfs -append <span class="s2">&#34;root=/dev/ram rdinit=/helloworld&#34;</span>
-<span class="c1"># 报错如下</span>
-RAMDISK: Couldn<span class="err">&#39;</span>t find valid RAM disk image starting at 0.
-VFS: Cannot open root device <span class="s2">&#34;ram&#34;</span> or 08:01
-Please append a correct <span class="s2">&#34;root=&#34;</span> boot option
-Kernel panic: VFS: Unable to mount root fs on 08:01
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&gt; qemu-system-x86_64 -kernel ./bzImage -initrd ./rootfs -append <span class="s2">&#34;root=/dev/ram rdinit=/helloworld&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 报错如下</span>
+</span></span><span class="line"><span class="cl">RAMDISK: Couldn<span class="err">&#39;</span>t find valid RAM disk image starting at 0.
+</span></span><span class="line"><span class="cl">VFS: Cannot open root device <span class="s2">&#34;ram&#34;</span> or 08:01
+</span></span><span class="line"><span class="cl">Please append a correct <span class="s2">&#34;root=&#34;</span> boot option
+</span></span><span class="line"><span class="cl">Kernel panic: VFS: Unable to mount root fs on 08:01
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>发现我的系统没有<code>/dev/ram</code>，查找<code>/dev</code>下设备文件意义得到如下</p>
 <pre tabindex="0"><code>1 block   RAM disk   [已过时，请用TMPFS]
@@ -2119,8 +2119,8 @@ Kernel panic: VFS: Unable to mount root fs on 08:01
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo qemu-system-x86_64 -kernel ./bzImage -initrd ./rootfs -append <span class="s2">&#34;root=/dev/shm rdinit=/helloworld&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo qemu-system-x86_64 -kernel ./bzImage -initrd ./rootfs -append <span class="s2">&#34;root=/dev/shm rdinit=/helloworld&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>还是相同报错，只不过上面的<code>ram</code>变成了<code>shm</code>.</p>
 <p>尝试过换到ubuntu18.04，依旧是一堆报错</p>
@@ -2133,12 +2133,12 @@ Kernel panic: VFS: Unable to mount root fs on 08:01
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">WARNING: Image format was not specified <span class="k">for</span> <span class="s1">&#39;rootfs&#39;</span> and probing guessed raw.
-         Automatically detecting the format is dangerous <span class="k">for</span> raw images, write operations on block <span class="m">0</span> will be restricted.
-         Specify the <span class="s1">&#39;raw&#39;</span> format explicitly to remove the restrictions.
-         
-<span class="c1">#	-drive format=raw,file=rootfs</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">WARNING: Image format was not specified <span class="k">for</span> <span class="s1">&#39;rootfs&#39;</span> and probing guessed raw.
+</span></span><span class="line"><span class="cl">         Automatically detecting the format is dangerous <span class="k">for</span> raw images, write operations on block <span class="m">0</span> will be restricted.
+</span></span><span class="line"><span class="cl">         Specify the <span class="s1">&#39;raw&#39;</span> format explicitly to remove the restrictions.
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl"><span class="c1">#	-drive format=raw,file=rootfs</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>虚拟化问题</p>
 <div class="highlight"><div class="chroma">
@@ -2148,10 +2148,10 @@ Kernel panic: VFS: Unable to mount root fs on 08:01
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">warning: TCG doesn<span class="err">&#39;</span>t support requested feature: CPUID.01H:ECX.vmx <span class="o">[</span>bit 5<span class="o">]</span>
-
-<span class="c1"># 虚拟机处理器开启 虚拟化 Intel VT-x/EPT 或 AMD-V/RVI(V)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">warning: TCG doesn<span class="err">&#39;</span>t support requested feature: CPUID.01H:ECX.vmx <span class="o">[</span>bit 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 虚拟机处理器开启 虚拟化 Intel VT-x/EPT 或 AMD-V/RVI(V)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>制作磁盘镜像</p>
 <div class="highlight"><div class="chroma">
@@ -2164,13 +2164,13 @@ Kernel panic: VFS: Unable to mount root fs on 08:01
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># qemu-img 创建一个磁盘镜像文件</span>
-qemu-img create -f raw disk.raw 512M
-<span class="c1"># 格式化为ext4</span>
-mkfs -t ext4 ./disk.raw
-<span class="c1"># 挂在磁盘镜像文件，这样就可以操作磁盘镜像文件中的内容了</span>
-sudo mount -o loop ./disk.raw ./img
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># qemu-img 创建一个磁盘镜像文件</span>
+</span></span><span class="line"><span class="cl">qemu-img create -f raw disk.raw 512M
+</span></span><span class="line"><span class="cl"><span class="c1"># 格式化为ext4</span>
+</span></span><span class="line"><span class="cl">mkfs -t ext4 ./disk.raw
+</span></span><span class="line"><span class="cl"><span class="c1"># 挂在磁盘镜像文件，这样就可以操作磁盘镜像文件中的内容了</span>
+</span></span><span class="line"><span class="cl">sudo mount -o loop ./disk.raw ./img
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2180,11 +2180,11 @@ sudo mount -o loop ./disk.raw ./img
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Kernel panic: Attempted to <span class="nb">kill</span> the idle task!
-In idle task - not syncing
-
-Kernel panic: Attempted to <span class="nb">kill</span> init!
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Kernel panic: Attempted to <span class="nb">kill</span> the idle task!
+</span></span><span class="line"><span class="cl">In idle task - not syncing
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Kernel panic: Attempted to <span class="nb">kill</span> init!
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="放弃initrd运行kernel24">放弃initrd运行kernel2.4</h3>
 <p>一堆问题，自闭了。</p>
@@ -2210,24 +2210,24 @@ Kernel panic: Attempted to <span class="nb">kill</span> init!
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 现成内核和rootfs.cpio运行编译好的程序helloworld</span>
-ls
-babydriver.i64  babydriver.tar.xz  boot.sh  bzImage  rootfs.cpio
-mkdir tmp
-cp rootfs.cpio ./tmp/rootfs.cpio.gz
-<span class="nb">cd</span> tmp/
-gunzip ./rootfs.cpio.gz
-cpio -idmv &lt; rootfs.cpio
-....
-ls
-....
-cp ../../helloworld ./
-<span class="nb">echo</span> /helloworld &gt; init
-find . <span class="p">|</span> cpio -o --format<span class="o">=</span>newc &gt; rootfs.cpio
-mv rootfs.cpio ../
-<span class="nb">cd</span> ..
-./boot.sh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 现成内核和rootfs.cpio运行编译好的程序helloworld</span>
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">babydriver.i64  babydriver.tar.xz  boot.sh  bzImage  rootfs.cpio
+</span></span><span class="line"><span class="cl">mkdir tmp
+</span></span><span class="line"><span class="cl">cp rootfs.cpio ./tmp/rootfs.cpio.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> tmp/
+</span></span><span class="line"><span class="cl">gunzip ./rootfs.cpio.gz
+</span></span><span class="line"><span class="cl">cpio -idmv &lt; rootfs.cpio
+</span></span><span class="line"><span class="cl">....
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">....
+</span></span><span class="line"><span class="cl">cp ../../helloworld ./
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> /helloworld &gt; init
+</span></span><span class="line"><span class="cl">find . <span class="p">|</span> cpio -o --format<span class="o">=</span>newc &gt; rootfs.cpio
+</span></span><span class="line"><span class="cl">mv rootfs.cpio ../
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">./boot.sh
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后用他的<code>bzImgae</code>替换我的程序后成功运行</p>
 <div class="highlight"><div class="chroma">
@@ -2240,13 +2240,13 @@ mv rootfs.cpio ../
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> helloworld <span class="p">|</span> cpio -o --format<span class="o">=</span>newc &gt; rootfs
-cp kernelpwn/bzImage ./
-qemu-system-x86_64 <span class="se">\
-</span><span class="se"></span>	-kernel ./bzImage <span class="se">\
-</span><span class="se"></span>	-initrd ./rootfs <span class="se">\
-</span><span class="se"></span>	-append <span class="s2">&#34;root=/dev/ram rdinit=/helloworld&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> helloworld <span class="p">|</span> cpio -o --format<span class="o">=</span>newc &gt; rootfs
+</span></span><span class="line"><span class="cl">cp kernelpwn/bzImage ./
+</span></span><span class="line"><span class="cl">qemu-system-x86_64 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-kernel ./bzImage <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-initrd ./rootfs <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-append <span class="s2">&#34;root=/dev/ram rdinit=/helloworld&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="/images/posts/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/image-20211126155106914.png" alt="image-20211126155106914" /></p>
 <p>那么现在可以确定是我编译的内核有问题（</p>
@@ -2266,14 +2266,14 @@ Kernel 2.6 is expecting the initrd file to be a (compressed) cpio archive, to be
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">qemu-img create -f raw disk.raw 512M
-mkfs -t ext2 ./disk.raw
-mkdir img
-sudo mount -o loop ./disk.raw ./img
-<span class="c1"># 刚才kernelpwn的题目自带的busybox直接拷贝过来</span>
-sudo cp -r tmp/* ./img/
-qemu-system-x86_64 -m 512M -smp <span class="m">4</span> -kernel bzImage.2.4 -drive <span class="nv">format</span><span class="o">=</span>raw,file<span class="o">=</span>./disk.raw --append <span class="s2">&#34;init=/linuxrc root=/dev/sda&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">qemu-img create -f raw disk.raw 512M
+</span></span><span class="line"><span class="cl">mkfs -t ext2 ./disk.raw
+</span></span><span class="line"><span class="cl">mkdir img
+</span></span><span class="line"><span class="cl">sudo mount -o loop ./disk.raw ./img
+</span></span><span class="line"><span class="cl"><span class="c1"># 刚才kernelpwn的题目自带的busybox直接拷贝过来</span>
+</span></span><span class="line"><span class="cl">sudo cp -r tmp/* ./img/
+</span></span><span class="line"><span class="cl">qemu-system-x86_64 -m 512M -smp <span class="m">4</span> -kernel bzImage.2.4 -drive <span class="nv">format</span><span class="o">=</span>raw,file<span class="o">=</span>./disk.raw --append <span class="s2">&#34;init=/linuxrc root=/dev/sda&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>kernel2.4仍然报错</p>
 <pre tabindex="0"><code>reiserfs_read_super can not find reiserfs on ramdisk(1,0)
@@ -2290,12 +2290,12 @@ Kernel panic: Attempted to kill init!
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">qemu-system-x86_64 -m 512M -smp <span class="m">4</span> -kernel bzImage.2.6 -drive <span class="nv">format</span><span class="o">=</span>raw,file<span class="o">=</span>./disk.raw --append <span class="s2">&#34;init=/linuxrc root=/dev/sda&#34;</span>
-
-can<span class="s1">&#39;t open /dev/tty2: No such file or directory
-</span><span class="s1">can&#39;</span>t open /dev/tty3: No such file or directory
-can<span class="err">&#39;</span>t open /dev/tty4: No such file or directory
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">qemu-system-x86_64 -m 512M -smp <span class="m">4</span> -kernel bzImage.2.6 -drive <span class="nv">format</span><span class="o">=</span>raw,file<span class="o">=</span>./disk.raw --append <span class="s2">&#34;init=/linuxrc root=/dev/sda&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">can<span class="s1">&#39;t open /dev/tty2: No such file or directory
+</span></span></span><span class="line"><span class="cl"><span class="s1">can&#39;</span>t open /dev/tty3: No such file or directory
+</span></span><span class="line"><span class="cl">can<span class="err">&#39;</span>t open /dev/tty4: No such file or directory
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>busybox init启动后会扫描<code>/etc/inittab</code> ，没有的话就用下面的默认配置，所以会tty报错</p>
 <div class="highlight"><div class="chroma">
@@ -2311,16 +2311,16 @@ can<span class="err">&#39;</span>t open /dev/tty4: No such file or directory
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">::sysinit:/etc/init.d/rcS
-::askfirst:/bin/sh
-::ctrlaltdel:/sbin/reboot
-::shutdown:/sbin/swapoff -a
-::shutdown:/bin/umount -a -r
-::restart:/sbin/init
-tty2::askfirst:/bin/sh
-tty3::askfirst:/bin/sh
-tty4::askfirst:/bin/sh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">::sysinit:/etc/init.d/rcS
+</span></span><span class="line"><span class="cl">::askfirst:/bin/sh
+</span></span><span class="line"><span class="cl">::ctrlaltdel:/sbin/reboot
+</span></span><span class="line"><span class="cl">::shutdown:/sbin/swapoff -a
+</span></span><span class="line"><span class="cl">::shutdown:/bin/umount -a -r
+</span></span><span class="line"><span class="cl">::restart:/sbin/init
+</span></span><span class="line"><span class="cl">tty2::askfirst:/bin/sh
+</span></span><span class="line"><span class="cl">tty3::askfirst:/bin/sh
+</span></span><span class="line"><span class="cl">tty4::askfirst:/bin/sh
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们创建文件内容</p>
 <div class="highlight"><div class="chroma">
@@ -2336,16 +2336,16 @@ tty4::askfirst:/bin/sh
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># /etc/inittab</span>
-::sysinit:/etc/init.d/rcS
-::askfirst:/bin/ash
-::ctrlaltdel:/sbin/reboot
-::shutdown:/sbin/swapoff -a
-::shutdown:/bin/umount -a -r
-::restart:/sbin/init
-<span class="c1"># /etc/init.d/rcS</span>
-<span class="c1">#!/bin/sh</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># /etc/inittab</span>
+</span></span><span class="line"><span class="cl">::sysinit:/etc/init.d/rcS
+</span></span><span class="line"><span class="cl">::askfirst:/bin/ash
+</span></span><span class="line"><span class="cl">::ctrlaltdel:/sbin/reboot
+</span></span><span class="line"><span class="cl">::shutdown:/sbin/swapoff -a
+</span></span><span class="line"><span class="cl">::shutdown:/bin/umount -a -r
+</span></span><span class="line"><span class="cl">::restart:/sbin/init
+</span></span><span class="line"><span class="cl"><span class="c1"># /etc/init.d/rcS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/sh</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>kernel2.6成功运行</p>
 <p><img src="/images/posts/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/image-20211126203526682.png" alt="image-20211126203526682" /></p>
@@ -2361,13 +2361,13 @@ tty4::askfirst:/bin/sh
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make menuconfig
-make
-make bzImage
-cp arch/x86_64/boot/bzImage ./
-cp bzImage ../bzImage2.6
-qemu-system-x86_64 -kernel ./bzImage.2.6 -initrd ./rootfs -append <span class="s2">&#34;root=/dev/shm rdinit=/helloworld&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">make menuconfig
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl">make bzImage
+</span></span><span class="line"><span class="cl">cp arch/x86_64/boot/bzImage ./
+</span></span><span class="line"><span class="cl">cp bzImage ../bzImage2.6
+</span></span><span class="line"><span class="cl">qemu-system-x86_64 -kernel ./bzImage.2.6 -initrd ./rootfs -append <span class="s2">&#34;root=/dev/shm rdinit=/helloworld&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="/images/posts/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/image-20211126192047362.png" alt="image-20211126192047362" /></p>
 <h3 id="编写shell脚本">编写shell脚本</h3>
@@ -2403,35 +2403,35 @@ qemu-system-x86_64 -kernel ./bzImage.2.6 -initrd ./rootfs -append <span class="s
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/sh
-</span><span class="cp"></span>
-<span class="nb">cd</span> linux-5.15.6
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-	make -j12
-<span class="k">fi</span>
-<span class="c1"># make bzImage</span>
-cp arch/x86/boot/bzImage ../
-<span class="nb">cd</span> ..
-
-gcc -static -o fs/ruokeqx check_syscall.c -g
-<span class="c1">#gcc -static -o fs/ruokeqx cap.c -g</span>
-
-<span class="nb">cd</span> fs
-find . -print0 <span class="p">|</span> cpio --null -ov --format<span class="o">=</span>newc <span class="p">|</span> gzip -9 &gt; ../init.cpio.gz
-<span class="c1"># find ruokeqx | cpio -o --format=newc &gt; rootfs.cpio</span>
-<span class="nb">cd</span> ..
-
-qemu-system-x86_64 <span class="se">\
-</span><span class="se"></span>	-kernel bzImage  <span class="se">\
-</span><span class="se"></span>	-initrd init.cpio.gz <span class="se">\
-</span><span class="se"></span>	-nographic <span class="se">\
-</span><span class="se"></span>	-S -s <span class="se">\
-</span><span class="se"></span>	-net nic <span class="se">\
-</span><span class="se"></span>	-net tap,ifname<span class="o">=</span>tap0,script<span class="o">=</span>no,downscript<span class="o">=</span>no <span class="se">\
-</span><span class="se"></span>	-append <span class="s2">&#34;console=ttyS0 nokaslr&#34;</span> <span class="se">\
-</span><span class="se"></span>	<span class="c1"># -S -s # gdbserver</span>
-	<span class="c1">#-append &#34;console=ttyS0 rdinit=/ruokeqx&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> linux-5.15.6
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">	make -j12
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># make bzImage</span>
+</span></span><span class="line"><span class="cl">cp arch/x86/boot/bzImage ../
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">gcc -static -o fs/ruokeqx check_syscall.c -g
+</span></span><span class="line"><span class="cl"><span class="c1">#gcc -static -o fs/ruokeqx cap.c -g</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> fs
+</span></span><span class="line"><span class="cl">find . -print0 <span class="p">|</span> cpio --null -ov --format<span class="o">=</span>newc <span class="p">|</span> gzip -9 &gt; ../init.cpio.gz
+</span></span><span class="line"><span class="cl"><span class="c1"># find ruokeqx | cpio -o --format=newc &gt; rootfs.cpio</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">qemu-system-x86_64 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-kernel bzImage  <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-initrd init.cpio.gz <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-nographic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-S -s <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-net nic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-net tap,ifname<span class="o">=</span>tap0,script<span class="o">=</span>no,downscript<span class="o">=</span>no <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-append <span class="s2">&#34;console=ttyS0 nokaslr&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	<span class="c1"># -S -s # gdbserver</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">#-append &#34;console=ttyS0 rdinit=/ruokeqx&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="内核源码阅读">内核源码阅读</h2>
 <div class="highlight"><div class="chroma">
@@ -2447,16 +2447,16 @@ qemu-system-x86_64 <span class="se">\
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># linux-5.9/include/uapi/linux/if_ether.h</span>
-struct ethhdr <span class="o">{}</span> __attribute__<span class="o">((</span>packed<span class="o">))</span><span class="p">;</span>
-<span class="c1"># linux-5.9/include/uapi/linux/ip.h</span>
-struct iphdr <span class="o">{}</span><span class="p">;</span>
-<span class="c1"># linux-5.9/include/uapi/linux/if_arp.h</span>
-struct arphdr <span class="o">{}</span><span class="p">;</span>
-<span class="c1"># linux-5.9/net/socket.c</span>
-int __sys_recvfrom<span class="o">(</span>int fd, void __user *ubuf, size_t size, unsigned int flags,
-		   struct sockaddr __user *addr, int __user *addr_len<span class="o">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># linux-5.9/include/uapi/linux/if_ether.h</span>
+</span></span><span class="line"><span class="cl">struct ethhdr <span class="o">{}</span> __attribute__<span class="o">((</span>packed<span class="o">))</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># linux-5.9/include/uapi/linux/ip.h</span>
+</span></span><span class="line"><span class="cl">struct iphdr <span class="o">{}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># linux-5.9/include/uapi/linux/if_arp.h</span>
+</span></span><span class="line"><span class="cl">struct arphdr <span class="o">{}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># linux-5.9/net/socket.c</span>
+</span></span><span class="line"><span class="cl">int __sys_recvfrom<span class="o">(</span>int fd, void __user *ubuf, size_t size, unsigned int flags,
+</span></span><span class="line"><span class="cl">		   struct sockaddr __user *addr, int __user *addr_len<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="添加系统调用">添加系统调用</h2>
 <p>要添加系统调用大体需要三步<br />
@@ -2496,36 +2496,36 @@ int __sys_recvfrom<span class="o">(</span>int fd, void __user *ubuf, size_t size
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="c1">// 系统调用表
-</span><span class="c1">// linux-5.9/arch/x86/entry/syscalls/syscall_64.tbl
-</span><span class="c1">// # The format is:
-</span><span class="c1">// # &lt;number&gt; &lt;abi&gt; &lt;name&gt; &lt;entry point&gt;
-</span><span class="c1">// #    45	   64  recvfrom sys_recvfrom
-</span><span class="c1">// 系统调用定义文件
-</span><span class="c1">// linux-5.9/kernel/sys.c
-</span><span class="c1">// 服务例程的原型声明
-</span><span class="c1">// linux-5.9/include/linux/syscalls.h
-</span><span class="c1"></span><span class="cm">/* net/socket.c */</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_socket</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_socketpair</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_bind</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_listen</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_accept</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_connect</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_getsockname</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_getpeername</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_sendto</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">void</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="kt">unsigned</span><span class="p">,</span>
-				<span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_recvfrom</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">void</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="kt">unsigned</span><span class="p">,</span>
-				<span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_setsockopt</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">int</span> <span class="n">level</span><span class="p">,</span> <span class="kt">int</span> <span class="n">optname</span><span class="p">,</span>
-				<span class="kt">char</span> <span class="n">__user</span> <span class="o">*</span><span class="n">optval</span><span class="p">,</span> <span class="kt">int</span> <span class="n">optlen</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_getsockopt</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">int</span> <span class="n">level</span><span class="p">,</span> <span class="kt">int</span> <span class="n">optname</span><span class="p">,</span>
-				<span class="kt">char</span> <span class="n">__user</span> <span class="o">*</span><span class="n">optval</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="n">optlen</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_shutdown</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_sendmsg</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">struct</span> <span class="n">user_msghdr</span> <span class="n">__user</span> <span class="o">*</span><span class="n">msg</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">flags</span><span class="p">);</span>
-<span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_recvmsg</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">struct</span> <span class="n">user_msghdr</span> <span class="n">__user</span> <span class="o">*</span><span class="n">msg</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">flags</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// 系统调用表
+</span></span></span><span class="line"><span class="cl"><span class="c1">// linux-5.9/arch/x86/entry/syscalls/syscall_64.tbl
+</span></span></span><span class="line"><span class="cl"><span class="c1">// # The format is:
+</span></span></span><span class="line"><span class="cl"><span class="c1">// # &lt;number&gt; &lt;abi&gt; &lt;name&gt; &lt;entry point&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// #    45	   64  recvfrom sys_recvfrom
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 系统调用定义文件
+</span></span></span><span class="line"><span class="cl"><span class="c1">// linux-5.9/kernel/sys.c
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 服务例程的原型声明
+</span></span></span><span class="line"><span class="cl"><span class="c1">// linux-5.9/include/linux/syscalls.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/* net/socket.c */</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_socket</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_socketpair</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_bind</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_listen</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_accept</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_connect</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_getsockname</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_getpeername</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_sendto</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">void</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="kt">unsigned</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_recvfrom</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">void</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="kt">unsigned</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_setsockopt</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">int</span> <span class="n">level</span><span class="p">,</span> <span class="kt">int</span> <span class="n">optname</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="kt">char</span> <span class="n">__user</span> <span class="o">*</span><span class="n">optval</span><span class="p">,</span> <span class="kt">int</span> <span class="n">optlen</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_getsockopt</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">int</span> <span class="n">level</span><span class="p">,</span> <span class="kt">int</span> <span class="n">optname</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="kt">char</span> <span class="n">__user</span> <span class="o">*</span><span class="n">optval</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="n">optlen</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_shutdown</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_sendmsg</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">struct</span> <span class="n">user_msghdr</span> <span class="n">__user</span> <span class="o">*</span><span class="n">msg</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">flags</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">asmlinkage</span> <span class="kt">long</span> <span class="nf">sys_recvmsg</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">struct</span> <span class="n">user_msghdr</span> <span class="n">__user</span> <span class="o">*</span><span class="n">msg</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">flags</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>注意点</p>
 <pre tabindex="0"><code>kernel
@@ -2542,7 +2542,6 @@ sudo dmesg
 
 跟踪程序系统调用
 sudo strace sudo ./check_syscall
-
 </code></pre><h3 id="源码">源码</h3>
 <p>net/socket.c</p>
 <div class="highlight"><div class="chroma">
@@ -2789,247 +2788,247 @@ sudo strace sudo ./check_syscall
 </span><span class="lnt">240
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;linux/if_ether.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;linux/ip.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;linux/tcp.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;linux/udp.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;linux/if_arp.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="c1">// #include &lt;stdio.h&gt;
-</span><span class="c1">// #include &lt;stdlib.h&gt;
-</span><span class="c1"></span>
-
-
-<span class="c1">//参考内核 struct ethhdr 定义 (include/uapi/linux/if_ether.h）
-</span><span class="c1">//参考内核 struct iphdr 定义（include/uapi/linux/ip.h）
-</span><span class="c1">//参考内核 struct tcphdr 定义（include/uapi/linux/tcp.h）
-</span><span class="c1">//参考内核 struct udphdr 定义（include/uapi/linux/udp.h）
-</span><span class="c1">//参考内核 struct arphdr 定义（include/uapi/linux/if_arp.h）
-</span><span class="c1"></span><span class="k">struct</span> <span class="n">struct_packet</span> <span class="p">{</span>
-	<span class="kt">unsigned</span> <span class="kt">char</span>	<span class="n">mac_dest</span><span class="p">[</span><span class="n">ETH_ALEN</span><span class="p">];</span>
-	<span class="kt">unsigned</span> <span class="kt">char</span>	<span class="n">mac_source</span><span class="p">[</span><span class="n">ETH_ALEN</span><span class="p">];</span>
-	<span class="n">__be16</span>		<span class="n">eth_proto</span><span class="p">;</span>		<span class="cm">/* packet type ID field	*/</span>
-	<span class="n">__be32</span>	<span class="n">ip_source</span><span class="p">;</span>
-	<span class="n">__be32</span>	<span class="n">ip_dest</span><span class="p">;</span>
-	<span class="c1">// tools/include/uapi/linux/in.h
-</span><span class="c1"></span>	<span class="c1">// 1icmp/2igmp/6tcp/17udp
-</span><span class="c1"></span>	<span class="n">__u8</span>	<span class="n">ip_proto</span><span class="p">;</span>
-	<span class="n">__be16</span>	<span class="n">port_source</span><span class="p">;</span>
-	<span class="n">__be16</span>	<span class="n">port_dest</span><span class="p">;</span>
-<span class="p">};</span>
-
-
-<span class="c1">// unsigned int htonl(unsigned int	x)
-</span><span class="c1">// {
-</span><span class="c1">// 	unsigned int  y;
-</span><span class="c1">// 	((unsigned char*)&amp;y)[0]= ((unsigned char*)&amp;x)[3];
-</span><span class="c1">// 	((unsigned char*)&amp;y)[1]= ((unsigned char*)&amp;x)[2];
-</span><span class="c1">// 	((unsigned char*)&amp;y)[2]= ((unsigned char*)&amp;x)[1];
-</span><span class="c1">// 	((unsigned char*)&amp;y)[3]= ((unsigned char*)&amp;x)[0];
-</span><span class="c1">// 	return y;
-</span><span class="c1">// }
-</span><span class="c1">// unsigned short htons(unsigned short x)
-</span><span class="c1">// {
-</span><span class="c1">// 	unsigned short y;
-</span><span class="c1">// 	((unsigned char*)&amp;y)[0]= ((unsigned char*)&amp;x)[1];
-</span><span class="c1">// 	((unsigned char*)&amp;y)[1]= ((unsigned char*)&amp;x)[0];
-</span><span class="c1">// 	return y;
-</span><span class="c1">// }
-</span><span class="c1"></span>
-
-
-<span class="cm">/*
-</span><span class="cm">	char * memp pointer for data
-</span><span class="cm">	int caplen cap number of packet
-</span><span class="cm">	return -1 on error 0 for success
-</span><span class="cm">*/</span>
-<span class="kt">int</span> <span class="nf">__sys_cap</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">memp</span><span class="p">,</span> <span class="kt">int</span> <span class="n">caplen</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="cp">#ifndef BUFFER_MAX
-</span><span class="cp">#define BUFFER_MAX 4096
-</span><span class="cp">#endif
-</span><span class="cp"></span>	<span class="kt">int</span> <span class="n">len</span><span class="p">,</span><span class="n">i</span><span class="p">;</span>
-	<span class="kt">int</span>	<span class="n">sock</span><span class="p">;</span>
-	<span class="c1">// https://www.kernel.org/doc/htmldocs/kernel-api/API-kmalloc.html
-</span><span class="c1"></span>	<span class="c1">// https://www.kernel.org/doc/htmldocs/kernel-api/API-kfree.html
-</span><span class="c1"></span>	<span class="kt">char</span> <span class="o">*</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">kmalloc</span><span class="p">(</span><span class="n">BUFFER_MAX</span><span class="p">,</span> <span class="n">GFP_KERNEL</span><span class="p">);</span>
-
-	<span class="k">struct</span> <span class="n">struct_packet</span> <span class="o">*</span><span class="n">s_packet</span><span class="p">;</span>
-	<span class="k">struct</span> <span class="n">ethhdr</span> <span class="o">*</span><span class="n">mac_hdr</span><span class="p">;</span>
-	<span class="k">struct</span> <span class="n">iphdr</span> <span class="o">*</span><span class="n">ip_hdr</span><span class="p">;</span>
-	<span class="k">struct</span> <span class="n">tcphdr</span> <span class="o">*</span><span class="n">tcp_hdr</span><span class="p">;</span>
-	<span class="k">struct</span> <span class="n">udphdr</span> <span class="o">*</span><span class="n">udp_hdr</span><span class="p">;</span>
-	<span class="k">struct</span> <span class="n">arphdr</span> <span class="o">*</span><span class="n">arp_hdr</span><span class="p">;</span>
-
-	<span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">sock</span> <span class="o">=</span> <span class="n">__sys_socket</span><span class="p">(</span><span class="n">PF_PACKET</span><span class="p">,</span> <span class="n">SOCK_RAW</span><span class="p">,</span> <span class="n">htons</span><span class="p">(</span><span class="n">ETH_P_ALL</span><span class="p">)))</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">){</span>
-		<span class="n">printk</span><span class="p">(</span><span class="s">&#34;Create socket error.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-		<span class="c1">// exit(0);
-</span><span class="c1"></span>	<span class="p">}</span>
-
-	<span class="k">while</span><span class="p">(</span><span class="n">caplen</span><span class="o">--</span><span class="p">){</span>
-		<span class="n">len</span> <span class="o">=</span> <span class="n">__sys_recvfrom</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">BUFFER_MAX</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-		<span class="n">printk</span><span class="p">(</span><span class="s">&#34;len:%d&#34;</span><span class="p">,</span><span class="n">len</span><span class="p">);</span>
-		<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
-			<span class="n">printk</span><span class="p">(</span><span class="s">&#34;%02x &#34;</span><span class="p">,(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-		<span class="p">}</span>
-		<span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">&lt;</span> <span class="mi">46</span><span class="p">)</span> <span class="p">{</span>
-			<span class="n">printk</span><span class="p">(</span><span class="s">&#34;Catch packet length error.</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
-			<span class="n">__sys_shutdown</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-			<span class="c1">// close(sock);
-</span><span class="c1"></span>			<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-			<span class="c1">// exit(0);
-</span><span class="c1"></span>		<span class="p">}</span>
-
-		<span class="c1">// copy_to_user(memp, ,);
-</span><span class="c1"></span>		<span class="c1">// printk(&#34;截获内容长度 %d\n&#34;, len);
-</span><span class="c1"></span>
-
-		<span class="c1">// sizeof(struct ethhdr) = 14
-</span><span class="c1"></span>		<span class="c1">// sizeof(struct ipdhr) = 20
-</span><span class="c1"></span>		<span class="c1">// sizeof(struct arpdhr) = 28	6 4 Sender_ip 6 4 Target_ip
-</span><span class="c1"></span>		<span class="n">mac_hdr</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">ethhdr</span> <span class="o">*</span><span class="p">)</span><span class="n">buffer</span><span class="p">;</span>
-		<span class="n">s_packet</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">struct_packet</span> <span class="o">*</span><span class="p">)</span><span class="n">mac_hdr</span><span class="p">;</span>
-
-
-		<span class="cm">/*
-</span><span class="cm">		s_packet-&gt;mac_dest[0] = mac_hdr-&gt;h_dest[0];
-</span><span class="cm">		s_packet-&gt;mac_dest[1] = mac_hdr-&gt;h_dest[1];
-</span><span class="cm">		s_packet-&gt;mac_dest[2] = mac_hdr-&gt;h_dest[2];
-</span><span class="cm">		s_packet-&gt;mac_dest[3] = mac_hdr-&gt;h_dest[3];
-</span><span class="cm">		s_packet-&gt;mac_dest[4] = mac_hdr-&gt;h_dest[4];
-</span><span class="cm">		s_packet-&gt;mac_dest[5] = mac_hdr-&gt;h_dest[5];
-</span><span class="cm">
-</span><span class="cm">		s_packet-&gt;mac_source[0] = mac_hdr-&gt;h_source[0];
-</span><span class="cm">		s_packet-&gt;mac_source[1] = mac_hdr-&gt;h_source[1];
-</span><span class="cm">		s_packet-&gt;mac_source[2] = mac_hdr-&gt;h_source[2];
-</span><span class="cm">		s_packet-&gt;mac_source[3] = mac_hdr-&gt;h_source[3];
-</span><span class="cm">		s_packet-&gt;mac_source[4] = mac_hdr-&gt;h_source[4];
-</span><span class="cm">		s_packet-&gt;mac_source[5] = mac_hdr-&gt;h_source[5];
-</span><span class="cm">
-</span><span class="cm">		s_packet-&gt;eth_proto = mac_hdr-&gt;h_proto;
-</span><span class="cm">		*/</span>
-		<span class="k">switch</span><span class="p">(</span><span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">eth_proto</span><span class="p">){</span>
-			<span class="k">case</span> <span class="n">htons</span><span class="p">(</span><span class="mh">0x0800</span><span class="p">)</span><span class="o">:</span>	<span class="c1">// ip
-</span><span class="c1"></span>				<span class="n">ip_hdr</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">iphdr</span> <span class="o">*</span><span class="p">)(</span><span class="n">buffer</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">ethhdr</span><span class="p">));</span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_source</span> <span class="o">=</span> <span class="n">ip_hdr</span><span class="o">-&gt;</span><span class="n">saddr</span><span class="p">;</span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_dest</span> <span class="o">=</span> <span class="n">ip_hdr</span><span class="o">-&gt;</span><span class="n">daddr</span><span class="p">;</span>
-				<span class="c1">// p = (char*)&amp;ip_hdr-&gt;saddr;
-</span><span class="c1"></span>				<span class="c1">// printk(&#34;源 IP: %d.%d.%d.%d&#34;,
-</span><span class="c1"></span>				<span class="c1">// 		(u_char)p[0], 
-</span><span class="c1"></span>				<span class="c1">// 		(u_char)p[1],
-</span><span class="c1"></span>				<span class="c1">// 		(u_char)p[2],
-</span><span class="c1"></span>				<span class="c1">// 		(u_char)p[3]
-</span><span class="c1"></span>				<span class="c1">// 	);
-</span><span class="c1"></span>
-				<span class="c1">// p = (char*)&amp;ip_hdr-&gt;daddr;
-</span><span class="c1"></span>				<span class="c1">// printk(&#34; ==&gt; 目的 IP: %d.%d.%d.%d\n&#34;,
-</span><span class="c1"></span>				<span class="c1">// 		(u_char)p[0], 
-</span><span class="c1"></span>				<span class="c1">// 		(u_char)p[1], 
-</span><span class="c1"></span>				<span class="c1">// 		(u_char)p[2],
-</span><span class="c1"></span>				<span class="c1">// 		(u_char)p[3]
-</span><span class="c1"></span>				<span class="c1">// 	);
-</span><span class="c1"></span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_proto</span> <span class="o">=</span> <span class="n">ip_hdr</span><span class="o">-&gt;</span><span class="n">protocol</span><span class="p">;</span>
-
-				<span class="k">switch</span><span class="p">(</span><span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_proto</span><span class="p">)</span> <span class="p">{</span>
-					<span class="k">case</span> <span class="nl">IPPROTO_ICMP</span><span class="p">:</span>
-						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_source</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-						<span class="k">break</span><span class="p">;</span>
-					<span class="k">case</span> <span class="nl">IPPROTO_IGMP</span><span class="p">:</span>
-						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_source</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-						<span class="k">break</span><span class="p">;</span>
-					<span class="k">case</span> <span class="nl">IPPROTO_IPIP</span><span class="p">:</span>
-						<span class="k">break</span><span class="p">;</span>
-					<span class="k">case</span> <span class="nl">IPPROTO_TCP</span><span class="p">:</span>
-						<span class="n">tcp_hdr</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">tcphdr</span> <span class="o">*</span><span class="p">)(</span><span class="n">buffer</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">ethhdr</span><span class="p">)</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">iphdr</span><span class="p">));</span>
-						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_source</span> <span class="o">=</span> <span class="n">tcp_hdr</span><span class="o">-&gt;</span><span class="n">source</span><span class="p">;</span>
-						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_dest</span> <span class="o">=</span> <span class="n">tcp_hdr</span><span class="o">-&gt;</span><span class="n">dest</span><span class="p">;</span>
-						<span class="k">break</span><span class="p">;</span>
-					<span class="k">case</span> <span class="nl">IPPROTO_UDP</span><span class="p">:</span>
-						<span class="n">udp_hdr</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">udphdr</span> <span class="o">*</span><span class="p">)(</span><span class="n">buffer</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">ethhdr</span><span class="p">)</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">iphdr</span><span class="p">));</span>
-						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_source</span> <span class="o">=</span> <span class="n">udp_hdr</span><span class="o">-&gt;</span><span class="n">source</span><span class="p">;</span>
-						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_dest</span> <span class="o">=</span> <span class="n">udp_hdr</span><span class="o">-&gt;</span><span class="n">dest</span><span class="p">;</span>
-						<span class="k">break</span><span class="p">;</span>
-					<span class="k">case</span> <span class="nl">IPPROTO_RAW</span><span class="p">:</span>
-						<span class="k">break</span><span class="p">;</span>
-					<span class="k">default</span><span class="o">:</span>
-						<span class="k">break</span><span class="p">;</span>
-				<span class="p">}</span>
-				<span class="c1">// printk(&#34;协议类型:&#34;);
-</span><span class="c1"></span>				<span class="c1">// switch(ip_hdr-&gt;protocol) {
-</span><span class="c1"></span>				<span class="c1">// 	case IPPROTO_ICMP:
-</span><span class="c1"></span>				<span class="c1">// 		printk(&#34;ICMP&#34;);
-</span><span class="c1"></span>				<span class="c1">// 		break;
-</span><span class="c1"></span>				<span class="c1">// 	case IPPROTO_IGMP:
-</span><span class="c1"></span>				<span class="c1">// 		printk(&#34;IGMP&#34;); 
-</span><span class="c1"></span>				<span class="c1">// 		break;
-</span><span class="c1"></span>				<span class="c1">// 	case IPPROTO_IPIP:
-</span><span class="c1"></span>				<span class="c1">// 		printk(&#34;IPIP&#34;); 
-</span><span class="c1"></span>				<span class="c1">// 		break;
-</span><span class="c1"></span>				<span class="c1">// 	case IPPROTO_TCP:  
-</span><span class="c1"></span>				<span class="c1">// 		printk(&#34;TCP&#34;); 
-</span><span class="c1"></span>				<span class="c1">// 		break;
-</span><span class="c1"></span>				<span class="c1">// 	case IPPROTO_UDP:  
-</span><span class="c1"></span>				<span class="c1">// 		printk(&#34;UDP&#34;); 
-</span><span class="c1"></span>				<span class="c1">// 		break;
-</span><span class="c1"></span>				<span class="c1">// 	case IPPROTO_RAW: 
-</span><span class="c1"></span>				<span class="c1">// 		printk(&#34;RAW&#34;); 
-</span><span class="c1"></span>				<span class="c1">// 		break;
-</span><span class="c1"></span>				<span class="c1">// 	default: 
-</span><span class="c1"></span>				<span class="c1">// 		printk(&#34;Unknown type&#34;); 
-</span><span class="c1"></span>				<span class="c1">// 		break;
-</span><span class="c1"></span>				<span class="c1">// }
-</span><span class="c1"></span>				<span class="k">break</span><span class="p">;</span>
-			<span class="k">case</span> <span class="n">htons</span><span class="p">(</span><span class="mh">0x0806</span><span class="p">)</span><span class="o">:</span> <span class="c1">// arp
-</span><span class="c1"></span>				<span class="n">arp_hdr</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">arphdr</span> <span class="o">*</span><span class="p">)(</span><span class="n">buffer</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">ethhdr</span><span class="p">));</span>
-
-				<span class="c1">// however #if 0 in kernel if_arp.h ip not compiled
-</span><span class="c1"></span>				<span class="c1">// RFC 826  ARP packets are variable in size
-</span><span class="c1"></span>				<span class="c1">// https://sites.uclouvain.be/SystInfo/usr/include/net/if_arp.h.html
-</span><span class="c1"></span>				<span class="c1">// s_packet-&gt;ip_source = (__be32 *)arp_hdr-&gt;ar_sip;
-</span><span class="c1"></span>
-				<span class="c1">// s_packet-&gt;ip_dest = (__be32 *)arp_hdr-&gt;ar_tip;
-</span><span class="c1"></span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_source</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_proto</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_source</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-				<span class="k">break</span><span class="p">;</span>
-			<span class="k">default</span><span class="o">:</span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_source</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_proto</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_source</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-				<span class="k">break</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="n">memcpy</span><span class="p">(</span><span class="n">memp</span><span class="p">,</span> <span class="n">s_packet</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">struct_packet</span><span class="p">));</span>
-		<span class="n">memp</span> <span class="o">+=</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">struct_packet</span><span class="p">);</span>
-	<span class="p">}</span>
-
-	<span class="n">kfree</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
-	<span class="c1">// how 0 read/1 trans/2 read and trans
-</span><span class="c1"></span>	<span class="n">__sys_shutdown</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-	<span class="c1">// close(sock);
-</span><span class="c1"></span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="n">SYSCALL_DEFINE2</span><span class="p">(</span><span class="n">cap</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="p">,</span> <span class="n">memp</span> <span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="n">caplen</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="k">return</span> <span class="n">__sys_cap</span><span class="p">(</span><span class="n">memp</span><span class="p">,</span> <span class="n">caplen</span><span class="p">);</span>
-<span class="p">}</span>
-
-
-
-<span class="c1">// arch/x86/entry/syscalls/syscall_64.tbl
-</span><span class="c1">// 335 64  cap             sys_cap
-</span><span class="c1"></span>
-<span class="c1">// include/linux/syscalls.h
-</span><span class="c1">// asmlinkage long sys_cap(FILE *f, int caplen)
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/if_ether.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/ip.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/tcp.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/udp.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/if_arp.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// #include &lt;stdio.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// #include &lt;stdlib.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//参考内核 struct ethhdr 定义 (include/uapi/linux/if_ether.h）
+</span></span></span><span class="line"><span class="cl"><span class="c1">//参考内核 struct iphdr 定义（include/uapi/linux/ip.h）
+</span></span></span><span class="line"><span class="cl"><span class="c1">//参考内核 struct tcphdr 定义（include/uapi/linux/tcp.h）
+</span></span></span><span class="line"><span class="cl"><span class="c1">//参考内核 struct udphdr 定义（include/uapi/linux/udp.h）
+</span></span></span><span class="line"><span class="cl"><span class="c1">//参考内核 struct arphdr 定义（include/uapi/linux/if_arp.h）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="n">struct_packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">char</span>	<span class="n">mac_dest</span><span class="p">[</span><span class="n">ETH_ALEN</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">char</span>	<span class="n">mac_source</span><span class="p">[</span><span class="n">ETH_ALEN</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__be16</span>		<span class="n">eth_proto</span><span class="p">;</span>		<span class="cm">/* packet type ID field	*/</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__be32</span>	<span class="n">ip_source</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__be32</span>	<span class="n">ip_dest</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// tools/include/uapi/linux/in.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 1icmp/2igmp/6tcp/17udp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">__u8</span>	<span class="n">ip_proto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__be16</span>	<span class="n">port_source</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__be16</span>	<span class="n">port_dest</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// unsigned int htonl(unsigned int	x)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// {
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	unsigned int  y;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	((unsigned char*)&amp;y)[0]= ((unsigned char*)&amp;x)[3];
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	((unsigned char*)&amp;y)[1]= ((unsigned char*)&amp;x)[2];
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	((unsigned char*)&amp;y)[2]= ((unsigned char*)&amp;x)[1];
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	((unsigned char*)&amp;y)[3]= ((unsigned char*)&amp;x)[0];
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	return y;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1">// unsigned short htons(unsigned short x)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// {
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	unsigned short y;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	((unsigned char*)&amp;y)[0]= ((unsigned char*)&amp;x)[1];
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	((unsigned char*)&amp;y)[1]= ((unsigned char*)&amp;x)[0];
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 	return y;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">	char * memp pointer for data
+</span></span></span><span class="line"><span class="cl"><span class="cm">	int caplen cap number of packet
+</span></span></span><span class="line"><span class="cl"><span class="cm">	return -1 on error 0 for success
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">__sys_cap</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">memp</span><span class="p">,</span> <span class="kt">int</span> <span class="n">caplen</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#ifndef BUFFER_MAX
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define BUFFER_MAX 4096
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	<span class="kt">int</span> <span class="n">len</span><span class="p">,</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span>	<span class="n">sock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// https://www.kernel.org/doc/htmldocs/kernel-api/API-kmalloc.html
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// https://www.kernel.org/doc/htmldocs/kernel-api/API-kfree.html
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">char</span> <span class="o">*</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">kmalloc</span><span class="p">(</span><span class="n">BUFFER_MAX</span><span class="p">,</span> <span class="n">GFP_KERNEL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">struct</span> <span class="n">struct_packet</span> <span class="o">*</span><span class="n">s_packet</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">struct</span> <span class="n">ethhdr</span> <span class="o">*</span><span class="n">mac_hdr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">struct</span> <span class="n">iphdr</span> <span class="o">*</span><span class="n">ip_hdr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">struct</span> <span class="n">tcphdr</span> <span class="o">*</span><span class="n">tcp_hdr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">struct</span> <span class="n">udphdr</span> <span class="o">*</span><span class="n">udp_hdr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">struct</span> <span class="n">arphdr</span> <span class="o">*</span><span class="n">arp_hdr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">sock</span> <span class="o">=</span> <span class="n">__sys_socket</span><span class="p">(</span><span class="n">PF_PACKET</span><span class="p">,</span> <span class="n">SOCK_RAW</span><span class="p">,</span> <span class="n">htons</span><span class="p">(</span><span class="n">ETH_P_ALL</span><span class="p">)))</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="n">printk</span><span class="p">(</span><span class="s">&#34;Create socket error.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// exit(0);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">caplen</span><span class="o">--</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="n">len</span> <span class="o">=</span> <span class="n">__sys_recvfrom</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">BUFFER_MAX</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">printk</span><span class="p">(</span><span class="s">&#34;len:%d&#34;</span><span class="p">,</span><span class="n">len</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">			<span class="n">printk</span><span class="p">(</span><span class="s">&#34;%02x &#34;</span><span class="p">,(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">&lt;</span> <span class="mi">46</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">printk</span><span class="p">(</span><span class="s">&#34;Catch packet length error.</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">__sys_shutdown</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// close(sock);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// exit(0);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// copy_to_user(memp, ,);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// printk(&#34;截获内容长度 %d\n&#34;, len);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// sizeof(struct ethhdr) = 14
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// sizeof(struct ipdhr) = 20
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// sizeof(struct arpdhr) = 28	6 4 Sender_ip 6 4 Target_ip
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">mac_hdr</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">ethhdr</span> <span class="o">*</span><span class="p">)</span><span class="n">buffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">s_packet</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">struct_packet</span> <span class="o">*</span><span class="p">)</span><span class="n">mac_hdr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;mac_dest[0] = mac_hdr-&gt;h_dest[0];
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;mac_dest[1] = mac_hdr-&gt;h_dest[1];
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;mac_dest[2] = mac_hdr-&gt;h_dest[2];
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;mac_dest[3] = mac_hdr-&gt;h_dest[3];
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;mac_dest[4] = mac_hdr-&gt;h_dest[4];
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;mac_dest[5] = mac_hdr-&gt;h_dest[5];
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;mac_source[0] = mac_hdr-&gt;h_source[0];
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;mac_source[1] = mac_hdr-&gt;h_source[1];
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;mac_source[2] = mac_hdr-&gt;h_source[2];
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;mac_source[3] = mac_hdr-&gt;h_source[3];
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;mac_source[4] = mac_hdr-&gt;h_source[4];
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;mac_source[5] = mac_hdr-&gt;h_source[5];
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">		s_packet-&gt;eth_proto = mac_hdr-&gt;h_proto;
+</span></span></span><span class="line"><span class="cl"><span class="cm">		*/</span>
+</span></span><span class="line"><span class="cl">		<span class="k">switch</span><span class="p">(</span><span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">eth_proto</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">			<span class="k">case</span> <span class="n">htons</span><span class="p">(</span><span class="mh">0x0800</span><span class="p">)</span><span class="o">:</span>	<span class="c1">// ip
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="n">ip_hdr</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">iphdr</span> <span class="o">*</span><span class="p">)(</span><span class="n">buffer</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">ethhdr</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_source</span> <span class="o">=</span> <span class="n">ip_hdr</span><span class="o">-&gt;</span><span class="n">saddr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_dest</span> <span class="o">=</span> <span class="n">ip_hdr</span><span class="o">-&gt;</span><span class="n">daddr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="c1">// p = (char*)&amp;ip_hdr-&gt;saddr;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// printk(&#34;源 IP: %d.%d.%d.%d&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		(u_char)p[0], 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		(u_char)p[1],
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		(u_char)p[2],
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		(u_char)p[3]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 	);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">				<span class="c1">// p = (char*)&amp;ip_hdr-&gt;daddr;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// printk(&#34; ==&gt; 目的 IP: %d.%d.%d.%d\n&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		(u_char)p[0], 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		(u_char)p[1], 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		(u_char)p[2],
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		(u_char)p[3]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 	);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_proto</span> <span class="o">=</span> <span class="n">ip_hdr</span><span class="o">-&gt;</span><span class="n">protocol</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				<span class="k">switch</span><span class="p">(</span><span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_proto</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="k">case</span> <span class="nl">IPPROTO_ICMP</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_source</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">						<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="k">case</span> <span class="nl">IPPROTO_IGMP</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_source</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">						<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="k">case</span> <span class="nl">IPPROTO_IPIP</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">						<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="k">case</span> <span class="nl">IPPROTO_TCP</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">						<span class="n">tcp_hdr</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">tcphdr</span> <span class="o">*</span><span class="p">)(</span><span class="n">buffer</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">ethhdr</span><span class="p">)</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">iphdr</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_source</span> <span class="o">=</span> <span class="n">tcp_hdr</span><span class="o">-&gt;</span><span class="n">source</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_dest</span> <span class="o">=</span> <span class="n">tcp_hdr</span><span class="o">-&gt;</span><span class="n">dest</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">						<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="k">case</span> <span class="nl">IPPROTO_UDP</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">						<span class="n">udp_hdr</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">udphdr</span> <span class="o">*</span><span class="p">)(</span><span class="n">buffer</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">ethhdr</span><span class="p">)</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">iphdr</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_source</span> <span class="o">=</span> <span class="n">udp_hdr</span><span class="o">-&gt;</span><span class="n">source</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">						<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_dest</span> <span class="o">=</span> <span class="n">udp_hdr</span><span class="o">-&gt;</span><span class="n">dest</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">						<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="k">case</span> <span class="nl">IPPROTO_RAW</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">						<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">						<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">				<span class="c1">// printk(&#34;协议类型:&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// switch(ip_hdr-&gt;protocol) {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 	case IPPROTO_ICMP:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		printk(&#34;ICMP&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		break;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 	case IPPROTO_IGMP:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		printk(&#34;IGMP&#34;); 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		break;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 	case IPPROTO_IPIP:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		printk(&#34;IPIP&#34;); 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		break;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 	case IPPROTO_TCP:  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		printk(&#34;TCP&#34;); 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		break;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 	case IPPROTO_UDP:  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		printk(&#34;UDP&#34;); 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		break;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 	case IPPROTO_RAW: 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		printk(&#34;RAW&#34;); 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		break;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 	default: 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		printk(&#34;Unknown type&#34;); 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// 		break;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">case</span> <span class="n">htons</span><span class="p">(</span><span class="mh">0x0806</span><span class="p">)</span><span class="o">:</span> <span class="c1">// arp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="n">arp_hdr</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">arphdr</span> <span class="o">*</span><span class="p">)(</span><span class="n">buffer</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">ethhdr</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				<span class="c1">// however #if 0 in kernel if_arp.h ip not compiled
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// RFC 826  ARP packets are variable in size
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// https://sites.uclouvain.be/SystInfo/usr/include/net/if_arp.h.html
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="c1">// s_packet-&gt;ip_source = (__be32 *)arp_hdr-&gt;ar_sip;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">				<span class="c1">// s_packet-&gt;ip_dest = (__be32 *)arp_hdr-&gt;ar_tip;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_source</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_proto</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_source</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_source</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">ip_proto</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_source</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">s_packet</span><span class="o">-&gt;</span><span class="n">port_dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">memcpy</span><span class="p">(</span><span class="n">memp</span><span class="p">,</span> <span class="n">s_packet</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">struct_packet</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">		<span class="n">memp</span> <span class="o">+=</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">struct_packet</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">kfree</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// how 0 read/1 trans/2 read and trans
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">__sys_shutdown</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// close(sock);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">SYSCALL_DEFINE2</span><span class="p">(</span><span class="n">cap</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="p">,</span> <span class="n">memp</span> <span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="n">caplen</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">__sys_cap</span><span class="p">(</span><span class="n">memp</span><span class="p">,</span> <span class="n">caplen</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// arch/x86/entry/syscalls/syscall_64.tbl
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 335 64  cap             sys_cap
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// include/linux/syscalls.h
+</span></span></span><span class="line"><span class="cl"><span class="c1">// asmlinkage long sys_cap(FILE *f, int caplen)
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>check_syscall.c</p>
 <div class="highlight"><div class="chroma">
@@ -3077,48 +3076,48 @@ sudo strace sudo ./check_syscall
 </span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;linux/if_ether.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;linux/in.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;sys/syscall.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
-</span><span class="cp">#define SYSCALL_CAP 335
-</span><span class="cp"></span>
-<span class="k">struct</span> <span class="n">struct_packet</span> <span class="p">{</span>
-	<span class="kt">unsigned</span> <span class="kt">char</span>	<span class="n">mac_dest</span><span class="p">[</span><span class="n">ETH_ALEN</span><span class="p">];</span>
-	<span class="kt">unsigned</span> <span class="kt">char</span>	<span class="n">mac_source</span><span class="p">[</span><span class="n">ETH_ALEN</span><span class="p">];</span>
-	<span class="n">__be16</span>		<span class="n">eth_proto</span><span class="p">;</span>
-	<span class="n">__be32</span>	<span class="n">ip_source</span><span class="p">;</span>
-	<span class="n">__be32</span>	<span class="n">ip_dest</span><span class="p">;</span>
-	<span class="n">__u8</span>	<span class="n">ip_proto</span><span class="p">;</span>
-	<span class="n">__be16</span>	<span class="n">port_source</span><span class="p">;</span>
-	<span class="n">__be16</span>	<span class="n">port_dest</span><span class="p">;</span>
-<span class="p">};</span>
-
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">caplen</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">memsize</span> <span class="o">=</span> <span class="n">caplen</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">struct_packet</span><span class="p">);</span>
-    <span class="kt">char</span> <span class="o">*</span> <span class="n">memp</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">memsize</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">syscall</span><span class="p">(</span><span class="n">SYSCALL_CAP</span><span class="p">,</span> <span class="n">memp</span><span class="p">,</span> <span class="n">caplen</span><span class="p">);</span>
-    
-    <span class="c1">// int res = cap(memp, caplen);
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">){</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;error:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">res</span><span class="p">);</span>
-        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">y</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="o">++</span><span class="n">y</span><span class="p">){</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%02x &#34;</span><span class="p">,(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="n">memp</span><span class="o">++</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/if_ether.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/in.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/syscall.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define SYSCALL_CAP 335
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">struct_packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">char</span>	<span class="n">mac_dest</span><span class="p">[</span><span class="n">ETH_ALEN</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">char</span>	<span class="n">mac_source</span><span class="p">[</span><span class="n">ETH_ALEN</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__be16</span>		<span class="n">eth_proto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__be32</span>	<span class="n">ip_source</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__be32</span>	<span class="n">ip_dest</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__u8</span>	<span class="n">ip_proto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__be16</span>	<span class="n">port_source</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__be16</span>	<span class="n">port_dest</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">caplen</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">memsize</span> <span class="o">=</span> <span class="n">caplen</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">struct_packet</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="o">*</span> <span class="n">memp</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">memsize</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">syscall</span><span class="p">(</span><span class="n">SYSCALL_CAP</span><span class="p">,</span> <span class="n">memp</span><span class="p">,</span> <span class="n">caplen</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// int res = cap(memp, caplen);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;error:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">res</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">y</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="o">++</span><span class="n">y</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%02x &#34;</span><span class="p">,(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="n">memp</span><span class="o">++</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="调试内核">调试内核</h3>
 <p>前置：qemu及pwndbg的安装</p>
@@ -3130,10 +3129,10 @@ sudo strace sudo ./check_syscall
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">qemu-system-x86_64 ... -S -s
-gdb vmlinux
-target remote:1234
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">qemu-system-x86_64 ... -S -s
+</span></span><span class="line"><span class="cl">gdb vmlinux
+</span></span><span class="line"><span class="cl">target remote:1234
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -3146,14 +3145,14 @@ target remote:1234
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">__sys_recvfrom</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">void</span> <span class="n">__user</span> <span class="o">*</span><span class="n">ubuf</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">,</span>
-		   <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="n">addr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="n">addr_len</span><span class="p">){</span>
-	<span class="n">err</span> <span class="o">=</span> <span class="n">import_single_range</span><span class="p">(</span><span class="n">READ</span><span class="p">,</span> <span class="n">ubuf</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iov</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">msg</span><span class="p">.</span><span class="n">msg_iter</span><span class="p">);</span>
-    <span class="c1">// -14 kernel
-</span><span class="c1"></span>    <span class="c1">// 0 user
-</span><span class="c1"></span><span class="p">}</span>
-<span class="mh">0xffff888005549000</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">__sys_recvfrom</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">void</span> <span class="n">__user</span> <span class="o">*</span><span class="n">ubuf</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		   <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">__user</span> <span class="o">*</span><span class="n">addr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">__user</span> <span class="o">*</span><span class="n">addr_len</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="n">err</span> <span class="o">=</span> <span class="n">import_single_range</span><span class="p">(</span><span class="n">READ</span><span class="p">,</span> <span class="n">ubuf</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iov</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">msg</span><span class="p">.</span><span class="n">msg_iter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// -14 kernel
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 0 user
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="mh">0xffff888005549000</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>gdb调内核发现内存写入失败</p>
 <p><img src="/images/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/image-20211218215217714.png" alt="image-20211218215217714" /></p>
@@ -3169,12 +3168,12 @@ target remote:1234
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">apt-get update
-<span class="c1"># 虚拟网桥工具</span>
-apt-get install bridge-utils
-<span class="c1"># UML（User-mode linux）工具</span>
-apt-get install uml-utilities
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt-get update
+</span></span><span class="line"><span class="cl"><span class="c1"># 虚拟网桥工具</span>
+</span></span><span class="line"><span class="cl">apt-get install bridge-utils
+</span></span><span class="line"><span class="cl"><span class="c1"># UML（User-mode linux）工具</span>
+</span></span><span class="line"><span class="cl">apt-get install uml-utilities
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>qemu默认支持的是e1000网卡，内核中需要开启如下的配置项来支持e1000</p>
 <p>否则启动ifconfig -a只有一个lo设备</p>
@@ -3187,12 +3186,12 @@ apt-get install uml-utilities
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Device Drivers  ---&gt;
-	<span class="o">[</span>*<span class="o">]</span> Network device support  ---&gt;
-		<span class="o">[</span>*<span class="o">]</span>   Ethernet driver support  ---&gt;
-			<span class="o">[</span>*<span class="o">]</span>   Intel devices
-			&lt;*&gt;     Intel<span class="o">(</span>R<span class="o">)</span> PRO/1000 Gigabit Ethernet support
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Device Drivers  ---&gt;
+</span></span><span class="line"><span class="cl">	<span class="o">[</span>*<span class="o">]</span> Network device support  ---&gt;
+</span></span><span class="line"><span class="cl">		<span class="o">[</span>*<span class="o">]</span>   Ethernet driver support  ---&gt;
+</span></span><span class="line"><span class="cl">			<span class="o">[</span>*<span class="o">]</span>   Intel devices
+</span></span><span class="line"><span class="cl">			&lt;*&gt;     Intel<span class="o">(</span>R<span class="o">)</span> PRO/1000 Gigabit Ethernet support
+</span></span></code></pre></td></tr></table>
 </div>
 </div><pre tabindex="0"><code># 十六进制打印a开始的16个byte类型内存
 x/16xb a
@@ -3224,29 +3223,29 @@ x/16xb a
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">➜  ~ cryptsetup benchmark
-<span class="c1"># Tests are approximate using memory only (no storage IO).</span>
-PBKDF2-sha1      <span class="m">1705001</span> iterations per second <span class="k">for</span> 256-bit key
-PBKDF2-sha256    <span class="m">2111935</span> iterations per second <span class="k">for</span> 256-bit key
-PBKDF2-sha512    <span class="m">1600879</span> iterations per second <span class="k">for</span> 256-bit key
-PBKDF2-ripemd160  <span class="m">894689</span> iterations per second <span class="k">for</span> 256-bit key
-PBKDF2-whirlpool  <span class="m">661979</span> iterations per second <span class="k">for</span> 256-bit key
-argon2i       <span class="m">6</span> iterations, <span class="m">1048576</span> memory, <span class="m">4</span> parallel threads <span class="o">(</span>CPUs<span class="o">)</span> <span class="k">for</span> 256-bit key <span class="o">(</span>requested <span class="m">2000</span> ms <span class="nb">time</span><span class="o">)</span>
-argon2id      <span class="m">7</span> iterations, <span class="m">1048576</span> memory, <span class="m">4</span> parallel threads <span class="o">(</span>CPUs<span class="o">)</span> <span class="k">for</span> 256-bit key <span class="o">(</span>requested <span class="m">2000</span> ms <span class="nb">time</span><span class="o">)</span>
-<span class="c1">#     Algorithm |       Key |      Encryption |      Decryption</span>
-        aes-cbc        128b      1068.9 MiB/s      2818.5 MiB/s
-    serpent-cbc        128b        94.4 MiB/s       673.9 MiB/s
-    twofish-cbc        128b       210.6 MiB/s       375.6 MiB/s
-        aes-cbc        256b       846.1 MiB/s      2375.5 MiB/s
-    serpent-cbc        256b        96.7 MiB/s       695.6 MiB/s
-    twofish-cbc        256b       217.7 MiB/s       391.6 MiB/s
-        aes-xts        256b      2632.3 MiB/s      2713.3 MiB/s
-    serpent-xts        256b       673.6 MiB/s       687.9 MiB/s
-    twofish-xts        256b       374.1 MiB/s       369.8 MiB/s
-        aes-xts        512b      2248.3 MiB/s      2264.3 MiB/s
-    serpent-xts        512b       685.4 MiB/s       693.5 MiB/s
-    twofish-xts        512b       371.9 MiB/s       375.6 MiB/s
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  ~ cryptsetup benchmark
+</span></span><span class="line"><span class="cl"><span class="c1"># Tests are approximate using memory only (no storage IO).</span>
+</span></span><span class="line"><span class="cl">PBKDF2-sha1      <span class="m">1705001</span> iterations per second <span class="k">for</span> 256-bit key
+</span></span><span class="line"><span class="cl">PBKDF2-sha256    <span class="m">2111935</span> iterations per second <span class="k">for</span> 256-bit key
+</span></span><span class="line"><span class="cl">PBKDF2-sha512    <span class="m">1600879</span> iterations per second <span class="k">for</span> 256-bit key
+</span></span><span class="line"><span class="cl">PBKDF2-ripemd160  <span class="m">894689</span> iterations per second <span class="k">for</span> 256-bit key
+</span></span><span class="line"><span class="cl">PBKDF2-whirlpool  <span class="m">661979</span> iterations per second <span class="k">for</span> 256-bit key
+</span></span><span class="line"><span class="cl">argon2i       <span class="m">6</span> iterations, <span class="m">1048576</span> memory, <span class="m">4</span> parallel threads <span class="o">(</span>CPUs<span class="o">)</span> <span class="k">for</span> 256-bit key <span class="o">(</span>requested <span class="m">2000</span> ms <span class="nb">time</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">argon2id      <span class="m">7</span> iterations, <span class="m">1048576</span> memory, <span class="m">4</span> parallel threads <span class="o">(</span>CPUs<span class="o">)</span> <span class="k">for</span> 256-bit key <span class="o">(</span>requested <span class="m">2000</span> ms <span class="nb">time</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     Algorithm |       Key |      Encryption |      Decryption</span>
+</span></span><span class="line"><span class="cl">        aes-cbc        128b      1068.9 MiB/s      2818.5 MiB/s
+</span></span><span class="line"><span class="cl">    serpent-cbc        128b        94.4 MiB/s       673.9 MiB/s
+</span></span><span class="line"><span class="cl">    twofish-cbc        128b       210.6 MiB/s       375.6 MiB/s
+</span></span><span class="line"><span class="cl">        aes-cbc        256b       846.1 MiB/s      2375.5 MiB/s
+</span></span><span class="line"><span class="cl">    serpent-cbc        256b        96.7 MiB/s       695.6 MiB/s
+</span></span><span class="line"><span class="cl">    twofish-cbc        256b       217.7 MiB/s       391.6 MiB/s
+</span></span><span class="line"><span class="cl">        aes-xts        256b      2632.3 MiB/s      2713.3 MiB/s
+</span></span><span class="line"><span class="cl">    serpent-xts        256b       673.6 MiB/s       687.9 MiB/s
+</span></span><span class="line"><span class="cl">    twofish-xts        256b       374.1 MiB/s       369.8 MiB/s
+</span></span><span class="line"><span class="cl">        aes-xts        512b      2248.3 MiB/s      2264.3 MiB/s
+</span></span><span class="line"><span class="cl">    serpent-xts        512b       685.4 MiB/s       693.5 MiB/s
+</span></span><span class="line"><span class="cl">    twofish-xts        512b       371.9 MiB/s       375.6 MiB/s
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="参考文献">参考文献</h2>
 <p>[1]https://git.kernel.org/pub/scm/linux/kernel/git/wtarreau/linux-2.4.git/[source]<br />
@@ -3678,7 +3677,7 @@ argon2id      <span class="m">7</span> iterations, <span class="m">1048576</span
 </div>
 
 
-<script defer src="/js/swipe.min.d2e020e2d405fafaa45c0a10d2af949627bf554a9366c31a905af38f8cc30c30.js"></script>
+<script defer src="/js/swipe.min.32b4505a39624feed6faa09f12dd745a099b8811ea631c29cea9692c45984af8.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 

@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.498676c34eb225e85357ab0ce19c3c1244f3bd0bf595e5684d1b9d50ea4fbc42.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.cd44056d552c69703dced61ae60f99166a0ddf44be93d6aa5d5127d98bf98984.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.1551b6dbdacc77e412a26a29d3b84d2dcdc8f05c3b617433a475dc53c8872bdb.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -1349,7 +1349,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
 
-<meta name="generator" content="Hugo 0.92.0" />
+<meta name="generator" content="Hugo 0.94.0" />
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1746,13 +1746,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">if</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;num&#39;</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">&#39;23333&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">preg_match</span><span class="p">(</span><span class="s1">&#39;/^23333$/&#39;</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;num&#39;</span><span class="p">])){</span>
-    <span class="k">echo</span> <span class="s1">&#39;1st ok&#39;</span><span class="o">.</span><span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">else</span><span class="p">{</span>
-    <span class="k">die</span><span class="p">(</span><span class="s1">&#39;23333333&#39;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;num&#39;</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">&#39;23333&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">preg_match</span><span class="p">(</span><span class="s1">&#39;/^23333$/&#39;</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;num&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s1">&#39;1st ok&#39;</span><span class="o">.</span><span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">die</span><span class="p">(</span><span class="s1">&#39;23333333&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>%0A绕过(%0A经URL编码后是回车)<br />
 <img src="https://img-blog.csdnimg.cn/20191126152152674.png" alt="" /></p>
@@ -1783,29 +1783,29 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;QUERY_STRING&#39;</span><span class="p">];</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">strlen</span><span class="p">(</span><span class="nv">$cmd</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">8</span><span class="p">){</span>
-    <span class="k">die</span><span class="p">(</span><span class="s2">&#34;too long :(&#34;</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="k">if</span><span class="p">(</span> <span class="nx">substr_count</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">substr_count</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="s1">&#39;%5f&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span> <span class="p">){</span>
-    <span class="nv">$arr</span> <span class="o">=</span> <span class="nx">explode</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="nv">$cmd</span><span class="p">);</span>
-    <span class="k">if</span><span class="p">(</span><span class="nv">$arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">&#39;ls&#39;</span> <span class="o">||</span> <span class="nv">$arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">&#39;pwd&#39;</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">substr_count</span><span class="p">(</span><span class="nv">$cmd</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">){</span>
-            <span class="nx">system</span><span class="p">(</span><span class="nv">$cmd</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">else</span><span class="p">{</span>
-            <span class="k">die</span><span class="p">(</span><span class="s1">&#39;ban cat :) &#39;</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">else</span><span class="p">{</span>
-        <span class="k">die</span><span class="p">(</span><span class="s1">&#39;bad guy!&#39;</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="k">else</span><span class="p">{</span>
-    <span class="k">die</span><span class="p">(</span><span class="s1">&#39;nonono _ is bad&#39;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;QUERY_STRING&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">strlen</span><span class="p">(</span><span class="nv">$cmd</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">8</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">die</span><span class="p">(</span><span class="s2">&#34;too long :(&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span> <span class="nx">substr_count</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">substr_count</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="s1">&#39;%5f&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$arr</span> <span class="o">=</span> <span class="nx">explode</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="nv">$cmd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nv">$arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">&#39;ls&#39;</span> <span class="o">||</span> <span class="nv">$arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">&#39;pwd&#39;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nx">substr_count</span><span class="p">(</span><span class="nv">$cmd</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">system</span><span class="p">(</span><span class="nv">$cmd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">die</span><span class="p">(</span><span class="s1">&#39;ban cat :) &#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">die</span><span class="p">(</span><span class="s1">&#39;bad guy!&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">die</span><span class="p">(</span><span class="s1">&#39;nonono _ is bad&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>禁用cat ls pwd<br />
 system(tac f*)<br />
@@ -1838,23 +1838,23 @@ linux tac命令<br />
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-PHP" data-lang="PHP"><span class="o">&lt;?</span><span class="nx">php</span> 
-
-<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]))</span> <span class="p">{</span>
-    <span class="nv">$a</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">];</span>
-    <span class="nv">$b</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">];</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">!=</span> <span class="nv">$b</span> <span class="o">&amp;&amp;</span> <span class="nx">md5</span><span class="p">(</span><span class="nv">$a</span><span class="p">)</span> <span class="o">==</span> <span class="nx">md5</span><span class="p">(</span><span class="nv">$b</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">echo</span> <span class="s2">&#34;flag{XXXXX}&#34;</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">echo</span> <span class="s2">&#34;wrong!&#34;</span><span class="p">;</span>
-    <span class="p">}</span>
-
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">echo</span> <span class="s1">&#39;wrong!&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cp">?&gt;</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-PHP" data-lang="PHP"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$a</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$b</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">!=</span> <span class="nv">$b</span> <span class="o">&amp;&amp;</span> <span class="nx">md5</span><span class="p">(</span><span class="nv">$a</span><span class="p">)</span> <span class="o">==</span> <span class="nx">md5</span><span class="p">(</span><span class="nv">$b</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="s2">&#34;flag{XXXXX}&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="s2">&#34;wrong!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s1">&#39;wrong!&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面只要传入参数a=s1885207154a，b=s1836677006a，即可，为什么呢？看一下这两个字符串的md5值可以返现分别如下：</p>
 <div class="highlight"><div class="chroma">
@@ -1864,10 +1864,10 @@ linux tac命令<br />
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">MD5值
-md5<span class="o">(</span><span class="s2">&#34;s1885207154a&#34;</span><span class="o">)</span> <span class="o">=</span>&gt; 0e509367213418206700842008763514
-md5<span class="o">(</span><span class="s2">&#34;s1836677006a&#34;</span><span class="o">)</span> <span class="o">=</span>&gt; 0e481036490867661113260034900752
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">MD5值
+</span></span><span class="line"><span class="cl">md5<span class="o">(</span><span class="s2">&#34;s1885207154a&#34;</span><span class="o">)</span> <span class="o">=</span>&gt; 0e509367213418206700842008763514
+</span></span><span class="line"><span class="cl">md5<span class="o">(</span><span class="s2">&#34;s1836677006a&#34;</span><span class="o">)</span> <span class="o">=</span>&gt; 0e481036490867661113260034900752
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>二者都是0e开头，在php中0e会被当做科学计数法，就算后面有字母，其结果也是0，所以上面的if判断结果使true，成功绕过</p>
 <h3 id="preg_replace函数">preg_replace函数</h3>
@@ -1894,25 +1894,25 @@ md5<span class="o">(</span><span class="s2">&#34;s1836677006a&#34;</span><span c
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="c1">//方便的实现输入输出的功能,正在开发中的功能，只能内部人员测试
-</span><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_X_FORWARDED_FOR&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">echo</span> <span class="s2">&#34;&lt;br &gt;Welcome My Admin ! &lt;br &gt;&#34;</span><span class="p">;</span>
-
-    <span class="nv">$pattern</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="nx">pat</span><span class="p">];</span>
-    <span class="nv">$replacement</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="nx">rep</span><span class="p">];</span>
-    <span class="nv">$subject</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="nx">sub</span><span class="p">];</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$pattern</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$replacement</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$subject</span><span class="p">))</span> <span class="p">{</span>
-        <span class="nx">preg_replace</span><span class="p">(</span><span class="nv">$pattern</span><span class="p">,</span> <span class="nv">$replacement</span><span class="p">,</span> <span class="nv">$subject</span><span class="p">);</span>
-    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-        <span class="k">die</span><span class="p">();</span>
-    <span class="p">}</span>
-
-<span class="p">}</span>
-<span class="cp">?&gt;</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//方便的实现输入输出的功能,正在开发中的功能，只能内部人员测试
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_X_FORWARDED_FOR&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;&lt;br &gt;Welcome My Admin ! &lt;br &gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$pattern</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="nx">pat</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$replacement</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="nx">rep</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$subject</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="nx">sub</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$pattern</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$replacement</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$subject</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">preg_replace</span><span class="p">(</span><span class="nv">$pattern</span><span class="p">,</span> <span class="nv">$replacement</span><span class="p">,</span> <span class="nv">$subject</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">die</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><pre><code>函数作用：搜索subject中匹配pattern的部分， 以replacement进行替换。
 $pattern: 要搜索的模式，可以是字符串或一个字符串数组。
@@ -1943,18 +1943,18 @@ preg_replace函数存在命令执行漏洞
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="nv">$flag</span><span class="o">=</span><span class="s1">&#39;xxx&#39;</span><span class="p">;</span>
-<span class="nx">extract</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">);</span>
-<span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$shiyan</span><span class="p">)){</span>
-	<span class="nv">$content</span><span class="o">=</span><span class="nx">trim</span><span class="p">(</span><span class="nx">file_get_contents</span><span class="p">(</span><span class="nv">$flag</span><span class="p">));</span>
-	<span class="k">if</span><span class="p">(</span><span class="nv">$shiyan</span><span class="o">==</span><span class="nv">$content</span><span class="p">){</span>
-		<span class="k">echo</span><span class="s1">&#39;flag{xxx}&#39;</span><span class="p">;</span>
-	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-		<span class="k">echo</span><span class="s1">&#39;Oh.no&#39;</span><span class="p">;</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$flag</span><span class="o">=</span><span class="s1">&#39;xxx&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">extract</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$shiyan</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">$content</span><span class="o">=</span><span class="nx">trim</span><span class="p">(</span><span class="nx">file_get_contents</span><span class="p">(</span><span class="nv">$flag</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="nv">$shiyan</span><span class="o">==</span><span class="nv">$content</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">echo</span><span class="s1">&#39;flag{xxx}&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">echo</span><span class="s1">&#39;Oh.no&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>代码大概的意思是可以从get获得的参数，设置入GET超全局数组里面，并且覆盖之前的变量</p>
 <p>这样子只需要重新设置$shiyan 和 $content，绕过if的检测就可以了</p>
@@ -1973,16 +1973,16 @@ preg_replace函数存在命令执行漏洞
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="nv">$flag</span> <span class="o">=</span> <span class="s2">&#34;flag{xxxxx}&#34;</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]))</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nx">strcmp</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="nv">$flag</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">//如果 str1 小于 str2 返回 &lt; 0； 如果 str1大于 str2返回 &gt; 0；如果两者相等，返回 0。
-</span><span class="c1"></span>	<span class="c1">//比较两个字符串（区分大小写）
-</span><span class="c1"></span>		<span class="k">die</span><span class="p">(</span><span class="s1">&#39;Flag: &#39;</span><span class="o">.</span><span class="nv">$flag</span><span class="p">);</span>
-	<span class="k">else</span>
-		<span class="k">print</span> <span class="s1">&#39;No&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$flag</span> <span class="o">=</span> <span class="s2">&#34;flag{xxxxx}&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="nx">strcmp</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="nv">$flag</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">//如果 str1 小于 str2 返回 &lt; 0； 如果 str1大于 str2返回 &gt; 0；如果两者相等，返回 0。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//比较两个字符串（区分大小写）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">die</span><span class="p">(</span><span class="s1">&#39;Flag: &#39;</span><span class="o">.</span><span class="nv">$flag</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="k">print</span> <span class="s1">&#39;No&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>传数组<br />
 <img src="https://img-blog.csdnimg.cn/20200405103609389.png" alt="" /></p>
@@ -2001,17 +2001,17 @@ preg_replace函数存在命令执行漏洞
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="k">if</span><span class="p">(</span><span class="nx">eregi</span><span class="p">(</span><span class="s2">&#34;hackerDJ&#34;</span><span class="p">,</span><span class="nv">$_GET</span><span class="p">[</span><span class="nx">id</span><span class="p">]))</span> <span class="p">{</span>
-	<span class="k">echo</span><span class="p">(</span><span class="s2">&#34;not allowed!&#34;</span><span class="p">);</span>
-	<span class="k">exit</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="nv">$_GET</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">urldecode</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="nx">id</span><span class="p">]);</span>
-<span class="k">if</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;hackerDJ&#34;</span><span class="p">){</span>
-	<span class="k">echo</span> <span class="s2">&#34;Access granted!&#34;</span><span class="p">;</span>
-	<span class="k">echo</span> <span class="s2">&#34;flag&#34;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">eregi</span><span class="p">(</span><span class="s2">&#34;hackerDJ&#34;</span><span class="p">,</span><span class="nv">$_GET</span><span class="p">[</span><span class="nx">id</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">echo</span><span class="p">(</span><span class="s2">&#34;not allowed!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">exit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$_GET</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">urldecode</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="nx">id</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;hackerDJ&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">echo</span> <span class="s2">&#34;Access granted!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">echo</span> <span class="s2">&#34;flag&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>ergei()	函数正则匹配 等于erge()函数 只是匹配的时候忽略大小写</li>
@@ -2034,18 +2034,18 @@ preg_replace函数存在命令执行漏洞
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="nv">$flag</span> <span class="o">=</span> <span class="s1">&#39;flag{test}&#39;</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">])</span> <span class="k">and</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]))</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
-		<span class="k">print</span> <span class="s1">&#39;Your password can not be your username.&#39;</span><span class="p">;</span>
-	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">md5</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="nx">md5</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]))</span>
-		<span class="k">die</span><span class="p">(</span><span class="s1">&#39;Flag: &#39;</span><span class="o">.</span><span class="nv">$flag</span><span class="p">);</span>
-	<span class="k">else</span>
-		<span class="k">print</span> <span class="s1">&#39;Invalid password&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$flag</span> <span class="o">=</span> <span class="s1">&#39;flag{test}&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">])</span> <span class="k">and</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">		<span class="k">print</span> <span class="s1">&#39;Your password can not be your username.&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">md5</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="nx">md5</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">		<span class="k">die</span><span class="p">(</span><span class="s1">&#39;Flag: &#39;</span><span class="o">.</span><span class="nv">$flag</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="k">print</span> <span class="s1">&#39;Invalid password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>0e绕过好像没用 直接数组绕过<br />
 <img src="https://img-blog.csdnimg.cn/20200405105148198.png" alt="" /></p>
@@ -2064,17 +2064,17 @@ preg_replace函数存在命令执行漏洞
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="nv">$flag</span> <span class="o">=</span> <span class="s2">&#34;flag&#34;</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]))</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nx">ereg</span> <span class="p">(</span><span class="s2">&#34;^[a-zA-Z0-9]+$&#34;</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">)</span>
-		<span class="k">echo</span> <span class="s1">&#39;You password must be alphanumeric&#39;</span><span class="p">;</span>
-	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">strpos</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="k">FALSE</span><span class="p">)</span>
-		<span class="k">die</span><span class="p">(</span><span class="s1">&#39;Flag: &#39;</span> <span class="o">.</span> <span class="nv">$flag</span><span class="p">);</span>
-	<span class="k">else</span>
-		<span class="k">echo</span> <span class="s1">&#39;Invalid password&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$flag</span> <span class="o">=</span> <span class="s2">&#34;flag&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="nx">ereg</span> <span class="p">(</span><span class="s2">&#34;^[a-zA-Z0-9]+$&#34;</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">echo</span> <span class="s1">&#39;You password must be alphanumeric&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">strpos</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="k">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">die</span><span class="p">(</span><span class="s1">&#39;Flag: &#39;</span> <span class="o">.</span> <span class="nv">$flag</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="k">echo</span> <span class="s1">&#39;Invalid password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://img-blog.csdnimg.cn/20200405105509364.png" alt="" /></p>
 <h3 id="弱类型整数大小比较绕过">弱类型整数大小比较绕过</h3>
@@ -2087,12 +2087,12 @@ preg_replace函数存在命令执行漏洞
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="nv">$temp</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">];</span>
-<span class="nx">is_numeric</span><span class="p">(</span><span class="nv">$temp</span><span class="p">)</span><span class="o">?</span><span class="k">die</span><span class="p">(</span><span class="s2">&#34;no numeric&#34;</span><span class="p">)</span><span class="o">:</span><span class="k">NULL</span><span class="p">;</span>
-<span class="k">if</span><span class="p">(</span><span class="nv">$temp</span><span class="o">&gt;</span><span class="mi">1336</span><span class="p">)</span>
-	<span class="k">echo</span> <span class="nv">$flag</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$temp</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">is_numeric</span><span class="p">(</span><span class="nv">$temp</span><span class="p">)</span><span class="o">?</span><span class="k">die</span><span class="p">(</span><span class="s2">&#34;no numeric&#34;</span><span class="p">)</span><span class="o">:</span><span class="k">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nv">$temp</span><span class="o">&gt;</span><span class="mi">1336</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">echo</span> <span class="nv">$flag</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>科学计数法 也可以传数组<br />
 <img src="https://img-blog.csdnimg.cn/20200405105747848.png" alt="" /></p>
@@ -2118,24 +2118,24 @@ preg_replace函数存在命令执行漏洞
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="nv">$flag</span> <span class="o">=</span> <span class="s2">&#34;flag&#34;</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span> <span class="k">and</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])){</span>
-	<span class="nx">var_dump</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]);</span>
-	<span class="k">echo</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
-	<span class="nx">var_dump</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]);</span>
-	<span class="nx">var_dump</span><span class="p">(</span><span class="nx">sha1</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]));</span>
-	<span class="nx">var_dump</span><span class="p">(</span><span class="nx">sha1</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]));</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
-		<span class="k">echo</span> <span class="s1">&#39;Your password can not be your name!&#39;</span><span class="p">;</span>
-	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">sha1</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="nx">sha1</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]))</span>
-		<span class="k">die</span><span class="p">(</span><span class="s1">&#39;Flag: &#39;</span><span class="o">.</span><span class="nv">$flag</span><span class="p">);</span>
-	<span class="k">else</span>
-		<span class="k">echo</span> <span class="s1">&#39;Invalid password.&#39;</span><span class="p">;</span>
-<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-	<span class="k">echo</span> <span class="s1">&#39;Login first!&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$flag</span> <span class="o">=</span> <span class="s2">&#34;flag&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span> <span class="k">and</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">var_dump</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">echo</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">var_dump</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">var_dump</span><span class="p">(</span><span class="nx">sha1</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]));</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">var_dump</span><span class="p">(</span><span class="nx">sha1</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]));</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">		<span class="k">echo</span> <span class="s1">&#39;Your password can not be your name!&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">sha1</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="nx">sha1</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">		<span class="k">die</span><span class="p">(</span><span class="s1">&#39;Flag: &#39;</span><span class="o">.</span><span class="nv">$flag</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="k">echo</span> <span class="s1">&#39;Invalid password.&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">echo</span> <span class="s1">&#39;Login first!&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>var_dump()	打印变量相关信息</li>
@@ -2161,20 +2161,20 @@ preg_replace函数存在命令执行漏洞
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="nv">$md51</span> <span class="o">=</span> <span class="nx">md5</span><span class="p">(</span><span class="s1">&#39;QNKCDZO&#39;</span><span class="p">);</span>
-<span class="nv">$a</span> <span class="o">=</span> <span class="o">@</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">];</span>
-<span class="nv">$md52</span> <span class="o">=</span> <span class="o">@</span><span class="nx">md5</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
-<span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$a</span><span class="p">)){</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">!=</span> <span class="s1">&#39;QNKCDZO&#39;</span> <span class="o">&amp;&amp;</span> <span class="nv">$md51</span> <span class="o">==</span> <span class="nv">$md52</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">echo</span> <span class="s2">&#34;flag{*}&#34;</span><span class="p">;</span>
-	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-		<span class="k">echo</span> <span class="s2">&#34;false!!!&#34;</span><span class="p">;</span>
-	<span class="p">}</span>
-<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-	<span class="k">echo</span> <span class="s2">&#34;please input a&#34;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$md51</span> <span class="o">=</span> <span class="nx">md5</span><span class="p">(</span><span class="s1">&#39;QNKCDZO&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$a</span> <span class="o">=</span> <span class="o">@</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$md52</span> <span class="o">=</span> <span class="o">@</span><span class="nx">md5</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$a</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">!=</span> <span class="s1">&#39;QNKCDZO&#39;</span> <span class="o">&amp;&amp;</span> <span class="nv">$md51</span> <span class="o">==</span> <span class="nv">$md52</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">echo</span> <span class="s2">&#34;flag{*}&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">echo</span> <span class="s2">&#34;false!!!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">echo</span> <span class="s2">&#34;please input a&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>虽然说不用看也知道一定是0e绕过。。。。<br />
 <img src="https://img-blog.csdnimg.cn/20200405111016670.png" alt="" /><br />
@@ -2206,29 +2206,29 @@ preg_replace函数存在命令执行漏洞
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="k">function</span> <span class="nf">noother_says_correct</span><span class="p">(</span><span class="nv">$temp</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="nv">$flag</span> <span class="o">=</span> <span class="s1">&#39;flag{test}&#39;</span><span class="p">;</span>
-	<span class="nv">$one</span> <span class="o">=</span> <span class="nx">ord</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">);</span> <span class="c1">//ord — 返回字符的 ASCII 码值
-</span><span class="c1"></span>	<span class="nv">$nine</span> <span class="o">=</span> <span class="nx">ord</span><span class="p">(</span><span class="s1">&#39;9&#39;</span><span class="p">);</span> <span class="c1">//ord — 返回字符的 ASCII 码值
-</span><span class="c1"></span>	<span class="nv">$number</span> <span class="o">=</span> <span class="s1">&#39;3735929054&#39;</span><span class="p">;</span>
-	<span class="c1">// Check all the input characters!
-</span><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nx">strlen</span><span class="p">(</span><span class="nv">$number</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">){</span>
-	<span class="c1">// Disallow all the digits!
-</span><span class="c1"></span>		<span class="nv">$digit</span> <span class="o">=</span> <span class="nx">ord</span><span class="p">(</span><span class="nv">$temp</span><span class="p">{</span><span class="nv">$i</span><span class="p">});</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="nv">$digit</span> <span class="o">&gt;=</span> <span class="nv">$one</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nv">$digit</span> <span class="o">&lt;=</span> <span class="nv">$nine</span><span class="p">)</span> <span class="p">){</span>
-		<span class="c1">// Aha, digit not allowed!
-</span><span class="c1"></span>			<span class="k">return</span> <span class="s2">&#34;flase&#34;</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="k">if</span><span class="p">(</span><span class="nv">$number</span> <span class="o">==</span> <span class="nv">$temp</span><span class="p">)</span>
-		<span class="k">return</span> <span class="nv">$flag</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nv">$temp</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">];</span>
-<span class="k">echo</span> <span class="nx">noother_says_correct</span><span class="p">(</span><span class="nv">$temp</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">noother_says_correct</span><span class="p">(</span><span class="nv">$temp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">$flag</span> <span class="o">=</span> <span class="s1">&#39;flag{test}&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">$one</span> <span class="o">=</span> <span class="nx">ord</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">);</span> <span class="c1">//ord — 返回字符的 ASCII 码值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nv">$nine</span> <span class="o">=</span> <span class="nx">ord</span><span class="p">(</span><span class="s1">&#39;9&#39;</span><span class="p">);</span> <span class="c1">//ord — 返回字符的 ASCII 码值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nv">$number</span> <span class="o">=</span> <span class="s1">&#39;3735929054&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Check all the input characters!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nx">strlen</span><span class="p">(</span><span class="nv">$number</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Disallow all the digits!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nv">$digit</span> <span class="o">=</span> <span class="nx">ord</span><span class="p">(</span><span class="nv">$temp</span><span class="p">{</span><span class="nv">$i</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="nv">$digit</span> <span class="o">&gt;=</span> <span class="nv">$one</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nv">$digit</span> <span class="o">&lt;=</span> <span class="nv">$nine</span><span class="p">)</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Aha, digit not allowed!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">return</span> <span class="s2">&#34;flase&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="nv">$number</span> <span class="o">==</span> <span class="nv">$temp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nv">$flag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$temp</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">noother_says_correct</span><span class="p">(</span><span class="nv">$temp</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://img-blog.csdnimg.cn/20200405124503384.png" alt="" /></p>
 <h3 id="变量覆盖平台挂掉了">变量覆盖(平台挂掉了)</h3>
@@ -2252,22 +2252,22 @@ preg_replace函数存在命令执行漏洞
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="nv">$flag</span> <span class="o">=</span> <span class="s2">&#34;xxx&#34;</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])){</span>
-	<span class="k">if</span> <span class="p">(</span><span class="nx">ereg</span> <span class="p">(</span><span class="s2">&#34;^[a-zA-Z0-9]+$&#34;</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
-		<span class="k">echo</span> <span class="s1">&#39;You password must be alphanumeric&#39;</span><span class="p">;</span>
-	<span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">strlen</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="o">&amp;&amp;</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">9999999</span><span class="p">){</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">strpos</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="k">FALSE</span><span class="p">){</span> <span class="c1">//strpos — 查找字符串首次出现的位置
-</span><span class="c1"></span>			<span class="k">die</span><span class="p">(</span><span class="s1">&#39;Flag: &#39;</span> <span class="o">.</span> <span class="nv">$flag</span><span class="p">);</span>
-		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-			<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;- have not been found&#39;</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-		<span class="k">echo</span> <span class="s1">&#39;Invalid password&#39;</span><span class="p">;</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$flag</span> <span class="o">=</span> <span class="s2">&#34;xxx&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="nx">ereg</span> <span class="p">(</span><span class="s2">&#34;^[a-zA-Z0-9]+$&#34;</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">echo</span> <span class="s1">&#39;You password must be alphanumeric&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">strlen</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="o">&amp;&amp;</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">9999999</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="nx">strpos</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="k">FALSE</span><span class="p">){</span> <span class="c1">//strpos — 查找字符串首次出现的位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">die</span><span class="p">(</span><span class="s1">&#39;Flag: &#39;</span> <span class="o">.</span> <span class="nv">$flag</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">echo</span><span class="p">(</span><span class="s1">&#39;- have not been found&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">echo</span> <span class="s1">&#39;Invalid password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>法1.php对字符串是数字的部分进行截取进行判断 还有就是 erge %00截断匹配了</p>
 <p>法2.数组返回 null null !== false<br />
@@ -2287,17 +2287,17 @@ preg_replace函数存在命令执行漏洞
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="nv">$flag</span> <span class="o">=</span> <span class="s2">&#34;flag&#34;</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;ctf&#39;</span><span class="p">]))</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="p">(</span><span class="o">@</span><span class="nx">ereg</span> <span class="p">(</span><span class="s2">&#34;^[1-9]+$&#34;</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;ctf&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">)</span>
-		<span class="k">echo</span> <span class="s1">&#39;必须输入数字才行&#39;</span><span class="p">;</span>
-	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">strpos</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;ctf&#39;</span><span class="p">],</span> <span class="s1">&#39;#biubiubiu&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="k">FALSE</span><span class="p">)</span>
-		<span class="k">die</span><span class="p">(</span><span class="s1">&#39;Flag: &#39;</span><span class="o">.</span><span class="nv">$flag</span><span class="p">);</span>
-	<span class="k">else</span>
-		<span class="k">echo</span> <span class="s1">&#39;骚年，继续努力吧啊~&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$flag</span> <span class="o">=</span> <span class="s2">&#34;flag&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;ctf&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="o">@</span><span class="nx">ereg</span> <span class="p">(</span><span class="s2">&#34;^[1-9]+$&#34;</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;ctf&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">echo</span> <span class="s1">&#39;必须输入数字才行&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">strpos</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;ctf&#39;</span><span class="p">],</span> <span class="s1">&#39;#biubiubiu&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="k">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">die</span><span class="p">(</span><span class="s1">&#39;Flag: &#39;</span><span class="o">.</span><span class="nv">$flag</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="k">echo</span> <span class="s1">&#39;骚年，继续努力吧啊~&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>跟上一题一样 没什么好解释<br />
 <img src="https://img-blog.csdnimg.cn/20200405133123880.png" alt="" /></p>
@@ -2331,32 +2331,32 @@ preg_replace函数存在命令执行漏洞
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-<span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="nv">$flag</span> <span class="o">=</span> <span class="s1">&#39;flag{test}&#39;</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="s2">&#34;POST&#34;</span> <span class="o">==</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REQUEST_METHOD&#39;</span><span class="p">]){</span>
-	<span class="nv">$password</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">];</span>
-	<span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&gt;=</span> <span class="nx">preg_match</span><span class="p">(</span><span class="s1">&#39;/^[[:graph:]]{12,}$/&#39;</span><span class="p">,</span> <span class="nv">$password</span><span class="p">)){</span> <span class="c1">//preg_match — 执行一个正则表达式匹配
-</span><span class="c1"></span>		<span class="k">echo</span> <span class="s1">&#39;flag&#39;</span><span class="p">;</span>
-		<span class="k">exit</span><span class="p">;</span>
-	<span class="p">}</span>
-	<span class="k">while</span> <span class="p">(</span><span class="k">TRUE</span><span class="p">){</span>
-		<span class="nv">$reg</span> <span class="o">=</span> <span class="s1">&#39;/([[:punct:]]+|[[:digit:]]+|[[:upper:]]+|[[:lower:]]+)/&#39;</span><span class="p">;</span>
-		<span class="k">if</span> <span class="p">(</span><span class="mi">6</span> <span class="o">&gt;</span> <span class="nx">preg_match_all</span><span class="p">(</span><span class="nv">$reg</span><span class="p">,</span> <span class="nv">$password</span><span class="p">,</span> <span class="nv">$arr</span><span class="p">))</span>
-			<span class="k">break</span><span class="p">;</span>
-		<span class="nv">$c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-		<span class="nv">$ps</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;punct&#39;</span><span class="p">,</span> <span class="s1">&#39;digit&#39;</span><span class="p">,</span> <span class="s1">&#39;upper&#39;</span><span class="p">,</span> <span class="s1">&#39;lower&#39;</span><span class="p">);</span> <span class="c1">//[[:punct:]] 任何标点符号 [[:digit:]] 任何数字 [[:upper:]] 任何大写字母 [[:lower:]] 任何小写字母
-</span><span class="c1"></span>		<span class="k">foreach</span> <span class="p">(</span><span class="nv">$ps</span> <span class="k">as</span> <span class="nv">$pt</span><span class="p">){</span>
-			<span class="k">if</span> <span class="p">(</span><span class="nx">preg_match</span><span class="p">(</span><span class="s2">&#34;/[[:</span><span class="si">$pt</span><span class="s2">:]]+/&#34;</span><span class="p">,</span> <span class="nv">$password</span><span class="p">))</span>
-			<span class="nv">$c</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nv">$c</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>	<span class="c1">//&gt;=3，必须包含四种类型三种与三种以上
-</span><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="s2">&#34;42&#34;</span> <span class="o">==</span> <span class="nv">$password</span><span class="p">)</span> <span class="k">echo</span> <span class="nv">$flag</span><span class="p">;</span>
-		<span class="k">else</span> <span class="k">echo</span> <span class="s1">&#39;Wrong password&#39;</span><span class="p">;</span>
-		<span class="k">exit</span><span class="p">;</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$flag</span> <span class="o">=</span> <span class="s1">&#39;flag{test}&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="s2">&#34;POST&#34;</span> <span class="o">==</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REQUEST_METHOD&#39;</span><span class="p">]){</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">$password</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&gt;=</span> <span class="nx">preg_match</span><span class="p">(</span><span class="s1">&#39;/^[[:graph:]]{12,}$/&#39;</span><span class="p">,</span> <span class="nv">$password</span><span class="p">)){</span> <span class="c1">//preg_match — 执行一个正则表达式匹配
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">echo</span> <span class="s1">&#39;flag&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">exit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="k">TRUE</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$reg</span> <span class="o">=</span> <span class="s1">&#39;/([[:punct:]]+|[[:digit:]]+|[[:upper:]]+|[[:lower:]]+)/&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="mi">6</span> <span class="o">&gt;</span> <span class="nx">preg_match_all</span><span class="p">(</span><span class="nv">$reg</span><span class="p">,</span> <span class="nv">$password</span><span class="p">,</span> <span class="nv">$arr</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">			<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$ps</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;punct&#39;</span><span class="p">,</span> <span class="s1">&#39;digit&#39;</span><span class="p">,</span> <span class="s1">&#39;upper&#39;</span><span class="p">,</span> <span class="s1">&#39;lower&#39;</span><span class="p">);</span> <span class="c1">//[[:punct:]] 任何标点符号 [[:digit:]] 任何数字 [[:upper:]] 任何大写字母 [[:lower:]] 任何小写字母
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">foreach</span> <span class="p">(</span><span class="nv">$ps</span> <span class="k">as</span> <span class="nv">$pt</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="nx">preg_match</span><span class="p">(</span><span class="s2">&#34;/[[:</span><span class="si">$pt</span><span class="s2">:]]+/&#34;</span><span class="p">,</span> <span class="nv">$password</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">			<span class="nv">$c</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="nv">$c</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>	<span class="c1">//&gt;=3，必须包含四种类型三种与三种以上
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="s2">&#34;42&#34;</span> <span class="o">==</span> <span class="nv">$password</span><span class="p">)</span> <span class="k">echo</span> <span class="nv">$flag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">echo</span> <span class="s1">&#39;Wrong password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">exit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>要长度超过12字母符号数字大小写超过三种 但是实际测试符合条件的都不行 不符合条件的就直接出flag 不懂不懂。。。。。<br />
 <img src="https://img-blog.csdnimg.cn/20200405174521762.png" alt="" /></p>
@@ -2766,7 +2766,7 @@ preg_replace函数存在命令执行漏洞
 </div>
 
 
-<script defer src="/js/swipe.min.d2e020e2d405fafaa45c0a10d2af949627bf554a9366c31a905af38f8cc30c30.js"></script>
+<script defer src="/js/swipe.min.32b4505a39624feed6faa09f12dd745a099b8811ea631c29cea9692c45984af8.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 

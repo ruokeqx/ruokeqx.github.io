@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.498676c34eb225e85357ab0ce19c3c1244f3bd0bf595e5684d1b9d50ea4fbc42.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.cd44056d552c69703dced61ae60f99166a0ddf44be93d6aa5d5127d98bf98984.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.1551b6dbdacc77e412a26a29d3b84d2dcdc8f05c3b617433a475dc53c8872bdb.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -1349,7 +1349,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
 
-<meta name="generator" content="Hugo 0.92.0" />
+<meta name="generator" content="Hugo 0.94.0" />
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1749,8 +1749,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="post型攻击">POST型攻击</h3>
 <div class="highlight"><div class="chroma">
@@ -1761,11 +1761,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">http://wooyun.org/csrf.php</span> <span class="na">method</span><span class="o">=</span><span class="s">POST</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;xx&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;11&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">submit</span><span class="p">();</span> <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">http://wooyun.org/csrf.php</span> <span class="na">method</span><span class="o">=</span><span class="s">POST</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;xx&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;11&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">submit</span><span class="p">();</span> <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="csrf检测">CSRF检测</h2>
 <h3 id="csrftester">CSRFTester</h3>
@@ -1773,7 +1773,7 @@
 <h2 id="csrf防御">CSRF防御</h2>
 <h3 id="referer">referer</h3>
 <p>网站B发出的请求referer为网站B，只需在后端判断referer是否同站即可防御CSRF。这样相当于把安全寄托于第三方，因为浏览器都不支持js对referer头的修改[4]&amp;[5]，有的文章[6]说可以使用axios进行referer绕过，但是我测试后并不行。</p>
-<pre tabindex="0"><code>Refused to set unsafe header &quot;referer&quot;
+<pre tabindex="0"><code>Refused to set unsafe header &#34;referer&#34;
 </code></pre><p>js不允许修改referer头，但是hackbar可以添加任意头，是如何实现的呢。</p>
 <h4 id="hackbar源码阅读">Hackbar源码阅读</h4>
 <p>文件系统中搜索chrome插件id就很容易找到解包后源码的位置，可以发现连Hackbar都是大名鼎鼎的vue写的。</p>
@@ -1793,17 +1793,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue">
-<span class="p">&lt;</span><span class="nt">v-btn</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;add-header-button&#34;</span> <span class="nt">@click</span><span class="s">=&#34;addHeader()&#34;</span><span class="p">&gt;</span><span class="na">Add</span> <span class="na">Header</span><span class="err">&lt;/</span><span class="nt">v-btn</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">v-layout</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;header-settings&#34;</span> <span class="na">align</span><span class="nt">-center</span> <span class="nt">v-for</span><span class="s">=&#34;(header, index) in request.headers&#34; </span><span class="nt">:key</span><span class="s">=&#34;index&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">v-checkbox</span> <span class="nt">v-model</span><span class="s">=&#34;header.enabled&#34;</span><span class="p">&gt;</span><span class="err">&lt;/</span><span class="nt">v-checkbox</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">v-combobox</span> <span class="na">dense</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;px-1 pt-2&#34;</span> <span class="na">label</span><span class="o">=</span><span class="s">&#34;Name&#34;</span> <span class="nt">v-model</span><span class="s">=&#34;header.name&#34; :items=&#34;commonRequestHeaders()&#34; @focus=&#34;onFocus($event)&#34; :menu-props=&#39;{ &#34;maxHeight&#34;: 200 }&#39;&gt;&lt;/v-combobox&gt;
-</span><span class="s">    &lt;v-text-field class=&#34;px-1&#34; label=&#34;Value&#34; v-model=&#34;header.value&#34; @focus=&#34;onFocus($event)&#34; @keydown.stop&gt;&lt;/v-text-field&gt;
-</span><span class="s">    &lt;v-btn icon text @click=&#34;deleteHeader(index)&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">v-icon</span> <span class="na">small</span><span class="p">&gt;</span><span class="nx">mdi</span><span class="o">-</span><span class="nx">close</span><span class="o">&lt;</span><span class="err">/v-icon&gt;</span>
-    <span class="o">&lt;</span><span class="err">/v-btn&gt;</span>
-<span class="o">&lt;</span><span class="err">/v-layout&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">v-btn</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;add-header-button&#34;</span> <span class="nt">@click</span><span class="s">=&#34;addHeader()&#34;</span><span class="p">&gt;</span><span class="na">Add</span> <span class="na">Header</span><span class="err">&lt;/</span><span class="nt">v-btn</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">v-layout</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;header-settings&#34;</span> <span class="na">align</span><span class="nt">-center</span> <span class="nt">v-for</span><span class="s">=&#34;(header, index) in request.headers&#34; </span><span class="nt">:key</span><span class="s">=&#34;index&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">v-checkbox</span> <span class="nt">v-model</span><span class="s">=&#34;header.enabled&#34;</span><span class="p">&gt;</span><span class="err">&lt;/</span><span class="nt">v-checkbox</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">v-combobox</span> <span class="na">dense</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;px-1 pt-2&#34;</span> <span class="na">label</span><span class="o">=</span><span class="s">&#34;Name&#34;</span> <span class="nt">v-model</span><span class="s">=&#34;header.name&#34; :items=&#34;commonRequestHeaders()&#34; @focus=&#34;onFocus($event)&#34; :menu-props=&#39;{ &#34;maxHeight&#34;: 200 }&#39;&gt;&lt;/v-combobox&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &lt;v-text-field class=&#34;px-1&#34; label=&#34;Value&#34; v-model=&#34;header.value&#34; @focus=&#34;onFocus($event)&#34; @keydown.stop&gt;&lt;/v-text-field&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &lt;v-btn icon text @click=&#34;deleteHeader(index)&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">v-icon</span> <span class="na">small</span><span class="p">&gt;</span><span class="nx">mdi</span><span class="o">-</span><span class="nx">close</span><span class="o">&lt;</span><span class="err">/v-icon&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/v-btn&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/v-layout&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>headers只是存储数据，执行时调用<code>chrome.runtime.connect()</code>这个接口，他的第一个参数是extension id。</p>
 <p>The ID of the extension or app to connect to. If omitted, a connection will be attempted with your own extension. Required if sending messages from a web page for web messaging.[7]</p>
@@ -1824,20 +1824,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="k">this</span><span class="p">.</span><span class="nx">backgroundPageConnection</span> <span class="o">=</span> <span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">connect</span><span class="p">()</span>
-<span class="p">...</span>
-<span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span>
-    <span class="p">}</span>
-
-    <span class="k">this</span><span class="p">.</span><span class="nx">backgroundPageConnection</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">({</span>
-        <span class="nx">tabId</span><span class="o">:</span> <span class="nx">chrome</span><span class="p">.</span><span class="nx">devtools</span><span class="p">.</span><span class="nx">inspectedWindow</span><span class="p">.</span><span class="nx">tabId</span><span class="p">,</span>
-        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;execute&#39;</span><span class="p">,</span>
-        <span class="nx">data</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">request</span>
-    <span class="p">})</span>
-<span class="p">},</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="nx">backgroundPageConnection</span> <span class="o">=</span> <span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">connect</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">backgroundPageConnection</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">tabId</span><span class="o">:</span> <span class="nx">chrome</span><span class="p">.</span><span class="nx">devtools</span><span class="p">.</span><span class="nx">inspectedWindow</span><span class="p">.</span><span class="nx">tabId</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;execute&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">data</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">request</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>到这里可以知道了，hackbar使用的是浏览器提供的扩展程序接口，所以可以修改header</p>
 <h3 id="csrf-token">csrf token</h3>
@@ -1856,15 +1856,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;post&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;hidden&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;csrf_token&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;{{csrf_token()}}&#34;</span><span class="p">&gt;</span>
-        账号：<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;username&#34;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-        密码:<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;提交&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;post&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;hidden&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;csrf_token&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;{{csrf_token()}}&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        账号：<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;username&#34;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        密码:<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;提交&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>csrf_token</code>的设计：基于攻击者无法得知cookie，最简单的可直接将sessionid等作为token(md5值等同理)；或者直接生成随机字符串</p>
 <h3 id="添加http-request头">添加http request头</h3>
@@ -1888,17 +1888,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&#34;GET&#34;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&#34;form.html&#34;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&#34;ok&#34;</span>
-<span class="o">========================================</span>
-<span class="n">Method</span> <span class="n">Not</span> <span class="n">Allowed</span>
-<span class="n">The</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">allowed</span> <span class="k">for</span> <span class="n">the</span> <span class="n">requested</span> <span class="n">URL</span><span class="o">.</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&#34;GET&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&#34;form.html&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;ok&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">========================================</span>
+</span></span><span class="line"><span class="cl"><span class="n">Method</span> <span class="n">Not</span> <span class="n">Allowed</span>
+</span></span><span class="line"><span class="cl"><span class="n">The</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">allowed</span> <span class="k">for</span> <span class="n">the</span> <span class="n">requested</span> <span class="n">URL</span><span class="o">.</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果允许了POST，再次尝试提交表单会Bad Request，这也是CSRF攻击未携带token的场景</p>
 <div class="highlight"><div class="chroma">
@@ -1915,17 +1915,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&#34;GET&#34;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&#34;form.html&#34;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&#34;ok&#34;</span>
-<span class="o">========================================</span>
-<span class="n">Bad</span> <span class="n">Request</span>
-<span class="n">The</span> <span class="n">CSRF</span> <span class="n">token</span> <span class="ow">is</span> <span class="n">missing</span><span class="o">.</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&#34;GET&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&#34;form.html&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;ok&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">========================================</span>
+</span></span><span class="line"><span class="cl"><span class="n">Bad</span> <span class="n">Request</span>
+</span></span><span class="line"><span class="cl"><span class="n">The</span> <span class="n">CSRF</span> <span class="n">token</span> <span class="ow">is</span> <span class="n">missing</span><span class="o">.</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果template中添加token，在访问网站的时候请求到token，然后提交表单的时候将token也post出去，这样就能正确响应。尝试手动修改DOM中的token再次post也是bad request。</p>
 <div class="highlight"><div class="chroma">
@@ -1940,15 +1940,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;post&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;hidden&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;csrf_token&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;{{ csrf_token() }}&#34;</span><span class="p">&gt;</span>
-        账号:<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;username&#34;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-        密码:<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;提交&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;post&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;hidden&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;csrf_token&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;{{ csrf_token() }}&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        账号:<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;username&#34;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        密码:<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;提交&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="源码分析">源码分析</h3>
 <p><a href="https://github.com/wtforms/flask-wtf/blob/main/src/flask_wtf/csrf.py">https://github.com/wtforms/flask-wtf/blob/main/src/flask_wtf/csrf.py</a></p>
@@ -2351,7 +2351,7 @@
 </div>
 
 
-<script defer src="/js/swipe.min.d2e020e2d405fafaa45c0a10d2af949627bf554a9366c31a905af38f8cc30c30.js"></script>
+<script defer src="/js/swipe.min.32b4505a39624feed6faa09f12dd745a099b8811ea631c29cea9692c45984af8.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 

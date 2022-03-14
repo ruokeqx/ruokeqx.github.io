@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.498676c34eb225e85357ab0ce19c3c1244f3bd0bf595e5684d1b9d50ea4fbc42.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.cd44056d552c69703dced61ae60f99166a0ddf44be93d6aa5d5127d98bf98984.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.1551b6dbdacc77e412a26a29d3b84d2dcdc8f05c3b617433a475dc53c8872bdb.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -1349,7 +1349,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
 
-<meta name="generator" content="Hugo 0.92.0" />
+<meta name="generator" content="Hugo 0.94.0" />
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1748,10 +1748,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt install go
-go env -w <span class="nv">GO111MODULE</span><span class="o">=</span>on
-go env -w <span class="nv">GOPROXY</span><span class="o">=</span>https://goproxy.io,direct
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install go
+</span></span><span class="line"><span class="cl">go env -w <span class="nv">GO111MODULE</span><span class="o">=</span>on
+</span></span><span class="line"><span class="cl">go env -w <span class="nv">GOPROXY</span><span class="o">=</span>https://goproxy.io,direct
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>source code</p>
 <div class="highlight"><div class="chroma">
@@ -1761,10 +1761,10 @@ go env -w <span class="nv">GOPROXY</span><span class="o">=</span>https://goproxy
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git clone git://g.csail.mit.edu/6.824-golabs-2020 6.824
-<span class="nb">cd</span> 6.824
-go mod init 6.824-lab
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone git://g.csail.mit.edu/6.824-golabs-2020 6.824
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> 6.824
+</span></span><span class="line"><span class="cl">go mod init 6.824-lab
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="lab1mapreduce">Lab1:MapReduce</h2>
 <p>前置知识：Go &amp; net/rpc</p>
@@ -1780,11 +1780,11 @@ go mod init 6.824-lab
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 运行方式</span>
-<span class="c1"># 初始状态下 反注释worker.go 中CallExample() 可以得到用rpc调用的y=x+1</span>
-go run mrmaster.go pg-*.txt
-go run mrworker.go wc.so
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 运行方式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始状态下 反注释worker.go 中CallExample() 可以得到用rpc调用的y=x+1</span>
+</span></span><span class="line"><span class="cl">go run mrmaster.go pg-*.txt
+</span></span><span class="line"><span class="cl">go run mrworker.go wc.so
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1795,12 +1795,12 @@ go run mrworker.go wc.so
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> src/main
-<span class="c1"># modify src/mrapps/wc.go import &#34;6.824-lab/src/mr&#34; before build    see [2]</span>
-<span class="c1"># by default, we replace all &#34;../mr&#34; with &#34;6.824-lab/src/mr&#34;</span>
-go build -buildmode<span class="o">=</span>plugin ../mrapps/wc.go
-go run mrsequential.go wc.so pg*.txt
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> src/main
+</span></span><span class="line"><span class="cl"><span class="c1"># modify src/mrapps/wc.go import &#34;6.824-lab/src/mr&#34; before build    see [2]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># by default, we replace all &#34;../mr&#34; with &#34;6.824-lab/src/mr&#34;</span>
+</span></span><span class="line"><span class="cl">go build -buildmode<span class="o">=</span>plugin ../mrapps/wc.go
+</span></span><span class="line"><span class="cl">go run mrsequential.go wc.so pg*.txt
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="问题">问题</h3>
 <h4 id="code">Code</h4>
@@ -1845,43 +1845,43 @@ go run mrsequential.go wc.so pg*.txt
 </span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 任务结束 更新task状态 重新调度
-</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Master</span><span class="p">)</span> <span class="nf">TaskCompleted</span><span class="p">(</span><span class="nx">task</span> <span class="o">*</span><span class="nx">Task</span><span class="p">,</span> <span class="nx">reply</span> <span class="o">*</span><span class="nx">ExampleReply</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-	<span class="c1">// worker可能断连后重新连接
-</span><span class="c1"></span>	<span class="c1">// 如果是worker和master在不同阶段 或者 在相同阶段但task状态为已完成
-</span><span class="c1"></span>	<span class="c1">// 则直接返回 让worker认为自己提交成功 然后尝试获取下一个任务(充分利用计算资源)
-</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">task</span><span class="p">.</span><span class="nx">TaskState</span> <span class="o">!=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">MasterPhase</span> <span class="o">||</span> <span class="nx">m</span><span class="p">.</span><span class="nx">TaskMeta</span><span class="p">[</span><span class="nx">task</span><span class="p">.</span><span class="nx">TaskNumber</span><span class="p">].</span><span class="nx">TaskStatus</span> <span class="o">==</span> <span class="nx">Completed</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="kc">nil</span>
-	<span class="p">}</span>
-
-	<span class="nx">m</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
-	<span class="nx">m</span><span class="p">.</span><span class="nx">TaskMeta</span><span class="p">[</span><span class="nx">task</span><span class="p">.</span><span class="nx">TaskNumber</span><span class="p">].</span><span class="nx">TaskStatus</span> <span class="p">=</span> <span class="nx">Completed</span>
-	<span class="c1">// 此处手动释放锁 否则下方函数中尝试获取锁永远失败
-</span><span class="c1"></span>	<span class="nx">m</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
-
-	<span class="k">switch</span> <span class="nx">task</span><span class="p">.</span><span class="nx">TaskState</span> <span class="p">{</span>
-	<span class="k">case</span> <span class="nx">Map</span><span class="p">:</span>
-		<span class="c1">// 将该worker的nReduce个临时文件路径放到对应reducer的文件列表中
-</span><span class="c1"></span>		<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">task</span><span class="p">.</span><span class="nx">NReducer</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-			<span class="nx">m</span><span class="p">.</span><span class="nx">LocIntermediate</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">LocIntermediate</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">task</span><span class="p">.</span><span class="nx">Intermediates</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-		<span class="p">}</span>
-		<span class="c1">// for _, v := range m.LocIntermediate {
-</span><span class="c1"></span>		<span class="c1">// 	fmt.Println(v)
-</span><span class="c1"></span>		<span class="c1">// }
-</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">m</span><span class="p">.</span><span class="nf">allTaskDone</span><span class="p">()</span> <span class="p">{</span>
-			<span class="c1">// 该函数里面也尝试上锁 但是前面已经上锁 导致该函数里面永远获取不到锁 所以一直等待
-</span><span class="c1"></span>			<span class="nx">m</span><span class="p">.</span><span class="nf">createReduceTask</span><span class="p">()</span>
-			<span class="c1">// fmt.Println(len(m.TaskQueue))
-</span><span class="c1"></span>			<span class="nx">m</span><span class="p">.</span><span class="nx">MasterPhase</span> <span class="p">=</span> <span class="nx">Reduce</span>
-		<span class="p">}</span>
-	<span class="k">case</span> <span class="nx">Reduce</span><span class="p">:</span>
-		<span class="k">if</span> <span class="nx">m</span><span class="p">.</span><span class="nf">allTaskDone</span><span class="p">()</span> <span class="p">{</span>
-			<span class="nx">m</span><span class="p">.</span><span class="nx">MasterPhase</span> <span class="p">=</span> <span class="nx">Exit</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="kc">nil</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 任务结束 更新task状态 重新调度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Master</span><span class="p">)</span> <span class="nf">TaskCompleted</span><span class="p">(</span><span class="nx">task</span> <span class="o">*</span><span class="nx">Task</span><span class="p">,</span> <span class="nx">reply</span> <span class="o">*</span><span class="nx">ExampleReply</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// worker可能断连后重新连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 如果是worker和master在不同阶段 或者 在相同阶段但task状态为已完成
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 则直接返回 让worker认为自己提交成功 然后尝试获取下一个任务(充分利用计算资源)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">task</span><span class="p">.</span><span class="nx">TaskState</span> <span class="o">!=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">MasterPhase</span> <span class="o">||</span> <span class="nx">m</span><span class="p">.</span><span class="nx">TaskMeta</span><span class="p">[</span><span class="nx">task</span><span class="p">.</span><span class="nx">TaskNumber</span><span class="p">].</span><span class="nx">TaskStatus</span> <span class="o">==</span> <span class="nx">Completed</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">m</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">m</span><span class="p">.</span><span class="nx">TaskMeta</span><span class="p">[</span><span class="nx">task</span><span class="p">.</span><span class="nx">TaskNumber</span><span class="p">].</span><span class="nx">TaskStatus</span> <span class="p">=</span> <span class="nx">Completed</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 此处手动释放锁 否则下方函数中尝试获取锁永远失败
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">m</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">switch</span> <span class="nx">task</span><span class="p">.</span><span class="nx">TaskState</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="nx">Map</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 将该worker的nReduce个临时文件路径放到对应reducer的文件列表中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">task</span><span class="p">.</span><span class="nx">NReducer</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">m</span><span class="p">.</span><span class="nx">LocIntermediate</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">LocIntermediate</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">task</span><span class="p">.</span><span class="nx">Intermediates</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// for _, v := range m.LocIntermediate {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// 	fmt.Println(v)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="nx">m</span><span class="p">.</span><span class="nf">allTaskDone</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// 该函数里面也尝试上锁 但是前面已经上锁 导致该函数里面永远获取不到锁 所以一直等待
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">m</span><span class="p">.</span><span class="nf">createReduceTask</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// fmt.Println(len(m.TaskQueue))
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">m</span><span class="p">.</span><span class="nx">MasterPhase</span> <span class="p">=</span> <span class="nx">Reduce</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="nx">Reduce</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">m</span><span class="p">.</span><span class="nf">allTaskDone</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">m</span><span class="p">.</span><span class="nx">MasterPhase</span> <span class="p">=</span> <span class="nx">Exit</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="1同步锁阻塞">1同步锁阻塞</h4>
 <p>遇到mapper过程结束但是始终没有进入reduce过程的问题<br />
@@ -1906,8 +1906,8 @@ go run mrsequential.go wc.so pg*.txt
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">dialing:dial unix /var/tmp/824-mr-0: connect: connection refused
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dialing:dial unix /var/tmp/824-mr-0: connect: connection refused
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>原因是master exit后worker尝试请求master失败<br />
 原本设置的task为0返回wait后worker sleep 5太长了 修改为sleep 1 然后master状态exit后sleep 1后再退出就解决问题了</p>
@@ -1932,23 +1932,23 @@ go run mrsequential.go wc.so pg*.txt
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">*** Starting wc test.
-2022/03/11 13:07:44 rpc.Register: method <span class="s2">&#34;Done&#34;</span> has <span class="m">1</span> input parameters<span class="p">;</span> needs exactly three
---- wc test: PASS
-*** Starting indexer test.
-2022/03/11 13:07:50 rpc.Register: method <span class="s2">&#34;Done&#34;</span> has <span class="m">1</span> input parameters<span class="p">;</span> needs exactly three
---- indexer test: PASS
-*** Starting map parallelism test.
-2022/03/11 13:07:54 rpc.Register: method <span class="s2">&#34;Done&#34;</span> has <span class="m">1</span> input parameters<span class="p">;</span> needs exactly three
---- map parallelism test: PASS
-*** Starting reduce parallelism test.
-2022/03/11 13:08:02 rpc.Register: method <span class="s2">&#34;Done&#34;</span> has <span class="m">1</span> input parameters<span class="p">;</span> needs exactly three
---- reduce parallelism test: PASS
-*** Starting crash test.
-2022/03/11 13:08:11 rpc.Register: method <span class="s2">&#34;Done&#34;</span> has <span class="m">1</span> input parameters<span class="p">;</span> needs exactly three
---- crash test: PASS
-*** PASSED ALL TESTS
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">*** Starting wc test.
+</span></span><span class="line"><span class="cl">2022/03/11 13:07:44 rpc.Register: method <span class="s2">&#34;Done&#34;</span> has <span class="m">1</span> input parameters<span class="p">;</span> needs exactly three
+</span></span><span class="line"><span class="cl">--- wc test: PASS
+</span></span><span class="line"><span class="cl">*** Starting indexer test.
+</span></span><span class="line"><span class="cl">2022/03/11 13:07:50 rpc.Register: method <span class="s2">&#34;Done&#34;</span> has <span class="m">1</span> input parameters<span class="p">;</span> needs exactly three
+</span></span><span class="line"><span class="cl">--- indexer test: PASS
+</span></span><span class="line"><span class="cl">*** Starting map parallelism test.
+</span></span><span class="line"><span class="cl">2022/03/11 13:07:54 rpc.Register: method <span class="s2">&#34;Done&#34;</span> has <span class="m">1</span> input parameters<span class="p">;</span> needs exactly three
+</span></span><span class="line"><span class="cl">--- map parallelism test: PASS
+</span></span><span class="line"><span class="cl">*** Starting reduce parallelism test.
+</span></span><span class="line"><span class="cl">2022/03/11 13:08:02 rpc.Register: method <span class="s2">&#34;Done&#34;</span> has <span class="m">1</span> input parameters<span class="p">;</span> needs exactly three
+</span></span><span class="line"><span class="cl">--- reduce parallelism test: PASS
+</span></span><span class="line"><span class="cl">*** Starting crash test.
+</span></span><span class="line"><span class="cl">2022/03/11 13:08:11 rpc.Register: method <span class="s2">&#34;Done&#34;</span> has <span class="m">1</span> input parameters<span class="p">;</span> needs exactly three
+</span></span><span class="line"><span class="cl">--- crash test: PASS
+</span></span><span class="line"><span class="cl">*** PASSED ALL TESTS
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="ref">Ref</h2>
 <p>[1] <a href="https://gitee.com/ruokeqx/mit6.824-lab">https://gitee.com/ruokeqx/mit6.824-lab</a> [my code lib]<br />
@@ -2318,6 +2318,13 @@ go run mrsequential.go wc.so pg*.txt
     
     <div class="grow"></div>
     
+      <a href="https://ruokeqx.gitee.io/posts/libpcaptcpdumpkernel-net%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" class="pagination-single__right">      
+        <div class="pagination-single__right-title">libpcap、tcpdump以及kernel/net的部分源码阅读</div>
+        <div class="pagination-single__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
+        </div>
+      </a>
+    
   
 </nav>
     
@@ -2368,7 +2375,7 @@ go run mrsequential.go wc.so pg*.txt
 </div>
 
 
-<script defer src="/js/swipe.min.d2e020e2d405fafaa45c0a10d2af949627bf554a9366c31a905af38f8cc30c30.js"></script>
+<script defer src="/js/swipe.min.32b4505a39624feed6faa09f12dd745a099b8811ea631c29cea9692c45984af8.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
