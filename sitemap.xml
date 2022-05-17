@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ruokeqx.gitee.io/showcase/repo/hugo-theme-zzo/</loc>
-    <lastmod>2021-11-22T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://ruokeqx.gitee.io/showcase/friends/qfrost/</loc>
     <lastmod>2021-11-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ruokeqx.gitee.io/showcase/repo/hugo-theme-zdoc/</loc>
-    <lastmod>2021-11-22T00:00:00+00:00</lastmod>
+    <loc>https://ruokeqx.gitee.io/showcase/friends/hn13/</loc>
+    <lastmod>2022-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ruokeqx.gitee.io/showcase/friends/richar/</loc>
+    <lastmod>2022-05-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ruokeqx.gitee.io/</loc>
-    <lastmod>2022-03-14T00:00:00+00:00</lastmod>
+    <lastmod>2022-05-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ruokeqx.gitee.io/tags/kernel/</loc>
     <lastmod>2022-03-14T00:00:00+00:00</lastmod>
@@ -81,9 +81,6 @@
     <lastmod>2021-11-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ruokeqx.gitee.io/showcase/friends/</loc>
-    <lastmod>2021-11-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://ruokeqx.gitee.io/showcase/repo/</loc>
     <lastmod>2021-11-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ruokeqx.gitee.io/showcase/</loc>
