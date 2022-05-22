@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>ethereum on ruokeqx&#39;s blog</title>
+    <link>https://ruokeqx.gitee.io/tags/ethereum/</link>
+    <description>Recent content in ethereum on ruokeqx&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
+    <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
+    <copyright>©2022, All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 22 May 2022 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://ruokeqx.gitee.io/tags/ethereum/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>《Mastering Ethereum》读书简要笔记</title>
+        <link>https://ruokeqx.gitee.io/posts/ethereum101/</link>
+        <pubDate>Sun, 22 May 2022 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Sun, 22 May 2022 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/ethereum101/</guid>
+        <description>Background 机缘巧合，5-18面了某蓝厂web3&amp;amp;区块链部门，遂想了解一下web3&amp;amp;区块链。 看了一些视频，了解了Web3、DApp、D</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>blockchain</category>
+            
+          
+            
+              <category>ethereum</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>
