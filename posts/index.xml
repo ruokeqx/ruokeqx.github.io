@@ -14,11 +14,35 @@
     <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
     <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
     <copyright>©2022, All Rights Reserved</copyright>
-    <lastBuildDate>Sat, 04 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jun 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://ruokeqx.gitee.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
 
+      
+      <item>
+        <title>BCC、bpftrace &amp;&amp; BPF Performance Tools</title>
+        <link>https://ruokeqx.gitee.io/posts/bpf_performance_tools/</link>
+        <pubDate>Thu, 16 Jun 2022 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Thu, 16 Jun 2022 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/bpf_performance_tools/</guid>
+        <description>简单学习了一下BCC和bpftrace 增加了bypass go tls的bpftrace写法 见eBPF Uprobe bypass Go tls——抓取https明文流量 BCC &amp;amp; b</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>bpf</category>
+            
+          
+        
+        
+        
+      </item>
       
       <item>
         <title>eBPF Uprobe bypass Go tls——抓取https明文流量</title>
@@ -37,6 +61,10 @@
           
             
               <category>network</category>
+            
+          
+            
+              <category>bpf</category>
             
           
         

@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>eBPF Uprobe bypass Go tls——抓取https明文流量 – ruokeqx&#39;s blog</title>
+    <title>BCC、bpftrace &amp;&amp; BPF Performance Tools – ruokeqx&#39;s blog</title>
     
 
 
@@ -653,7 +653,7 @@
     
     var baseurl = JSON.parse("\"https://ruokeqx.gitee.io\"");
     
-    var permalink = JSON.parse("\"https://ruokeqx.gitee.io/posts/bpf_uprobe_bypass_go_tls/\"");
+    var permalink = JSON.parse("\"https://ruokeqx.gitee.io/posts/bpf_performance_tools/\"");
     
     var langprefix = JSON.parse("\"\"");
     var searchResults = null;
@@ -1334,18 +1334,18 @@
 <meta name="description" content="" />
 
 
-<meta name="keywords" content="network,bpf">
+<meta name="keywords" content="bpf">
 
-<meta name="created" content="2022-06-04T00:00:00&#43;0000">
-<meta name="modified" content="2022-06-04T00:00:00&#43;0000">
-<meta property="article:published_time" content="2022-06-04T00:00:00&#43;0000">
+<meta name="created" content="2022-06-16T00:00:00&#43;0000">
+<meta name="modified" content="2022-06-16T00:00:00&#43;0000">
+<meta property="article:published_time" content="2022-06-16T00:00:00&#43;0000">
 
 <meta name="author" content="ruokeqx">
 
 
 <meta property="og:site_name" content="ruokeqx&#39;s blog">
-<meta property="og:title" content="eBPF Uprobe bypass Go tls——抓取https明文流量">
-<meta property="og:url" content="https://ruokeqx.gitee.io/posts/bpf_uprobe_bypass_go_tls/">
+<meta property="og:title" content="BCC、bpftrace &amp;&amp; BPF Performance Tools">
+<meta property="og:url" content="https://ruokeqx.gitee.io/posts/bpf_performance_tools/">
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
 
@@ -1358,7 +1358,7 @@
 
 <meta name="apple-mobile-web-app-status-bar-style" content="#fff">
 
-<link rel="canonical" href="https://ruokeqx.gitee.io/posts/bpf_uprobe_bypass_go_tls/">
+<link rel="canonical" href="https://ruokeqx.gitee.io/posts/bpf_performance_tools/">
 
 <link rel="manifest" href="/manifest.json">
 
@@ -1372,12 +1372,12 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "eBPF Uprobe bypass Go tls——抓取https明文流量",
-    "datePublished": "2022-06-04T00:00:00Z",
-    "dateModified": "2022-06-04T00:00:00Z",
-    "url" : "https://ruokeqx.gitee.io/posts/bpf_uprobe_bypass_go_tls/",
-    "description": "Background 某日在看冰蝎流量 冰蝎连上后客户端会跟含有冰蝎开发者id的众多域名进行tls交互 固数据不可见 学弟提及看到过某项目可以直接hook底层库并抓取",
-    "keywords": ["network","bpf"],
+    "headline": "BCC、bpftrace \u0026\u0026 BPF Performance Tools",
+    "datePublished": "2022-06-16T00:00:00Z",
+    "dateModified": "2022-06-16T00:00:00Z",
+    "url" : "https://ruokeqx.gitee.io/posts/bpf_performance_tools/",
+    "description": "简单学习了一下BCC和bpftrace 增加了bypass go tls的bpftrace写法 见eBPF Uprobe bypass Go tls——抓取https明文流量 BCC \u0026amp; b",
+    "keywords": ["bpf"],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://ruokeqx.gitee.io"
@@ -1669,7 +1669,7 @@
   
   <li  class="is-active" >
     
-      <span>eBPF Uprobe bypass Go tls——抓取https明文流量</span>
+      <span>BCC、bpftrace &amp;&amp; BPF Performance Tools</span>
     
   </li>
   
@@ -1681,14 +1681,14 @@
   <div class="single ">
     <div class="single__nojs">This page looks best with JavaScript enabled</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
-    <h2 class="single__title" data-ani="true">eBPF Uprobe bypass Go tls——抓取https明文流量</h2>
+    <h2 class="single__title" data-ani="true">BCC、bpftrace &amp;&amp; BPF Performance Tools</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Jun 4, 2022 </time>
+  <time class="single__info" title="Written At">📅&nbsp;Jun 16, 2022 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;7&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;8&nbsp;min read </span>
   
   <span class="single__info">
      &middot; 👀<span id="busuanzi_value_page_pv">...</span> views
@@ -1701,8 +1701,6 @@
   🏷️
   
 
-  <li><a href="https://ruokeqx.gitee.io/tags/network/" class="single__tag" title="network">#network</a></li>
-
   <li><a href="https://ruokeqx.gitee.io/tags/bpf/" class="single__tag" title="bpf">#bpf</a></li>
 
 </ul>
@@ -1710,21 +1708,90 @@
     </div>
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
-      <h2 id="background">Background</h2>
-<p>某日在看冰蝎流量 冰蝎连上后客户端会跟含有冰蝎开发者id的众多域名进行tls交互 固数据不可见</p>
-<p>学弟提及看到过某项目可以直接hook底层库并抓取明文信息</p>
-<p>由于之前参照gin实现过简单的<a href="https://github.com/ruokeqx/rin">web框架</a>了解到go中数据都是net/http库和crypto/tls库处理的  所以想自己实现一下hook一下golang tls库实现抓取明文流量的功能，当然这对所有go编写的https是通用的</p>
-<p>至于用途 可以是自己开发https时测试、可以是客户端监控、可以是蜜罐获取用户payload</p>
-<h2 id="concepts">Concepts</h2>
-<p>扩展的BPF(eBPF) 是 Linux 4.x+ 里的一项内核技术. 类似运行在 Linux 内核中的轻量级的沙箱虚拟机, 可以提供对内核内存的经过验证的访问.<br />
-eBPF 允许内核运行 BPF 字节码 并且 BPF 探针每次被触发时, 都会执行对应的字节码</p>
-<p>uprobe 可以通过插入触发软中断的调试陷阱指令(x86 上的 int3)来拦截用户态程序 [实际编译调试后发现确实是修改hook处第一个指令为cc PS:这不是随便反调]</p>
-<p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220604214156642.png" alt="image-20220604214156642" /></p>
-<p>经过编译和验证的 BPF 程序将作为 uprobe 的一部分执行, 并且可以将结果写入缓冲区.</p>
-<p><img src="https://ask.qcloudimg.com/http-save/2557161/mfxz7oexip.jpeg?imageView2/2/w/1620" alt="" /></p>
-<h2 id="implementation">Implementation</h2>
-<h3 id="targetgo目标程序编写">target.go——目标程序编写</h3>
-<p>首先编写编译简单的go程序可以访问https网站</p>
+      <p>简单学习了一下BCC和bpftrace 增加了bypass go tls的bpftrace写法 见<a href="/posts/bpf_uprobe_bypass_go_tls/">eBPF Uprobe bypass Go tls——抓取https明文流量</a></p>
+<h2 id="bcc--bpftrace内部实现">BCC &amp; bpftrace内部实现</h2>
+<p>BCC由一个C++前端API用于内核态的BPF程序的编制、一个C++后端驱动使用Clang/LLVM编译BPF程序并将其装载到内核上挂载到时间上并对BPF映射表进行读写、用于编写BCC工具的语言前端：Python、C++ 组成。</p>
+<p>bpftrace前端使用lex和yacc对bpftrace编程语言进行此法和语法分析，使用clang来解析结构体。后端则将bpftrace程序编译成LLVM IR，然后再通过LLVM库将其编译成BPF代码。</p>
+<h2 id="事件源及其实现">事件源及其实现</h2>
+<p>kprobe（int3中断） 具体使用依赖于前端跟踪器:包括perf、systemtap以及BPF追踪器如BCC和bpftrace<br />
+kretprobe（返回地址trampoline）</p>
+<p>tracepoint (nop 启用时改jump trampoline) 性能损耗更低 比kprobe稳定<br />
+许多应用默认不开启USDT 可以使用Folly C++库添加或者使用systemtap-sdt-dev包提供的头文件和工具（nop 启用改int3）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># BCC</span>
+</span></span><span class="line"><span class="cl">attach_kprobe<span class="o">()</span>
+</span></span><span class="line"><span class="cl">attach_kretprobe<span class="o">()</span>
+</span></span><span class="line"><span class="cl">attach_uprobe<span class="o">()</span>
+</span></span><span class="line"><span class="cl">attach_uretprobe<span class="o">()</span>
+</span></span><span class="line"><span class="cl">TRACEPOINT_PROBE<span class="o">()</span>
+</span></span><span class="line"><span class="cl">USDT<span class="o">()</span>.enable_probe<span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># bpftrace</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;kprobe:subsystem:eventname { to do }&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;uprobe:/path/to/file:method { to do }&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;tracepoint:sched:sched_process_exec { to do }&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;usdt:/path/to/file:method { to do }&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;software:event:count&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;hardware:event:count&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>动态USDT</p>
+<ul>
+<li>预编译共享库 函数预先插入USDT</li>
+<li>需要时dlopen()加载动态库</li>
+<li>调用函数</li>
+</ul>
+<p>PMC时CPU上硬件可编程的计数器 广泛用于性能分析如缓存命中率 指令执行效率 阻塞指令周期等<br />
+两种工作模式：计数和溢出采样(超过一定值发送信号)</p>
+<p>PMC由于存在中断延迟或者乱序执行 Intel开发一种解决方案叫PEBS精确计数</p>
+<p>BCC和bpftrace使用perf_events作为他们的环形缓冲区 然后又增加了PMC的支持 现在又通过perf_event_open() 来对所有事件进行观测</p>
+<p>perf也开发了一个使用BPF的接口 使其成为BPF追踪器 是唯一一个内置在Linux中的BPF前端</p>
+<p>bpftrace还包括BEGIN和END即bpftrace启动和退出的事件</p>
+<p>Software</p>
+<ul>
+<li><code>cpu-clock</code> or <code>cpu</code></li>
+<li><code>task-clock</code></li>
+<li><code>page-faults</code> or <code>faults</code></li>
+<li><code>context-switches</code> or <code>cs</code></li>
+<li><code>cpu-migrations</code></li>
+<li><code>minor-faults</code></li>
+<li><code>major-faults</code></li>
+<li><code>alignment-faults</code></li>
+<li><code>emulation-faults</code></li>
+<li><code>dummy</code></li>
+<li><code>bpf-output</code></li>
+</ul>
+<p>Hardware</p>
+<ul>
+<li><code>cpu-cycles</code> or <code>cycles</code></li>
+<li><code>instructions</code></li>
+<li><code>cache-references</code></li>
+<li><code>cache-misses</code></li>
+<li><code>branch-instructions</code> or <code>branches</code></li>
+<li><code>branch-misses</code></li>
+<li><code>bus-cycles</code></li>
+<li><code>frontend-stalls</code></li>
+<li><code>backend-stalls</code></li>
+<li><code>ref-cycles</code></li>
+</ul>
+<h2 id="bpftool">bpftool</h2>
+<p>kernel代码tools/bpf中包含bpftool 其有很多功能模块</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1743,90 +1810,60 @@ eBPF 允许内核运行 BPF 字节码 并且 BPF 探针每次被触发时, 都�
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;io/ioutil&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;net/http&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">client</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Client</span><span class="p">{}</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// url := &#34;https://www.baidu.com&#34;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">reqest</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">NewRequest</span><span class="p">(</span><span class="s">&#34;GET&#34;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="kc">nil</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">reqest</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;Accept-Encoding&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// reqest.Header.Set(&#34;Accept-Encoding&#34;, &#34;gzip, deflate, br&#34;)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="nx">reqest</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">response</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">data</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># perf 子命令显示哪些BPF程序正在通过pref_event_open()</span>
+</span></span><span class="line"><span class="cl">bpftool perf
+</span></span><span class="line"><span class="cl"><span class="c1"># prog show 子命令会列出全部的程序（不止基于pref_event_open()的）</span>
+</span></span><span class="line"><span class="cl">bpftool prog show
+</span></span><span class="line"><span class="cl"><span class="c1"># xlated 可以 dump 进程对应的BPF汇编指令</span>
+</span></span><span class="line"><span class="cl">bpftool prog dump xlated id <span class="m">234</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果包含BTF信息 显示源码</span>
+</span></span><span class="line"><span class="cl">bpftool prog dump xlated id <span class="m">263</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果包含BTF信息 显示行号</span>
+</span></span><span class="line"><span class="cl">bpftool prog dump xlated id <span class="m">263</span> linum
+</span></span><span class="line"><span class="cl"><span class="c1"># opcodes 显示BPF指令opcode</span>
+</span></span><span class="line"><span class="cl">bpftool prog dump xlated id <span class="m">263</span> opcodes
+</span></span><span class="line"><span class="cl"><span class="c1"># visual dot格式输出控制流信息 可以用GraphViz绘图</span>
+</span></span><span class="line"><span class="cl">bpftool prog dump xlated id <span class="m">263</span> visual
+</span></span><span class="line"><span class="cl"><span class="c1"># jited 显示x86_64汇编</span>
+</span></span><span class="line"><span class="cl">bpftool prog dump jited id <span class="m">263</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>抓取流量http header及http body均不可见</p>
-<h3 id="tracec--tracepy探针代码及注入代码">trace.c &amp;&amp; trace.py——探针代码及注入代码</h3>
-<h4 id="注入方式">注入方式</h4>
-<p>py程序的作用是通过符号或者地址注入uprobe,主要函数是两个 其中name是编译好的用户程序 sym是符号 fn_name是要用作处理接收到数据的python回调函数</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">b</span><span class="o">.</span><span class="n">attach_uprobe</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;../target&#34;</span><span class="p">,</span> <span class="n">sym</span><span class="o">=</span><span class="s2">&#34;crypto/tls.(*Conn).writeRecordLocked&#34;</span><span class="p">,</span> <span class="n">fn_name</span><span class="o">=</span><span class="s2">&#34;crack_https&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">b</span><span class="o">.</span><span class="n">attach_uretprobe</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;../target&#34;</span><span class="p">,</span> <span class="n">sym</span><span class="o">=</span><span class="s2">&#34;crypto/tls.(*halfConn).decrypt&#34;</span><span class="p">,</span> <span class="n">fn_name</span><span class="o">=</span><span class="s2">&#34;crack_response&#34;</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>其中go的符号比较特殊，可以在跟进代码找到函数后通过nm和grep获取，也可以通过ida来获取 其中nm更好用</p>
+</div><h2 id="bpftrace使用">bpftrace使用</h2>
+<h3 id="基础">基础</h3>
+<p>bpftrace有很多内置变量和函数，具体见https://github.com/iovisor/bpftrace/blob/master/docs/reference_guide.md</p>
+<p>基础变量（global、$local和per[tid]）</p>
+<p>内置变量（username、pid、tid、comm（进程名）、nsecs（纳秒为单位的时间戳）..）</p>
+<p>关联数组（key[value]）</p>
+<p>频率计数（count() 或者 ++）</p>
+<p>临时变量 $</p>
+<p>BPF映射表变量 @（可在不同动作之间传递）</p>
+<p>调用栈信息（kstack、ustack）</p>
+<p>返回值（retval） 追踪函数名（func） 探针名（probe） CgroupId(cgroup)</p>
+<p>参数（args、arg0.arg1 argN）</p>
+<p>参数（sarg0.sarg1 sargN）那些用栈传值的程序（1.17以前的Go）</p>
+<h3 id="bpftrace选项">bpftrace选项</h3>
+<p><code>bpftrace -e 'probe /filter/ { action };</code></p>
+<p>bpftrace -l 可以使用通配符列出所有动态插桩点和静态插桩点</p>
+<p>tracepoint的命名方式是subsystem:eventname 如 kmem:kmalloc</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  uprobe nm target <span class="p">|</span> grep writeRecordLocked
-</span></span><span class="line"><span class="cl">000000000058c960 T crypto/tls.<span class="o">(</span>*Conn<span class="o">)</span>.writeRecordLocked
-</span></span><span class="line"><span class="cl">000000000058d040 T crypto/tls.<span class="o">(</span>*Conn<span class="o">)</span>.writeRecordLocked.func1
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo bpftrace -l <span class="s1">&#39;kprobe:*&#39;</span>
+</span></span><span class="line"><span class="cl">sudo bpftrace -l <span class="s1">&#39;kretprobe:*&#39;</span>
+</span></span><span class="line"><span class="cl">sudo bpftrace -l <span class="s1">&#39;tracepoint:syscalls:*&#39;</span>
+</span></span><span class="line"><span class="cl">sudo bpftrace -l <span class="s2">&#34;usdt:/lib/x86_64-linux-gnu/libc.so.6:*&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>当然也可以手动编写，最前面自然是go的包名，用/连接；接着是函数名，在go编程中通过使用结构体保存数据并编写结构体的函数来处理，所以也就是指明结构体的函数名</p>
-<p>只能通过sym和addr实现注入 在清除符号表的情况下就不能很好地胜任了</p>
-<h4 id="数据获取">数据获取</h4>
-<p>接着便是最重要的编写bpf获取数据</p>
-<p>最重要的是知道数据在哪里</p>
-<p>看到的第一个参考资料里就是跟踪go tls，但是他的写法是go传入的参数在栈上，这显然不正确，而且他返回数据的编写方法也不太正确（疯狂鞭尸）</p>
-<p>经过go程序逆向分析总结如下(其实也就是常规的传参方式)</p>
-<ul>
-<li>短的数据如int直接通过一个寄存器传输</li>
-<li>[]byte 数组是其实是一个数据结构 包含一个指针一个长度值和一个容量值 通过三个寄存器传输 (看过go源码的应该都知道 而且容量可以动态扩容)</li>
-</ul>
+</div><p>动态插桩分成kprobe kretprobe uprobe uretprobe<br />
+tracepoint通配可以看到系统调用都被分为<code>sys_open_*</code> 和 <code>sys_close_*</code></p>
+<p>bpftrace -e 可以执行简短bpftrace脚本</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1836,30 +1873,38 @@ eBPF 允许内核运行 BPF 字节码 并且 BPF 探针每次被触发时, 都�
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">slice</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">array</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">len</span>   <span class="kt">int</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">cap</span>   <span class="kt">int</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  tools git:<span class="o">(</span>master<span class="o">)</span> sudo bpftrace -e <span class="s1">&#39;tracepoint:syscalls:sys_enter_open* { @[probe] = count(); }&#39;</span>
+</span></span><span class="line"><span class="cl">Attaching <span class="m">5</span> probes...
+</span></span><span class="line"><span class="cl">^C
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@<span class="o">[</span>tracepoint:syscalls:sys_enter_openat<span class="o">]</span>: <span class="m">33</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>我们要获取相关数据的函数原型如下(都在crypto/tls/conn.go文件中)</p>
-<p>其中writeRecordLocked是发送方明文入口data是我们的明文数据，我们需要根据recordType下条件断点获取data中的数据</p>
-<p>decrypt在readRecordOrCCS中调用 所以我们需要在decrypt函数出口(逆向时在readRecordOrCCS中decrypt的下一条命令下条件断定)注入 也根据recordType下条件断点获取解密后数据</p>
+</div><h3 id="追踪参数">追踪参数</h3>
+<p>tracepoint通常带有参数  bpftrace可以通过args访问这些参数的信息，如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s1">&#39;tracepoint:net:netif_rx&#39;</span> args-&gt;len
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这些参数可以通过-v查看   -l列出 -v详细模式</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Conn</span><span class="p">)</span> <span class="nf">writeRecordLocked</span><span class="p">(</span><span class="nx">typ</span> <span class="nx">recordType</span><span class="p">,</span> <span class="nx">data</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Conn</span><span class="p">)</span> <span class="nf">readRecordOrCCS</span><span class="p">(</span><span class="nx">expectChangeCipherSpec</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">error</span> 
-</span></span><span class="line"><span class="cl">	<span class="kd">func</span> <span class="p">(</span><span class="nx">hc</span> <span class="o">*</span><span class="nx">halfConn</span><span class="p">)</span> <span class="nf">decrypt</span><span class="p">(</span><span class="nx">record</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">recordType</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo bpftrace -lv tracepoint:syscalls:sys_enter_read
+</span></span><span class="line"><span class="cl">sudo bpftrace -e <span class="s1">&#39;tracepoint:syscalls:sys_enter_clone { printf(&#34;-&gt;clone() by %s PID %d\n&#34;, comm, pid); } tracepoint:syscalls:sys_exit_close { printf(&#34;&lt;-clone() return %d, %s PID %d\n&#34;, args-&gt;ret, comm, pid); }&#39;</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="逆向分析">逆向分析</h4>
-<p>阅读Go crypto/tls 源码发现其有多种数据交换类型类型标志(毕竟tls要经过握手密钥交换和数据加密多个步骤)</p>
+</div><p>kprobe的参数&quot;arg0,arg1&hellip;argN&quot;是进入函数的参数 类型均为uint64 如果他们指向C结构体的指针 可以强制类型转化为对应的结构体。</p>
+<p>也就是说静态插桩如tracepoint用的是args，动态插桩如kprobe用的是arg0&hellip;</p>
+<h2 id="bpf并发控制栈回溯">BPF并发控制、栈回溯</h2>
+<p>并行多线程可能同时更新映射表数据从而导致数据丢失，BCC和bpftrace前端使用了per CPU的独立数组映射 避免并行线程对共享数据的更新</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1870,93 +1915,43 @@ eBPF 允许内核运行 BPF 字节码 并且 BPF 探针每次被触发时, 都�
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="c1">// TLS record types.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">recordType</span> <span class="kt">uint8</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">const</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">recordTypeChangeCipherSpec</span> <span class="nx">recordType</span> <span class="p">=</span> <span class="mi">20</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">recordTypeAlert</span>            <span class="nx">recordType</span> <span class="p">=</span> <span class="mi">21</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">recordTypeHandshake</span>        <span class="nx">recordType</span> <span class="p">=</span> <span class="mi">22</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">recordTypeApplicationData</span>  <span class="nx">recordType</span> <span class="p">=</span> <span class="mi">23</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  linux sudo strace -febpf bpftrace -e <span class="s1">&#39;k:vfs_read { @ = count(); }&#39;</span>
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">bpf<span class="o">(</span>BPF_MAP_CREATE, <span class="o">{</span><span class="nv">map_type</span><span class="o">=</span>BPF_MAP_TYPE_PERCPU_ARRAY,
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">➜  linux sudo strace -febpf bpftrace -e <span class="s1">&#39;k:vfs_read { @++; }&#39;</span>
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">bpf<span class="o">(</span>BPF_MAP_CREATE, <span class="o">{</span><span class="nv">map_type</span><span class="o">=</span>BPF_MAP_TYPE_HASH,
+</span></span><span class="line"><span class="cl">...
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>我们要获取的是 recordTypeApplicationData</p>
-<p>由于开发环境linux 主机windows<br />
-启动ida server，f2在 writeRecordLocked 处下条件断点</p>
-<p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220604210256411.png" alt="image-20220604210256411" /></p>
-<p>再次断下后观察发现参数byte数组通过RCX RDX RSI三个寄存器传输，其中RCX传输指针 RDX 传输长度 RSI传输容量(可以忽略)</p>
-<p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220604210351958.png" alt="image-20220604210351958" /></p>
-<p>我们编写bpf程序如下获取其中数据</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">crack_https</span><span class="p">(</span><span class="k">struct</span> <span class="n">pt_regs</span> <span class="o">*</span><span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u64</span><span class="o">*</span> <span class="n">addr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u64</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// cx寄存器放地址 dx寄存器放大小
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="n">u64</span><span class="o">*</span><span class="p">)</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">cx</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">size</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">dx</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>上面是获取我们发送的信息，也就是请求头和请求体，接下去我们要分析响应头和响应体在哪里</p>
-<p>从最顶端Request对象切入，数据都在response.Body中，这是一个ioReader，显然我们可以从这里获取数据，我们尽量往更底层找。</p>
-<p>查看conn.go的大纲，之前数据是在write相关函数中，我们通过read-&gt;readRecord找到了readRecordOrCCS，其中switch了我们上面说到的recordType，所以这就是我们要找到的地方，case recordTypeApplicationData时c.input.Reset(data)，再寻找data找到了decrypt函数</p>
-<p>decrypt函数x寻找交叉引用找其在readRecordOrCCS中的位置，由于readRecordOrCCS函数复杂，在寻找recordType时花费了些许功夫，最后发现rdi寄存器放置此时代码中的typ变量也就是recordType，下条件断点如下</p>
-<p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220604212451285.png" alt="image-20220604212451285" /></p>
-<p>f9再次运行到断点处 逐一查看寄存器中保存的地址最终在RAX中发现了http header</p>
-<p>但是由于只看到明文的header 所以经过多次调试尝试运行body无果差点自闭，最后观察header发现时gzip压缩的body(我像是个傻逼)  ida d确定数据类型右键convert to array指定大小导出 数据用010保存成文件删掉明文header直接用压缩软件打开就是网页的文本</p>
-<p>再次观察RBX中防止的就是数据的长度 RCX就是slice的容量</p>
-<p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220604212215233.png" alt="image-20220604212215233" /></p>
-<p>编写代码如下获取数据</p>
+</div><p>由于验证器的存在BPF是受限的图灵完备 跟ethereum的gas类似有限制无限循环的功能</p>
+<p>栈大小限制在512字节也就是0x200</p>
+<p>同xv6实验 BPF也可以用栈回溯获取调用信息(RBP gcc默认关闭功能 但是x64性能提升不明显)<br />
+栈回溯还可以使用debuginfo、LBR、ORC等方法<br />
+debuginfo DWARF格式 浪费计算资源  LBR intel基于硬件的分支回溯 ORC新的调试信息格式</p>
+<h2 id="bcc和bpftrace调试">BCC和bpftrace调试</h2>
+<h3 id="bcc">BCC</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">crack_response</span><span class="p">(</span><span class="k">struct</span> <span class="n">pt_regs</span> <span class="o">*</span><span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u64</span><span class="o">*</span> <span class="n">addr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u32</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="n">u64</span><span class="o">*</span><span class="p">)</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">ax</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">size</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">bx</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">BPF</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">prog</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="n">flags</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="最终代码">最终代码</h3>
-<p>bpf代码的编译检测十分严格，这里还有几个注意点</p>
-<p>经过调试发现go处理大数据的时候每次最多解密0x4000的数据 所以MAX_LEN设置成了0x4000，经过测试也是正确的没有数据丢失</p>
-<p>BPF_PERF_OUTPUT的正确用法应该是用来触发事件而不是发送数据的，真正传输数据还是要靠BPF_PERCPU_ARRAY包结构体</p>
-<p>perf_submit返回数据指定大小应该是data的大小加上一个sizeof(u32) 也就是结构体中len的大小否则最后会丢失四字节</p>
-<p>python open_perf_buffer通过指定page_cnt来开一个大的ring buffer以确保能够及时输出否则会丢失数据</p>
+</div><p><code>DEBUG_LLVM_IR = 0x1</code> compiled LLVM IR<br />
+<code>DEBUG_BPF = 0x2</code> loaded BPF bytecode and register state on branches<br />
+<code>DEBUG_PREPROCESSOR = 0x4</code> pre-processor result<br />
+<code>DEBUG_SOURCE = 0x8</code> ASM instructions embedded with source<br />
+<code>DEBUG_BPF_REGISTER_STATE = 0x10</code> register state on all instructions in addition to DEBUG_BPF<br />
+<code>DEBUG_BTF = 0x20</code> print the messages from the libbpf library.</p>
+<p>BCC的bpflist工具 内核的bpftool工具</p>
+<h3 id="bpftrace">bpftrace</h3>
+<p>-d输出AST和LLVM IR</p>
+<p>-dd详情模式</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -2013,65 +2008,283 @@ eBPF 允许内核运行 BPF 字节码 并且 BPF 探针每次被触发时, 都�
 </span><span class="lnt">52
 </span><span class="lnt">53
 </span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;uapi/linux/ptrace.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#define MAX_LEN 0x4000
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">struct</span> <span class="n">send_data_t</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u32</span> <span class="n">len</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u8</span>  <span class="n">data</span><span class="p">[</span><span class="n">MAX_LEN</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">recv_data_t</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u32</span> <span class="n">len</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u8</span>  <span class="n">data</span><span class="p">[</span><span class="n">MAX_LEN</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="n">BPF_PERF_OUTPUT</span><span class="p">(</span><span class="n">write_events</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">BPF_PERCPU_ARRAY</span><span class="p">(</span><span class="n">write_data</span><span class="p">,</span> <span class="k">struct</span> <span class="n">send_data_t</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">BPF_PERF_OUTPUT</span><span class="p">(</span><span class="n">read_events</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">BPF_PERCPU_ARRAY</span><span class="p">(</span><span class="n">read_data</span><span class="p">,</span> <span class="k">struct</span> <span class="n">recv_data_t</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  bpftool sudo bpftrace -d -e <span class="s1">&#39;k:vfs_read { @[pid] = count(); }&#39;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">crack_https</span><span class="p">(</span><span class="k">struct</span> <span class="n">pt_regs</span> <span class="o">*</span><span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u32</span> <span class="n">zero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u64</span><span class="o">*</span> <span class="n">addr</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u64</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">send_data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">write_data</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="o">&amp;</span><span class="n">zero</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">data</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// crypto/tls/common.go/const recordTypeApplicationData uint8 = 23
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">bx</span> <span class="o">!=</span> <span class="mi">23</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// cx寄存器放地址 dx寄存器放大小
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="n">u64</span><span class="o">*</span><span class="p">)</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">cx</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">size</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">dx</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">MAX_LEN</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="o">-&gt;</span><span class="n">len</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bpf_probe_read</span><span class="p">(</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">write_events</span><span class="p">.</span><span class="n">perf_submit</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">u32</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">AST after: parser
+</span></span><span class="line"><span class="cl">-------------------
+</span></span><span class="line"><span class="cl">Program
+</span></span><span class="line"><span class="cl"> kprobe:vfs_read
+</span></span><span class="line"><span class="cl">  <span class="o">=</span>
+</span></span><span class="line"><span class="cl">   map: @ :: type<span class="o">[</span>none, ctx: 0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    builtin: pid :: type<span class="o">[</span>none, ctx: 0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">   call: count :: type<span class="o">[</span>none, ctx: 0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AST after: Semantic
+</span></span><span class="line"><span class="cl">-------------------
+</span></span><span class="line"><span class="cl">Program
+</span></span><span class="line"><span class="cl"> kprobe:vfs_read
+</span></span><span class="line"><span class="cl">  <span class="o">=</span>
+</span></span><span class="line"><span class="cl">   map: @ :: type<span class="o">[</span>count, ctx: 0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    builtin: pid :: type<span class="o">[</span>unsigned int64, ctx: 0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">   call: count :: type<span class="o">[</span>count, ctx: 0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AST after: NodeCounter
+</span></span><span class="line"><span class="cl">-------------------
+</span></span><span class="line"><span class="cl">Program
+</span></span><span class="line"><span class="cl"> kprobe:vfs_read
+</span></span><span class="line"><span class="cl">  <span class="o">=</span>
+</span></span><span class="line"><span class="cl">   map: @ :: type<span class="o">[</span>count, ctx: 0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    builtin: pid :: type<span class="o">[</span>unsigned int64, ctx: 0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">   call: count :: type<span class="o">[</span>count, ctx: 0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AST after: ResourceAnalyser
+</span></span><span class="line"><span class="cl">-------------------
+</span></span><span class="line"><span class="cl">Program
+</span></span><span class="line"><span class="cl"> kprobe:vfs_read
+</span></span><span class="line"><span class="cl">  <span class="o">=</span>
+</span></span><span class="line"><span class="cl">   map: @ :: type<span class="o">[</span>count, ctx: 0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    builtin: pid :: type<span class="o">[</span>unsigned int64, ctx: 0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">   call: count :: type<span class="o">[</span>count, ctx: 0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="nv">ModuleID</span> <span class="o">=</span> <span class="s1">&#39;bpftrace&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">source_filename</span> <span class="o">=</span> <span class="s2">&#34;bpftrace&#34;</span>
+</span></span><span class="line"><span class="cl">target <span class="nv">datalayout</span> <span class="o">=</span> <span class="s2">&#34;e-m:e-p:64:64-i64:64-i128:128-n32:64-S128&#34;</span>
+</span></span><span class="line"><span class="cl">target <span class="nv">triple</span> <span class="o">=</span> <span class="s2">&#34;bpf-pc-linux&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> Function Attrs: nounwind
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> i64 @llvm.bpf.pseudo<span class="o">(</span>i64 %0, i64 %1<span class="o">)</span> <span class="c1">#0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">define i64 @<span class="s2">&#34;kprobe:vfs_read&#34;</span><span class="o">(</span>i8* nocapture readnone %0<span class="o">)</span> local_unnamed_addr section <span class="s2">&#34;s_kprobe:vfs_read_1&#34;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">entry:
+</span></span><span class="line"><span class="cl">  %<span class="s2">&#34;@_val&#34;</span> <span class="o">=</span> alloca i64, align <span class="m">8</span>
+</span></span><span class="line"><span class="cl">  %<span class="s2">&#34;@_key&#34;</span> <span class="o">=</span> alloca i64, align <span class="m">8</span>
+</span></span><span class="line"><span class="cl">  %get_pid_tgid <span class="o">=</span> tail call i64 inttoptr <span class="o">(</span>i64 <span class="m">14</span> to i64 <span class="o">()</span>*<span class="o">)()</span>
+</span></span><span class="line"><span class="cl">  %1 <span class="o">=</span> lshr i64 %get_pid_tgid, <span class="m">32</span>
+</span></span><span class="line"><span class="cl">  %2 <span class="o">=</span> bitcast i64* %<span class="s2">&#34;@_key&#34;</span> to i8*
+</span></span><span class="line"><span class="cl">  call void @llvm.lifetime.start.p0i8<span class="o">(</span>i64 -1, i8* nonnull %2<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  store i64 %1, i64* %<span class="s2">&#34;@_key&#34;</span>, align <span class="m">8</span>
+</span></span><span class="line"><span class="cl">  %pseudo <span class="o">=</span> tail call i64 @llvm.bpf.pseudo<span class="o">(</span>i64 1, i64 0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  %lookup_elem <span class="o">=</span> call i8* inttoptr <span class="o">(</span>i64 <span class="m">1</span> to i8* <span class="o">(</span>i64, i64*<span class="o">)</span>*<span class="o">)(</span>i64 %pseudo, i64* nonnull %<span class="s2">&#34;@_key&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  %map_lookup_cond.not <span class="o">=</span> icmp eq i8* %lookup_elem, null
+</span></span><span class="line"><span class="cl">  br i1 %map_lookup_cond.not, label %lookup_merge, label %lookup_success
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl">➜  bpftool sudo bpftrace -d -e <span class="s1">&#39;k:vfs_read { @[pid] = count(); }&#39;</span> <span class="p">|</span> wc -l 
+</span></span><span class="line"><span class="cl"><span class="m">88</span>
+</span></span><span class="line"><span class="cl">➜  bpftool sudo bpftrace -dd -e <span class="s1">&#39;k:vfs_read { @[pid] = count(); }&#39;</span> <span class="p">|</span> wc -l
+</span></span><span class="line"><span class="cl"><span class="m">163</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>-v开启详情模式 书上说会输出programe id和字节码 可以配合bpftool prog使用</p>
+<p>实际上只输出了programe id</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  bpftool sudo bpftrace -v -e <span class="s1">&#39;k:vfs_read { @[pid] = count(); }&#39;</span>        
+</span></span><span class="line"><span class="cl">INFO: node count: <span class="m">7</span>
+</span></span><span class="line"><span class="cl">Attaching <span class="m">1</span> probe...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Program ID: <span class="m">64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">The verifier log: 
+</span></span><span class="line"><span class="cl">processed <span class="m">30</span> insns <span class="o">(</span>limit 1000000<span class="o">)</span> max_states_per_insn <span class="m">0</span> total_states <span class="m">2</span> peak_states <span class="m">2</span> mark_read <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Attaching kprobe:vfs_read
+</span></span><span class="line"><span class="cl">^C
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@<span class="o">[</span>919<span class="o">]</span>: <span class="m">1</span>
+</span></span><span class="line"><span class="cl">@<span class="o">[</span>1300<span class="o">]</span>: <span class="m">1</span>
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安全">安全</h2>
+<p><a href="https://github.com/brendangregg/bpf-perf-tools-book/tree/master/originals/Ch11_Security">https://github.com/brendangregg/bpf-perf-tools-book/tree/master/originals/Ch11_Security</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bashreadline.bt
+</span></span><span class="line"><span class="cl">capable.bt
+</span></span><span class="line"><span class="cl">elfsnoop.bt
+</span></span><span class="line"><span class="cl">eperm.bt
+</span></span><span class="line"><span class="cl">modsnoop.bt
+</span></span><span class="line"><span class="cl">setuids.bt
+</span></span><span class="line"><span class="cl">shellsnoop.bt
+</span></span><span class="line"><span class="cl">shellsnoop.py
+</span></span><span class="line"><span class="cl">tcpreset.bt
+</span></span><span class="line"><span class="cl">ttysnoop.bt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 监控bash输入</span>
+</span></span><span class="line"><span class="cl">sudo bpftrace -e <span class="s1">&#39;uretprobe:/bin/bash:readline { printf(&#34;%-6d %s\n&#34;,pid,str(retval)) }&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="容器">容器</h2>
+<p>命名空间 cgroup进行资源控制  所有容器共享同一个内核</p>
+<p>内核中有针对cgroup事件的跟踪点 包括 cgroup:cgroup_setup_root、cgroup:cgroup_attach_task</p>
+<p>也可以使用BPF_PROG_TYPE_CGROUP_SKB程序类型和 附加到cgroup入口点和出口点上处理网络数据包</p>
+<p>BPF跟踪需要root特权 这对于大部分容器环境来说 意味着BPF跟踪工具只能在宿主机上执行不能在容器内执行</p>
+<p>容器使用一些命名空间的组合 详细信息可以通过内核的nsproxy.h结构体读取 linux/nsproxy.h</p>
+<p>传统工具：systemd-cgtop、kubectl top、 docker stats、/sys/fs/cgroups、pref</p>
+<p>BPF工具：runqlat、pidnss、blkthrot、overlayfs</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/sched.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/nsproxy.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/utsname.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/pid_namespace.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">BEGIN</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Tracing PID namespace switches. Ctrl-C to end</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">crack_response</span><span class="p">(</span><span class="k">struct</span> <span class="n">pt_regs</span> <span class="o">*</span><span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u32</span> <span class="n">zero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u64</span><span class="o">*</span> <span class="n">addr</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">u32</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">recv_data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="o">&amp;</span><span class="n">zero</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">data</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">di</span> <span class="o">!=</span> <span class="mi">23</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="n">u64</span><span class="o">*</span><span class="p">)</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">ax</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">size</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">bx</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">MAX_LEN</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="o">-&gt;</span><span class="n">len</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bpf_probe_read</span><span class="p">(</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">read_events</span><span class="p">.</span><span class="n">perf_submit</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">u32</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nl">kprobe</span><span class="p">:</span><span class="n">finish_task_switch</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">prev</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="p">)</span><span class="n">arg0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">curr</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="p">)</span><span class="n">curtask</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">prev_pidns</span> <span class="o">=</span> <span class="err">$</span><span class="n">prev</span><span class="o">-&gt;</span><span class="n">nsproxy</span><span class="o">-&gt;</span><span class="n">pid_ns_for_children</span><span class="o">-&gt;</span><span class="n">ns</span><span class="p">.</span><span class="n">inum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">curr_pidns</span> <span class="o">=</span> <span class="err">$</span><span class="n">curr</span><span class="o">-&gt;</span><span class="n">nsproxy</span><span class="o">-&gt;</span><span class="n">pid_ns_for_children</span><span class="o">-&gt;</span><span class="n">ns</span><span class="p">.</span><span class="n">inum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="err">$</span><span class="n">prev_pidns</span> <span class="o">!=</span> <span class="err">$</span><span class="n">curr_pidns</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="err">@</span><span class="p">[</span><span class="err">$</span><span class="n">prev_pidns</span><span class="p">,</span> <span class="err">$</span><span class="n">prev</span><span class="o">-&gt;</span><span class="n">nsproxy</span><span class="o">-&gt;</span><span class="n">uts_ns</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">.</span><span class="n">nodename</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">END</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Victim PID namespace switch counts [PIDNS, nodename]:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div><p>cgroup blk 控制器基于硬限制来限制I/O的时间 统计被限制次数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/cgroup-defs.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/blk-cgroup.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">BEGIN</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Tracing block I/O throttles by cgroup. Ctrl-C to end</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">kprobe</span><span class="p">:</span><span class="n">blk_throtl_bio</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="err">@</span><span class="n">blkg</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="n">arg1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">kretprobe</span><span class="p">:</span><span class="n">blk_throtl_bio</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="err">@</span><span class="n">blkg</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">blkg</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">blkcg_gq</span> <span class="o">*</span><span class="p">)</span><span class="err">@</span><span class="n">blkg</span><span class="p">[</span><span class="n">tid</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">retval</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="err">@</span><span class="n">throttled</span><span class="p">[</span><span class="err">$</span><span class="n">blkg</span><span class="o">-&gt;</span><span class="n">blkcg</span><span class="o">-&gt;</span><span class="n">css</span><span class="p">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="err">@</span><span class="n">notthrottled</span><span class="p">[</span><span class="err">$</span><span class="n">blkg</span><span class="o">-&gt;</span><span class="n">blkcg</span><span class="o">-&gt;</span><span class="n">css</span><span class="p">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">delete</span><span class="p">(</span><span class="err">@</span><span class="n">blkg</span><span class="p">[</span><span class="n">tid</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>跟踪overlay文件系统的读写延迟</p>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2106,129 +2319,79 @@ eBPF 允许内核运行 BPF 字节码 并且 BPF 探针每次被触发时, 都�
 </span><span class="lnt">31
 </span><span class="lnt">32
 </span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bcc</span> <span class="kn">import</span> <span class="n">BPF</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">ctypes</span> <span class="k">as</span> <span class="nn">ct</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">write_printer</span><span class="p">(</span><span class="n">cpu</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;write:&#34;</span><span class="p">,</span><span class="n">size</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">snd_data</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s2">&#34;write_events&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">event</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">event</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">snd_data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ct</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">c_char</span> <span class="o">*</span> <span class="n">snd_data</span><span class="o">.</span><span class="n">len</span><span class="p">))</span><span class="o">.</span><span class="n">contents</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">event</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">read_printer</span><span class="p">(</span><span class="n">cpu</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;read:&#34;</span><span class="p">,</span><span class="n">size</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">rcv_data</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s2">&#34;read_events&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">event</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">event</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">rcv_data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ct</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">c_char</span> <span class="o">*</span> <span class="n">rcv_data</span><span class="o">.</span><span class="n">len</span><span class="p">))</span><span class="o">.</span><span class="n">contents</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">event</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">perf_ring_buffer_page_cnt</span> <span class="o">=</span> <span class="mi">256</span> 
-</span></span><span class="line"><span class="cl">    <span class="c1"># load BPF program</span>
-</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="n">BPF</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;./trace.c&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># https://github.com/iovisor/bcc/blob/master/docs/reference_guide.md#4-attach_uprobe</span>
-</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="o">.</span><span class="n">attach_uprobe</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;../uprobe&#34;</span><span class="p">,</span> <span class="n">sym</span><span class="o">=</span><span class="s2">&#34;crypto/tls.(*Conn).writeRecordLocked&#34;</span><span class="p">,</span> <span class="n">fn_name</span><span class="o">=</span><span class="s2">&#34;crack_https&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="o">.</span><span class="n">attach_uretprobe</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;../uprobe&#34;</span><span class="p">,</span> <span class="n">sym</span><span class="o">=</span><span class="s2">&#34;crypto/tls.(*halfConn).decrypt&#34;</span><span class="p">,</span> <span class="n">fn_name</span><span class="o">=</span><span class="s2">&#34;crack_response&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># https://github.com/toru/h2olog/pull/28</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># page_cnt to improve performance to avoid &#34;Possibly lost %d samples&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">[</span><span class="s2">&#34;write_events&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">open_perf_buffer</span><span class="p">(</span><span class="n">write_printer</span><span class="p">,</span> <span class="n">page_cnt</span><span class="o">=</span><span class="n">perf_ring_buffer_page_cnt</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="p">[</span><span class="s2">&#34;read_events&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">open_perf_buffer</span><span class="p">(</span><span class="n">read_printer</span><span class="p">,</span> <span class="n">page_cnt</span><span class="o">=</span><span class="n">perf_ring_buffer_page_cnt</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">b</span><span class="o">.</span><span class="n">perf_buffer_poll</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">exit</span><span class="p">()</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220604214803116.png" alt="image-20220604214803116" /></p>
-<p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220604214413198.png" alt="image-20220604214413198" /></p>
-<p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220604214418731.png" alt="image-20220604214418731" /></p>
-<p>================================================================</p>
-<p>后续：了解到Go在1.17之前其实是用栈传参数的 1.17之后才是用寄存器传参数</p>
-<p>看了《BPF Performance Tools》这本书 学了点bpftrace 用bpftrace写起来十分方便</p>
-<p>这是Go1.17之后的写法 1.17 1.18都编译试过寄存器没变都能用<br />
-但是response并不能%s输出 因为会有\0截断  bpftrace里面没有for不能%c 没有sys_write 不知道具体要怎么输出了 只完成了request部分</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#!/usr/local/bin/bpftrace
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/nsproxy.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/pid_namespace.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="nl">uprobe</span><span class="p">:</span><span class="err">$</span><span class="mi">1</span><span class="o">:</span><span class="s">&#34;crypto/tls.(*Conn).writeRecordLocked&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="o">/</span> <span class="n">reg</span><span class="p">(</span><span class="s">&#34;bx&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">23</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="nl">kprobe</span><span class="p">:</span><span class="n">ovl_read_iter</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="p">((</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="p">)</span><span class="n">curtask</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nsproxy</span><span class="o">-&gt;</span><span class="n">pid_ns_for_children</span><span class="o">-&gt;</span><span class="n">ns</span><span class="p">.</span><span class="n">inum</span> <span class="o">==</span> <span class="err">$</span><span class="mi">1</span><span class="o">/</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Request:</span><span class="se">\n</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">,</span> <span class="n">str</span><span class="p">(</span><span class="n">reg</span><span class="p">(</span><span class="s">&#34;cx&#34;</span><span class="p">),</span> <span class="n">reg</span><span class="p">(</span><span class="s">&#34;dx&#34;</span><span class="p">))</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="err">@</span><span class="n">read_start</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="n">nsecs</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nl">uretprobe</span><span class="p">:</span><span class="err">$</span><span class="mi">1</span><span class="o">:</span><span class="s">&#34;crypto/tls.(*halfConn).decrypt&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="o">/</span> <span class="n">reg</span><span class="p">(</span><span class="s">&#34;di&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">23</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="nl">kretprobe</span><span class="p">:</span><span class="n">ovl_read_iter</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="p">((</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="p">)</span><span class="n">curtask</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nsproxy</span><span class="o">-&gt;</span><span class="n">pid_ns_for_children</span><span class="o">-&gt;</span><span class="n">ns</span><span class="p">.</span><span class="n">inum</span> <span class="o">==</span> <span class="err">$</span><span class="mi">1</span><span class="o">/</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// printf(&#34;Response:\n%s&#34; , str(reg(&#34;ax&#34;), reg(&#34;bx&#34;)) );
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>但是书中没有写到sarg的用法 bpftrace专门对用栈传值的程序的内置参数 用作Go1.17之前的程序十分方便</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#!/usr/local/bin/bpftrace
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="nl">uprobe</span><span class="p">:</span><span class="err">$</span><span class="mi">1</span><span class="o">:</span><span class="s">&#34;crypto/tls.(*Conn).writeRecordLocked&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="o">/</span> <span class="n">sarg1</span> <span class="o">==</span> <span class="mi">23</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">duration_us</span> <span class="o">=</span> <span class="p">(</span><span class="n">nsecs</span> <span class="o">-</span> <span class="err">@</span><span class="n">read_start</span><span class="p">[</span><span class="n">tid</span><span class="p">])</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">@</span><span class="n">read_latency_us</span> <span class="o">=</span> <span class="n">hist</span><span class="p">(</span><span class="err">$</span><span class="n">duration_us</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">delete</span><span class="p">(</span><span class="err">@</span><span class="n">read_start</span><span class="p">[</span><span class="n">tid</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">kprobe</span><span class="p">:</span><span class="n">ovl_write_iter</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="p">((</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="p">)</span><span class="n">curtask</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nsproxy</span><span class="o">-&gt;</span><span class="n">pid_ns_for_children</span><span class="o">-&gt;</span><span class="n">ns</span><span class="p">.</span><span class="n">inum</span> <span class="o">==</span> <span class="err">$</span><span class="mi">1</span><span class="o">/</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 74624 23 1134592 113 4096
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// printf(&#34;%d %d %d %d %d\n&#34; , sarg0,sarg1,sarg2,sarg3,sarg4);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// type slice struct {
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//    array unsafe.Pointer
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//    len   int
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//    cap   int
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// }
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Request:</span><span class="se">\n</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">,</span> <span class="n">str</span><span class="p">(</span><span class="n">sarg2</span><span class="p">,</span> <span class="n">sarg4</span><span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="err">@</span><span class="n">write_start</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="n">nsecs</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">kretprobe</span><span class="p">:</span><span class="n">ovl_write_iter</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="p">((</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="p">)</span><span class="n">curtask</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nsproxy</span><span class="o">-&gt;</span><span class="n">pid_ns_for_children</span><span class="o">-&gt;</span><span class="n">ns</span><span class="p">.</span><span class="n">inum</span> <span class="o">==</span> <span class="err">$</span><span class="mi">1</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">duration_us</span> <span class="o">=</span> <span class="p">(</span><span class="n">nsecs</span> <span class="o">-</span> <span class="err">@</span><span class="n">write_start</span><span class="p">[</span><span class="n">tid</span><span class="p">])</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">@</span><span class="n">write_latency_us</span> <span class="o">=</span> <span class="n">hist</span><span class="p">(</span><span class="err">$</span><span class="n">duration_us</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">delete</span><span class="p">(</span><span class="err">@</span><span class="n">write_start</span><span class="p">[</span><span class="n">tid</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">interval</span><span class="p">:</span><span class="nl">ms</span><span class="p">:</span><span class="mi">1000</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">time</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">%H:%M:%S --------------------</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">print</span><span class="p">(</span><span class="err">@</span><span class="n">write_latency_us</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">print</span><span class="p">(</span><span class="err">@</span><span class="n">read_latency_us</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">clear</span><span class="p">(</span><span class="err">@</span><span class="n">write_latency_us</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">clear</span><span class="p">(</span><span class="err">@</span><span class="n">read_latency_us</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">END</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">clear</span><span class="p">(</span><span class="err">@</span><span class="n">write_start</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">clear</span><span class="p">(</span><span class="err">@</span><span class="n">read_start</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220615224601382.png" alt="image-20220615224601382" /></p>
-<h2 id="refer">Refer</h2>
-<ul>
-<li><a href="https://cloud.tencent.com/developer/article/1793586">https://cloud.tencent.com/developer/article/1793586</a></li>
-<li><a href="https://blog.csdn.net/Rong_Toa/article/details/119957060">https://blog.csdn.net/Rong_Toa/article/details/119957060</a></li>
-<li><a href="https://arthurchiao.art/blog/trace-packet-with-tracepoint-perf-ebpf-zh/#31-ebpf-%E5%92%8C-kprobes">https://arthurchiao.art/blog/trace-packet-with-tracepoint-perf-ebpf-zh/#31-ebpf-%E5%92%8C-kprobes</a></li>
-<li><a href="https://github.com/iovisor/bcc/blob/master/docs/reference_guide.md#3-bpf_array">https://github.com/iovisor/bcc/blob/master/docs/reference_guide.md#3-bpf_array</a></li>
-<li><a href="https://kubesphere.io/zh/blogs/ebpf-tracing-user-processes/#1-%E5%89%8D%E8%A8%80">https://kubesphere.io/zh/blogs/ebpf-tracing-user-processes/#1-%E5%89%8D%E8%A8%80</a></li>
-<li><a href="https://github.com/toru/h2olog/pull/28">https://github.com/toru/h2olog/pull/28</a></li>
-</ul>
-
+</div><h2 id="其他">其他</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">man getaddrinfo
+</span></span><span class="line"><span class="cl">man setitimer
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
     </article>
     
     
@@ -2555,7 +2718,7 @@ eBPF 允许内核运行 BPF 字节码 并且 BPF 探针每次被触发时, 都�
     <ul class="related-ul">
         
         <li>
-          <a href="/posts/cap%E6%A0%BC%E5%BC%8F/" class="related__link">pcap和pcapng格式的一点研究</a>
+          <a href="/posts/bpf_uprobe_bypass_go_tls/" class="related__link">eBPF Uprobe bypass Go tls——抓取https明文流量</a>
         </li>
         
     </ul>
@@ -2565,21 +2728,14 @@ eBPF 允许内核运行 BPF 字节码 并且 BPF 探针每次被触发时, 都�
 <nav class="pagination-single">
   
     
-      <a href="https://ruokeqx.gitee.io/posts/ethereum101/" class="pagination-single__left">
+      <a href="https://ruokeqx.gitee.io/posts/bpf_uprobe_bypass_go_tls/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">《Mastering Ethereum》笔记及EVM字节码逆向</div>      
+        <div class="pagination-single__left-title">eBPF Uprobe bypass Go tls——抓取https明文流量</div>      
       </a>
     
     <div class="grow"></div>
-    
-      <a href="https://ruokeqx.gitee.io/posts/bpf_performance_tools/" class="pagination-single__right">      
-        <div class="pagination-single__right-title">BCC、bpftrace &amp;&amp; BPF Performance Tools</div>
-        <div class="pagination-single__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
-        </div>
-      </a>
     
   
 </nav>
@@ -2935,22 +3091,26 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="toc hide" data-dir="ltr" data-folding="true" data-ani="true">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#background">Background</a></li>
-    <li><a href="#concepts">Concepts</a></li>
-    <li><a href="#implementation">Implementation</a>
+    <li><a href="#bcc--bpftrace内部实现">BCC &amp; bpftrace内部实现</a></li>
+    <li><a href="#事件源及其实现">事件源及其实现</a></li>
+    <li><a href="#bpftool">bpftool</a></li>
+    <li><a href="#bpftrace使用">bpftrace使用</a>
       <ul>
-        <li><a href="#targetgo目标程序编写">target.go——目标程序编写</a></li>
-        <li><a href="#tracec--tracepy探针代码及注入代码">trace.c &amp;&amp; trace.py——探针代码及注入代码</a>
-          <ul>
-            <li><a href="#注入方式">注入方式</a></li>
-            <li><a href="#数据获取">数据获取</a></li>
-            <li><a href="#逆向分析">逆向分析</a></li>
-          </ul>
-        </li>
-        <li><a href="#最终代码">最终代码</a></li>
+        <li><a href="#基础">基础</a></li>
+        <li><a href="#bpftrace选项">bpftrace选项</a></li>
+        <li><a href="#追踪参数">追踪参数</a></li>
       </ul>
     </li>
-    <li><a href="#refer">Refer</a></li>
+    <li><a href="#bpf并发控制栈回溯">BPF并发控制、栈回溯</a></li>
+    <li><a href="#bcc和bpftrace调试">BCC和bpftrace调试</a>
+      <ul>
+        <li><a href="#bcc">BCC</a></li>
+        <li><a href="#bpftrace">bpftrace</a></li>
+      </ul>
+    </li>
+    <li><a href="#安全">安全</a></li>
+    <li><a href="#容器">容器</a></li>
+    <li><a href="#其他">其他</a></li>
   </ul>
 </nav>
   </div>
