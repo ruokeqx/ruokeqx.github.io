@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.498676c34eb225e85357ab0ce19c3c1244f3bd0bf595e5684d1b9d50ea4fbc42.js"></script>
 
-<script defer src="/js/helper/getParents.min.cd44056d552c69703dced61ae60f99166a0ddf44be93d6aa5d5127d98bf98984.js"></script>
+<script defer src="/js/helper/getParents.min.b75dda22e2d1c0e1e0574c7764bb95bec70c0fb0d4d5440339ba68c685d5a661.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1551b6dbdacc77e412a26a29d3b84d2dcdc8f05c3b617433a475dc53c8872bdb.js"></script>
+<script defer src="/js/helper/fadeinout.min.b1a8c6db3f3cc261756044570d21596f0f083625d41433dc9ac02aba5e53777b.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -1349,7 +1349,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
 
-<meta name="generator" content="Hugo 0.94.0" />
+<meta name="generator" content="Hugo 0.100.1" />
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1688,7 +1688,7 @@
 <div class="single__infos">
   <time class="single__info" title="Written At">📅&nbsp;Jun 4, 2022 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;6&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;7&nbsp;min read </span>
   
   <span class="single__info">
      &middot; 👀<span id="busuanzi_value_page_pv">...</span> views
@@ -2144,6 +2144,79 @@ eBPF 允许内核运行 BPF 字节码 并且 BPF 探针每次被触发时, 都�
 </div><p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220604214803116.png" alt="image-20220604214803116" /></p>
 <p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220604214413198.png" alt="image-20220604214413198" /></p>
 <p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220604214418731.png" alt="image-20220604214418731" /></p>
+<p>================================================================</p>
+<p>后续：了解到Go在1.17之前其实是用栈传参数的 1.17之后才是用寄存器传参数</p>
+<p>看了《BPF Performance Tools》这本书 学了点bpftrace 用bpftrace写起来十分方便</p>
+<p>这是Go1.17之后的写法 1.17 1.18都编译试过寄存器没变都能用<br />
+但是response并不能%s输出 因为会有\0截断  bpftrace里面没有for不能%c 没有sys_write 不知道具体要怎么输出了 只完成了request部分</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#!/usr/local/bin/bpftrace
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nl">uprobe</span><span class="p">:</span><span class="err">$</span><span class="mi">1</span><span class="o">:</span><span class="s">&#34;crypto/tls.(*Conn).writeRecordLocked&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span> <span class="n">reg</span><span class="p">(</span><span class="s">&#34;bx&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">23</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Request:</span><span class="se">\n</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">,</span> <span class="n">str</span><span class="p">(</span><span class="n">reg</span><span class="p">(</span><span class="s">&#34;cx&#34;</span><span class="p">),</span> <span class="n">reg</span><span class="p">(</span><span class="s">&#34;dx&#34;</span><span class="p">))</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">uretprobe</span><span class="p">:</span><span class="err">$</span><span class="mi">1</span><span class="o">:</span><span class="s">&#34;crypto/tls.(*halfConn).decrypt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span> <span class="n">reg</span><span class="p">(</span><span class="s">&#34;di&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">23</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// printf(&#34;Response:\n%s&#34; , str(reg(&#34;ax&#34;), reg(&#34;bx&#34;)) );
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是书中没有写到sarg的用法 bpftrace专门对用栈传值的程序的内置参数 用作Go1.17之前的程序十分方便</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#!/usr/local/bin/bpftrace
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nl">uprobe</span><span class="p">:</span><span class="err">$</span><span class="mi">1</span><span class="o">:</span><span class="s">&#34;crypto/tls.(*Conn).writeRecordLocked&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span> <span class="n">sarg1</span> <span class="o">==</span> <span class="mi">23</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 74624 23 1134592 113 4096
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// printf(&#34;%d %d %d %d %d\n&#34; , sarg0,sarg1,sarg2,sarg3,sarg4);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// type slice struct {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//    array unsafe.Pointer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//    len   int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//    cap   int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Request:</span><span class="se">\n</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">,</span> <span class="n">str</span><span class="p">(</span><span class="n">sarg2</span><span class="p">,</span> <span class="n">sarg4</span><span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/posts/bpf_uprobe_bypass_go_tls/image-20220615224601382.png" alt="image-20220615224601382" /></p>
 <h2 id="refer">Refer</h2>
 <ul>
 <li><a href="https://cloud.tencent.com/developer/article/1793586">https://cloud.tencent.com/developer/article/1793586</a></li>
@@ -2549,7 +2622,7 @@ eBPF 允许内核运行 BPF 字节码 并且 BPF 探针每次被触发时, 都�
 </div>
 
 
-<script defer src="/js/swipe.min.32b4505a39624feed6faa09f12dd745a099b8811ea631c29cea9692c45984af8.js"></script>
+<script defer src="/js/swipe.min.b5af2be70ffc9ba2e83412609aa18b5b025c69399f9e1dce09d444a636a38cd0.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 

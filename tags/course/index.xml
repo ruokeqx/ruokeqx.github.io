@@ -167,9 +167,11 @@
         <author>ruokeqx@163.com (ruokeqx)</author>
         <atom:modified>Thu, 07 Jan 2021 00:00:00 +0000</atom:modified>
         <guid>https://ruokeqx.gitee.io/posts/machine-learning-andrew-ng-stanford/</guid>
-        <description>1 Introduction what is machine learning supervised learning  supervised learning  regression problem  predict a continuous valued output   classification problem  predict a discrete valued output      SVM(Support Vector Machine) is a kind of generalized linear classification that classifies data by supervised learning
-unsupervised learning   unsupervised learning
- Cluster Algorithm  Google news Facebook friends      2.</description>
+        <description>1 Introduction what is machine learning supervised learning supervised learning regression problem predict a continuous valued output classification problem predict a discrete valued output SVM(Support Vector Machine) is a kind of generalized linear classification that classifies data by supervised learning
+unsupervised learning unsupervised learning
+Cluster Algorithm Google news Facebook friends 2. Linear Regression with One Variable 2.1 Model Representation Linear regression with one variable.
+Univariate linear regression.
+m —— the number of training examples</description>
         
         <dc:creator>ruokeqx</dc:creator>
         
