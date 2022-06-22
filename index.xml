@@ -14,7 +14,7 @@
     <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
     <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
     <copyright>©2022, All Rights Reserved</copyright>
-    <lastBuildDate>Thu, 16 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jun 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://ruokeqx.gitee.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -40,6 +40,34 @@
         
       
 
+      
+      <item>
+        <title>eBPF bypass iptables</title>
+        <link>https://ruokeqx.gitee.io/posts/ebpf_bypass_iptables/</link>
+        <pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Thu, 23 Jun 2022 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/ebpf_bypass_iptables/</guid>
+        <description>前言 最近一段时间疯狂看eBPF，从一开始的bcc和python写了bypass golang tls的小工具开始；看了美团蓝军大佬CFC4N的博客bypa</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>network</category>
+            
+          
+            
+              <category>bpf</category>
+            
+          
+        
+        
+        
+      </item>
       
       <item>
         <title>BCC、bpftrace &amp;&amp; BPF Performance Tools</title>

