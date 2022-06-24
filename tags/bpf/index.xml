@@ -14,11 +14,39 @@
     <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
     <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
     <copyright>©2022, All Rights Reserved</copyright>
-    <lastBuildDate>Thu, 23 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jun 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://ruokeqx.gitee.io/tags/bpf/index.xml" rel="self" type="application/rss+xml" />
     
 
+      
+      <item>
+        <title>offensive eBPF——使用BPF后门、修改文件、隐藏进程</title>
+        <link>https://ruokeqx.gitee.io/posts/offensive_bpf/</link>
+        <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Fri, 24 Jun 2022 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/offensive_bpf/</guid>
+        <description>BPF综述 BPF功能 BPF核心用例是tracing, observability, perfomance measuring and security tooling. 许多最新的检测、监控软件和性能跟踪工具都是用BPF编写的，尤其是云原生时代（</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>bpf</category>
+            
+          
+            
+              <category>red team</category>
+            
+          
+        
+        
+        
+      </item>
       
       <item>
         <title>eBPF bypass iptables</title>

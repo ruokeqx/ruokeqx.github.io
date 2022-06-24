@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> – ruokeqx&#39;s blog</title>
+    <title>offensive eBPF——使用BPF后门、修改文件、隐藏进程 – ruokeqx&#39;s blog</title>
     
 
 
@@ -1334,15 +1334,17 @@
 <meta name="description" content="" />
 
 
-<meta name="created" content="0001-01-01T00:00:00&#43;0000">
-<meta name="modified" content="0001-01-01T00:00:00&#43;0000">
-<meta property="article:published_time" content="0001-01-01T00:00:00&#43;0000">
+<meta name="keywords" content="bpf,red team">
+
+<meta name="created" content="2022-06-24T00:00:00&#43;0000">
+<meta name="modified" content="2022-06-24T00:00:00&#43;0000">
+<meta property="article:published_time" content="2022-06-24T00:00:00&#43;0000">
 
 <meta name="author" content="ruokeqx">
 
 
 <meta property="og:site_name" content="ruokeqx&#39;s blog">
-<meta property="og:title" content="">
+<meta property="og:title" content="offensive eBPF——使用BPF后门、修改文件、隐藏进程">
 <meta property="og:url" content="https://ruokeqx.gitee.io/posts/offensive_bpf/">
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
@@ -1370,11 +1372,12 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "",
-    "datePublished": "0001-01-01T00:00:00Z",
-    "dateModified": "0001-01-01T00:00:00Z",
+    "headline": "offensive eBPF——使用BPF后门、修改文件、隐藏进程",
+    "datePublished": "2022-06-24T00:00:00Z",
+    "dateModified": "2022-06-24T00:00:00Z",
     "url" : "https://ruokeqx.gitee.io/posts/offensive_bpf/",
     "description": "BPF综述 BPF功能 BPF核心用例是tracing, observability, perfomance measuring and security tooling. 许多最新的检测、监控软件和性能跟踪工具都是用BPF编写的，尤其是云原生时代（",
+    "keywords": ["bpf","red team"],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://ruokeqx.gitee.io"
@@ -1639,7 +1642,7 @@
             
             
 
-<main class="single__main main-main">
+<main class="single__main main">
   
     <nav class="breadcrumb hide" aria-label="breadcrumbs">
   <script>document.querySelector('.breadcrumb').classList.remove('hide')</script>
@@ -1666,7 +1669,7 @@
   
   <li  class="is-active" >
     
-      <a href="https://ruokeqx.gitee.io/posts/offensive_bpf/" class="capitalize">ruokeqx&#39;s blog</a>
+      <span>offensive eBPF——使用BPF后门、修改文件、隐藏进程</span>
     
   </li>
   
@@ -1678,12 +1681,12 @@
   <div class="single ">
     <div class="single__nojs">This page looks best with JavaScript enabled</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
-    <h2 class="single__title" data-ani="true"></h2>
+    <h2 class="single__title" data-ani="true">offensive eBPF——使用BPF后门、修改文件、隐藏进程</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Jan 1, 0001 </time>
+  <time class="single__info" title="Written At">📅&nbsp;Jun 24, 2022 </time>
   
   &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;12&nbsp;min read </span>
   
@@ -1695,6 +1698,12 @@
       
 <ul class="single__tags caption">
   
+  🏷️
+  
+
+  <li><a href="https://ruokeqx.gitee.io/tags/bpf/" class="single__tag" title="bpf">#bpf</a></li>
+
+  <li><a href="https://ruokeqx.gitee.io/tags/red-team/" class="single__tag" title="red team">#red team</a></li>
 
 </ul>
 
@@ -2384,8 +2393,17 @@ kretprobe:inet_csk_accept
 </div><p>运行结果如图 可以看到所有文件名都被修改了</p>
 <p><img src="/images/posts/offensive_bpf/image-20220620172918255.png" alt="image-20220620172918255" /></p>
 <h3 id="隐藏进程">隐藏进程</h3>
-<p>bad-bpf库提供的功能</p>
+<p>bad-bpf库提供的功能，思路很简单，显示就是遍历dir entry然后输出名字，下一个dir entry是当前dir entry+d_reclen，sys read hook处遍历的时候发现是自己的dir entry后把前一个的dir entry中d_reclen加上自己dir entry的d_reclen就实现了绕过了，返回到用户态会直接绕过这个entry。</p>
 <p><img src="/images/posts/offensive_bpf/image-20220620221936797.png" alt="image-20220620221936797" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ./pidhide -p <span class="m">3953</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/posts/offensive_bpf/image-20220623231529832.png" alt="image-20220623231529832" /></p>
 <h2 id="检测">检测</h2>
 <h3 id="detection-bpf">Detection: BPF</h3>
 <p>检测主要是围绕BPF()系统调用获取信息，当然需要确保你的工具获取的是正确的信息（因为你的工具可能被trace 甚至BPF系统调用可能被trace）</p>
@@ -2425,6 +2443,9 @@ kretprobe:inet_csk_accept
 <p><a href="https://github.com/pathtofile/bad-bpf">https://github.com/pathtofile/bad-bpf</a></p>
 <p><a href="https://cloud.tencent.com/developer/inventory/600/article/1626925">https://cloud.tencent.com/developer/inventory/600/article/1626925</a></p>
 <p><a href="https://github.com/xdp-project/xdp-tutorial">https://github.com/xdp-project/xdp-tutorial</a></p>
+<p><a href="https://arthurchiao.art/blog/understanding-ebpf-datapath-in-cilium-zh/">https://arthurchiao.art/blog/understanding-ebpf-datapath-in-cilium-zh/</a></p>
+<p><a href="https://paper.seebug.org/1867/">https://paper.seebug.org/1867/</a></p>
+<p><a href="https://security.tencent.com/index.php/blog/msg/206">https://security.tencent.com/index.php/blog/msg/206</a></p>
 
     </article>
     
@@ -2742,19 +2763,46 @@ kretprobe:inet_csk_accept
     <section class="related">
     
     
+    <h1 class="related__title">
+      <hr class="hr-dots"/>
+      <div>
+        See Also
+      </div>
+      <hr class="hr-dots"/>
+    </h1>
+    <ul class="related-ul">
+        
+        <li>
+          <a href="/posts/ebpf_bypass_iptables/" class="related__link">eBPF bypass iptables</a>
+        </li>
+        
+        <li>
+          <a href="/posts/bpf_performance_tools/" class="related__link">BCC、bpftrace &amp;&amp; BPF Performance Tools</a>
+        </li>
+        
+        <li>
+          <a href="/posts/bpf_uprobe_bypass_go_tls/" class="related__link">eBPF Uprobe bypass Go tls——抓取https明文流量</a>
+        </li>
+        
+        <li>
+          <a href="/posts/dll_injection_and_dll_hijacking/" class="related__link">DLL注入及DLL劫持简单学习</a>
+        </li>
+        
+    </ul>
+    
   </section>
     <div class="grow"></div>
 <nav class="pagination-single">
   
     
-    <div class="grow"></div>
-    
-      <a href="https://ruokeqx.gitee.io/posts/ctfhub_wp/" class="pagination-single__right">      
-        <div class="pagination-single__right-title">ctfhub writeup</div>
+      <a href="https://ruokeqx.gitee.io/posts/ebpf_bypass_iptables/" class="pagination-single__left">
         <div class="pagination-single__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
+        <div class="pagination-single__left-title">eBPF bypass iptables</div>      
       </a>
+    
+    <div class="grow"></div>
     
   
 </nav>
@@ -3098,16 +3146,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
-  <div class="toc__flexbox" data-position="fixed">
+  <div class="toc__flexbox" data-position="absolute">
     <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
     
       <label class="switch" data-ani="true">
-        <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
+        <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" >
         <span class="slider round"></span>
       </label>
     
   </div>
-  <div class="toc " data-dir="ltr" data-folding="true" data-ani="true">
+  <div class="toc hide" data-dir="ltr" data-folding="true" data-ani="true">
     <nav id="TableOfContents">
   <ul>
     <li><a href="#bpf综述">BPF综述</a>
@@ -3269,6 +3317,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr&#43;xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous"></script>
+
 
 
 
@@ -3311,7 +3363,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     var enableToc = JSON.parse("true");
     var toc = JSON.parse("null");
-    var hideToc = JSON.parse("false");
+    var hideToc = JSON.parse("true");
     var tocFlexbox = document.querySelector('.toc__flexbox');
     var tocFlexboxOuter = document.querySelector('.toc__flexbox--outer');
     var tocFolding = JSON.parse("true");
@@ -3532,7 +3584,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
     
-    var lib = JSON.parse("null");
+    var lib = JSON.parse("[\"katex\"]");
 
     if (lib && lib.includes('mermaid')) {
       
