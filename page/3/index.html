@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>kernel – ruokeqx&#39;s blog</title>
+    <title>ruokeqx&#39;s blog</title>
     
 
 
@@ -653,7 +653,7 @@
     
     var baseurl = JSON.parse("\"https://ruokeqx.gitee.io\"");
     
-    var permalink = JSON.parse("\"https://ruokeqx.gitee.io/tags/kernel/\"");
+    var permalink = JSON.parse("\"https://ruokeqx.gitee.io/\"");
     
     var langprefix = JSON.parse("\"\"");
     var searchResults = null;
@@ -673,9 +673,9 @@
     
     var searchResultPosition = JSON.parse("\"main\"");
     
-    var sectionType = JSON.parse("\"tags\"");
+    var sectionType = JSON.parse("\"page\"");
     
-    var kind = JSON.parse("\"term\"");
+    var kind = JSON.parse("\"home\"");
     
     var fuse = null;
 
@@ -1331,21 +1331,21 @@
 
 
     
-<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="https://ruokeqx.gitee.io/tags/kernel/index.xml">
+<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="https://ruokeqx.gitee.io/index.xml">
 
 <meta name="description" content="" />
 
 
-<meta name="created" content="2022-03-14T00:00:00&#43;0000">
-<meta name="modified" content="2022-03-14T00:00:00&#43;0000">
-<meta property="article:published_time" content="2022-03-14T00:00:00&#43;0000">
+<meta name="created" content="2022-07-09T00:00:00&#43;0000">
+<meta name="modified" content="2022-07-09T00:00:00&#43;0000">
+<meta property="article:published_time" content="2022-07-09T00:00:00&#43;0000">
 
 <meta name="author" content="ruokeqx">
 
 
 <meta property="og:site_name" content="ruokeqx&#39;s blog">
-<meta property="og:title" content="kernel">
-<meta property="og:url" content="https://ruokeqx.gitee.io/tags/kernel/">
+<meta property="og:title" content="">
+<meta property="og:url" content="https://ruokeqx.gitee.io/">
 <meta property="og:type" content="website">
 <meta property="og:description" content="">
 
@@ -1358,7 +1358,7 @@
 
 <meta name="apple-mobile-web-app-status-bar-style" content="#fff">
 
-<link rel="canonical" href="https://ruokeqx.gitee.io/tags/kernel/">
+<link rel="canonical" href="https://ruokeqx.gitee.io/">
 
 <link rel="manifest" href="/manifest.json">
 
@@ -1372,8 +1372,8 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "url" : "https://ruokeqx.gitee.io/tags/kernel/",
-    "name": "kernel",
+    "url" : "https://ruokeqx.gitee.io/",
+    "name": "",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://ruokeqx.gitee.io"
@@ -1415,7 +1415,7 @@
 
 
 
-        <div class="wrapper" data-type="tags" data-kind="term">
+        <div class="wrapper" data-type="page" data-kind="home">
             <nav class="navbar scrolling" role="navigation" aria-label="main navigation" data-dir="ltr">
   <div class="navbar__brand">
     
@@ -1542,7 +1542,7 @@
     
 
     
-      <li class="navbarm__menu--item active">
+      <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
           Tags
         </a>
@@ -1636,53 +1636,86 @@
 </div>
 </nav>
             
-            
+<header class="header ">
+    
+        <script src="https://cdn.jsdelivr.net/npm/typewriter-effect@2.13.1/dist/core.js" integrity="sha256-dsvC/UolMujQ/UQ7lVeJ7Q/FV3BSzWO0rc8iz1rqHQo=" crossorigin="anonymous"></script>
 
-<main class="main inner" data-sidebar-position="right">
-  <div class="list__main lm">
-    <nav class="breadcrumb hide" aria-label="breadcrumbs">
-  <script>document.querySelector('.breadcrumb').classList.remove('hide')</script>
-  <ol>
-    
-  
-  
-  
-  
-  
-  <li >
-    
-      <a href="https://ruokeqx.gitee.io/" class="capitalize">ruokeqx&#39;s blog</a>
-    
-  </li>
-  
-  
-  <li >
-    
-      <a href="https://ruokeqx.gitee.io/tags/" class="capitalize">Tags</a>
-    
-  </li>
-  
-  
-  <li  class="is-active" >
-    
-      <span>kernel</span>
-    
-  </li>
-  
-  </ol>
-  
-</nav>
-    <header class="list__header">
-      <h5 class="list__header--title capitalize h5">kernel</h5>
-    </header>
-    
-    <div class="list__header--desc p2">
-      
-    </div>
 
-    <div class="summary__container" data-display="block">
-      
+  
+    
+      <div class="site-header basicflex-column site-header__align-center" data-ani="true" style="width: 100%; height: 190px; padding: px 50px; font-size: 44px; color:yellow;">
+        <div id="typewriter"></div>
+      </div>
+
+      <script>
         
+        
+
+        var methods = JSON.parse("[{\"typeString\":\"ruokeqx\"},{\"pauseFor\":2500},{\"deleteChars\":7},{\"typeString\":\"Keep learning. Go by your instinct!\"},{\"pauseFor\":2500},{\"deleteAll\":true}]");
+        var options = JSON.parse("{\"autoStart\":false,\"loop\":true}");
+        var typeElem = document.getElementById("typewriter");
+        var typewriter = new Typewriter(typeElem, options);
+        
+        for (var i = 0; i < methods.length; i++) {
+          var key = Object.keys(methods[i])[0];
+
+          if (key === "typeString") {
+            typewriter.typeString(methods[i][key]);
+          } else if (key === "pauseFor") {
+            typewriter.pauseFor(methods[i][key]);
+          } else if (key === "deleteAll") {
+            typewriter.deleteAll();
+          } else if (key === "deleteChars") {
+            typewriter.deleteChars(methods[i][key]);
+          } else if (key === "pause") {
+            typewriter.pause();
+          } else if (key === "stop") {
+            typewriter.stop();
+          }
+        }
+
+        typewriter.start();
+      </script>
+    
+  
+    
+  
+    
+  
+
+
+    
+</header>
+
+            
+<main class="main inner" data-sidebar-position="right">
+    <div class="list__main lm">
+        <div class="summary__container" data-display="block">
+            
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+            
+            
+                
+            
+            
+            
+            
+            
+                
   <article class="summary-classic" data-ani="true">
   <div class="summary-classic__flex-box" >
 
@@ -1690,18 +1723,18 @@
 
     <div class="summary-classic__content">
       <header>
-        <h5 class="title h5"><a href='https://ruokeqx.gitee.io/posts/libpcaptcpdumpkernel-net%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/'>libpcap、tcpdump以及kernel/net的部分源码阅读</a> </h5>
+        <h5 class="title h5"><a href='https://ruokeqx.gitee.io/posts/ctfhub_wp/'>ctfhub writeup</a> </h5>
         <h6 class="subtitle caption">
-          <time title="Written At" dir="ltr">📅&nbsp;Mar 14, 2022 </time>
+          <time title="Written At" dir="ltr">📅&nbsp;Mar 25, 2020 </time>
           
-          <span title="Reading Time" dir="ltr"> &middot; ☕&nbsp;17&nbsp;min read </span>
+          <span title="Reading Time" dir="ltr"> &middot; ☕&nbsp;7&nbsp;min read </span>
           
         </h6>
       </header>
       <div>
         <div class="summary-classic__text p2">
           
-            Begin 本文起因是操作系统课设任务新增系统调用，当时想法是新增一个网络抓包功能的系统调用，类似于简化版的tcpdump和kernel的缝合，所以就
+            信息泄露 目录历遍 直接找就行。。。 PHPINFO 进去直接 ctrl+f 搜flag就行。。。 备份文件下载 网站源码 提示一些相关的名字 可以写个简单的脚本爆破一下 当然也可以 dirsearch
           
         </div>
       </div>
@@ -1714,12 +1747,37 @@
 </article>
 
 
-      
-      
+            
+            
 
 
-    </div>
-    <div class="search-result" data-display="none">
+  
+  
+  
+  
+    
+  
+  <ul class="pagination">
+    
+      
+      
+        <li ><a href="/">1</a></li>
+      
+    
+      
+      
+        <li ><a href="/page/2/">2</a></li>
+      
+    
+      
+      
+        <li class="active"><a href="/page/3/">3</a></li>
+      
+    
+  </ul>
+
+        </div>
+        <div class="search-result" data-display="none">
   <div class="search-result__header">
     <div class="search-result__close" data-dir="ltr">
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
@@ -1736,13 +1794,12 @@
     </ul>
   </div>
 </div>
-  </div>
+    </div>
 
-  
-    <aside class="list__sidebar r" data-dir="ltr">
-      
-
-<ul class="sidebar">
+    
+        <aside class="list__sidebar r" data-dir="ltr">
+            
+<div class="sidebar">
     
 
 <div class="search">
@@ -1758,17 +1815,175 @@
 
 
     
+<section class="bio" data-dir="ltr">
+  
+  <hr class="hr-slash bio-hr"/>
+  <div class="bio__photo-wrapper">
     
     
+      
+        <img data-src="images/whoami/ruokeqx.png" alt="ruokeqx" src="data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath fill='%23aaa' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.35 3.02-1.56-1.88c-.2-.25-.58-.24-.78.01l-1.74 2.23c-.26.33-.02.81.39.81h8.98c.41 0 .65-.47.4-.8l-2.55-3.39c-.19-.26-.59-.26-.79 0z'/%3E%3C/svg%3E" class="lazyload bio__photo" data-ani="true"/>
+           
+    
+  </div>
+  
+  <hr class="hr-slash bio-hr"/>
+  <div class="bio__name">
+    ruokeqx
+  </div>
+  <div class="bio__desc">
+    
+  </div>
+  
+  
+
+  
+  <div class="bio__info">
+    <div class="bio__info--icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V2c0-.55-.45-1-1-1s-1 .45-1 1v1.06C6.83 3.52 3.52 6.83 3.06 11H2c-.55 0-1 .45-1 1s.45 1 1 1h1.06c.46 4.17 3.77 7.48 7.94 7.94V22c0 .55.45 1 1 1s1-.45 1-1v-1.06c4.17-.46 7.48-3.77 7.94-7.94H22c.55 0 1-.45 1-1s-.45-1-1-1h-1.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
+    </div>
+    Hangzhou, China
+  </div>
+  
+
+  
+  <div class="bio__info">
+    <div class="bio__info--icon">      
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"/></svg>
+    </div>
+    <a href="mailto:ruokeqx@163.com">ruokeqx@163.com</a>    
+  </div>
+  
+
+  
+
+  <div class="bio__social">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+      <a href="https://github.com/ruokeqx" target="_blank" rel="noreferrer" title="github" aria-label="github">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" version="1.1">
+<g id="surface3680">
+<path fill="currentColor" d="M 10.898438 2.101562 C 6.300781 2.601562 2.601562 6.300781 2.101562 10.800781 C 1.601562 15.5 4.300781 19.699219 8.398438 21.300781 C 8.699219 21.398438 9 21.199219 9 20.800781 L 9 19.199219 C 9 19.199219 8.601562 19.300781 8.101562 19.300781 C 6.699219 19.300781 6.101562 18.101562 6 17.398438 C 5.898438 17 5.699219 16.699219 5.398438 16.398438 C 5.101562 16.300781 5 16.300781 5 16.199219 C 5 16 5.300781 16 5.398438 16 C 6 16 6.5 16.699219 6.699219 17 C 7.199219 17.800781 7.800781 18 8.101562 18 C 8.5 18 8.800781 17.898438 9 17.800781 C 9.101562 17.101562 9.398438 16.398438 10 16 C 7.699219 15.5 6 14.199219 6 12 C 6 10.898438 6.5 9.800781 7.199219 9 C 7.101562 8.800781 7 8.300781 7 7.601562 C 7 7.199219 7 6.601562 7.300781 6 C 7.300781 6 8.699219 6 10.101562 7.300781 C 10.601562 7.101562 11.300781 7 12 7 C 12.699219 7 13.398438 7.101562 14 7.300781 C 15.300781 6 16.800781 6 16.800781 6 C 17 6.601562 17 7.199219 17 7.601562 C 17 8.398438 16.898438 8.800781 16.800781 9 C 17.5 9.800781 18 10.800781 18 12 C 18 14.199219 16.300781 15.5 14 16 C 14.601562 16.5 15 17.398438 15 18.300781 L 15 20.898438 C 15 21.199219 15.300781 21.5 15.699219 21.398438 C 19.398438 19.898438 22 16.300781 22 12.101562 C 22 6.101562 16.898438 1.398438 10.898438 2.101562 Z M 10.898438 2.101562 "/>
+</g>
+</svg>
+
+      </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</section>
+<hr class="hr-fade sidebar-hr"/>
+
+
+    
+    
+
     
         
-        <li class="sidebar-recent">
-            <a href="/posts/libpcaptcpdumpkernel-net%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" class="sidebar-recent__title p1">libpcap、tcpdump以及kernel/net的部分源码阅读</a>
-        </li>
         
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+
+        
+        <section class="sidebar-recent">
+            <a href="/posts/" class="sidebar-recent__title p2">Posts</a>
+            <ul class="sidebar-recent__ul">
+                
+                    <li>
+                        <a href="/posts/quichttp3_demo/" class="sidebar-recent__a p2">浅尝QUIC和HTTP3</a>
+                    </li>
+                
+                    <li>
+                        <a href="/posts/offensive_bpf/" class="sidebar-recent__a p2">offensive eBPF——使用BPF后门、修改文件、隐藏进程</a>
+                    </li>
+                
+                    <li>
+                        <a href="/posts/ebpf_bypass_iptables/" class="sidebar-recent__a p2">eBPF bypass iptables</a>
+                    </li>
+                
+                    <li>
+                        <a href="/posts/bpf_performance_tools/" class="sidebar-recent__a p2">BCC、bpftrace &amp;&amp; BPF Performance Tools</a>
+                    </li>
+                
+                    <li>
+                        <a href="/posts/bpf_uprobe_bypass_go_tls/" class="sidebar-recent__a p2">eBPF Uprobe bypass Go tls——抓取https明文流量</a>
+                    </li>
+                
+            </ul>
+        </section>
         <hr class="hr-fade sidebar-hr" />
+        
     
-</ul>
+</div>
+
 <div class="taxo-root">
 
 <div class="taxo">
@@ -2099,12 +2314,12 @@
 
 
 </div>
+<hr class="hr-fade sidebar-hr" />
 
 
-    </aside>
-  
+        </aside>
+    
 </main>
-
 <script>
     
     var sidebarPosition = JSON.parse("\"right\"");
@@ -2179,7 +2394,19 @@
     });
 </script>
 
-
+<script>
+  window.onload = function() {
+    
+    
+    var enableBusuanzi = JSON.parse("true");
+    if (enableBusuanzi) {
+      var sitePvElem = document.querySelector('#busuanzi_value_site_pv');
+      var siteUvElem = document.querySelector('#busuanzi_value_site_uv');
+      sitePvElem.textContent = sitePvElem.textContent.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+      siteUvElem.textContent = siteUvElem.textContent.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    }
+  }
+</script>
 
             
             <footer class="footer">

@@ -14,7 +14,7 @@
     <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
     <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
     <copyright>©2022, All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 24 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 09 Jul 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://ruokeqx.gitee.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -40,6 +40,30 @@
         
       
 
+      
+      <item>
+        <title>浅尝QUIC和HTTP3</title>
+        <link>https://ruokeqx.gitee.io/posts/quichttp3_demo/</link>
+        <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Sat, 09 Jul 2022 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/quichttp3_demo/</guid>
+        <description>HTTP概述 HTTP是互联网的基石，它的简单、灵活使得各种各样的互联网应用成为可能。但HTTP的一些先天不足也为应用的开发增加了难度，为此，</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>network</category>
+            
+          
+        
+        
+        
+      </item>
       
       <item>
         <title>offensive eBPF——使用BPF后门、修改文件、隐藏进程</title>
