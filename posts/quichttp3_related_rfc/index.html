@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>浅尝QUIC和HTTP3 – ruokeqx&#39;s blog</title>
+    <title>QUIC&amp;HTTP3相关RFC文档阅读 – ruokeqx&#39;s blog</title>
     
 
 
@@ -653,7 +653,7 @@
     
     var baseurl = JSON.parse("\"https://ruokeqx.gitee.io\"");
     
-    var permalink = JSON.parse("\"https://ruokeqx.gitee.io/posts/quichttp3_demo/\"");
+    var permalink = JSON.parse("\"https://ruokeqx.gitee.io/posts/quichttp3_related_rfc/\"");
     
     var langprefix = JSON.parse("\"\"");
     var searchResults = null;
@@ -1336,16 +1336,16 @@
 
 <meta name="keywords" content="network">
 
-<meta name="created" content="2022-07-09T00:00:00&#43;0000">
-<meta name="modified" content="2022-07-09T00:00:00&#43;0000">
-<meta property="article:published_time" content="2022-07-09T00:00:00&#43;0000">
+<meta name="created" content="2022-07-10T00:00:00&#43;0000">
+<meta name="modified" content="2022-07-10T00:00:00&#43;0000">
+<meta property="article:published_time" content="2022-07-10T00:00:00&#43;0000">
 
 <meta name="author" content="ruokeqx">
 
 
 <meta property="og:site_name" content="ruokeqx&#39;s blog">
-<meta property="og:title" content="浅尝QUIC和HTTP3">
-<meta property="og:url" content="https://ruokeqx.gitee.io/posts/quichttp3_demo/">
+<meta property="og:title" content="QUIC&amp;HTTP3相关RFC文档阅读">
+<meta property="og:url" content="https://ruokeqx.gitee.io/posts/quichttp3_related_rfc/">
 <meta property="og:type" content="article">
 <meta property="og:description" content="">
 
@@ -1358,7 +1358,7 @@
 
 <meta name="apple-mobile-web-app-status-bar-style" content="#fff">
 
-<link rel="canonical" href="https://ruokeqx.gitee.io/posts/quichttp3_demo/">
+<link rel="canonical" href="https://ruokeqx.gitee.io/posts/quichttp3_related_rfc/">
 
 <link rel="manifest" href="/manifest.json">
 
@@ -1372,11 +1372,11 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "浅尝QUIC和HTTP3",
-    "datePublished": "2022-07-09T00:00:00Z",
-    "dateModified": "2022-07-09T00:00:00Z",
-    "url" : "https://ruokeqx.gitee.io/posts/quichttp3_demo/",
-    "description": "HTTP概述 HTTP是互联网的基石，它的简单、灵活使得各种各样的互联网应用成为可能。但HTTP的一些先天不足也为应用的开发增加了难度，为此，",
+    "headline": "QUIC\u0026HTTP3相关RFC文档阅读",
+    "datePublished": "2022-07-10T00:00:00Z",
+    "dateModified": "2022-07-10T00:00:00Z",
+    "url" : "https://ruokeqx.gitee.io/posts/quichttp3_related_rfc/",
+    "description": "简单看了以下几个QUIC和HTTP3相关RFC文档，对其设计有了一定了解。 RFC8999: Version-Independent Properties of QUIC RFC9000: QUIC: A UDP-Based Multiplexed and Secure Transport RFC9114: HTTP/3 RFC8999 …",
     "keywords": ["network"],
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -1669,7 +1669,7 @@
   
   <li  class="is-active" >
     
-      <span>浅尝QUIC和HTTP3</span>
+      <span>QUIC&amp;HTTP3相关RFC文档阅读</span>
     
   </li>
   
@@ -1681,14 +1681,14 @@
   <div class="single ">
     <div class="single__nojs">This page looks best with JavaScript enabled</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
-    <h2 class="single__title" data-ani="true">浅尝QUIC和HTTP3</h2>
+    <h2 class="single__title" data-ani="true">QUIC&amp;HTTP3相关RFC文档阅读</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Jul 9, 2022 </time>
+  <time class="single__info" title="Written At">📅&nbsp;Jul 10, 2022 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;5&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;16&nbsp;min read </span>
   
   <span class="single__info">
      &middot; 👀<span id="busuanzi_value_page_pv">...</span> views
@@ -1708,27 +1708,60 @@
     </div>
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
-      <h2 id="http概述">HTTP概述</h2>
-<p>HTTP是互联网的基石，它的简单、灵活使得各种各样的互联网应用成为可能。但HTTP的一些先天不足也为应用的开发增加了难度，为此，业界各大公司和标准化组织一直在对HTTP做各种改进和扩展，包括缓存、Range、长连接、Pipelining，还有基于SSL/TLS的HTTPS。后来Google设计的SPDY协议，在HTTP的基础上实现了多路复用和Header压缩，以进一步改善基于HTTP的传输性能和应用的交互体验。SPDY最终被IETF接受并做为HTTP/2的基础。虽然多路复用提高了数据并发传输的性能，但由于SPDY是基于TCP的，而TCP使用的是统一的流控，还是存在Head-of-line blocking的问题。而且TLS层每次都需要协商密钥，导致连接建立的过程比较复杂且低效，所以就有了QUIC协议的出现。</p>
-<p>为什么使用UDP，想想需求就很简单，需要的是一个比TCP简单但是比UDP功能多的协议，所以只能基于UDP用户态扩展而没法基于TCP精简(因为协议在内核中)。</p>
-<h2 id="http3的优化">HTTP3的优化</h2>
-<p><code>Head-of-line blocking</code></p>
-<p>HOL blocking是当一行数据包被第一个数据包阻塞在队列中时出现的性能限制现象。HTTP/1.1 中的一种 HOL 阻塞形式是当浏览器中允许的并行请求数用完时，后续请求需要等待前一个请求完成；HTTP/2 通过请求复用消除了应用层的 HOL 阻塞，但 HOL 在传输层(TCP)仍然存在；HTTP/3 使用 QUIC 替代 TCP，消除了传输层中的 HOL 阻塞。[1]</p>
-<p><code>0RTT</code></p>
-<p>HTTPS over TCP&amp;TLS建立连接至少需要十个包。HTTP3对此进行改进：首次连接，使用QUIC协议的客户端和服务端要使用1RTT使用DH(Diffie-Hellman)迪菲-赫尔曼算法进行密钥交换；非首次连接，客户端保存config(有失效时间)跳过1RTT实现0RTT业务数据交互。前向安全保证了过去进行的通讯不受密钥在未来暴露的威胁，QUIC通过每次使用临时密码然后销毁的方式实现前向安全，不必担心config泄露。QUIC 像 TLS 1.3 一样允许客户端在连接握手完成之前开始发送 HTTP 请求</p>
-<p><code>FEC</code></p>
-<p>前向纠错（Forward Error Correction），是指通过发送冗余的编码数据，使得接收方当传输过程中出现错误时，接收方能从收到的数据中重建和还原得到正确的原始数据。</p>
-<p>FEC算法有很多种，包括内存中使用的汉明码，磁盘存储系统中常用的Reed-Solomon码，还有移动通信中用到的卷积码、Turbo码、LDPC码等。</p>
-<p>早期QUIC中使用的FEC算法是基于XOR的简单实现，不过IETF的QUIC协议标准中已经没有FEC的踪影，猜测是FEC在QUIC协议的应用场景中难以被高效的使用。</p>
-<p><code>连接迁移</code></p>
-<p>TCP协议使用五元组来表示一条唯一的连接，当我们从4G环境切换到wifi环境时，手机的IP地址就会发生变化，这时必须创建新的TCP连接才能继续传输数据。QUIC协议基于UDP实现摒弃了五元组的概念，使用64位的随机数作为连接的ID，并使用该ID表示连接。基于QUIC协议之下，我们在日常wifi和4G切换时，或者不同基站之间切换都不会重连，从而提高业务层的体验。</p>
-<h2 id="现有库实现">现有库实现</h2>
-<p>具体的实现有很多可以看WIKI上的表格[6]，Cloudflare作为很早就发展http3的企业开源了一个rust写的库[4]，但是Go的开源库就只有一个quic-go</p>
-<h2 id="gin的http3支持">Gin的HTTP3支持</h2>
-<p>Gin现在并没有release支持HTTP3，但是很早就有过issue和pr实验，链接如下</p>
-<p><a href="https://github.com/gin-gonic/gin/issues/2523">Can gin support HTTP/3?</a></p>
-<p><a href="https://github.com/gin-gonic/gin/pull/3210">experimental: support http3</a></p>
-<p>其中PR的修改十分简单，只是同Gin以往的逻辑，在gin.go中添加了一个支持QUIC协议的Run函数。因QUIC协议自身支持加密，所以函数实现更像是RunTLS，需要传入证书密钥文件。</p>
+      <p>简单看了以下几个QUIC和HTTP3相关RFC文档，对其设计有了一定了解。</p>
+<p>RFC8999: Version-Independent Properties of QUIC</p>
+<p>RFC9000: QUIC: A UDP-Based Multiplexed and Secure Transport</p>
+<p>RFC9114: HTTP/3</p>
+<h2 id="rfc8999">RFC8999</h2>
+<p>RFC8999十分简单 甚至比一些简短的论文还要短，他的目录也十分简单，毕竟只是定义了QUIC协议的一些通识信息。</p>
+<p>内容不多，最关键的就是描述了一个长包短包，ID和版本及版本协商相关内容。其中定义结构通过观察流量包内容可以得到验证</p>
+<p><img src="/images/posts/RFC8999&amp;RFC9000/image-20220710153659482.png" alt="image-20220710153659482" /></p>
+<p>上面抓到的Version id都是1，基于RFC9000实现。查看Wireshark源码[wireshark/epan/dissectors/packet-quic.c](<a href="https://gitlab.com/wireshark/wireshark/-/blob/master/epan/dissectors/packet-quic.c">epan/dissectors/packet-quic.c · master · Wireshark Foundation / wireshark · GitLab</a>)可以看到其实已经有很多公司内部实现的协议版本了。</p>
+<p>以下是原文内容</p>
+<h3 id="1-quic的一个高度抽象的描述">1. QUIC的一个高度抽象的描述</h3>
+<p>QUIC 是两个端点之间的面向连接的协议。 这些端点交换 UDP 数据报。 这些 UDP 数据报包含 QUIC 数据包。 QUIC 端点使用 QUIC 数据包来建立 QUIC 连接，这是这些端点之间的共享协议状态。</p>
+<h3 id="2-所有quic版本固定的属性">2. 所有QUIC版本固定的属性</h3>
+<p>除了提供安全、多路复用的传输功能，QUIC《<a href="https://autumnquiche.github.io/RFC8999_Chinese_Translation/#QUIC_TRANSPORT">QUIC协议</a>》还支持版本协商。这将使得协议能够在以后的岁月中为适应新的需求而更新，而协议的诸多特性可以随着版本的迭代而不断改变。</p>
+<p>本文阐述QUIC的一些在新的QUIC版本开发及部署的过程中依旧保持不变的属性。所有这些不变属性都与IP版本无关。</p>
+<p>本文的主要目标是确保后续QUIC新版本的迭代。通过陈述QUIC的这些不可更改的属性，本文试图维持QUIC终端对QUIC协议任何其他方面的改动进行协商的能力。因此，这也保证了暴露到一条QUIC连接两个终端之外的信息量最少。QUIC协议在本文明确禁止之外的任何方面，都是可以在不同版本之间修改的。</p>
+<p>附录A包含一份非详尽的清单，列出了一些基于对QUIC版本1的了解可能做出的不正确的猜想，这些不适用于QUIC的任何版本。</p>
+<h3 id="3-规约及定义">3. 规约及定义</h3>
+<h3 id="4-标准规范">4. 标准规范</h3>
+<p>复杂的字段被命名后，由紧随命名的一个以一对花括号括起来的字段列表描述，列表中的字段以逗号分隔。</p>
+<p>单个字段包括长度信息、带正号的定值、可选值或本字段的副本。单个字段使用下述标准规范，且所有长度都以比特为单位：</p>
+<p><code>x (A)</code>: 表示<code>x</code>是<code>A</code>比特长度</p>
+<p><code>x (A..B)</code>: 表示<code>x</code>的长度可以是从<code>A</code>到<code>B</code>的所有值，省略<code>A</code>表示最小零位，并且省略<code>B</code>表示没有设置上限。这种格式的值总是以字符边界结束。</p>
+<p><code>x (L) = C</code>: 表示<code>x</code>有一个定值<code>C</code>，且<code>x</code>的长度为<code>L</code>，<code>L</code>可以用上述任何长度格式</p>
+<p><code>x (L) ...</code>: 表示<code>x</code>重复0次或以上次数，且每个实例长度为<code>L</code></p>
+<p>本文使用网络字节序(大端序)</p>
+<p>示例结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Example</span> <span class="n">Structure</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="n">One</span><span class="o">-</span><span class="n">bit</span> <span class="n">Field</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="mi">7</span><span class="o">-</span><span class="n">bit</span> <span class="n">Field</span> <span class="n">with</span> <span class="n">Fixed</span> <span class="n">Value</span> <span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">=</span> <span class="mi">61</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Arbitrary</span><span class="o">-</span><span class="n">Length</span> <span class="n">Field</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Variable</span><span class="o">-</span><span class="n">Length</span> <span class="n">Field</span> <span class="p">(</span><span class="mf">8..24</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Repeated</span> <span class="n">Field</span> <span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="p">...,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5-quic-packets">5. QUIC Packets</h3>
+<p>QUCI终端之间交换包含一个或多个QUIC数据包的UDP报文。本章描述QUIC包的不变特性。一个版本的QUIC准许多个QUIC数据包包含于同一个UDP报文里，但是其不变的特性只要求报文里的首个数据包保持。</p>
+<p>QUIC定义了两类数据包头：长包头与短包头。有长包头的数据包由其首个字节的首个比特位设置为1判定，而短包头数据包这个比特位设置为0。</p>
+<p>QUIC数据包可能被完全保护，包括包头。然而，QUIC版本协商包不会被完全保护，详见第6章。</p>
+<p>除了这里描述的值之外，QUIC数据包的有效负载是由各个版本决定且任意长度的。</p>
+<h4 id="51-长header">5.1 长Header</h4>
+<p>长Header格式</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1741,28 +1774,59 @@
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;github.com/lucas-clemente/quic-go/http3&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">engine</span> <span class="o">*</span><span class="nx">Engine</span><span class="p">)</span> <span class="nf">RunQUIC</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span> <span class="nx">certFile</span><span class="p">,</span> <span class="nx">keyFile</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">debugPrint</span><span class="p">(</span><span class="s">&#34;Listening and serving QUIC on %s\n&#34;</span><span class="p">,</span> <span class="nx">addr</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span> <span class="nf">debugPrintError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">}()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">engine</span><span class="p">.</span><span class="nf">isUnsafeTrustedProxies</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nf">debugPrint</span><span class="p">(</span><span class="s">&#34;[WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.\n&#34;</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">			<span class="s">&#34;Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="p">=</span> <span class="nx">http3</span><span class="p">.</span><span class="nf">ListenAndServeQUIC</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span> <span class="nx">certFile</span><span class="p">,</span> <span class="nx">keyFile</span><span class="p">,</span> <span class="nx">engine</span><span class="p">.</span><span class="nf">Handler</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Long</span> <span class="n">Header</span> <span class="n">Packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Header</span> <span class="n">Form</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Version</span><span class="o">-</span><span class="n">Specific</span> <span class="n">Bits</span> <span class="p">(</span><span class="mi">7</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Version</span> <span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..2040</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..2040</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Version</span><span class="o">-</span><span class="n">Specific</span> <span class="n">Data</span> <span class="p">(..),</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>其中quic-go是纯Go的QUIC实现，许多大型项目已经在使用这个库。</p>
-<p>测试也跟TestRunTLS一模一样</p>
+</div><p>QUIC长包头数据包其首字节最高比特位设置为1，其余比特位则视具体版本而定。</p>
+<p>随后的四个字节包含一个32位版本字段，关于版本详见第5.4章。</p>
+<p>接下来的一个字节包含紧随其后的目标连接ID字段的长度，且该长度值以字节计数，并被编码为一个8位无符号整数。目标连接ID字段紧随目标连接ID长度字段，其长度在0到255字节之间。连接ID详见第5.3章。</p>
+<p>接下来的一个字节包含紧随其后的源连接ID字段的长度，且该长度值以字节计数，并被编码为一个8位无符号整数。源连接ID字段紧随源连接ID长度字段，其长度在0-255字节之间。</p>
+<p>数据包接下来剩余字段包含与QUIC版本特定相关的内容。</p>
+<h4 id="52-短header">5.2 短Header</h4>
+<p>短Header格式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Short</span> <span class="n">Header</span> <span class="n">Packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Header</span> <span class="n">Form</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Version</span><span class="o">-</span><span class="n">Specific</span> <span class="n">Bits</span> <span class="p">(</span><span class="mi">7</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Version</span><span class="o">-</span><span class="n">Specific</span> <span class="n">Data</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>短包头QUIC数据包的首字节的最高位设置为0。</p>
+<p>短包头数据包紧随首字节之后是一个目标连接ID。短包头不会包含目标连接ID长度、源连接ID长度、源连接ID或版本字段。目标连接ID的长度不会编码在短包头数据包里，也不会受限于这个特性。</p>
+<p>数据包接下来剩余字段有与版本特定相关的语义。</p>
+<h4 id="53-连接id">5.3 连接ID</h4>
+<p>连接ID是一个任意长度的不透明字段。</p>
+<p>连接ID的主要功能是确保底层协议（UDP、IP及更底层的协议栈）发生地址变更时不会导致一个QUIC连接的数据包被传输到错误的QUIC终端上。连接ID由终端及支持的中间设备用以确保每个数据包能够被调度到相应终端的正确实体上。对于终端而言，连接ID用于标识数据包对应的QUIC连接。</p>
+<p>连接ID由每个终端根据版本特定的方式选择，而同一个QUIC连接的数据包可能使用不同的连接ID。</p>
+<h4 id="54-版本">5.4 版本</h4>
+<p>版本字段包含一个4字节标识符。该值可供终端用以标识一个QUIC版本。值为<code>0x00000000</code>的版本字段保留给版本协商使用，详见第6章，而任何其余值均可能有效。</p>
+<p>本文描述的属性适用于所有版本的QUIC。不符合本文所述属性的协议不是QUIC协议。后续文档可以给某个特定QUIC版本或一系列QUIC版本增加其他的属性。</p>
+<h3 id="6-版本协商">6. 版本协商</h3>
+<p>QUIC终端收到一个带长包头的数据包及一个其不能理解或不支持的版本时，就可能回复一个版本协商包。短包头数据包不会触发版本协商。</p>
+<p>版本协商包设置上首个字节的高位，也就是说它是一个在第5.1章定义的长包头数据包。版本协商包可以通过其版本字段识别，因为这个字段会被设置为<code>0x00000000</code>。</p>
+<p>版本协商包</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1775,96 +1839,314 @@
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;github.com/stretchr/testify/assert&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// params[0]=url example:http://127.0.0.1:8080/index (cannot be empty)
-</span></span></span><span class="line"><span class="cl"><span class="c1">// params[1]=response status (custom compare status) default:&#34;200 OK&#34;
-</span></span></span><span class="line"><span class="cl"><span class="c1">// params[2]=response body (custom compare content)  default:&#34;it worked&#34;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">testRequest</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">,</span> <span class="nx">params</span> <span class="o">...</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">t</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="s">&#34;url cannot be empty&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">tr</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Transport</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">TLSClientConfig</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">tls</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">InsecureSkipVerify</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="p">},</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">client</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Client</span><span class="p">{</span><span class="nx">Transport</span><span class="p">:</span> <span class="nx">tr</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="nx">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">body</span><span class="p">,</span> <span class="nx">ioerr</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">ioerr</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">responseStatus</span> <span class="p">=</span> <span class="s">&#34;200 OK&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">responseStatus</span> <span class="p">=</span> <span class="nx">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">responseBody</span> <span class="p">=</span> <span class="s">&#34;it worked&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="nx">params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">responseBody</span> <span class="p">=</span> <span class="nx">params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">assert</span><span class="p">.</span><span class="nf">Equal</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">responseStatus</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Status</span><span class="p">,</span> <span class="s">&#34;should get a &#34;</span><span class="o">+</span><span class="nx">responseStatus</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">responseStatus</span> <span class="o">==</span> <span class="s">&#34;200 OK&#34;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">assert</span><span class="p">.</span><span class="nf">Equal</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">responseBody</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span> <span class="s">&#34;resp body should match&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">TestRunQUIC</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">router</span> <span class="o">:=</span> <span class="nf">New</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">router</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/example&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span> <span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;it worked&#34;</span><span class="p">)</span> <span class="p">})</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">		<span class="nx">assert</span><span class="p">.</span><span class="nf">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">router</span><span class="p">.</span><span class="nf">RunQUIC</span><span class="p">(</span><span class="s">&#34;:8443&#34;</span><span class="p">,</span> <span class="s">&#34;./testdata/certificate/cert.pem&#34;</span><span class="p">,</span> <span class="s">&#34;./testdata/certificate/key.pem&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="c1">// have to wait for the goroutine to start and run the server
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// otherwise the main thread will complete
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nx">assert</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">router</span><span class="p">.</span><span class="nf">RunQUIC</span><span class="p">(</span><span class="s">&#34;:8443&#34;</span><span class="p">,</span> <span class="s">&#34;./testdata/certificate/cert.pem&#34;</span><span class="p">,</span> <span class="s">&#34;./testdata/certificate/key.pem&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">testRequest</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="s">&#34;https://localhost:8443/example&#34;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Version</span> <span class="n">Negotiation</span> <span class="n">Packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Header</span> <span class="n">Form</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Unused</span> <span class="p">(</span><span class="mi">7</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Version</span> <span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..2040</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..2040</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Supported</span> <span class="n">Version</span> <span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="p">...,</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="curl-http3">Curl http3</h2>
-<p>直接修改Gin源码添加RunQUIC函数支持http3，并编写简单server</p>
+</div><p>版本协商包只有首字节最重要的那个比特位有着任意定义的值。其剩余的7个比特位标记为“未使用”，在发送的时候可以被设置为任意值，且必须被接收端忽略。</p>
+<p>版本协商包紧随源连接ID字段后面的是一个支持版本字段的列表，该列表每个字段标识终端能够支持的版本（也就是客户端支持的QUIC版本的版本号挨个列下去）。版本协商包不包含其他字段，终端必须忽略不包含支持版本字段或包含不完整版本值的包。</p>
+<p>版本协商包不使用完全的或加密的保护。某些特定的QUIC版本可能包含准许终端鉴别支持版本列表里的值是否存在修改或损坏的协议手段。</p>
+<p>终端必须在其目标连接ID字段包含它收到的数据包的源连接ID值。必须将收到数据包的目标连接ID字段值复制给源连接ID字段，该值是客户端随机产生的。回显两个连接ID给客户端一些保证，表明服务端收到了包，且版本协商包不是由对其不可见的攻击者生成的。</p>
+<p>终端收到版本协商包后，可以在随后的数据包中更改QUIC版本。终端更改QUIC版本的条件将取决于其选择的版本。</p>
+<p>《QUIC协议》详细描述了支持QUIC版本1的终端如何创建及处理一个版本协商包。</p>
+<h3 id="7-安全及隐私考量">7. 安全及隐私考量</h3>
+<p>中间件可能能够识别特定版本的QUIC的一些特性，并假设其他版本的QUIC表现出类似特征时，其底层正在表达一致的语义。这样的特性有好几个，详见附录A。QUIC版本1已经做了一些工作消除或隐藏一些可见的特征，但是许多这样的特性仍然维持现状。后续其他QUIC版本可能改变设计从而表现出不同的特征。</p>
+<p>QUIC版本号不会出现在所有QUIC数据包中，这意味着以一个基于版本的特征从一条流中可靠地提取信息需要中间件为每个连接ID保留状态。</p>
+<p>本文所述版本协商包不会被完整保护，仅仅对攻击者的介入做了适度保护。如果终端试图改用不同的QUIC版本，那么它必须验证版本协商包的语义内容。</p>
+<h4 id="附录a不正确的猜想">附录A：不正确的猜想</h4>
+<p>QUIC版本1《<a href="https://autumnquiche.github.io/RFC8999_Chinese_Translation/#QUIC_TRANSPORT">QUIC协议</a>》有一系列特性没有被保护为外部不可见，但是一般认为可以在后续的QUIC版本中更改。</p>
+<p>本章列出了基于QUIC版本1的了解可能做出的一些错误猜想，其中一些陈述甚至对QUIC版本1也是错误的。这个列举并不充分，目的在于做一些阐述。</p>
+<p>对于一个QUIC版本，下述任意一条甚至所有的陈述都可能是错的：</p>
+<ul>
+<li>QUIC使用TLS《QUIC TLS》，而链路上一些TLS的信息是可见的。</li>
+<li>QUIC长包头只在连接建立阶段发生更改。</li>
+<li>五元组上的每条流都会包含一个连接建立过程。</li>
+<li>一条流的前几个包使用长包头。</li>
+<li>在一段长时间的静默前的最后一个包只包含一个确认信息。</li>
+<li>QUIC使用关联数据加密认证（AEAD）函数（AEAD_AES_128_GCM，详见RFC5116保护在连接建立阶段交换的数据包。</li>
+<li>QUIC数据包号是加密的，且是数据包的初始加密字节。</li>
+<li>QUIC数据包号每发送一个包递增1。</li>
+<li>客户端发送的首个QUIC握手包不能小于一个特定尺寸。</li>
+<li>QUIC规定客户端发送第一个包。</li>
+<li>QUIC数据包首字节的第二个比特位总是设置为1的（0x40）。</li>
+<li>QUIC版本协商包只会由服务端发出。</li>
+<li>QUIC连接ID很少发生改变。</li>
+<li>QUIC终端会在发送完一个版本协商包后改变QUIC版本。</li>
+<li>QUIC长包头的版本字段在两个方向上都是一样的。</li>
+<li>QUIC包版本字段有一个代表某QUIC版本的值意味着连接用的就是相应的QUIC版本。</li>
+<li>任何一对QUIC终端之间一次只有一个QUIC连接建联。</li>
+</ul>
+<h2 id="rfc9000">RFC9000</h2>
+<h2 id="rfc9114">RFC9114</h2>
+<p>HTTP/1.1直接使用空格和crlf来分割传递数据，虽然可读性高但是网络利用率不高，多个请求使用对个TCP连接并行请求还会加重拥塞。</p>
+<p>HTTP/2引入了binary framing和multiplexing layer，在不修改传输层的清苦那个下改善延迟。然而，HTTP/2的多路复用并行性质对TCP的丢失机制是不可见的(TCP向上提供透明服务)，一个丢失或者重新排序的数据包会导致所有的活动事务经历一个暂停，而不管该事务是否直接收到丢失数据包的影响。</p>
+<p>QUIC协议合并了stream multiplexing和per-stream control，通过提供流级别的可靠性和整个连接的拥塞控制，提高HTTP性能。QUIC在传输层合并了TLS 1.3提供HTTPS的机密性和完整性，改进了TCP Fast Open的连接设置延迟。</p>
+<p>QUIC提供了协议协商、基于流的多路复用和流控制。HTTP/3请求的多路复用是使用QUIC抽象流来执行的，每个请求响应对消耗单一的QUIC流，流之间相互独立，一个流的阻塞和抛弃不会影响其他流。</p>
+<p>每个流中，HTTP/3通信的基本单元式frame。每个frame都有不同的用途，例如<code>HEADERS</code>和<code>DATA</code> frame构成了HTTP请求和相应的基础。</p>
+<p>server push是HTTP/2中引入的交互模式,允许server在client发出指定请求前想clent推送一个request-respose exchange。几个HTTP/3 frame被用来管理server push，如<code>PUSH_PROMISE</code>、<code>MAX_PUSH_ID</code>和<code>CANCEL_PUSH</code>.</p>
+<p>文档组织</p>
+<ul>
+<li>第三章介绍了如何发现HTTP/3断点和如何建立连接</li>
+<li>第四章描述如何使用frame来表达HTTP语义</li>
+<li>第五章描述了HTTP/3连接时如何被优雅或者突然地停止的</li>
+<li>第六章描述了使用QUIC流的方式</li>
+<li>第七章描述了大多数流上使用的帧</li>
+</ul>
+<h3 id="第三章连接设置和管理">第三章、连接设置和管理</h3>
+<p><code>发现HTTP/3 endpoint</code></p>
+<p>client访问https的uri资源，解析成IP地址，在指定端口建立QUIC连接，通过安全连接向server发送HTTP/3请求。连接问题(阻塞UDP)可能导致无法建立QUIC连接，这种情况client尝试基于tcp版本的HTTP</p>
+<p>可以通过HTTP相应头字段告知端口支持HTTP/3协议</p>
+<pre tabindex="0"><code>Alt-Svc: h3=&#34;:50781&#34;
+</code></pre><p>接收到Alt-Svc响应client尝试建立QUIC连接</p>
+<p><code>连接建立</code></p>
+<p>QUIC建立连接，使用TLS1.3以上进行握手，握手中通过选择APLN令牌h3表示HTTP/3支持，其他应用层协议的支持可以在相同握手中提供。QUIC核心协议相关选项在初始加密握手设置时，HTTP3的设置传入到<code>SETTINGS</code> frame。QUIC连接建立后，<code>SETTINGS</code> frame必须被每个端点作为HTTP控制流的初始frame发送。</p>
+<p><code>连接复用</code></p>
+<p>为了使用一个现有的连接到一个新的源，客户端必须验证服务器为新的源服务器提供的证书，这意味着客户端需要保留服务器证书和验证该证书需要的任何额外信息，不这样做的客户端将无法为其其他来源重用连接。</p>
+<h3 id="第四章在http3中表达http语义">第四章、在HTTP3中表达HTTP语义</h3>
+<p>一个HTTP消息包括</p>
+<ul>
+<li>
+<ol>
+<li>header，sent as single HEADERS frame</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Optional content，sent as a series of DATA frames</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>Optional tailer section, sent as a single HEADERS frame</li>
+</ol>
+</li>
+</ul>
+<p>接收到无效的帧序列作为  <code>H3_FRAME_UNEXPECTED</code> 类型的连接错误，如DATA在HEADERS前</p>
+<p>服务端可以在响应消息交错推送<code>PUSH_PROMISE</code>帧，包含<code>PUSH_PROMISE</code>帧的推送响应必然被视为<code>H3_FRAME_UNEXPECTED</code>类型的错误连接</p>
+<p>HTTP请求响应完全消费双向QUIC流，当client发送请求后必须关闭发送流，客户端绝对不能让流关闭依赖于接收到对其请求的响应，在发送最终响应后，服务端必须关闭发送流。这时，QUIC流完全关闭。</p>
+<p>如果客户端发起流在没有提供足够HTTP message以供响应而终止，server abort错误码<code>H3_REQUEST_INCOMPLETE</code></p>
+<p><code>H3_REQUEST_REJECTED</code> vs <code>H3_REQUEST_CANCELLED</code></p>
+<p>server不能使用REJECTED处理部分响应请求</p>
+<p>完整响应被取消可以使用 部分响应被取消不能使用 幂等请求可安全重试</p>
+<p>畸形请求以<code>H3_MESSAGE_ERROE</code>的流错误处理</p>
+<p><code>HTTP Fields</code></p>
+<p>QPACK(HTTP3)描述了HPACK(HTTP2)的变体,压缩包头和尾部部分，包括出现在报头部分的控制数据。为了获得更好的压缩效率，Cookies字段可能被分成多个fields line，如果解压缩的字段包含多个cookie字段，这些行必须以<code>; </code>(0x3b 0x20)分割</p>
+<p>server收到header过大可以发送一个HTTP 431状态码</p>
+<p><code>HTTP Control Data</code></p>
+<p>伪报头以<code>:</code>（0x3a）开头 携带控制数据，请求伪报头不能出现在响应中 反之亦然，伪报头不能出现在尾部部分</p>
+<p>所有HTTP/3请求必须包含 <code>:method</code>, <code>:scheme</code>, and <code>:path</code> 伪首部</p>
+<p>响应是 <code>:status</code> 伪报头 携带状态码</p>
+<p>HTTP3不支持HTTP升级机制</p>
+<p><code>Server Push</code></p>
+<p>推送ID从0开始，通过<code>MAX_PUSH_ID</code> frame控制服务器可以承诺的最大推送ID</p>
+<p>ID用于一个或多个<code>PUSH_PROMISE</code>frames 携带控制数据和报头字段，这些frames发送到生成push的request stream，这允许server push和client请求关联，当相同的pushID被承诺在不同的request streams中时，解压后的request field必须包含相同的同顺序fields，键值也必须相同。然后pushID被包含在最终实现这些promise的push steam中，push stream识别他实现的pushID然后包含promised request对应的response</p>
+<p>reordering，数据可能在<code>PUSH_PROMISE</code>前到达，客户端缓冲数据等待匹配。</p>
+<h3 id="第六章stream-mapping-and-usage">第六章、Stream Mapping and Usage</h3>
+<p>QUIC stream提供可靠的按序bytes，传输层对接收到的流数据进行缓冲和排序，向应用程序expose一个可靠的字节流。QUIC流可以是双向的也可以是单向的，可以由客户端发起也可以由服务端发起。HTTP使用QUIC发送数据，QUIC层处理大部分流管理，HTTP不需要做任何单独的多路复用处理，通过QUIC流发送的数据总是映射到一个特定的HTTP事务或整个HTTP3连接上下文。</p>
+<h4 id="双向流">双向流</h4>
+<p>所有客户端发起的双向流都用于HTTP请求和响应。双向流确保响应可以很容易地与请求相关联。这些流被称为请求流。<br />
+这意味着客户端第一个请求发生在QUIC流 0上，随后的请求发生在流4、流8上，以此类推。为了允许这些流打开，HTTP/3服务器应该为允许的流的数量和初始流的流量控制窗口配置非零的最小值。为了减少并行度限制，一次至少应该允许100个请求流。</p>
+<h4 id="单向流">单向流</h4>
+<p>任何一个单向流都可以用于不同的用于，用途由流类型表示，在流的开头以变长整数形式发送，这个整数后面的数据格式和结构由流类型决定。</p>
+<p>单向流header:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Unidirectional</span> <span class="n">Stream</span> <span class="n">Header</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Stream</span> <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>本文档定义了控制流和push流，每个端点需要为HTTP控制流创建至少一个单向流，QPACK需要两个额外的单向流，因此server client发送的传输参数必须允许对等端创建至少三个单项流。</p>
+<p><code>Control Streams</code></p>
+<p>控制流由0x00表示，该流上的数据由HTTP3 frames组成</p>
+<p>每一方必须在连接开始时启动一个控制流，并将其<code>SETTINGS</code> frame作为第一个frame发送</p>
+<p><code>Push Streams</code></p>
+<p>推送流由0x01表示，后面跟着他锁实现的承诺的push ID，编码为边长整型，该流剩余数据又HTTP3 frames组成</p>
+<p>push stream header:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Push</span> <span class="n">Stream</span> <span class="n">Header</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Stream</span> <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x01</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Push</span> <span class="n">ID</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>Reserved Stream Types</code></p>
+<h3 id="第七章http-framing-layer">第七章、HTTP Framing Layer</h3>
+<p>下表表示HTTP3 frames和他们允许的流类型</p>
+<table>
+<thead>
+<tr>
+<th align="left">Frame</th>
+<th align="left">Control Stream</th>
+<th align="left">Request Stream</th>
+<th align="left">Push Stream</th>
+<th align="left">Section</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-data">DATA</a></td>
+<td align="left">No</td>
+<td align="left">Yes</td>
+<td align="left">Yes</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-data">Section 7.2.1</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-headers">HEADERS</a></td>
+<td align="left">No</td>
+<td align="left">Yes</td>
+<td align="left">Yes</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-headers">Section 7.2.2</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-cancel-push">CANCEL_PUSH</a></td>
+<td align="left">Yes</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-cancel-push">Section 7.2.3</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-settings">SETTINGS</a></td>
+<td align="left">Yes (1)</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-settings">Section 7.2.4</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-push-promise">PUSH_PROMISE</a></td>
+<td align="left">No</td>
+<td align="left">Yes</td>
+<td align="left">No</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-push-promise">Section 7.2.5</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-goaway">GOAWAY</a></td>
+<td align="left">Yes</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-goaway">Section 7.2.6</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-max-push-id">MAX_PUSH_ID</a></td>
+<td align="left">Yes</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-max-push-id">Section 7.2.7</a></td>
+</tr>
+<tr>
+<td align="left">Reserved</td>
+<td align="left">Yes</td>
+<td align="left">Yes</td>
+<td align="left">Yes</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9114.html#frame-reserved">Section 7.2.8</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="frame-layout">Frame Layout</h4>
+<p>所有的frame有下面的格式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">HTTP</span><span class="o">/</span><span class="mi">3</span> <span class="n">Frame</span> <span class="n">Format</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Frame</span> <span class="n">Payload</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Type:变长整数表示frames类型</p>
+<p>Length:边长整数表示frames长度</p>
+<p>Frame Payload:数据</p>
+<h4 id="frame-definitions">Frame Definitions</h4>
+<p><code>DATA</code></p>
+<p>DATA frame 0x00 可变长字节序列</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">DATA</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Data</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>HEADERS</code></p>
+<p>headers 0x01 用于携带QPACK编码的HTTP fields</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">HEADERS</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x01</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Encoded</span> <span class="n">Field</span> <span class="n">Section</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>headers frame 只能在请求流或者push stream中发送</p>
+<p><code>CANCEL_PUSH</code></p>
+<p>cancel_push 0x03 用来在接收到推送流之前取消server push</p>
+<p>client发送表示不想要</p>
+<p>server发送表示不会履行承诺</p>
+<p>携带一个push ID，标识被取消的server push</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">CANCEL_PUSH</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x03</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Push</span> <span class="n">ID</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>Settings</code></p>
+<p>settings 0x04 传递配置参数 比如对等行为的偏好和约束，应用于整个HTTP3连接而不是整个流</p>
+<p>settings frame只能在control stream上发送</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1877,35 +2159,82 @@
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Setting</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Identifier</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Value</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;net/http&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/gin-gonic/gin&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">router</span> <span class="o">:=</span> <span class="nx">gin</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">router</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/example&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span> <span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;ruokeqx http3 worked&#34;</span><span class="p">)</span> <span class="p">})</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">router</span><span class="p">.</span><span class="nf">RunQUIC</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="s">&#34;./cert.pem&#34;</span><span class="p">,</span> <span class="s">&#34;./key.pem&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">SETTINGS</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x04</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Setting</span> <span class="p">(..)</span> <span class="p">...,</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>手动编译[5]支持http3的curl进行访问，编译的时候要注意点是<code>&lt;somewhere1&gt;/lib</code>实际上是<code>&lt;somewhere1&gt;/lib64</code> 否则会编译出错[5]</p>
-<p><img src="/images/posts/QUIC&amp;HTTP3_DEMO/image-20220709132919677.png" alt="image-20220709132919677" /></p>
-<h2 id="ref">Ref</h2>
-<p>[1] <a href="https://en.wikipedia.org/wiki/Head-of-line_blocking">wiki HOL blocking</a></p>
-<p>[2] <a href="https://network.51cto.com/article/625999.html">图解|为什么HTTP3.0使用UDP协议</a></p>
-<p>[3] <a href="https://github.com/gin-gonic/gin/pull/3210/files">Gin PR 3210 experimental: support http3</a></p>
-<p>[4] <a href="https://blog.cloudflare.com/http3-the-past-present-and-future/">Cloudflare http3</a></p>
-<p>[5] <a href="https://github.com/curl/curl/blob/master/docs/HTTP3.md">build http3 curl</a></p>
-<p>[6] <a href="https://en.wikipedia.org/wiki/HTTP/3">Wiki http3</a></p>
+</div><p>忽略所有不理解的标识符参数</p>
+<p><code>PUSH_PROMISE</code></p>
+<p>push_promise 0x05 用于在请求流中携带从服务器到客户端的被承诺的请求报头片段</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">PUSH_PROMISE</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x05</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Push</span> <span class="n">ID</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Encoded</span> <span class="n">Field</span> <span class="n">Section</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>encoded field section被承诺响应的QPACK请求报头字段</p>
+<p>客户端绝对不能发送PUSH_PROMISE frame</p>
+<p><code>GOAWAY</code></p>
+<p>GOAWAY frame 0x07 用于启动HTTP3连接的任意断点的优雅关闭</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">GOAWAY</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x07</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Stream</span> <span class="n">ID</span><span class="o">/</span><span class="n">Push</span> <span class="n">ID</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>只能在控制流上传输，应用于整个连接</p>
+<p><code>MAX_PUSH_ID</code></p>
+<p>max_push_id 0x0d 被客户端用来控制服务器可以发起的服务器推送数量。</p>
+<p>只能在控制流上发送，server不能发送，server在收到MAX_PUSH_ID前不能推送，frame携带一个边长整数用来标识server可以使用的推送ID最大值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">MAX_PUSH_ID</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x0d</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Push</span> <span class="n">ID</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>Reserved Frame Types</code></p>
 
     </article>
     
@@ -2233,6 +2562,10 @@
     <ul class="related-ul">
         
         <li>
+          <a href="/posts/quichttp3_demo/" class="related__link">浅尝QUIC和HTTP3</a>
+        </li>
+        
+        <li>
           <a href="/posts/ebpf_bypass_iptables/" class="related__link">eBPF bypass iptables</a>
         </li>
         
@@ -2251,21 +2584,14 @@
 <nav class="pagination-single">
   
     
-      <a href="https://ruokeqx.gitee.io/posts/offensive_bpf/" class="pagination-single__left">
+      <a href="https://ruokeqx.gitee.io/posts/quichttp3_demo/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">offensive eBPF——使用BPF后门、修改文件、隐藏进程</div>      
+        <div class="pagination-single__left-title">浅尝QUIC和HTTP3</div>      
       </a>
     
     <div class="grow"></div>
-    
-      <a href="https://ruokeqx.gitee.io/posts/quichttp3_related_rfc/" class="pagination-single__right">      
-        <div class="pagination-single__right-title">QUIC&amp;HTTP3相关RFC文档阅读</div>
-        <div class="pagination-single__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
-        </div>
-      </a>
     
   
 </nav>
@@ -2621,12 +2947,47 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="toc hide" data-dir="ltr" data-folding="true" data-ani="true">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#http概述">HTTP概述</a></li>
-    <li><a href="#http3的优化">HTTP3的优化</a></li>
-    <li><a href="#现有库实现">现有库实现</a></li>
-    <li><a href="#gin的http3支持">Gin的HTTP3支持</a></li>
-    <li><a href="#curl-http3">Curl http3</a></li>
-    <li><a href="#ref">Ref</a></li>
+    <li><a href="#rfc8999">RFC8999</a>
+      <ul>
+        <li><a href="#1-quic的一个高度抽象的描述">1. QUIC的一个高度抽象的描述</a></li>
+        <li><a href="#2-所有quic版本固定的属性">2. 所有QUIC版本固定的属性</a></li>
+        <li><a href="#3-规约及定义">3. 规约及定义</a></li>
+        <li><a href="#4-标准规范">4. 标准规范</a></li>
+        <li><a href="#5-quic-packets">5. QUIC Packets</a>
+          <ul>
+            <li><a href="#51-长header">5.1 长Header</a></li>
+            <li><a href="#52-短header">5.2 短Header</a></li>
+            <li><a href="#53-连接id">5.3 连接ID</a></li>
+            <li><a href="#54-版本">5.4 版本</a></li>
+          </ul>
+        </li>
+        <li><a href="#6-版本协商">6. 版本协商</a></li>
+        <li><a href="#7-安全及隐私考量">7. 安全及隐私考量</a>
+          <ul>
+            <li><a href="#附录a不正确的猜想">附录A：不正确的猜想</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#rfc9000">RFC9000</a></li>
+    <li><a href="#rfc9114">RFC9114</a>
+      <ul>
+        <li><a href="#第三章连接设置和管理">第三章、连接设置和管理</a></li>
+        <li><a href="#第四章在http3中表达http语义">第四章、在HTTP3中表达HTTP语义</a></li>
+        <li><a href="#第六章stream-mapping-and-usage">第六章、Stream Mapping and Usage</a>
+          <ul>
+            <li><a href="#双向流">双向流</a></li>
+            <li><a href="#单向流">单向流</a></li>
+          </ul>
+        </li>
+        <li><a href="#第七章http-framing-layer">第七章、HTTP Framing Layer</a>
+          <ul>
+            <li><a href="#frame-layout">Frame Layout</a></li>
+            <li><a href="#frame-definitions">Frame Definitions</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
