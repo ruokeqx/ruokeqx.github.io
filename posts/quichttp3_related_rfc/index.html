@@ -1715,7 +1715,7 @@
 <h2 id="rfc8999">RFC8999</h2>
 <p>RFC8999十分简单 甚至比一些简短的论文还要短，他的目录也十分简单，毕竟只是定义了QUIC协议的一些通识信息。</p>
 <p>内容不多，最关键的就是描述了一个长包短包，ID和版本及版本协商相关内容。其中定义结构通过观察流量包内容可以得到验证</p>
-<p><img src="/images/posts/RFC8999&amp;RFC9000/image-20220710153659482.png" alt="image-20220710153659482" /></p>
+<p><img src="/images/posts/QUIC&amp;HTTP_RFC/image-20220710153659482.png" alt="image-20220710153659482" /></p>
 <p>上面抓到的Version id都是1，基于RFC9000实现。查看Wireshark源码[wireshark/epan/dissectors/packet-quic.c](<a href="https://gitlab.com/wireshark/wireshark/-/blob/master/epan/dissectors/packet-quic.c">epan/dissectors/packet-quic.c · master · Wireshark Foundation / wireshark · GitLab</a>)可以看到其实已经有很多公司内部实现的协议版本了。</p>
 <p>以下是原文内容</p>
 <h3 id="1-quic的一个高度抽象的描述">1. QUIC的一个高度抽象的描述</h3>
