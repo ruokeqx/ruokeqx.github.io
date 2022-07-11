@@ -14,11 +14,39 @@
     <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
     <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
     <copyright>©2022, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 10 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://ruokeqx.gitee.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
 
+      
+      <item>
+        <title>quic-go库源码阅读</title>
+        <link>https://ruokeqx.gitee.io/posts/quic-go_source/</link>
+        <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Mon, 11 Jul 2022 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/quic-go_source/</guid>
+        <description>https://github.com/lucas-clemente/quic-go quic-go——A QUIC implementation in pure go quic-go实现了QUIC协议,并实现了HTTP3,本文对其源码进行简单阅读 http3包一共5000行代码</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>network</category>
+            
+          
+            
+              <category>http3</category>
+            
+          
+        
+        
+        
+      </item>
       
       <item>
         <title>QUIC&amp;HTTP3相关RFC文档阅读</title>
@@ -37,6 +65,10 @@
           
             
               <category>network</category>
+            
+          
+            
+              <category>http3</category>
             
           
         
@@ -61,6 +93,10 @@
           
             
               <category>network</category>
+            
+          
+            
+              <category>http3</category>
             
           
         
