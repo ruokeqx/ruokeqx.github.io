@@ -1688,7 +1688,7 @@
 <div class="single__infos">
   <time class="single__info" title="Written At">📅&nbsp;Jul 10, 2022 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;16&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;29&nbsp;min read </span>
   
   <span class="single__info">
      &middot; 👀<span id="busuanzi_value_page_pv">...</span> views
@@ -1889,7 +1889,1166 @@
 <li>任何一对QUIC终端之间一次只有一个QUIC连接建联。</li>
 </ul>
 <h2 id="rfc9000">RFC9000</h2>
-<h2 id="rfc9114">RFC9114</h2>
+<p>QUIC是一个面向连接的协议，在客户端及服务端之间建立有状态的交互。</p>
+<p>QUIC握手由密钥协商及传输参数协商组成。QUIC集成了TLS握手《TLS 1.3》，同时以自定义的帧保护数据包。更多关于TLS与QUIC集成的细节描述详见《QUIC-TLS》。握手过程被设计成支持尽早交换应用数据（0-RTT），包含一个需要通过某种形式的提前交流或配置来开启的客户端选项。</p>
+<p>终端通过QUIC交流是以交互QUIC数据包的形式实现的。大多数数据包装载着一个或多个在终端间搬运控制信息和应用数据的帧。QUIC会验证每个包的内容，并根据实际情况对每个数据包进行加密。QUIC数据包通过UDP报文《UDP》传输从而能够更好地支持现有的系统及网络环境。</p>
+<p>应用层协议通过流在QUIC连接上交换信息，每条流都是有序的字节序列。流的类型分两种：双向流，支持双端发送数据；以及单向流，只支持一端发送数据。QUIC使用一种基于额度的方案来限制流的创建以及每条流可以发送的数据量。</p>
+<p>QUIC以提供必要反馈的方式实现可靠传输及拥塞控制，《QUIC恢复》第6章描述了QUIC的一种数据丢失及恢复算法；QUIC通过拥塞控制避免网络拥塞，《QUIC恢复》第7章描述了QUIC的一种典型拥塞控制算法。</p>
+<p>QUIC连接不会严格限制在一条单独的网络通道上。连接迁移根据连接标识符将连接迁移到一个新的网络通道上。当前版本QUIC只支持客户端进行连接迁移。在改变网络或地址映射——如NAT重定向——后，这个设计使连接仍然能够继续下去而不会断开。</p>
+<p>有多种方式可以关闭连接。应用程序可以平滑关闭连接；双端可以协商一个超时时间段在超时后关闭连接；触发错误能够立即断开连接；一端失去状态后也能通过一种无状态机制关闭连接。</p>
+<p><code>文档结构</code></p>
+<p>流是QUIC支持的基本服务抽象层。</p>
+<ul>
+<li>第2章描述流相关的核心概念，</li>
+<li>第3章提供一个流状态的参考模型，</li>
+<li>第4章概述流量控制的过程。</li>
+</ul>
+<p>连接是QUIC终端交流的上下文。</p>
+<ul>
+<li>第5章描述连接相关的核心概念，</li>
+<li>第6章描述版本协商</li>
+<li>第7章详细描述连接建立的过程，</li>
+<li>第8章描述地址验证及危险的拒绝服务迁移攻击，</li>
+<li>第9章描述终端如何将一个连接迁移到新的网络通道上，</li>
+<li>第10章列举关闭一个已打开连接的各个方式，以及</li>
+<li>第11章给流与连接错误处理提供指导。</li>
+</ul>
+<p>数据包和帧是QUIC交流的基本单元。</p>
+<p>第12章描述数据包与帧相关的概念，<br />
+第13章定义数据传输、重传和确认的模型，以及<br />
+第14章描述指定携带QUIC数据包的数据报大小的规则。</p>
+<p>最后，QUIC协议要素的编码细节描述在：</p>
+<ul>
+<li>第15章版本，</li>
+<li>第16章整型编码，</li>
+<li>第17章数据包头部，</li>
+<li>第18章传输参数，</li>
+<li>第19章帧，以及</li>
+<li>第20章错误。</li>
+</ul>
+<p>常用术语：</p>
+<p>QUIC：本文描述的传输协议。QUIC是名称，不是首字母缩写。</p>
+<p>终端（Endpoint）：一个能够以创建、接收及处理QUIC数据包参与QUIC连接的实体。QUIC终端有两种类型：客户端（client）及服务端（server）。</p>
+<p>QUIC数据包：QUIC的一个可以封装进UDP报文中的完整处理单元。单个UDP报文可以封装进一个或多个QUIC数据包。</p>
+<p>ACK触发包：一个包含除确认帧（ACK）、填充帧（PADDING）及连接关闭帧（CONNECTION_CLOSE）外的帧的QUIC数据包。接收方收到这类包会发确认，详见第13.2.1章。</p>
+<p>帧：一个结构化的协议信息单元。帧有多种类型，不同类型的帧携带不同类型的信息。帧由QUIC数据包承载。</p>
+<p>地址：当使用不受限制，由IP版本、IP地址及UDP端口号构成的元组表示网络通道的一端。</p>
+<p>连接ID：终端用来标识一条QUIC连接的标识符。每个终端选择一个或多个连接ID，从而在对端发送给本端的QUIC包中包含这些连接ID。该值对对端是不透明的。</p>
+<p>流：QUIC连接上一个单向或双向的有序字节通道。一个QUIC连接可以同时承载多条流。</p>
+<p>应用：一个使用QUIC发送及接收数据的实体</p>
+<p>字段信息表述同RFC8999<br />
+示例结构体</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Example</span> <span class="n">Structure</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="n">One</span><span class="o">-</span><span class="n">bit</span> <span class="n">Field</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="mi">7</span><span class="o">-</span><span class="n">bit</span> <span class="n">Field</span> <span class="n">with</span> <span class="n">Fixed</span> <span class="n">Value</span> <span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">=</span> <span class="mi">61</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Field</span> <span class="n">with</span> <span class="n">Variable</span><span class="o">-</span><span class="n">Length</span> <span class="n">Integer</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Arbitrary</span><span class="o">-</span><span class="n">Length</span> <span class="n">Field</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Variable</span><span class="o">-</span><span class="n">Length</span> <span class="n">Field</span> <span class="p">(</span><span class="mf">8..24</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Field</span> <span class="n">With</span> <span class="n">Minimum</span> <span class="n">Length</span> <span class="p">(</span><span class="mf">16.</span><span class="p">.),</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Field</span> <span class="n">With</span> <span class="n">Maximum</span> <span class="n">Length</span> <span class="p">(.</span><span class="mf">.128</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"> <span class="p">[</span><span class="n">Optional</span> <span class="n">Field</span> <span class="p">(</span><span class="mi">64</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Repeated</span> <span class="n">Field</span> <span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="p">...,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="0x2流">0x2、流</h3>
+<p>流ID的最小有效位（0x01）标识流的发起者。客户端发起的流的ID是偶数（该位被置为0），服务端发起的流的ID是奇数（该位被置为1）。</p>
+<p>流ID的次小有效位（0x02）标识流是双向流（该位被置为0）抑或单向流（该位被置为1）。</p>
+<table>
+<thead>
+<tr>
+<th align="left">位</th>
+<th align="left">流类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">0x00</td>
+<td align="left">客户端创建的双向流</td>
+</tr>
+<tr>
+<td align="left">0x01</td>
+<td align="left">服务端创建的双向流</td>
+</tr>
+<tr>
+<td align="left">0x02</td>
+<td align="left">客户端创建的单向流</td>
+</tr>
+<tr>
+<td align="left">0x03</td>
+<td align="left">服务端创建的单向流</td>
+</tr>
+</tbody>
+</table>
+<p>表格1：流类型</p>
+<p>每种流类型的流空间从其最小值开始（依次从0x00到0x03）；每种流的每个流ID根据创建顺序依次线性递增。如果不按顺序地使用了一个流ID，将导致相同流类型的所有具有更小的流ID的流都被开启。</p>
+<p>终端可以从一条流的同一个偏移位置多次接收数据。如果数据已经被接收过了，就可以直接被丢弃。</p>
+<h4 id="0x24流操作">0x24、流操作</h4>
+<p>本文没有定义QUIC API，而是定义了一系列流操作相关的函数可以用于应用层协议的构建。应用层协议可以假定QUIC有关实现提供了本章描述的操作对应的接口。为一个特定应用层协议设计实现的QUIC协议可能仅仅提供该协议需要的这些操作。</p>
+<p>在流的发送部分，应用层协议可以：</p>
+<ul>
+<li>写数据，只有当流量控制给数据写出留足空间（第4.1章）才能成功写出；</li>
+<li>结束流（清理并关闭），发送一个设置FIN位为1的流帧（第19.8章）；</li>
+<li>重置流（中止并关闭），当流未处在终止状态时发送一个RESET_STREAM帧（第19.4章）。</li>
+</ul>
+<p>在流的接收部分，应用层协议可以：</p>
+<ul>
+<li>读数据，以及</li>
+<li>中止读取流数据并请求关闭流，该操作可能需要发送STOP_SENDING帧（第19.5章）。</li>
+</ul>
+<p>应用层协议也可以请求在流状态改变的时候收到通知信息，包括当对端开启或重置流、对端中止流数据读取、有新数据可以读取、以及数据可以写出或因流控不能写出。</p>
+<h3 id="0x3流状态">0x3、流状态</h3>
+<p>本章描述流的发送及接收相关组件。有两个状态机需要描述：一个是关于终端传输数据（第3.1章）的流，另一个是关于终端接收数据（第3.2章）的流。</p>
+<p>单向流用到发送或接收的其中一个状态机，取决于流类型及终端角色。双向流双端都会用到两个状态机。在极大程度上，不论单向流还是双向流，在使用这两个状态机上是没有区别的。相对而言打开一条双向流会稍微复杂一些，因为同时打开发送和接收端意味着在两个方向上同时打开流。</p>
+<p>本章展示的状态机极具信息量。本文使用流状态描述不同类型帧在何时以何种方式发送的相关规则，以及当收到不同类型的帧时应作出的反应。即使这些状态机目的在于指导如何实现QUIC协议，但其并不意味着限制QUIC实现的方式。一个QUIC实现完全可以定义不同的状态机，只要其行为与本文所述状态机的具体实现一致即可。</p>
+<h4 id="0x31发送流状态">0x31、发送流状态</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">       o
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> Create Stream <span class="o">(</span>Sending<span class="o">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> Peer Creates Bidirectional Stream
+</span></span><span class="line"><span class="cl">       v
+</span></span><span class="line"><span class="cl">   +-------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Ready <span class="p">|</span> Send RESET_STREAM
+</span></span><span class="line"><span class="cl">   <span class="p">|</span>       <span class="p">|</span>-----------------------.
+</span></span><span class="line"><span class="cl">   +-------+                       <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span>                           <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> Send STREAM /             <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span>      STREAM_DATA_BLOCKED  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       v                           <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------+                       <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Send  <span class="p">|</span> Send RESET_STREAM     <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   <span class="p">|</span>       <span class="p">|</span>----------------------&gt;<span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------+                       <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span>                           <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> Send STREAM + FIN         <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       v                           v
+</span></span><span class="line"><span class="cl">   +-------+                   +-------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Data  <span class="p">|</span> Send RESET_STREAM <span class="p">|</span> Reset <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Sent  <span class="p">|</span>------------------&gt;<span class="p">|</span> Sent  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------+                   +-------+
+</span></span><span class="line"><span class="cl">       <span class="p">|</span>                           <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> Recv All ACKs             <span class="p">|</span> Recv ACK
+</span></span><span class="line"><span class="cl">       v                           v
+</span></span><span class="line"><span class="cl">   +-------+                   +-------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Data  <span class="p">|</span>                   <span class="p">|</span> Reset <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Recvd <span class="p">|</span>                   <span class="p">|</span> Recvd <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------+                   +-------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="0x32接收流状态">0x32、接收流状态</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">       o
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> Recv STREAM / STREAM_DATA_BLOCKED / RESET_STREAM
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> Create Bidirectional Stream <span class="o">(</span>Sending<span class="o">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> Recv MAX_STREAM_DATA / STOP_SENDING <span class="o">(</span>Bidirectional<span class="o">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> Create Higher-Numbered Stream
+</span></span><span class="line"><span class="cl">       v
+</span></span><span class="line"><span class="cl">   +-------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Recv  <span class="p">|</span> Recv RESET_STREAM
+</span></span><span class="line"><span class="cl">   <span class="p">|</span>       <span class="p">|</span>-----------------------.
+</span></span><span class="line"><span class="cl">   +-------+                       <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span>                           <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> Recv STREAM + FIN         <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       v                           <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------+                       <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Size  <span class="p">|</span> Recv RESET_STREAM     <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Known <span class="p">|</span>----------------------&gt;<span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------+                       <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span>                           <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> Recv All Data             <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       v                           v
+</span></span><span class="line"><span class="cl">   +-------+ Recv RESET_STREAM +-------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Data  <span class="p">|</span>--- <span class="o">(</span>optional<span class="o">)</span> ---&gt;<span class="p">|</span> Reset <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Recvd <span class="p">|</span>  Recv All Data    <span class="p">|</span> Recvd <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------+&lt;-- <span class="o">(</span>optional<span class="o">)</span> ----+-------+
+</span></span><span class="line"><span class="cl">       <span class="p">|</span>                           <span class="p">|</span>
+</span></span><span class="line"><span class="cl">       <span class="p">|</span> App Read All Data         <span class="p">|</span> App Read Reset
+</span></span><span class="line"><span class="cl">       v                           v
+</span></span><span class="line"><span class="cl">   +-------+                   +-------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Data  <span class="p">|</span>                   <span class="p">|</span> Reset <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> Read  <span class="p">|</span>                   <span class="p">|</span> Read  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------+                   +-------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>终端在收到<strong>最大流数据帧</strong>或<strong>停止发送帧</strong>后打开一条双向流。接收到一条未开启的流的<strong>最大流数据帧</strong>意味着对端已经开启了该流，并开始支持流量控制额度。而接收到一条未开启流的<strong>停止发送帧</strong>意味着对端不会再从该流接收数据。无论这两种帧的哪一种都可能先于<strong>流帧</strong>或<strong>流阻塞帧</strong>到达本端，原因是包丢失或乱序。</p>
+<p>在一条流创建前，所有数值小于该流ID的同类型流都<em><strong>必须</strong></em>被创建。这样能确保双端流的创建次序保持一致。</p>
+<p>在“接收”状态，终端接收<strong>流帧</strong>和<strong>流阻塞帧</strong>。传入数据将被缓存，并可以按照正确顺序重组以便递给应用层。随着应用层不断消耗数据，缓冲区重新空出来，终端发送<strong>最大流数据帧</strong>告知对端可以发送更多数据。</p>
+<p>当收到一个带FIN置位的<strong>流帧</strong>时，数据的最终大小确定下来，详见第4.5章。流的接收部分随后转到“数据量确认”状态。在此状态，终端不再需要发送<strong>最大流数据帧</strong>，只需要接收重传数据即可。</p>
+<p>一旦收完了一条流的所有数据，流的接收部分转入“接收完成”状态。这可能发生在收到导致转入“数据量确认”状态的同一个<strong>流帧</strong>后。在所有数据都收完后，可以丢弃该流的任何<strong>流帧</strong>或<strong>流阻塞帧</strong>。</p>
+<h4 id="0x33permitted-frame-types">0x33、Permitted Frame Types</h4>
+<p>流的发送端发送的帧只有三种能同时影响发送端和接收端状态：STREAM（第19.8章）、STREAM_DATA_BLOCKED（第19.13章），以及RESET_STREAM（第19.4章）。</p>
+<p>流的接收端发送MAX_STREAM_DATA frames（第19.19章）及STOP_SENDING frames（第19.5章）。</p>
+<h4 id="0x34双向流状态">0x34、双向流状态</h4>
+<p>可能的对于HTTP2的状态映射 在最简单的模型里，当发送和接收部分均处在非最终状态时，表示流处于“打开”状态；当两者均处于最终状态时，表示流处于“关闭”状态。</p>
+<p>Table 2: Possible Mapping of Stream States to HTTP/2</p>
+<table>
+<thead>
+<tr>
+<th align="left">Sending Part</th>
+<th align="left">Receiving Part</th>
+<th align="left">Composite State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">No Stream / Ready</td>
+<td align="left">No Stream / Recv (*1)</td>
+<td align="left">idle</td>
+</tr>
+<tr>
+<td align="left">Ready / Send / Data Sent</td>
+<td align="left">Recv / Size Known</td>
+<td align="left">open</td>
+</tr>
+<tr>
+<td align="left">Ready / Send / Data Sent</td>
+<td align="left">Data Recvd / Data Read</td>
+<td align="left">half-closed (remote)</td>
+</tr>
+<tr>
+<td align="left">Ready / Send / Data Sent</td>
+<td align="left">Reset Recvd / Reset Read</td>
+<td align="left">half-closed (remote)</td>
+</tr>
+<tr>
+<td align="left">Data Recvd</td>
+<td align="left">Recv / Size Known</td>
+<td align="left">half-closed (local)</td>
+</tr>
+<tr>
+<td align="left">Reset Sent / Reset Recvd</td>
+<td align="left">Recv / Size Known</td>
+<td align="left">half-closed (local)</td>
+</tr>
+<tr>
+<td align="left">Reset Sent / Reset Recvd</td>
+<td align="left">Data Recvd / Data Read</td>
+<td align="left">closed</td>
+</tr>
+<tr>
+<td align="left">Reset Sent / Reset Recvd</td>
+<td align="left">Reset Recvd / Reset Read</td>
+<td align="left">closed</td>
+</tr>
+<tr>
+<td align="left">Data Recvd</td>
+<td align="left">Data Recvd / Data Read</td>
+<td align="left">closed</td>
+</tr>
+<tr>
+<td align="left">Data Recvd</td>
+<td align="left">Reset Recvd / Reset Read</td>
+<td align="left">closed</td>
+</tr>
+</tbody>
+</table>
+<h4 id="0x35请求状态转换">0x35、请求状态转换</h4>
+<p>A STOP_SENDING frame 请求接收方发送 a RESET_STREAM frame</p>
+<p>如果双向流的一端想要将流的两个方向同时关闭，那么其可以通过发送一个RESET_STREAM关闭一个方向，并发送一个STOP_SENDING促使相反方向也迅速得到关闭。</p>
+<h3 id="0x4流量控制">0x4、流量控制</h3>
+<p>接收方需要限制缓存数据量以防发送方速度太快造成冲击或被恶意发送方消耗大量内存。为了让接收方能够限制连接的内存占用，不仅每条流有单独的流量控制，所有流也作为一个整体在连接层面有统一的流量控制。QUIC接收方控制发送方在一条流上以及任何时刻在所有流上可以发送的最大数据量，详见第4.1章或第4.2章。</p>
+<p>同样地，为了限制连接并发，QUIC终端控制对方可以同时开启的最大流数量，详见第4.6章。</p>
+<p>通过加密帧发送的数据不像流数据那样受流量控制制约。QUIC依赖于加密协议的实现来避免这些数据被过量缓存，详见《QUIC TLS》。为了防止在多个层次过量缓存数据，QUIC实现应该为加密协议实现提供一套接口以供其交流缓存区限制。</p>
+<h4 id="0x41数据流量控制">0x41、数据流量控制</h4>
+<p>QUIC使用一个基于限制的流量控制模型，接收者给出其准备在给定流或整个连接上准备接收的总字节数的上限。这使得QUIC中存在两层数据流量控制：</p>
+<ul>
+<li>流的流量控制：通过限制每条流可以发送的数据量，防止单条流耗尽一条连接的全部接收缓冲区；</li>
+<li>连接流量控制：通过限制所有流经由<strong>流帧</strong>可以发送的数据量，防止发送方超过连接接收方的缓冲区容量。</li>
+</ul>
+<p>接收方在握手过程中（第7.4章）通过传输参数为所有流设置初始的流接收缓存区上限。随后，接收方发送最大流数据帧（第19.10章）或最大数据帧（第19.9章）以告知对方提高流接收缓存区上限。</p>
+<p>如果发送方发送数据达到了流量控制上限，其将不能再发送新数据，且应认为其被阻塞住了。发送方应该发送一个流数据阻塞帧或数据阻塞帧来告知接收方其有数据要写出但是被流量控制所阻塞。如果发送方被阻塞的时间超过空等超时时间（第10.1章），接收方可以关闭连接，即便发送方有可传输的数据。为了保持连接不被关闭，在没有可引发ACK的数据包处于传输中时，被流量控制限制所阻塞的发送方应该定期发送一个流数据阻塞帧或数据阻塞帧。</p>
+<h4 id="0x43流量控制性能">0x43、流量控制性能</h4>
+<p>如果终端不能确保其对端始终在该连接上有大于对端带宽时延积的流量控制额度，其接收吞吐量将被流量控制限制。</p>
+<p>包丢失会导致接收缓冲区出现空隙，从而阻碍应用层消耗数据并释放接收缓冲空间。</p>
+<p>及时发送流量控制上限更新能提高性能。发送只包含流量控制更新的数据包会增加网络负载，对性能产生不利影响。将流量控制更新与其他帧一起发出，例如如ACK帧，可以降低此类更新带来的消耗。</p>
+<h4 id="0x45流最终数据量">0x45、流最终数据量</h4>
+<p>不管流是如何终止的，发送方始终试图将流的最终数据量可靠地发送给接收方。最终数据量是 带有FIN置位的流帧的Offset（下标）和Length（长度）字段值的总和，注意这些字段可能是隐式的。</p>
+<h4 id="0x46并发控制">0x46、并发控制</h4>
+<p>终端限制对端累计可以开启的流的数量。只有流ID小于(max_streams * 4 + first_stream_id_of_type)的流可以被开启，详见表1。初始限制由传输参数设置，详见第18.2章。随后的限制由最大流帧推出</p>
+<p>max_streams不能超限$2^{60}$</p>
+<h3 id="0x5-连接">0x5 连接</h3>
+<h4 id="0x53-连接操作">0x53 连接操作</h4>
+<p>当实现用户端时，应用层协议可以：</p>
+<ul>
+<li>创建一个连接，开始进行<a href="https://autumnquiche.github.io/RFC9000_Chinese_Translation/">第7章</a>描述的交互过程；</li>
+<li>如果支持，启用早期数据功能；</li>
+<li>当早期数据被服务端接受或拒绝时，收到通知。</li>
+</ul>
+<p>当实现服务端时，应用层协议可以：</p>
+<ul>
+<li>监听传入的连接，准备进行<a href="https://autumnquiche.github.io/RFC9000_Chinese_Translation/">第7章</a>描述的交互过程；</li>
+<li>如果支持早期数据，在发送给客户端的TLS恢复ticket中嵌入应用层控制数据；</li>
+<li>如果支持早期数据，从接收自客户端的恢复ticket中恢复应用层控制数据，并根据该信息接受或拒绝早期数据。</li>
+</ul>
+<p>当同时实现客户端及服务端时，应用层协议可以：</p>
+<ul>
+<li>如传输参数（[第7.4章]）所述，为每种类型允许的流的配置最小的初始数量；</li>
+<li>通过设置流级别及连接级别的流量控制限制，限制接收缓存区资源分配；</li>
+<li>识别握手已经成功结束抑或仍在进行中；</li>
+<li>保持连接不被默认关闭，即通过PING帧（[第19.2章]）或其他请求使得传输层在空闲超时（[第10.1章]）前发送额外的帧；以及</li>
+<li>立即关闭连接（[第10.2章]）。</li>
+</ul>
+<h3 id="0x7-加密与传输握手">0x7 加密与传输握手</h3>
+<p>1-RTT example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Client                                                  Server
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Initial<span class="o">[</span>0<span class="o">]</span>: CRYPTO<span class="o">[</span>CH<span class="o">]</span> -&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                 Initial<span class="o">[</span>0<span class="o">]</span>: CRYPTO<span class="o">[</span>SH<span class="o">]</span> ACK<span class="o">[</span>0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">                       Handshake<span class="o">[</span>0<span class="o">]</span>: CRYPTO<span class="o">[</span>EE, CERT, CV, FIN<span class="o">]</span>
+</span></span><span class="line"><span class="cl">                                 &lt;- 1-RTT<span class="o">[</span>0<span class="o">]</span>: STREAM<span class="o">[</span>1, <span class="s2">&#34;...&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Initial<span class="o">[</span>1<span class="o">]</span>: ACK<span class="o">[</span>0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">Handshake<span class="o">[</span>0<span class="o">]</span>: CRYPTO<span class="o">[</span>FIN<span class="o">]</span>, ACK<span class="o">[</span>0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">1-RTT<span class="o">[</span>0<span class="o">]</span>: STREAM<span class="o">[</span>0, <span class="s2">&#34;...&#34;</span><span class="o">]</span>, ACK<span class="o">[</span>0<span class="o">]</span> -&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                          Handshake<span class="o">[</span>1<span class="o">]</span>: ACK<span class="o">[</span>0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">         &lt;- 1-RTT<span class="o">[</span>1<span class="o">]</span>: HANDSHAKE_DONE, STREAM<span class="o">[</span>3, <span class="s2">&#34;...&#34;</span><span class="o">]</span>, ACK<span class="o">[</span>0<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>0-RTT example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Client                                                  Server
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Initial<span class="o">[</span>0<span class="o">]</span>: CRYPTO<span class="o">[</span>CH<span class="o">]</span>
+</span></span><span class="line"><span class="cl">0-RTT<span class="o">[</span>0<span class="o">]</span>: STREAM<span class="o">[</span>0, <span class="s2">&#34;...&#34;</span><span class="o">]</span> -&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                 Initial<span class="o">[</span>0<span class="o">]</span>: CRYPTO<span class="o">[</span>SH<span class="o">]</span> ACK<span class="o">[</span>0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">                                  Handshake<span class="o">[</span>0<span class="o">]</span> CRYPTO<span class="o">[</span>EE, FIN<span class="o">]</span>
+</span></span><span class="line"><span class="cl">                          &lt;- 1-RTT<span class="o">[</span>0<span class="o">]</span>: STREAM<span class="o">[</span>1, <span class="s2">&#34;...&#34;</span><span class="o">]</span> ACK<span class="o">[</span>0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Initial<span class="o">[</span>1<span class="o">]</span>: ACK<span class="o">[</span>0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">Handshake<span class="o">[</span>0<span class="o">]</span>: CRYPTO<span class="o">[</span>FIN<span class="o">]</span>, ACK<span class="o">[</span>0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">1-RTT<span class="o">[</span>1<span class="o">]</span>: STREAM<span class="o">[</span>0, <span class="s2">&#34;...&#34;</span><span class="o">]</span> ACK<span class="o">[</span>0<span class="o">]</span> -&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                          Handshake<span class="o">[</span>1<span class="o">]</span>: ACK<span class="o">[</span>0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">         &lt;- 1-RTT<span class="o">[</span>1<span class="o">]</span>: HANDSHAKE_DONE, STREAM<span class="o">[</span>3, <span class="s2">&#34;...&#34;</span><span class="o">]</span>, ACK<span class="o">[</span>1<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="0x12-packets-and-frames">0x12 Packets and Frames</h3>
+<h4 id="0x124-frames-and-frame-types">0x124 Frames and Frame Types</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Packet</span> <span class="n">Payload</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Frame</span> <span class="p">(</span><span class="mf">8.</span><span class="p">.)</span> <span class="p">...,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>figure:QUIC payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Frame</span> <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span><span class="o">-</span><span class="n">Dependent</span> <span class="n">Fields</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>figure:Generic Frame layout</p>
+<table>
+<thead>
+<tr>
+<th align="left">Type Value</th>
+<th align="left">Frame Type Name</th>
+<th align="left">Definition</th>
+<th align="left">Pkts</th>
+<th align="left">Spec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">0x00</td>
+<td align="left">PADDING</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-padding">Section 19.1</a></td>
+<td align="left">IH01</td>
+<td align="left">NP</td>
+</tr>
+<tr>
+<td align="left">0x01</td>
+<td align="left">PING</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-ping">Section 19.2</a></td>
+<td align="left">IH01</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0x02-0x03</td>
+<td align="left">ACK</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-ack">Section 19.3</a></td>
+<td align="left">IH_1</td>
+<td align="left">NC</td>
+</tr>
+<tr>
+<td align="left">0x04</td>
+<td align="left">RESET_STREAM</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-reset-stream">Section 19.4</a></td>
+<td align="left">__01</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0x05</td>
+<td align="left">STOP_SENDING</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-stop-sending">Section 19.5</a></td>
+<td align="left">__01</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0x06</td>
+<td align="left">CRYPTO</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-crypto">Section 19.6</a></td>
+<td align="left">IH_1</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0x07</td>
+<td align="left">NEW_TOKEN</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-new-token">Section 19.7</a></td>
+<td align="left">___1</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0x08-0x0f</td>
+<td align="left">STREAM</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-stream">Section 19.8</a></td>
+<td align="left">__01</td>
+<td align="left">F</td>
+</tr>
+<tr>
+<td align="left">0x10</td>
+<td align="left">MAX_DATA</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-max-data">Section 19.9</a></td>
+<td align="left">__01</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0x11</td>
+<td align="left">MAX_STREAM_DATA</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-max-stream-data">Section 19.10</a></td>
+<td align="left">__01</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0x12-0x13</td>
+<td align="left">MAX_STREAMS</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-max-streams">Section 19.11</a></td>
+<td align="left">__01</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0x14</td>
+<td align="left">DATA_BLOCKED</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-data-blocked">Section 19.12</a></td>
+<td align="left">__01</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0x15</td>
+<td align="left">STREAM_DATA_BLOCKED</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-stream-data-blocked">Section 19.13</a></td>
+<td align="left">__01</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0x16-0x17</td>
+<td align="left">STREAMS_BLOCKED</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-streams-blocked">Section 19.14</a></td>
+<td align="left">__01</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0x18</td>
+<td align="left">NEW_CONNECTION_ID</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-new-connection-id">Section 19.15</a></td>
+<td align="left">__01</td>
+<td align="left">P</td>
+</tr>
+<tr>
+<td align="left">0x19</td>
+<td align="left">RETIRE_CONNECTION_ID</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-retire-connection-id">Section 19.16</a></td>
+<td align="left">__01</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0x1a</td>
+<td align="left">PATH_CHALLENGE</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-path-challenge">Section 19.17</a></td>
+<td align="left">__01</td>
+<td align="left">P</td>
+</tr>
+<tr>
+<td align="left">0x1b</td>
+<td align="left">PATH_RESPONSE</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-path-response">Section 19.18</a></td>
+<td align="left">___1</td>
+<td align="left">P</td>
+</tr>
+<tr>
+<td align="left">0x1c-0x1d</td>
+<td align="left">CONNECTION_CLOSE</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-connection-close">Section 19.19</a></td>
+<td align="left">ih01</td>
+<td align="left">N</td>
+</tr>
+<tr>
+<td align="left">0x1e</td>
+<td align="left">HANDSHAKE_DONE</td>
+<td align="left"><a href="https://www.rfc-editor.org/rfc/rfc9000.html#frame-handshake-done">Section 19.20</a></td>
+<td align="left">___1</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="0x16-可变长整型">0x16 可变长整型</h3>
+<table>
+<thead>
+<tr>
+<th align="left">最高的2个有效位</th>
+<th align="left">字节长度</th>
+<th align="left">可用位数</th>
+<th align="left">可表示范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">00</td>
+<td align="left">1</td>
+<td align="left">6</td>
+<td align="left">0-63</td>
+</tr>
+<tr>
+<td align="left">01</td>
+<td align="left">2</td>
+<td align="left">14</td>
+<td align="left">0-16383</td>
+</tr>
+<tr>
+<td align="left">10</td>
+<td align="left">4</td>
+<td align="left">30</td>
+<td align="left">0-1073741823</td>
+</tr>
+<tr>
+<td align="left">11</td>
+<td align="left">8</td>
+<td align="left">62</td>
+<td align="left">0-4611686018427387903</td>
+</tr>
+</tbody>
+</table>
+<h3 id="0x17-packet-formats">0x17 Packet Formats</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Long</span> <span class="n">Header</span> <span class="n">Packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Header</span> <span class="n">Form</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Fixed</span> <span class="n">Bit</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Long</span> <span class="n">Packet</span> <span class="n">Type</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span><span class="o">-</span><span class="n">Specific</span> <span class="n">Bits</span> <span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Version</span> <span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..160</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..160</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span><span class="o">-</span><span class="n">Specific</span> <span class="n">Payload</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Long Packet Type</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">名称</th>
+<th align="left">章节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">0x00</td>
+<td align="left">初始</td>
+<td align="left">[第17.2.2章]</td>
+</tr>
+<tr>
+<td align="left">0x01</td>
+<td align="left">0-RTT</td>
+<td align="left">[第17.2.3章]</td>
+</tr>
+<tr>
+<td align="left">0x02</td>
+<td align="left">握手</td>
+<td align="left">[第17.2.4章]</td>
+</tr>
+<tr>
+<td align="left">0x03</td>
+<td align="left">重试</td>
+<td align="left">[第17.2.5章]</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Version</span> <span class="n">Negotiation</span> <span class="n">Packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Header</span> <span class="n">Form</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Unused</span> <span class="p">(</span><span class="mi">7</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Version</span> <span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..2040</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..2040</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Supported</span> <span class="n">Version</span> <span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="p">...,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Initial</span> <span class="n">Packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Header</span> <span class="n">Form</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Fixed</span> <span class="n">Bit</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Long</span> <span class="n">Packet</span> <span class="n">Type</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Reserved</span> <span class="n">Bits</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Packet</span> <span class="n">Number</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Version</span> <span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..160</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..160</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Token</span> <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Token</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Packet</span> <span class="n">Number</span> <span class="p">(</span><span class="mf">8..32</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Packet</span> <span class="n">Payload</span> <span class="p">(</span><span class="mf">8.</span><span class="p">.),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span><span class="o">-</span><span class="n">RTT</span> <span class="n">Packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Header</span> <span class="n">Form</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Fixed</span> <span class="n">Bit</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Long</span> <span class="n">Packet</span> <span class="n">Type</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Reserved</span> <span class="n">Bits</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Packet</span> <span class="n">Number</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Version</span> <span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..160</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..160</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Packet</span> <span class="n">Number</span> <span class="p">(</span><span class="mf">8..32</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Packet</span> <span class="n">Payload</span> <span class="p">(</span><span class="mf">8.</span><span class="p">.),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Handshake</span> <span class="n">Packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Header</span> <span class="n">Form</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Fixed</span> <span class="n">Bit</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Long</span> <span class="n">Packet</span> <span class="n">Type</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Reserved</span> <span class="n">Bits</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Packet</span> <span class="n">Number</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Version</span> <span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..160</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..160</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Packet</span> <span class="n">Number</span> <span class="p">(</span><span class="mf">8..32</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Packet</span> <span class="n">Payload</span> <span class="p">(</span><span class="mf">8.</span><span class="p">.),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Retry</span> <span class="n">Packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Header</span> <span class="n">Form</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Fixed</span> <span class="n">Bit</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Long</span> <span class="n">Packet</span> <span class="n">Type</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Unused</span> <span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Version</span> <span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..160</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Source</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..160</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Retry</span> <span class="n">Token</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Retry</span> <span class="n">Integrity</span> <span class="n">Tag</span> <span class="p">(</span><span class="mi">128</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="mi">1</span><span class="o">-</span><span class="n">RTT</span> <span class="n">Packet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Header</span> <span class="n">Form</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Fixed</span> <span class="n">Bit</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Spin</span> <span class="n">Bit</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Reserved</span> <span class="n">Bits</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Key</span> <span class="n">Phase</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Packet</span> <span class="n">Number</span> <span class="n">Length</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Destination</span> <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">0..160</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Packet</span> <span class="n">Number</span> <span class="p">(</span><span class="mf">8..32</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Packet</span> <span class="n">Payload</span> <span class="p">(</span><span class="mf">8.</span><span class="p">.),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="0x18-传输参数编码">0x18 传输参数编码</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Transport</span> <span class="n">Parameters</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Transport</span> <span class="n">Parameter</span> <span class="p">(..)</span> <span class="p">...,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Transport</span> <span class="n">Parameter</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Transport</span> <span class="n">Parameter</span> <span class="n">ID</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Transport</span> <span class="n">Parameter</span> <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Transport</span> <span class="n">Parameter</span> <span class="n">Value</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="0x19-帧类型和格式">0x19 帧类型和格式</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">PADDING</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">PING</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x01</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">ACK</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x02</span><span class="p">.</span><span class="mf">.0</span><span class="n">x03</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Largest</span> <span class="n">Acknowledged</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ACK</span> <span class="n">Delay</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ACK</span> <span class="n">Range</span> <span class="n">Count</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">First</span> <span class="n">ACK</span> <span class="n">Range</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ACK</span> <span class="n">Range</span> <span class="p">(..)</span> <span class="p">...,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">ECN</span> <span class="n">Counts</span> <span class="p">(..)],</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">ACK</span> <span class="n">Range</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Gap</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ACK</span> <span class="n">Range</span> <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">ECN</span> <span class="n">Counts</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ECT0</span> <span class="n">Count</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ECT1</span> <span class="n">Count</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ECN</span><span class="o">-</span><span class="n">CE</span> <span class="n">Count</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">RESET_STREAM</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x04</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Stream</span> <span class="n">ID</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Application</span> <span class="n">Protocol</span> <span class="n">Error</span> <span class="n">Code</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Final</span> <span class="n">Size</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">STOP_SENDING</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x05</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Stream</span> <span class="n">ID</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Application</span> <span class="n">Protocol</span> <span class="n">Error</span> <span class="n">Code</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">CRYPTO</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x06</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Offset</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Crypto</span> <span class="n">Data</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">NEW_TOKEN</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x07</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Token</span> <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Token</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">STREAM</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x08</span><span class="p">.</span><span class="mf">.0</span><span class="n">x0f</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Stream</span> <span class="n">ID</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">Offset</span> <span class="p">(</span><span class="n">i</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Stream</span> <span class="n">Data</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">MAX_DATA</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Maximum</span> <span class="n">Data</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">MAX_STREAM_DATA</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x11</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Stream</span> <span class="n">ID</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Maximum</span> <span class="n">Stream</span> <span class="n">Data</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">MAX_STREAMS</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x12</span><span class="p">.</span><span class="mf">.0</span><span class="n">x13</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Maximum</span> <span class="n">Streams</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">DATA_BLOCKED</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x14</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Maximum</span> <span class="n">Data</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">STREAM_DATA_BLOCKED</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x15</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Stream</span> <span class="n">ID</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Maximum</span> <span class="n">Stream</span> <span class="n">Data</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">STREAMS_BLOCKED</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x16</span><span class="p">.</span><span class="mf">.0</span><span class="n">x17</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Maximum</span> <span class="n">Streams</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">NEW_CONNECTION_ID</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Sequence</span> <span class="n">Number</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Retire</span> <span class="n">Prior</span> <span class="n">To</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Length</span> <span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Connection</span> <span class="n">ID</span> <span class="p">(</span><span class="mf">8..160</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Stateless</span> <span class="n">Reset</span> <span class="n">Token</span> <span class="p">(</span><span class="mi">128</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">RETIRE_CONNECTION_ID</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x19</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Sequence</span> <span class="n">Number</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">PATH_CHALLENGE</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x1a</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Data</span> <span class="p">(</span><span class="mi">64</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">PATH_RESPONSE</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x1b</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Data</span> <span class="p">(</span><span class="mi">64</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">CONNECTION_CLOSE</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x1c</span><span class="p">.</span><span class="mf">.0</span><span class="n">x1d</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Error</span> <span class="n">Code</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="n">Frame</span> <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Reason</span> <span class="n">Phrase</span> <span class="n">Length</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Reason</span> <span class="n">Phrase</span> <span class="p">(..),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">HANDSHAKE_DONE</span> <span class="n">Frame</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Type</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x1e</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="rfc9114">RFC9114</h2>
 <p>HTTP/1.1直接使用空格和crlf来分割传递数据，虽然可读性高但是网络利用率不高，多个请求使用对个TCP连接并行请求还会加重拥塞。</p>
 <p>HTTP/2引入了binary framing和multiplexing layer，在不修改传输层的清苦那个下改善延迟。然而，HTTP/2的多路复用并行性质对TCP的丢失机制是不可见的(TCP向上提供透明服务)，一个丢失或者重新排序的数据包会导致所有的活动事务经历一个暂停，而不管该事务是否直接收到丢失数据包的影响。</p>
 <p>QUIC协议合并了stream multiplexing和per-stream control，通过提供流级别的可靠性和整个连接的拥塞控制，提高HTTP性能。QUIC在传输层合并了TLS 1.3提供HTTPS的机密性和完整性，改进了TCP Fast Open的连接设置延迟。</p>
@@ -2978,7 +4137,47 @@ document.addEventListener('DOMContentLoaded', function () {
         </li>
       </ul>
     </li>
-    <li><a href="#rfc9000">RFC9000</a></li>
+    <li><a href="#rfc9000">RFC9000</a>
+      <ul>
+        <li><a href="#0x2流">0x2、流</a>
+          <ul>
+            <li><a href="#0x24流操作">0x24、流操作</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x3流状态">0x3、流状态</a>
+          <ul>
+            <li><a href="#0x31发送流状态">0x31、发送流状态</a></li>
+            <li><a href="#0x32接收流状态">0x32、接收流状态</a></li>
+            <li><a href="#0x33permitted-frame-types">0x33、Permitted Frame Types</a></li>
+            <li><a href="#0x34双向流状态">0x34、双向流状态</a></li>
+            <li><a href="#0x35请求状态转换">0x35、请求状态转换</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x4流量控制">0x4、流量控制</a>
+          <ul>
+            <li><a href="#0x41数据流量控制">0x41、数据流量控制</a></li>
+            <li><a href="#0x43流量控制性能">0x43、流量控制性能</a></li>
+            <li><a href="#0x45流最终数据量">0x45、流最终数据量</a></li>
+            <li><a href="#0x46并发控制">0x46、并发控制</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x5-连接">0x5 连接</a>
+          <ul>
+            <li><a href="#0x53-连接操作">0x53 连接操作</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x7-加密与传输握手">0x7 加密与传输握手</a></li>
+        <li><a href="#0x12-packets-and-frames">0x12 Packets and Frames</a>
+          <ul>
+            <li><a href="#0x124-frames-and-frame-types">0x124 Frames and Frame Types</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x16-可变长整型">0x16 可变长整型</a></li>
+        <li><a href="#0x17-packet-formats">0x17 Packet Formats</a></li>
+        <li><a href="#0x18-传输参数编码">0x18 传输参数编码</a></li>
+        <li><a href="#0x19-帧类型和格式">0x19 帧类型和格式</a></li>
+      </ul>
+    </li>
     <li><a href="#rfc9114">RFC9114</a>
       <ul>
         <li><a href="#第三章连接设置和管理">第三章、连接设置和管理</a></li>
