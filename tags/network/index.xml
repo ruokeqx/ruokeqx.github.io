@@ -14,11 +14,35 @@
     <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
     <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
     <copyright>©2022, All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 Jul 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://ruokeqx.gitee.io/tags/network/index.xml" rel="self" type="application/rss+xml" />
     
 
+      
+      <item>
+        <title>hertz库源码阅读</title>
+        <link>https://ruokeqx.gitee.io/posts/hertz_source/</link>
+        <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Thu, 14 Jul 2022 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/hertz_source/</guid>
+        <description>初步阅读项目代码后发现不能用简单的单分支流来标识程序控制流(因为network部分有两套并行实现) 用目录的方式来解释更加直观一些 目录可以很清</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>network</category>
+            
+          
+        
+        
+        
+      </item>
       
       <item>
         <title>quic-go库源码阅读</title>
