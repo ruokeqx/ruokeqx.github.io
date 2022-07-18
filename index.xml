@@ -100,7 +100,7 @@
         <author>ruokeqx@163.com (ruokeqx)</author>
         <atom:modified>Sun, 10 Jul 2022 00:00:00 +0000</atom:modified>
         <guid>https://ruokeqx.gitee.io/posts/quichttp3_related_rfc/</guid>
-        <description>简单看了以下几个QUIC和HTTP3相关RFC文档，对其设计有了一定了解。 RFC8999: Version-Independent Properties of QUIC RFC9000: QUIC: A UDP-Based Multiplexed and Secure Transport RFC9114: HTTP/3 RFC8999 RFC8999十分简单 甚至比一些简</description>
+        <description>简单看了以下几个QUIC和HTTP3相关RFC文档，对其设计有了一定了解。 RFC8999: Version-Independent Properties of QUIC RFC9000: QUIC: A UDP-Based Multiplexed and Secure Transport RFC9114: HTTP/3 RFC9204: QPACK: Field Compression for HTTP/3 RFC8999 RFC8999十分简单</description>
         
         <dc:creator>ruokeqx</dc:creator>
         

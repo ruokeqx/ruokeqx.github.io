@@ -1376,7 +1376,7 @@
     "datePublished": "2022-07-10T00:00:00Z",
     "dateModified": "2022-07-10T00:00:00Z",
     "url" : "https://ruokeqx.gitee.io/posts/quichttp3_related_rfc/",
-    "description": "简单看了以下几个QUIC和HTTP3相关RFC文档，对其设计有了一定了解。 RFC8999: Version-Independent Properties of QUIC RFC9000: QUIC: A UDP-Based Multiplexed and Secure Transport RFC9114: HTTP/3 RFC8999 …",
+    "description": "简单看了以下几个QUIC和HTTP3相关RFC文档，对其设计有了一定了解。 RFC8999: Version-Independent Properties of QUIC RFC9000: QUIC: A UDP-Based Multiplexed and Secure Transport RFC9114: HTTP/3 RFC9204: …",
     "keywords": ["network","http3"],
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -1688,7 +1688,7 @@
 <div class="single__infos">
   <time class="single__info" title="Written At">📅&nbsp;Jul 10, 2022 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;29&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;35&nbsp;min read </span>
   
   <span class="single__info">
      &middot; 👀<span id="busuanzi_value_page_pv">...</span> views
@@ -1714,6 +1714,7 @@
 <p>RFC8999: Version-Independent Properties of QUIC</p>
 <p>RFC9000: QUIC: A UDP-Based Multiplexed and Secure Transport</p>
 <p>RFC9114: HTTP/3</p>
+<p>RFC9204: QPACK: Field Compression for HTTP/3</p>
 <h2 id="rfc8999">RFC8999</h2>
 <p>RFC8999十分简单 甚至比一些简短的论文还要短，他的目录也十分简单，毕竟只是定义了QUIC协议的一些通识信息。</p>
 <p>内容不多，最关键的就是描述了一个长包短包，ID和版本及版本协商相关内容。其中定义结构通过观察流量包内容可以得到验证</p>
@@ -3396,6 +3397,477 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Reserved Frame Types</code></p>
+<h2 id="rfc9204">RFC9204</h2>
+<p>可以在quic-go源码中看到其handleConn中第一步就是<code>qpack.NewDecoder(nil)</code>创建一个qpack decoder</p>
+<p>其使用的库是&quot;github.com/marten-seemann/qpack&quot;,而qpack也是RFC9204规定的HTTP/3的字段压缩方式</p>
+<h3 id="abstract">Abstract</h3>
+<p>该规范定义了 QPACK：一种用于有效表示将在 HTTP/3 中使用的 HTTP 字段的压缩格式。这是 HPACK 压缩的一种变体，旨在减少行头阻塞(HOL blocking)</p>
+<h3 id="2压缩过程概述">2、压缩过程概述</h3>
+<p>与HPACK相似，QPACK使用两个表(第三章的Static table和Dynamic table)将字段行(“头”)与索引相关联。<code>Static table</code>是预定义的，包含常见的头字段行(其中一些是空值)。<code>Dynamic table</code>动态表是在连接过程中建立的，<code>Encoder</code>编码器可以使用它来索引编码字段段中的头字段行和尾字段行。</p>
+<p>QPACK定义了单向流，用于将指令从编码器发送到解码器，反之亦然。</p>
+<h4 id="21encoder">2.1、Encoder</h4>
+<p>编码器通过为列表中的每个字段行发出索引或文字表示，将头部或尾部部分转换为一系列表示;参见4.5节。索引表示通过用静态或动态表的索引替换文字名称和可能的值来实现高压缩。对静态表和文字表示的引用不需要任何动态状态，而且永远不会有行首阻塞的风险。如果编码器没有收到表示该条目在解码器中是可用的确认信息，则引用动态表可能会导致行首阻塞</p>
+<p>编码器可以在它选择的动态表中插入任何条目，不局限于他在压缩的字段行。</p>
+<p>QPACK保留了每个字段部分中字段行的顺序。编码器必须按照字段在输入字段部分中出现的顺序发出字段表示。</p>
+<p>QPACK的设计目的是将可选状态跟踪的负担放在编码器上，从而产生相对简单的解码器</p>
+<p><code>2.1.1.动态表插入的限制</code></p>
+<p><code>2.1.2.阻塞流</code></p>
+<p><code>2.1.3.避免流控制死锁</code></p>
+<p><code>2.1.4.已知接收计数</code></p>
+<p>已知接收计数是解码器确认的动态表插入和重复的总数。编码器跟踪已知的接收计数，以便识别哪些动态表条目可以被引用，而不会潜在地阻塞流。解码器跟踪已知的接收计数，以便能够发送插入计数增量指令。<br />
+Acknowledgment指令(章节4.4.1)意味着解码器已经收到了解码字段Section所需的所有动态表状态。如果确认字段部分的“所需插入计数”大于当前的“已知接收计数”，则“已知接收计数”将更新为“所需插入计数”值。(Known Received Count/Required Insert Count)<br />
+插入计数递增指令(第4.4.3节)通过其递增参数递增已知接收计数。</p>
+<h4 id="22decoder">2.2、Decoder</h4>
+<p>与HPACK一样，解码器处理一系列表示并发出相应的字段部分。它还处理从编码器流接收到的修改动态表的指令。请注意，编码字段部分和编码器流指令在不同的流上到达。这与HPACK不同，在HPACK中，编码字段部分(头块)可以包含修改动态表的指令，并且没有HPACK指令的专用流。</p>
+<p>解码器必须按字段表示在编码字段部分中出现的顺序发出字段行。</p>
+<p><code>2.2.1.阻塞解码</code></p>
+<p><code>2.2.2.状态同步</code></p>
+<p><code>2.2.3.无效参考</code></p>
+<h3 id="3reference-tables">3、Reference Tables</h3>
+<p>与HPACK不同，QPACK静态表和动态表中的条目是分别寻址的。下面的部分描述了每个表中的条目是如何寻址的</p>
+<h4 id="31static-table">3.1、Static Table</h4>
+<p>静态表由预定义的字段行列表组成，每条字段行都有一个随时间变化的固定索引。</p>
+<p>静态表中的所有条目都有一个名称和一个值。但是，值可以为空(即长度为0)。每个条目由唯一的索引标识</p>
+<p>QPACK从0开始索引 HPACK从1开始索引</p>
+<h4 id="32dynamic-table">3.2、Dynamic Table</h4>
+<p>动态表由一个以先进先出的顺序维护的字段行列表组成。QPACK编码器和解码器共享一个最初为空的动态表。编码器将条目添加到动态表中，并通过编码器流上的指令将它们发送给解码器</p>
+<p>可以有重复条目，表项可以有空值。</p>
+<p><code>3.2.1. Dynamic Table Size</code></p>
+<p>size = len(name) + len(value) + 32</p>
+<p><code>3.2.2. Dynamic Table Capacity and Eviction</code></p>
+<p>编码器设置动态表的容量作为其最大值 初始容量为0 编码器发送一个具有非零值的Set Dynamic Table Capacity指令开始使用动态表。</p>
+<p>大小不够插入就移出一个表项</p>
+<p>新条目可以引用之前的表项，要注意移出的时候避免移出被引用表项。</p>
+<p><code>3.2.3. Maximum Dynamic Table Capacity</code></p>
+<p>约束解码器内存需求，解码器限制编码器允许为动态表容量设置的最大值。由解码器发送的SETTING_QPACK_MAX_TABLE_CAPACITY决定，编码器不能设置超过这个最大值。</p>
+<p><code>3.2.4. Absolute Indexing</code></p>
+<p>每个条目都拥有一个绝对索引，该索引在条目的生命周期内是固定的。插入的第一个条目的绝对索引为0;每插入一次，索引就增加1</p>
+<p><code>3.2.5. Relative Indexing</code></p>
+<p>相对索引从零开始，向与绝对指数相反的方向增长。确定哪个条目的相对索引为0取决于引用的上下文</p>
+<p>在编码器指令(章节4.3)中，0的相对索引指的是动态表中最近插入的值。注意，这意味着在解释编码器流上的指令时，给定相对索引引用的条目将发生变化。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">      +-----+---------------+-------+
+</span></span><span class="line"><span class="cl">      <span class="p">|</span> n-1 <span class="p">|</span>      ...      <span class="p">|</span>   d   <span class="p">|</span>  Absolute Index
+</span></span><span class="line"><span class="cl">      + - - +---------------+ - - - +
+</span></span><span class="line"><span class="cl">      <span class="p">|</span>  <span class="m">0</span>  <span class="p">|</span>      ...      <span class="p">|</span> n-d-1 <span class="p">|</span>  Relative Index
+</span></span><span class="line"><span class="cl">      +-----+---------------+-------+
+</span></span><span class="line"><span class="cl">      ^                             <span class="p">|</span>
+</span></span><span class="line"><span class="cl">      <span class="p">|</span>                             V
+</span></span><span class="line"><span class="cl">Insertion Point               Dropping Point
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">n</span> <span class="o">=</span> count of entries inserted
+</span></span><span class="line"><span class="cl"><span class="nv">d</span> <span class="o">=</span> count of entries dropped
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>动态表索引-编码器流</p>
+<p>与编码器指令不同的是，字段行表示中的相对索引相对于被编码的字段行开头的Base;看到4.5.1节。这确保了即使编码字段部分和动态表更新被乱序处理，引用也是稳定的</p>
+<p>在字段行表示中，相对索引为0指的是绝对索引等于Base - 1的条目</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">               Base
+</span></span><span class="line"><span class="cl">                <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                V
+</span></span><span class="line"><span class="cl">    +-----+-----+-----+-----+-------+
+</span></span><span class="line"><span class="cl">    <span class="p">|</span> n-1 <span class="p">|</span> n-2 <span class="p">|</span> n-3 <span class="p">|</span> ... <span class="p">|</span>   d   <span class="p">|</span>  Absolute Index
+</span></span><span class="line"><span class="cl">    +-----+-----+  -  +-----+   -   +
+</span></span><span class="line"><span class="cl">                <span class="p">|</span>  <span class="m">0</span>  <span class="p">|</span> ... <span class="p">|</span> n-d-3 <span class="p">|</span>  Relative Index
+</span></span><span class="line"><span class="cl">                +-----+-----+-------+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">n</span> <span class="o">=</span> count of entries inserted
+</span></span><span class="line"><span class="cl"><span class="nv">d</span> <span class="o">=</span> count of entries dropped
+</span></span><span class="line"><span class="cl">In this example, <span class="nv">Base</span> <span class="o">=</span> n - <span class="m">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>动态表索引示例-表示中的相对索引</p>
+<p><code>3.2.6. Post-Base Indexing</code></p>
+<h3 id="4wire-format">4、Wire Format</h3>
+<h4 id="42-encoder-and-decoder-streams">4.2. Encoder and Decoder Streams</h4>
+<p>QPACK定义了两个单项流</p>
+<ul>
+<li>0x02 encoder stream carries an unframed sequence of encoder instructions</li>
+<li>0x03 decoder stream carries an unframed sequence of decoder instructions</li>
+</ul>
+<p>每个端点必须也仅能启动一个encoder stream和decoder stream</p>
+<h4 id="43-encoder-指令">4.3. Encoder 指令</h4>
+<p><code>4.3.1. 设置Dynamic table capacity</code></p>
+<p>001开头</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">+---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">1</span> <span class="p">|</span>   Capacity <span class="o">(</span>5+<span class="o">)</span>   <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+---+---+---+-------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>4.3.2. Insert with Name Reference</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">     <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">   +---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> <span class="m">1</span> <span class="p">|</span> T <span class="p">|</span>    Name Index <span class="o">(</span>6+<span class="o">)</span>    <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---+-----------------------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> H <span class="p">|</span>     Value Length <span class="o">(</span>7+<span class="o">)</span>     <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---------------------------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span>  Value String <span class="o">(</span>Length bytes<span class="o">)</span>  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>插入字段行 Indexed name</p>
+<p><code>4.3.3. Insert with Literal Name</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">     <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">   +---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">1</span> <span class="p">|</span> H <span class="p">|</span> Name Length <span class="o">(</span>5+<span class="o">)</span>  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---+---+-------------------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span>  Name String <span class="o">(</span>Length bytes<span class="o">)</span>   <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---------------------------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> H <span class="p">|</span>     Value Length <span class="o">(</span>7+<span class="o">)</span>     <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---------------------------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span>  Value String <span class="o">(</span>Length bytes<span class="o">)</span>  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>插入字段行 New name</p>
+<p><code>4.3.4. Duplicate</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">     <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">   +---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">0</span> <span class="p">|</span>    Index <span class="o">(</span>5+<span class="o">)</span>     <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---+---+-------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重复</p>
+<h4 id="44-decoder-指令">4.4. Decoder 指令</h4>
+<p><code>4.4.1. Section Acknowledgment</code></p>
+<p>在处理了一个Required Insert Count不为0的编码字段时回复ACK</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">+---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="m">1</span> <span class="p">|</span>      Stream ID <span class="o">(</span>7+<span class="o">)</span>       <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+---+---------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>4.4.2. Stream Cancellation</code></p>
+<p>当流被重置或放弃读取时，发送取消指令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">+---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">1</span> <span class="p">|</span>     Stream ID <span class="o">(</span>6+<span class="o">)</span>    <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+---+---+-----------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>4.4.3. Insert Count Increment</code></p>
+<p>该指令通过Increment参数的值增加已知接收计数(章节2.1.4)。解码器应该发送一个Increment值，将已知接收计数增加到到目前为止处理的动态表插入和重复的总数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">+---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">0</span> <span class="p">|</span>     Increment <span class="o">(</span>6+<span class="o">)</span>    <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+---+---+-----------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="45--field-line-representations">4.5.  Field Line Representations</h4>
+<p><code>4.5.1. Encoded Field Section Prefix</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">+---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   Required Insert Count <span class="o">(</span>8+<span class="o">)</span>  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+---+---------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> S <span class="p">|</span>      Delta Base <span class="o">(</span>7+<span class="o">)</span>      <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+---+---------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span>      Encoded Field Lines    ...
+</span></span><span class="line"><span class="cl">+-------------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>4.5.1.1. Required Insert Count</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">   <span class="k">if</span> <span class="nv">ReqInsertCount</span> <span class="o">==</span> 0:
+</span></span><span class="line"><span class="cl">      <span class="nv">EncInsertCount</span> <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">   <span class="k">else</span>:
+</span></span><span class="line"><span class="cl">      <span class="nv">EncInsertCount</span> <span class="o">=</span> <span class="o">(</span>ReqInsertCount mod <span class="o">(</span><span class="m">2</span> * MaxEntries<span class="o">))</span> + <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">   <span class="nv">MaxEntries</span> <span class="o">=</span> floor<span class="o">(</span> MaxTableCapacity / <span class="m">32</span> <span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">   <span class="nv">FullRange</span> <span class="o">=</span> <span class="m">2</span> * MaxEntries
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="nv">EncodedInsertCount</span> <span class="o">==</span> 0:
+</span></span><span class="line"><span class="cl">      <span class="nv">ReqInsertCount</span> <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">   <span class="k">else</span>:
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> EncodedInsertCount &gt; FullRange:
+</span></span><span class="line"><span class="cl">         Error
+</span></span><span class="line"><span class="cl">      <span class="nv">MaxValue</span> <span class="o">=</span> TotalNumberOfInserts + MaxEntries
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="c1"># MaxWrapped is the largest possible value of</span>
+</span></span><span class="line"><span class="cl">      <span class="c1"># ReqInsertCount that is 0 mod 2 * MaxEntries</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">MaxWrapped</span> <span class="o">=</span> floor<span class="o">(</span>MaxValue / FullRange<span class="o">)</span> * FullRange
+</span></span><span class="line"><span class="cl">      <span class="nv">ReqInsertCount</span> <span class="o">=</span> MaxWrapped + EncodedInsertCount - <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="c1"># If ReqInsertCount exceeds MaxValue, the Encoder&#39;s value</span>
+</span></span><span class="line"><span class="cl">      <span class="c1"># must have wrapped one fewer time</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> ReqInsertCount &gt; MaxValue:
+</span></span><span class="line"><span class="cl">         <span class="k">if</span> ReqInsertCount &lt;<span class="o">=</span> FullRange:
+</span></span><span class="line"><span class="cl">            Error
+</span></span><span class="line"><span class="cl">         ReqInsertCount -<span class="o">=</span> FullRange
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="c1"># Value of 0 must be encoded as 0.</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="nv">ReqInsertCount</span> <span class="o">==</span> 0:
+</span></span><span class="line"><span class="cl">         Error
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>4.5.1.2. Base</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">   <span class="k">if</span> <span class="nv">Sign</span> <span class="o">==</span> 0:
+</span></span><span class="line"><span class="cl">      <span class="nv">Base</span> <span class="o">=</span> ReqInsertCount + DeltaBase
+</span></span><span class="line"><span class="cl">   <span class="k">else</span>:
+</span></span><span class="line"><span class="cl">      <span class="nv">Base</span> <span class="o">=</span> ReqInsertCount - DeltaBase - <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>4.5.2. Indexed Field Line</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">+---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="m">1</span> <span class="p">|</span> T <span class="p">|</span>      Index <span class="o">(</span>6+<span class="o">)</span>       <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+---+---+-----------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>4.5.3. Indexed Field Line with Post-Base Index</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">+---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">1</span> <span class="p">|</span>  Index <span class="o">(</span>4+<span class="o">)</span>   <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+---+---+---+---+---------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>4.5.4. Literal Field Line with Name Reference</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">     <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">   +---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">1</span> <span class="p">|</span> N <span class="p">|</span> T <span class="p">|</span>Name Index <span class="o">(</span>4+<span class="o">)</span><span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---+---+---+---------------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> H <span class="p">|</span>     Value Length <span class="o">(</span>7+<span class="o">)</span>     <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---------------------------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span>  Value String <span class="o">(</span>Length bytes<span class="o">)</span>  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>4.5.5. Literal Field Line with Post-Base Name Reference</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">     <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">   +---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> N <span class="p">|</span>NameIdx<span class="o">(</span>3+<span class="o">)</span><span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---+---+---+---+-----------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> H <span class="p">|</span>     Value Length <span class="o">(</span>7+<span class="o">)</span>     <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---------------------------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span>  Value String <span class="o">(</span>Length bytes<span class="o">)</span>  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>4.5.6. Literal Field Line with Literal Name</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">     <span class="m">0</span>   <span class="m">1</span>   <span class="m">2</span>   <span class="m">3</span>   <span class="m">4</span>   <span class="m">5</span>   <span class="m">6</span>   <span class="m">7</span>
+</span></span><span class="line"><span class="cl">   +---+---+---+---+---+---+---+---+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">0</span> <span class="p">|</span> <span class="m">1</span> <span class="p">|</span> N <span class="p">|</span> H <span class="p">|</span>NameLen<span class="o">(</span>3+<span class="o">)</span><span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---+---+---+---+-----------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span>  Name String <span class="o">(</span>Length bytes<span class="o">)</span>   <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---------------------------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span> H <span class="p">|</span>     Value Length <span class="o">(</span>7+<span class="o">)</span>     <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +---+---------------------------+
+</span></span><span class="line"><span class="cl">   <span class="p">|</span>  Value String <span class="o">(</span>Length bytes<span class="o">)</span>  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   +-------------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Literal Field Line with Literal Name</p>
 
     </article>
     
@@ -4192,6 +4664,31 @@ document.addEventListener('DOMContentLoaded', function () {
           <ul>
             <li><a href="#frame-layout">Frame Layout</a></li>
             <li><a href="#frame-definitions">Frame Definitions</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#rfc9204">RFC9204</a>
+      <ul>
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#2压缩过程概述">2、压缩过程概述</a>
+          <ul>
+            <li><a href="#21encoder">2.1、Encoder</a></li>
+            <li><a href="#22decoder">2.2、Decoder</a></li>
+          </ul>
+        </li>
+        <li><a href="#3reference-tables">3、Reference Tables</a>
+          <ul>
+            <li><a href="#31static-table">3.1、Static Table</a></li>
+            <li><a href="#32dynamic-table">3.2、Dynamic Table</a></li>
+          </ul>
+        </li>
+        <li><a href="#4wire-format">4、Wire Format</a>
+          <ul>
+            <li><a href="#42-encoder-and-decoder-streams">4.2. Encoder and Decoder Streams</a></li>
+            <li><a href="#43-encoder-指令">4.3. Encoder 指令</a></li>
+            <li><a href="#44-decoder-指令">4.4. Decoder 指令</a></li>
+            <li><a href="#45--field-line-representations">4.5.  Field Line Representations</a></li>
           </ul>
         </li>
       </ul>
