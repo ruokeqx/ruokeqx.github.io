@@ -51,7 +51,7 @@
         <author>ruokeqx@163.com (ruokeqx)</author>
         <atom:modified>Mon, 11 Jul 2022 00:00:00 +0000</atom:modified>
         <guid>https://ruokeqx.gitee.io/posts/quic-go_source/</guid>
-        <description>https://github.com/lucas-clemente/quic-go quic-go——A QUIC implementation in pure go quic-go实现了QUIC协议,并实现了HTTP3,本文对其源码进行简单阅读 http3包一共5000行代码</description>
+        <description>https://github.com/lucas-clemente/quic-go quic-go——A QUIC implementation in pure go quic-go实现了QUIC协议,并实现了HTTP3,本文对其源码进行简单阅读 quic-go/http3 http3子包一共5000行</description>
         
         <dc:creator>ruokeqx</dc:creator>
         

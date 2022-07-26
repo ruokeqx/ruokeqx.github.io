@@ -1376,7 +1376,7 @@
     "datePublished": "2022-07-11T00:00:00Z",
     "dateModified": "2022-07-11T00:00:00Z",
     "url" : "https://ruokeqx.gitee.io/posts/quic-go_source/",
-    "description": "https://github.com/lucas-clemente/quic-go quic-go——A QUIC implementation in pure go quic-go实现了QUIC协议,并实现了HTTP3,本文对其源码进行简单阅读 http3包一共5000行代码",
+    "description": "https://github.com/lucas-clemente/quic-go quic-go——A QUIC implementation in pure go quic-go实现了QUIC协议,并实现了HTTP3,本文对其源码进行简单阅读 quic-go/http3 http3子包一共5000行",
     "keywords": ["network","http3"],
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -1688,7 +1688,7 @@
 <div class="single__infos">
   <time class="single__info" title="Written At">📅&nbsp;Jul 11, 2022 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;2&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;8&nbsp;min read </span>
   
   <span class="single__info">
      &middot; 👀<span id="busuanzi_value_page_pv">...</span> views
@@ -1713,7 +1713,8 @@
       <p><a href="https://github.com/lucas-clemente/quic-go">https://github.com/lucas-clemente/quic-go</a></p>
 <p>quic-go——A QUIC implementation in pure go</p>
 <p>quic-go实现了QUIC协议,并实现了HTTP3,本文对其源码进行简单阅读</p>
-<p>http3包一共5000行代码,3000行是test,具体实现只有2000行(当然该库还有一些没有实现的地方),阅读起来较为简单</p>
+<h2 id="quic-gohttp3">quic-go/http3</h2>
+<p>http3子包一共5000行代码,3000行是test,具体实现只有2000行(当然该库还有一些没有实现的地方),阅读起来较为简单</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1862,6 +1863,8 @@ ListenAndServeQUIC</p>
 </span><span class="lnt">55
 </span><span class="lnt">56
 </span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// ListenAndServeTLS listens on the UDP address s.Addr and calls s.Handler to handle HTTP/3 requests on incoming connections.
@@ -1900,8 +1903,9 @@ ListenAndServeQUIC</p>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="o">-</span><span class="p">&gt;</span><span class="k">switch</span> <span class="nx">quicvarint</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">qr</span><span class="p">){</span><span class="k">case</span> <span class="nx">FrameType</span><span class="p">:</span> <span class="k">return</span> <span class="o">&amp;</span><span class="nx">Frame</span><span class="p">{}}</span>
 </span></span><span class="line"><span class="cl">                      <span class="o">-</span><span class="p">&gt;</span><span class="nx">hf</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">frame</span><span class="p">.(</span><span class="o">*</span><span class="nx">headersFrame</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">                      <span class="o">-</span><span class="p">&gt;</span><span class="nx">headerBlock</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">hf</span><span class="p">.</span><span class="nx">Length</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">                      <span class="o">-</span><span class="p">&gt;</span><span class="nx">hfs</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">decoder</span><span class="p">.</span><span class="nf">DecodeFull</span><span class="p">(</span><span class="nx">headerBlock</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">                      <span class="c1">// http3/request.go 解析请求伪标头字段
+</span></span><span class="line"><span class="cl">                      <span class="c1">// RFC9204 QPACK Decoder
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                      <span class="o">-</span><span class="p">&gt;</span><span class="nx">hfs</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">decoder</span><span class="p">.</span><span class="nf">DecodeFull</span><span class="p">(</span><span class="nx">headerBlock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                      <span class="c1">// http3/request.go 解析请求伪标头字段 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>                      <span class="o">-</span><span class="p">&gt;</span><span class="nx">req</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">requestFromHeaders</span><span class="p">(</span><span class="nx">hfs</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">                      <span class="o">-</span><span class="p">&gt;</span><span class="nx">req</span><span class="p">.</span><span class="nx">RemoteAddr</span> <span class="p">=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">RemoteAddr</span><span class="p">().</span><span class="nf">String</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	                    <span class="o">-</span><span class="p">&gt;</span><span class="nx">body</span> <span class="o">:=</span> <span class="nf">newRequestBody</span><span class="p">(</span><span class="nf">newStream</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">onFrameError</span><span class="p">))</span>
@@ -1911,6 +1915,7 @@ ListenAndServeQUIC</p>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>	                    <span class="o">-</span><span class="p">&gt;</span><span class="nx">handler</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Handler</span>
 </span></span><span class="line"><span class="cl">                      <span class="o">-</span><span class="p">&gt;</span><span class="kd">func</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">                          <span class="c1">// 逐一执行handler函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                          <span class="c1">// ServeHTTP(http.ResponseWriter, *http.Request)
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>                          <span class="nx">handler</span><span class="p">.</span><span class="nf">ServeHTTP</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">req</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">                          <span class="c1">// 这就回到了开头ListenAndServeQUIC和ListenAndServeTLS的注释
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="p">}()</span>
@@ -1921,6 +1926,510 @@ ListenAndServeQUIC</p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="o">-</span><span class="p">&gt;</span><span class="nx">s</span><span class="p">.</span><span class="nf">removeListener</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">ln</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">      <span class="o">-</span><span class="p">&gt;</span><span class="nb">delete</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">listeners</span><span class="p">,</span> <span class="nx">l</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="net">net</h2>
+<p>QUIC实现前先把go/src/net的逻辑,尤其是UDP的逻辑再梳理一遍</p>
+<p>如net/net.go开头注释所说,Packet net提供了包括TCP/IP,UDP,DNS,Unix domain sockets在内的网络I/O接口</p>
+<p>如最常见的函数接口都在此处定义<br />
+Dial function连接到server<br />
+Listen function创建一个server</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// ln, err := net.Listen(&#34;tcp&#34;, &#34;:8080&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// conn, err := ln.Accept()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Listener</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Accept</span><span class="p">()</span> <span class="p">(</span><span class="nx">Conn</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Close</span><span class="p">()</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Addr</span><span class="p">()</span> <span class="nx">Addr</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>conn结构体为一个 *netFD的网络文件描述符号，Conn接口方法都会作用在conn对象上。<br />
+Conn接口的对应实现在net/udpsock.go和net/tcpsock.go中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// conn, err := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Conn</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// net.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">Read</span><span class="p">(</span><span class="nx">b</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Write</span><span class="p">(</span><span class="nx">b</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Close</span><span class="p">()</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">LocalAddr</span><span class="p">()</span> <span class="nx">Addr</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">RemoteAddr</span><span class="p">()</span> <span class="nx">Addr</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">SetDeadline</span><span class="p">(</span><span class="nx">t</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">SetReadDeadline</span><span class="p">(</span><span class="nx">t</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">SetWriteDeadline</span><span class="p">(</span><span class="nx">t</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">conn</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fd</span> <span class="o">*</span><span class="nx">netFD</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// conn, err := net.Dial(&#34;udp&#34;, &#34;127.0.0.1:8002&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">PacketConn</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// udpsock.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">ReadFrom</span><span class="p">(</span><span class="nx">p</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">addr</span> <span class="nx">Addr</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">WriteTo</span><span class="p">(</span><span class="nx">p</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">addr</span> <span class="nx">Addr</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// net.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">Close</span><span class="p">()</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">LocalAddr</span><span class="p">()</span> <span class="nx">Addr</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">SetDeadline</span><span class="p">(</span><span class="nx">t</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">SetReadDeadline</span><span class="p">(</span><span class="nx">t</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">SetWriteDeadline</span><span class="p">(</span><span class="nx">t</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// net/udpsock.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">UDPConn</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">conn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ReadFrom implements the PacketConn ReadFrom method.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">UDPConn</span><span class="p">)</span> <span class="nf">ReadFrom</span><span class="p">(</span><span class="nx">b</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="nx">Addr</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ListenUDP acts like ListenPacket for UDP networks.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">ListenUDP</span><span class="p">(</span><span class="nx">network</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">laddr</span> <span class="o">*</span><span class="nx">UDPAddr</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">UDPConn</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// net/tcpsock.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">TCPConn</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">conn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">TCPConn</span><span class="p">)</span> <span class="nf">ReadFrom</span><span class="p">(</span><span class="nx">r</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">)</span> <span class="p">(</span><span class="kt">int64</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ListenTCP acts like Listen for TCP networks.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">ListenTCP</span><span class="p">(</span><span class="nx">network</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">laddr</span> <span class="o">*</span><span class="nx">TCPAddr</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">TCPListener</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>另外他们的读写实现通过以下路径进行系统调用<br />
+net/udp[tcp]sock_posix.go<br />
+net/fd_posix.go(netFD)<br />
+internal/poll/fd_unix.go(poll.FD)<br />
+internal/syscall/net.go</p>
+<h2 id="quic">quic</h2>
+<!-- 说在前面：quic-go也将端与端之前的连接抽象为connection,并通过connection维护各种stream -->
+<p>上文控制流中写到ListenAndServeTLS-&gt;serveConn会创建quic.EarlyListener添加到server的listener列表中并serve,<br />
+quic.EarlyListener Accept会返回 quic.EarlyConnection<br />
+其跟net标准库中的设计如出一辙</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">EarlyListener</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Close</span><span class="p">()</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Addr</span><span class="p">()</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Addr</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Accept</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">EarlyConnection</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>quic.EarlyConnection是quic.Connection的wrapper,其设计也与net标准库有相似性<br />
+Accept单向流和双向流<br />
+同步异步创建单向双向流<br />
+通过UDP发送和接收message</p>
+<p>而SetReadDeadline、SetWriteDeadline、SetDeadline则移动到对应的<br />
+ReceiveStream单向流、SendStream单向流、Stream双向流接口中了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Connection</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">AcceptStream</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">Stream</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">AcceptUniStream</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">ReceiveStream</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">OpenStream</span><span class="p">()</span> <span class="p">(</span><span class="nx">Stream</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">OpenStreamSync</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">Stream</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">OpenUniStream</span><span class="p">()</span> <span class="p">(</span><span class="nx">SendStream</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">OpenUniStreamSync</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">SendStream</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">LocalAddr</span><span class="p">()</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Addr</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">RemoteAddr</span><span class="p">()</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Addr</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">CloseWithError</span><span class="p">(</span><span class="nx">ApplicationErrorCode</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Context</span><span class="p">()</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">ConnectionState</span><span class="p">()</span> <span class="nx">ConnectionState</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// RFC9221 SendMessage sends a message as a datagram
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">SendMessage</span><span class="p">([]</span><span class="kt">byte</span><span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// RFC9221 ReceiveMessage gets a message received in a datagram
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">ReceiveMessage</span><span class="p">()</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">ReceiveStream</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">StreamID</span><span class="p">()</span> <span class="nx">StreamID</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">CancelRead</span><span class="p">(</span><span class="nx">StreamErrorCode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">SetReadDeadline</span><span class="p">(</span><span class="nx">t</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">SendStream</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">StreamID</span><span class="p">()</span> <span class="nx">StreamID</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nx">Closer</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">CancelWrite</span><span class="p">(</span><span class="nx">StreamErrorCode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Context</span><span class="p">()</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">SetWriteDeadline</span><span class="p">(</span><span class="nx">t</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Stream</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">ReceiveStream</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">SendStream</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">SetDeadline</span><span class="p">(</span><span class="nx">t</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上提及的interface全都在interface.go文件中</p>
+<p>server.go提供了Listen{Addr}{Early}等一系列函数(http3库中ListenAndServeTLS调用的是ListenAddrEarly)通过内部listen函数 返回基于baseServer的Listener和EarlyListener</p>
+<p>同时协程listen-&gt;go s.run()接收receivedPackets信号通过handlePacketImpl根据其中数据解析并进行一些情况的处理然如版本协商后进入handleInitialImpl</p>
+<p>handleInitialImpl根据情况发送重试包 生成connID并添加handler到packetHandlerMap中(其由multiplexer初始化时指定newPacketHandlerMap作为创建函数),其中使用rawConn等信息创建quicConn并用handlePacket将p传到s.receivedPackets,添加后将新的conn也启动go conn.run()并go s.handleNewConn(conn)</p>
+<p>handleNewConn根据需要的conn是否为EarlyConn根据当前状态返回conn 并将conn加到s.connQueue</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">baseServer</span><span class="p">)</span> <span class="nf">handleNewConn</span><span class="p">(</span><span class="nx">conn</span> <span class="nx">quicConn</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">connCtx</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Context</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">s</span><span class="p">.</span><span class="nx">acceptEarlyConns</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// wait until the early connection is ready (or the handshake fails)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">conn</span><span class="p">.</span><span class="nf">earlyConnReady</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">connCtx</span><span class="p">.</span><span class="nf">Done</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// wait until the handshake is complete (or fails)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">conn</span><span class="p">.</span><span class="nf">HandshakeComplete</span><span class="p">().</span><span class="nf">Done</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">connCtx</span><span class="p">.</span><span class="nf">Done</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">atomic</span><span class="p">.</span><span class="nf">AddInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">s</span><span class="p">.</span><span class="nx">connQueueLen</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="nx">s</span><span class="p">.</span><span class="nx">connQueue</span> <span class="o">&lt;-</span> <span class="nx">conn</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// blocks until the connection is accepted
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">connCtx</span><span class="p">.</span><span class="nf">Done</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">atomic</span><span class="p">.</span><span class="nf">AddInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">s</span><span class="p">.</span><span class="nx">connQueueLen</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// don&#39;t pass connections that were already closed to Accept()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>与此同时accept通过connQueue接收conn并处理conn := &lt;-s.connQueue<br />
+两边select语句都没有default选项,由于quicConn在server启动时容量为1<code>quicConn : make(chan quicConn)</code>,所以双方都会阻塞<br />
+这也是handleNewConn()中注释blocks until the connection is accepted的原因</p>
+<p><code>packetHandlerMap</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// server.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">packetHandlerManager</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">AddWithConnID</span><span class="p">(</span><span class="nx">protocol</span><span class="p">.</span><span class="nx">ConnectionID</span><span class="p">,</span> <span class="nx">protocol</span><span class="p">.</span><span class="nx">ConnectionID</span><span class="p">,</span> <span class="kd">func</span><span class="p">()</span> <span class="nx">packetHandler</span><span class="p">)</span> <span class="kt">bool</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Destroy</span><span class="p">()</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">connRunner</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">SetServer</span><span class="p">(</span><span class="nx">unknownPacketHandler</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">CloseServer</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>packetHandlerMap一经创建就通过listen不断ReadPacket并handlePacket<br />
+handlePacket先是从packetHandlerMap的handlers中找到entry的packetHandler处理 entry的packetHandler由baseServer.handleInitialImpl在AddWithConnID是指定<br />
+再是由server的handlePacket处理 即加到s.receivedPackets &lt;- p</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// packet_handler_map.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">packetHandlerMap</span><span class="p">)</span> <span class="nf">listen</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nb">close</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">listening</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">p</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">conn</span><span class="p">.</span><span class="nf">ReadPacket</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">h</span><span class="p">.</span><span class="nf">handlePacket</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">packetHandlerMap</span><span class="p">)</span> <span class="nf">handlePacket</span><span class="p">(</span><span class="nx">p</span> <span class="o">*</span><span class="nx">receivedPacket</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">connID</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">wire</span><span class="p">.</span><span class="nf">ParseConnectionID</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="nx">h</span><span class="p">.</span><span class="nx">connIDLen</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">entry</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">handlers</span><span class="p">[</span><span class="nb">string</span><span class="p">(</span><span class="nx">connID</span><span class="p">)];</span> <span class="nx">ok</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">is0RTTQueue</span> <span class="p">{</span> <span class="c1">// only enqueue 0-RTT packets in the 0-RTT queue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">if</span> <span class="nx">wire</span><span class="p">.</span><span class="nf">Is0RTTPacket</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">entry</span><span class="p">.</span><span class="nx">packetHandler</span><span class="p">.</span><span class="nf">handlePacket</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="k">return</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// existing connection
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">entry</span><span class="p">.</span><span class="nx">packetHandler</span><span class="p">.</span><span class="nf">handlePacket</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">wire</span><span class="p">.</span><span class="nf">Is0RTTPacket</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">h</span><span class="p">.</span><span class="nx">server</span><span class="p">.</span><span class="nf">handlePacket</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上述用到的ReadPacket以及ReadPacket 由sys_conn_oob.go实现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// packet_handler_map.go
+</span></span></span><span class="line"><span class="cl"><span class="c1">// rawConn is a connection that allow reading of a receivedPacket.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">rawConn</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">ReadPacket</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">receivedPacket</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">WritePacket</span><span class="p">(</span><span class="nx">b</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">addr</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Addr</span><span class="p">,</span> <span class="nx">oob</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">LocalAddr</span><span class="p">()</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Addr</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nx">Closer</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// sys_conn_oob.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">oobConn</span><span class="p">)</span> <span class="nf">ReadPacket</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">receivedPacket</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>send_conn.go中的Write也是调用sys_conn_oob.go中WritePacket</p>
+<p>h3通过EarlyConnection.AcceptStream来获取请求流并处理请求</p>
+<p>server.go中baseServer中维护一个newConn的函数指针,在listen的时候初始化为newConnection</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// A Listener of QUIC
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">baseServer</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">newConn</span> <span class="kd">func</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="nx">quicConn</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>connection.go中connection结构体维持一个streamMap,并创建了自己的初始化函数newConnection</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// A Connection is a QUIC connection
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">connection</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">streamsMap</span>      <span class="nx">streamManager</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>[server.go]listen-&gt;s := &amp;baseServer{newConn: newConnection}-&gt;handleInitialImpl()-&gt;s.connHandler.AddWithConnID(&hellip;,func() packetHandler {conn = s.newConn()})<br />
+[connection.go]newConnection-&gt;s.preSetup()-&gt;s.streamsMap = newStreamsMap(&hellip;)中初始化streamsMap<br />
+[streams_map.go]newStreamsMap-&gt;initMaps里面创建并维护出入单双向stream的map</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">streamsMap</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">perspective</span> <span class="nx">protocol</span><span class="p">.</span><span class="nx">Perspective</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">version</span>     <span class="nx">protocol</span><span class="p">.</span><span class="nx">VersionNumber</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">maxIncomingBidiStreams</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">maxIncomingUniStreams</span>  <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">sender</span>            <span class="nx">streamSender</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">newFlowController</span> <span class="kd">func</span><span class="p">(</span><span class="nx">protocol</span><span class="p">.</span><span class="nx">StreamID</span><span class="p">)</span> <span class="nx">flowcontrol</span><span class="p">.</span><span class="nx">StreamFlowController</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">mutex</span>               <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">outgoingBidiStreams</span> <span class="o">*</span><span class="nx">outgoingBidiStreamsMap</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">outgoingUniStreams</span>  <span class="o">*</span><span class="nx">outgoingUniStreamsMap</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">incomingBidiStreams</span> <span class="o">*</span><span class="nx">incomingBidiStreamsMap</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">incomingUniStreams</span>  <span class="o">*</span><span class="nx">incomingUniStreamsMap</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">reset</span>               <span class="kt">bool</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
@@ -2644,7 +3153,13 @@ document.addEventListener('DOMContentLoaded', function () {
     
   </div>
   <div class="toc hide" data-dir="ltr" data-folding="true" data-ani="true">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#quic-gohttp3">quic-go/http3</a></li>
+    <li><a href="#net">net</a></li>
+    <li><a href="#quic">quic</a></li>
+  </ul>
+</nav>
   </div>
 </section>
 
