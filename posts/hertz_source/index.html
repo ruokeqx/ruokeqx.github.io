@@ -1688,7 +1688,7 @@
 <div class="single__infos">
   <time class="single__info" title="Written At">📅&nbsp;Jul 14, 2022 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;10&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;11&nbsp;min read </span>
   
   <span class="single__info">
      &middot; 👀<span id="busuanzi_value_page_pv">...</span> views
@@ -2475,6 +2475,7 @@ transport是之前设定的defaultTransporter,transport实现了Transporter接�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>t.serve非常简单 就是持续监听 创建连接并使用handler处理</p>
+<p>此处transport.serve等同于 quic-go/http3 Server.serveListener</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -2621,7 +2622,81 @@ transport是之前设定的defaultTransporter,transport实现了Transporter接�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>所以说要在原来基础上添加HTTP3支持,在serverMap中添加处理函数,然后在依据RFC在低版本的header进行特殊处理</p>
-<p>Close和优雅Shutdown的区别就是有没有延迟关闭,一个是0一个是h.GetOptions().ExitWaitTimeout</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// Core is the core interface that promises to be provided for the protocol layer extensions
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Core</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// IsRunning Check whether engine is running or not
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">IsRunning</span><span class="p">()</span> <span class="kt">bool</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// A RequestContext pool ready for protocol server impl
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">GetCtxPool</span><span class="p">()</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Pool</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Business logic entrance
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// After pre-read works, protocol server may call this method
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// to introduce the middlewares and handlers
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">ServeHTTP</span><span class="p">(</span><span class="nx">c</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">ctx</span> <span class="o">*</span><span class="nx">app</span><span class="p">.</span><span class="nx">RequestContext</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// GetTracer for tracing requirement
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">GetTracer</span><span class="p">()</span> <span class="nx">tracer</span><span class="p">.</span><span class="nx">Controller</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">ServerFactory</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">New</span><span class="p">(</span><span class="nx">core</span> <span class="nx">Core</span><span class="p">)</span> <span class="p">(</span><span class="nx">server</span> <span class="nx">protocol</span><span class="p">.</span><span class="nx">Server</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Core中的函数在route/engine.go中实现了 每个engine Serve函数处理ctx后在其中交由ServeHTTP来处理实现框架的路由和中间件等剥离</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Server</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Option</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Core</span> <span class="nx">suite</span><span class="p">.</span><span class="nx">Core</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">Server</span><span class="p">)</span> <span class="nf">Serve</span><span class="p">(</span><span class="nx">c</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">conn</span> <span class="nx">network</span><span class="p">.</span><span class="nx">Conn</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">s</span><span class="p">.</span><span class="nx">Core</span><span class="p">.</span><span class="nf">ServeHTTP</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>protocolServers[proto]返回protocol.Server,engine.Serve根据protocol选择protocol.Server.Serve(c, conn)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">engine</span><span class="p">.</span><span class="nx">Run</span><span class="o">-</span><span class="p">&gt;</span><span class="nx">engine</span><span class="p">.</span><span class="nx">Init</span><span class="o">-</span><span class="p">&gt;</span><span class="nx">engine</span><span class="p">.</span><span class="nx">protocolSuite</span><span class="p">.</span><span class="nx">LoadAll</span><span class="o">-</span><span class="p">&gt;</span><span class="nx">c</span><span class="p">.</span><span class="nx">configMap</span><span class="p">[</span><span class="nx">protocol</span><span class="p">].</span><span class="nf">New</span><span class="p">(</span><span class="nx">core</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Close和优雅Shutdown的区别就是有没有延迟关闭,一个是0一个是h.GetOptions().ExitWaitTimeout</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -3178,6 +3253,13 @@ standard 为 ET 模型，netpoll 为 LT 模型，使得两个网络库的适用�
       </a>
     
     <div class="grow"></div>
+    
+      <a href="https://ruokeqx.gitee.io/posts/kernel_net_again/" class="pagination-single__right">      
+        <div class="pagination-single__right-title">kernel/net再贯穿：dev-ip-tcp stack、epoll、netns、iptables etc...</div>
+        <div class="pagination-single__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
+        </div>
+      </a>
     
   
 </nav>
