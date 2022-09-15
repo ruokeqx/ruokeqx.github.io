@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>日常 on ruokeqx&#39;s blog</title>
+    <link>https://ruokeqx.gitee.io/tags/%E6%97%A5%E5%B8%B8/</link>
+    <description>Recent content in 日常 on ruokeqx&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
+    <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
+    <copyright>©2022, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 16 Sep 2022 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://ruokeqx.gitee.io/tags/%E6%97%A5%E5%B8%B8/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>醍醐灌顶</title>
+        <link>https://ruokeqx.gitee.io/posts/%E9%86%8D%E9%86%90%E7%81%8C%E9%A1%B6/</link>
+        <pubDate>Fri, 16 Sep 2022 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Fri, 16 Sep 2022 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/%E9%86%8D%E9%86%90%E7%81%8C%E9%A1%B6/</guid>
+        <description>历史是上升的螺旋、人生亦是。 在经历一些事情的时候会突然想通过往的一些事情，那便将本文命名为《醍醐灌顶》吧。 或许将来看来这里记录的一些东西很幼</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>日常</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>
