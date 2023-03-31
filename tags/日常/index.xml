@@ -13,12 +13,36 @@
     <language>en</language>
     <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
     <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
-    <copyright>©2022, All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 16 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <copyright>©2023, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 31 Mar 2023 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://ruokeqx.gitee.io/tags/%E6%97%A5%E5%B8%B8/index.xml" rel="self" type="application/rss+xml" />
     
 
+      
+      <item>
+        <title>2023春招面经</title>
+        <link>https://ruokeqx.gitee.io/posts/2023spring_interview/</link>
+        <pubDate>Fri, 31 Mar 2023 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Fri, 31 Mar 2023 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/2023spring_interview/</guid>
+        <description>可以说非常幸运了，拿了美团和宁波银行的offer，最后去了美团。 知乎 四五十分钟的样子，一面挂 线程和协程 协程除调度外优势 rpc 鉴权在哪做 gRPC拦</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>日常</category>
+            
+          
+        
+        
+        
+      </item>
       
       <item>
         <title>醍醐灌顶</title>

@@ -13,12 +13,36 @@
     <language>en</language>
     <managingEditor>ruokeqx@163.com (ruokeqx)</managingEditor>
     <webMaster>ruokeqx@163.com (ruokeqx)</webMaster>
-    <copyright>©2022, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 04 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <copyright>©2023, All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 27 Mar 2023 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://ruokeqx.gitee.io/tags/security/index.xml" rel="self" type="application/rss+xml" />
     
 
+      
+      <item>
+        <title>自定义安卓内核调试</title>
+        <link>https://ruokeqx.gitee.io/posts/android_kernel_modify/</link>
+        <pubDate>Mon, 27 Mar 2023 00:00:00 +0000</pubDate>
+        <author>ruokeqx@163.com (ruokeqx)</author>
+        <atom:modified>Mon, 27 Mar 2023 00:00:00 +0000</atom:modified>
+        <guid>https://ruokeqx.gitee.io/posts/android_kernel_modify/</guid>
+        <description>修改安卓源码dump dex 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 // libdexfile/dex/dex_file_loader.cc std::unique_ptr&amp;lt;DexFile&amp;gt; DexFileLoader::OpenCommon(const uint8_t* base, size_t size, const uint8_t* data_base, size_t data_size, const std::string&amp;amp; location, uint32_t location_checksum, const OatDexFile* oat_dex_file, bool verify, bool verify_checksum, std::string*</description>
+        
+        <dc:creator>ruokeqx</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>security</category>
+            
+          
+        
+        
+        
+      </item>
       
       <item>
         <title>hertz path-traversal vulnerability; echo open redirect vulnerability</title>
