@@ -1700,18 +1700,18 @@
 
     <div class="summary-classic__content">
       <header>
-        <h5 class="title h5"><a href='https://ruokeqx.gitee.io/posts/android_kernel_modify/'>自定义安卓内核调试</a> </h5>
+        <h5 class="title h5"><a href='https://ruokeqx.gitee.io/posts/android_kernel_modify/'>打造安卓调试环境</a> </h5>
         <h6 class="subtitle caption">
           <time title="Written At" dir="ltr">📅&nbsp;Mar 27, 2023 </time>
           
-          <span title="Reading Time" dir="ltr"> &middot; ☕&nbsp;1&nbsp;min read </span>
+          <span title="Reading Time" dir="ltr"> &middot; ☕&nbsp;2&nbsp;min read </span>
           
         </h6>
       </header>
       <div>
         <div class="summary-classic__text p2">
           
-            修改安卓源码dump dex 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 // libdexfile/dex/dex_file_loader.cc std::unique_ptr&lt;DexFile&gt; DexFileLoader::OpenCommon(const uint8_t* base, size_t size, const uint8_t* data_base, size_t data_size, const std::string&amp; location, uint32_t location_checksum, const OatDexFile* oat_dex_file, bool verify, bool verify_checksum, std::string*
+            修改内核参数 1 2 3 4 5 $ cat device/motorola/berlin/BoardConfig.mk | grep TARGET_KERNEL_CONFIG TARGET_KERNEL_CONFIG += vendor/lineage_berlin.config $ cat device/motorola/sm7325-common/BoardConfigCommon.mk | grep TARGET_KERNEL_CONFIG TARGET_KERNEL_CONFIG := vendor/lahaina-qgki_defconfig vendor/lineage_moto-lahaina.config $ vim /mnt/android/lineage/kernel/motorola/sm7325/arch/arm64/configs/vendor/lineage_berlin.config 手动更新内核（Patch commit） 1 2 3 4 5 $ git remote add linux-stable https://mirrors.bfsu.edu.cn/git/linux-stable.git $ git fetch linux-stable # 查看
           
         </div>
       </div>
@@ -2165,7 +2165,7 @@
         </li>
         
         <li class="sidebar-recent">
-            <a href="/posts/android_kernel_modify/" class="sidebar-recent__title p1">自定义安卓内核调试</a>
+            <a href="/posts/android_kernel_modify/" class="sidebar-recent__title p1">打造安卓调试环境</a>
         </li>
         
         <li class="sidebar-recent">
